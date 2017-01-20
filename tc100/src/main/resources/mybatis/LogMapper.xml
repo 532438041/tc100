@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.impl.LogDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.Log">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="details" property="details" jdbcType="VARCHAR" />
+		<result column="method" property="method" jdbcType="VARCHAR" />
+		<result column="log_type" property="logType" jdbcType="CHAR" />
+		<result column="req_ip" property="reqIp" jdbcType="VARCHAR" />
+		<result column="ex_code" property="exCode" jdbcType="VARCHAR" />
+		<result column="ex_detail" property="exDetail" jdbcType="VARCHAR" />
+		<result column="params" property="params" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap type="com.java.dto.LogDto" id="LogDtoMap">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="details" property="details" jdbcType="VARCHAR" />
+		<result column="method" property="method" jdbcType="VARCHAR" />
+		<result column="log_type" property="logType" jdbcType="CHAR" />
+		<result column="req_ip" property="reqIp" jdbcType="VARCHAR" />
+		<result column="ex_code" property="exCode" jdbcType="VARCHAR" />
+		<result column="ex_detail" property="exDetail" jdbcType="VARCHAR" />
+		<result column="params" property="params" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="createName" property="createName" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, details, method, log_type, req_ip, ex_code, ex_detail, params, create_by, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="LogDtoMap" parameterType="java.lang.String">
+		SELECT lo.*, us.`user_name` createName 
+		FROM `sc_log` lo LEFT JOIN `sc_user` us ON lo.`create_by` = us.`id`
+		where lo.`id` = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sc_log
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.Log">
+		insert into sc_log (id, details, method,
+		log_type, req_ip, ex_code,
+		ex_detail, params, create_by,
+		create_time)
+		values (#{id,jdbcType=CHAR}, #{details,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},
+		#{logType,jdbcType=CHAR}, #{reqIp,jdbcType=VARCHAR}, #{exCode,jdbcType=VARCHAR},
+		#{exDetail,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.Log">
+		insert into sc_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="details != null">
+				details,
+			</if>
+			<if test="method != null">
+				method,
+			</if>
+			<if test="logType != null">
+				log_type,
+			</if>
+			<if test="reqIp != null">
+				req_ip,
+			</if>
+			<if test="exCode != null">
+				ex_code,
+			</if>
+			<if test="exDetail != null">
+				ex_detail,
+			</if>
+			<if test="params != null">
+				params,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="details != null">
+				#{details,jdbcType=VARCHAR},
+			</if>
+			<if test="method != null">
+				#{method,jdbcType=VARCHAR},
+			</if>
+			<if test="logType != null">
+				#{logType,jdbcType=CHAR},
+			</if>
+			<if test="reqIp != null">
+				#{reqIp,jdbcType=VARCHAR},
+			</if>
+			<if test="exCode != null">
+				#{exCode,jdbcType=VARCHAR},
+			</if>
+			<if test="exDetail != null">
+				#{exDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="params != null">
+				#{params,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Log">
+		update sc_log
+		<set>
+			<if test="details != null">
+				details = #{details,jdbcType=VARCHAR},
+			</if>
+			<if test="method != null">
+				method = #{method,jdbcType=VARCHAR},
+			</if>
+			<if test="logType != null">
+				log_type = #{logType,jdbcType=CHAR},
+			</if>
+			<if test="reqIp != null">
+				req_ip = #{reqIp,jdbcType=VARCHAR},
+			</if>
+			<if test="exCode != null">
+				ex_code = #{exCode,jdbcType=VARCHAR},
+			</if>
+			<if test="exDetail != null">
+				ex_detail = #{exDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="params != null">
+				params = #{params,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.Log">
+		update sc_log
+		set details = #{details,jdbcType=VARCHAR},
+		method = #{method,jdbcType=VARCHAR},
+		log_type = #{logType,jdbcType=CHAR},
+		req_ip = #{reqIp,jdbcType=VARCHAR},
+		ex_code = #{exCode,jdbcType=VARCHAR},
+		ex_detail = #{exDetail,jdbcType=VARCHAR},
+		params = #{params,jdbcType=VARCHAR},
+		create_by = #{createBy,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="getLogList" parameterType="com.java.entity.Log" resultMap="LogDtoMap">
+		SELECT lo.*, us.`user_name` createName 
+		FROM `sc_log` lo LEFT JOIN `sc_user` us ON lo.`create_by` = us.`id`
+		<where>
+			<if test="method != null and method != ''">
+				lo.`method` LIKE "%"#{method}"%" 
+			</if>
+			<if test="logType != null and logType != ''">
+				AND lo.`log_type` LIKE "%"#{logType}"%" 
+			</if>
+		</where>
+		ORDER BY lo.`create_time` DESC
+	</select>
+	
+</mapper>
