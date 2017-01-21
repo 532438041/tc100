@@ -31,15 +31,15 @@
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="LogDtoMap" parameterType="java.lang.String">
 		SELECT lo.*, us.`user_name` createName 
-		FROM `sc_log` lo LEFT JOIN `sc_user` us ON lo.`create_by` = us.`id`
+		FROM `tc_log` lo LEFT JOIN `tc_user` us ON lo.`create_by` = us.`id`
 		where lo.`id` = #{id,jdbcType=CHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from sc_log
+		delete from tc_log
 		where id = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.Log">
-		insert into sc_log (id, details, method,
+		insert into tc_log (id, details, method,
 		log_type, req_ip, ex_code,
 		ex_detail, params, create_by,
 		create_time)
@@ -49,7 +49,7 @@
 		#{createTime,jdbcType=TIMESTAMP})
 	</insert>
 	<insert id="insertSelective" parameterType="com.java.entity.Log">
-		insert into sc_log
+		insert into tc_log
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
@@ -116,7 +116,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Log">
-		update sc_log
+		update tc_log
 		<set>
 			<if test="details != null">
 				details = #{details,jdbcType=VARCHAR},
@@ -149,7 +149,7 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.java.entity.Log">
-		update sc_log
+		update tc_log
 		set details = #{details,jdbcType=VARCHAR},
 		method = #{method,jdbcType=VARCHAR},
 		log_type = #{logType,jdbcType=CHAR},
@@ -163,7 +163,7 @@
 	</update>
 	<select id="getLogList" parameterType="com.java.entity.Log" resultMap="LogDtoMap">
 		SELECT lo.*, us.`user_name` createName 
-		FROM `sc_log` lo LEFT JOIN `sc_user` us ON lo.`create_by` = us.`id`
+		FROM `tc_log` lo LEFT JOIN `tc_user` us ON lo.`create_by` = us.`id`
 		<where>
 			<if test="method != null and method != ''">
 				lo.`method` LIKE "%"#{method}"%" 

@@ -9,38 +9,32 @@
             <property name="suppressDate" value="true"/>  
             <property name="suppressAllComments" value="true"/>  
         </commentGenerator>  
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mydemo" userId="root" password="111111">  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/tc100" userId="root" password="111111">  
         </jdbcConnection>  
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="false"/>  
         </javaTypeResolver>  
-        <javaModelGenerator targetPackage="com.java.entity" targetProject="E:\workSpace\ltProjects\mydemo\src\main\java">  
+        <javaModelGenerator targetPackage="com.java.entity" targetProject="E:\workSpace\tc100\tc100\src\main\java">  
             <property name="enableSubPackages" value="false"/>  
             <property name="trimStrings" value="false"/>  
         </javaModelGenerator>  
-        <sqlMapGenerator targetPackage="mybatis" targetProject="E:\workSpace\ltProjects\mydemo\src\main\resources">  
+        <sqlMapGenerator targetPackage="mybatis" targetProject="E:\workSpace\tc100\tc100\src\main\resources">  
             <property name="enableSubPackages" value="false"/>  
         </sqlMapGenerator>  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.java.dao" targetProject="E:\workSpace\ltProjects\mydemo\src\main\java">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.java.dao" targetProject="E:\workSpace\tc100\tc100\src\main\java">  
             <property name="enableSubPackages" value="false"/>  
-        </javaClientGenerator>  
-        <!-- <table tableName="sc_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="sc_role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="sc_menu" domainObjectName="Menu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="sc_role_menu" domainObjectName="RoleMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="sc_user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="sc_user_img" domainObjectName="Image" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<table tableName="web_article" domainObjectName="Article" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        	<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
-        </table>
-        <table tableName="web_article_count" domainObjectName="ArticleCount" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="web_article_log" domainObjectName="ArticleLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="web_article_category" domainObjectName="ArticleCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
-        <table tableName="sc_log" domainObjectName="Log" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        	<columnOverride column="details" javaType="java.lang.String" jdbcType="VARCHAR" />
-        	<columnOverride column="ex_detail" javaType="java.lang.String" jdbcType="VARCHAR" />
-        	<columnOverride column="params" javaType="java.lang.String" jdbcType="VARCHAR" />
-        </table>-->
+        </javaClientGenerator>
+        <!-- <table tableName="tc_active" domainObjectName="Active" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        	<columnOverride column="detail_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table> 
+        <table tableName="tc_active_item" domainObjectName="ActiveItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_active_log" domainObjectName="ActiveLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_message" domainObjectName="Message" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_message_review" domainObjectName="MessageReview" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_pay_log" domainObjectName="PayLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_user_card" domainObjectName="UserCard" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_user_fav" domainObjectName="UserFav" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+        <table tableName="tc_user_msg" domainObjectName="UserMsg" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
     </context>  
-    <!-- java -jar D:\Java\liutao\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile E:\workSpace\ltProjects\mydemo\src\main\resources\generatorConfig.xml -overwrite -->
+    <!-- java -jar D:\Java\liutao\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile E:\workSpace\tc100\tc100\src\main\resources\generatorConfig.xml -overwrite -->
 </generatorConfiguration>  

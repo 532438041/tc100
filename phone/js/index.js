@@ -24,7 +24,7 @@
     
     $.ajax({
         type : "get",
-        url : "http://localhost:8001/tc100/test.json",
+        url : host+"/tc100/test.json",
         dataType : "json",
         success : function(dataResult) {
             console.log(dataResult);

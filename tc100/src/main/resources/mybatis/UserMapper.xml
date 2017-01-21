@@ -29,16 +29,16 @@
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from sc_user
+		from tc_user
 		where id = #{id,jdbcType=CHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 		delete from
-		sc_user
+		tc_user
 		where id = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.User">
-		insert into sc_user (id,
+		insert into tc_user (id,
 		user_name, user_pwd,
 		display_name, user_type, email,
 		mobile,
@@ -62,7 +62,7 @@
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.java.entity.User">
-		insert into sc_user
+		insert into tc_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
@@ -159,7 +159,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.User">
-		update sc_user
+		update tc_user
 		<set>
 			<if test="userName != null">
 				user_name = #{userName,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.java.entity.User">
-		update sc_user
+		update tc_user
 		set
 		user_name = #{userName,jdbcType=VARCHAR},
 		user_pwd =
@@ -234,23 +234,23 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 	<select id="checkLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
-		select * from sc_user where user_name = #{userName}
+		select * from tc_user where user_name = #{userName}
 	</select>
 	<select id="getUserList" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from sc_user order by create_time desc
+		from tc_user order by create_time desc
 	</select>
 	<select id="getUserRoleName" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT GROUP_CONCAT(role.role_name) roleName FROM
-		sc_user_role userRole
-		LEFT JOIN sc_role role ON userRole.role_id =
+		tc_user_role userRole
+		LEFT JOIN tc_role role ON userRole.role_id =
 		role.id
 		WHERE userRole.user_id = #{userId};
 	</select>
 
 	<select id="checkRegister" parameterType="com.java.entity.User" resultType="Integer">
-		SELECT COUNT(0) FROM `sc_user` WHERE user_type = '1' AND state != '0' 
+		SELECT COUNT(0) FROM `tc_user` WHERE user_type = '1' AND state != '0' 
 		AND (user_name = #{userName} OR email = #{userName} OR mobile = #{userName})
 	</select>
 

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.impl.CategoryDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.Category">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="cate_name" property="cateName" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="CHAR" />
+		<result column="pids" property="pids" jdbcType="CHAR" />
+		<result column="cate_level" property="cateLevel" jdbcType="INTEGER" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="CHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, cate_name, pid, pids, cate_level, sort, remark, state, create_by, create_time,
+		update_by, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tc_category
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_category
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.Category">
+		insert into tc_category (id, cate_name, pid,
+		pids, cate_level, sort,
+		remark, state, create_by,
+		create_time, update_by, update_time
+		)
+		values (#{id,jdbcType=CHAR}, #{cateName,jdbcType=VARCHAR}, #{pid,jdbcType=CHAR},
+		#{pids,jdbcType=CHAR}, #{cateLevel,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{createBy,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.Category">
+		insert into tc_category
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="cateName != null">
+				cate_name,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="pids != null">
+				pids,
+			</if>
+			<if test="cateLevel != null">
+				cate_level,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="cateName != null">
+				#{cateName,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=CHAR},
+			</if>
+			<if test="pids != null">
+				#{pids,jdbcType=CHAR},
+			</if>
+			<if test="cateLevel != null">
+				#{cateLevel,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Category">
+		update tc_category
+		<set>
+			<if test="cateName != null">
+				cate_name = #{cateName,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=CHAR},
+			</if>
+			<if test="pids != null">
+				pids = #{pids,jdbcType=CHAR},
+			</if>
+			<if test="cateLevel != null">
+				cate_level = #{cateLevel,jdbcType=INTEGER},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.Category">
+		update tc_category
+		set cate_name = #{cateName,jdbcType=VARCHAR},
+		pid = #{pid,jdbcType=CHAR},
+		pids = #{pids,jdbcType=CHAR},
+		cate_level = #{cateLevel,jdbcType=INTEGER},
+		sort = #{sort,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		state = #{state,jdbcType=CHAR},
+		create_by = #{createBy,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=CHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="getCategoryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tc_category where state = '1' order by cate_level, sort
+	</select>
+	<select id="getCategoryOnceList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tc_category where state = '1' and cate_level='1' order by cate_level, sort
+	</select>
+	<select id="getCateByPid" resultMap="BaseResultMap" parameterType="com.java.entity.Category">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tc_category
+		WHERE state = '1' AND pid = #{pid} 
+		<if test="cateName != null and cateName != ''">
+			AND cate_name LIKE "%"#{cateName}"%"
+		</if>
+		ORDER BY sort
+	</select>
+</mapper>
