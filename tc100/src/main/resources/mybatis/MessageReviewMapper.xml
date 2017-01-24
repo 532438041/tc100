@@ -1,141 +1,158 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.java.dao.impl.MessageReviewDaoImpl" >
-  <resultMap id="BaseResultMap" type="com.java.entity.MessageReview" >
-    <id column="id" property="id" jdbcType="CHAR" />
-    <result column="user_id" property="userId" jdbcType="CHAR" />
-    <result column="msg_id" property="msgId" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="msg_pic" property="msgPic" jdbcType="VARCHAR" />
-    <result column="create_by" property="createBy" jdbcType="CHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_by" property="updateBy" jdbcType="CHAR" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, user_id, msg_id, remark, msg_pic, create_by, create_time, update_by, update_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tc_message_review
-    where id = #{id,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from tc_message_review
-    where id = #{id,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.java.entity.MessageReview" >
-    insert into tc_message_review (id, user_id, msg_id, 
-      remark, msg_pic, create_by, 
-      create_time, update_by, update_time
-      )
-    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{msgId,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{msgPic,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.java.entity.MessageReview" >
-    insert into tc_message_review
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="msgId != null" >
-        msg_id,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="msgPic != null" >
-        msg_pic,
-      </if>
-      <if test="createBy != null" >
-        create_by,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateBy != null" >
-        update_by,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=CHAR},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=CHAR},
-      </if>
-      <if test="msgId != null" >
-        #{msgId,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="msgPic != null" >
-        #{msgPic,jdbcType=VARCHAR},
-      </if>
-      <if test="createBy != null" >
-        #{createBy,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        #{updateBy,jdbcType=CHAR},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.MessageReview" >
-    update tc_message_review
-    <set >
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=CHAR},
-      </if>
-      <if test="msgId != null" >
-        msg_id = #{msgId,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="msgPic != null" >
-        msg_pic = #{msgPic,jdbcType=VARCHAR},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        update_by = #{updateBy,jdbcType=CHAR},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.java.entity.MessageReview" >
-    update tc_message_review
-    set user_id = #{userId,jdbcType=CHAR},
-      msg_id = #{msgId,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      msg_pic = #{msgPic,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=CHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=CHAR}
-  </update>
+<mapper namespace="com.java.dao.impl.MessageReviewDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.MessageReview">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="user_id" property="userId" jdbcType="CHAR" />
+		<result column="card_id" property="cardId" jdbcType="CHAR" />
+		<result column="msg_id" property="msgId" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="msg_pic" property="msgPic" jdbcType="VARCHAR" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="CHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, card_id, msg_id, remark, msg_pic, create_by, create_time, update_by, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tc_message_review
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_message_review
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.MessageReview">
+		insert into tc_message_review (id, user_id, card_id, msg_id,
+		remark, msg_pic, create_by,
+		create_time, update_by, update_time
+		)
+		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR}, #{msgId,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{msgPic,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.MessageReview">
+		insert into tc_message_review
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="cardId != null">
+				card_id,
+			</if>
+			<if test="msgId != null">
+				msg_id,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="msgPic != null">
+				msg_pic,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=CHAR},
+			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=CHAR},
+			</if>
+			<if test="msgId != null">
+				#{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="msgPic != null">
+				#{msgPic,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.MessageReview">
+		update tc_message_review
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=CHAR},
+			</if>
+			<if test="cardId != null">
+				card_id = #{cardId,jdbcType=CHAR},
+			</if>
+			<if test="msgId != null">
+				msg_id = #{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="msgPic != null">
+				msg_pic = #{msgPic,jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.MessageReview">
+		update tc_message_review
+		set user_id = #{userId,jdbcType=CHAR},
+		card_id = #{cardId,jdbcType=CHAR},
+		msg_id = #{msgId,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		msg_pic = #{msgPic,jdbcType=VARCHAR},
+		create_by = #{createBy,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=CHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+
+	<select id="getMsgReview" resultType="com.java.dto.MsgReviewDto" parameterType="java.lang.String">
+		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName, msg.`remark`, msg.`msg_pic` msgPic,msg.`create_time` createTime FROM tc_message_review msg
+		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
+		WHERE msg.msg_id = #{msgId}
+	</select>
 </mapper>

@@ -5,6 +5,7 @@
 		<id column="id" property="id" jdbcType="CHAR" />
 		<result column="act_name" property="actName" jdbcType="VARCHAR" />
 		<result column="user_id" property="userId" jdbcType="CHAR" />
+		<result column="card_id" property="cardId" jdbcType="CHAR" />
 		<result column="cate_id" property="cateId" jdbcType="CHAR" />
 		<result column="act_type" property="actType" jdbcType="CHAR" />
 		<result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
@@ -22,7 +23,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, act_name, user_id, cate_id, act_type, main_pic, summary, detail_summary, detail_content,
+		id, act_name, user_id, card_id, cate_id, act_type, main_pic, summary, detail_summary, detail_content,
 		state, start_time, end_time, view_count, amount, create_by, create_time, update_by,
 		update_time
 	</sql>
@@ -37,14 +38,14 @@
 		where id = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.Active">
-		insert into tc_active (id, act_name, user_id,
+		insert into tc_active (id, act_name, user_id, card_id,
 		cate_id, act_type, main_pic,
 		summary, detail_summary, detail_content,
 		state, start_time, end_time,
 		view_count, amount, create_by,
 		create_time, update_by, update_time
 		)
-		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR},
+		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR},
 		#{cateId,jdbcType=CHAR}, #{actType,jdbcType=CHAR}, #{mainPic,jdbcType=VARCHAR},
 		#{summary,jdbcType=VARCHAR}, #{detailSummary,jdbcType=VARCHAR},
 		#{detailContent,jdbcType=VARCHAR},
@@ -64,6 +65,9 @@
 			</if>
 			<if test="userId != null">
 				user_id,
+			</if>
+			<if test="cardId != null">
+				card_id,
 			</if>
 			<if test="cateId != null">
 				cate_id,
@@ -121,6 +125,9 @@
 			<if test="userId != null">
 				#{userId,jdbcType=CHAR},
 			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=CHAR},
+			</if>
 			<if test="cateId != null">
 				#{cateId,jdbcType=CHAR},
 			</if>
@@ -177,6 +184,9 @@
 			<if test="userId != null">
 				user_id = #{userId,jdbcType=CHAR},
 			</if>
+			<if test="cardId != null">
+				card_id = #{cardId,jdbcType=CHAR},
+			</if>
 			<if test="cateId != null">
 				cate_id = #{cateId,jdbcType=CHAR},
 			</if>
@@ -229,6 +239,7 @@
 		update tc_active
 		set act_name = #{actName,jdbcType=VARCHAR},
 		user_id = #{userId,jdbcType=CHAR},
+		card_id = #{cardId,jdbcType=CHAR},
 		cate_id = #{cateId,jdbcType=CHAR},
 		act_type = #{actType,jdbcType=CHAR},
 		main_pic = #{mainPic,jdbcType=VARCHAR},

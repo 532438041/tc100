@@ -7,8 +7,10 @@ public class Active {
     private String id;
 
     private String actName;
-
+    
     private String userId;
+
+    private String cardId;
 
     private String cateId;
 
@@ -57,11 +59,19 @@ public class Active {
     }
 
     public String getUserId() {
-        return userId;
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getCardId() {
+        return cardId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public String getCateId() {

@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.java.entity.Message">
 		<id column="id" property="id" jdbcType="CHAR" />
 		<result column="user_id" property="userId" jdbcType="CHAR" />
+		<result column="card_id" property="cardId" jdbcType="CHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="region" property="region" jdbcType="VARCHAR" />
@@ -13,7 +14,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, user_id, title, remark, region, create_by, create_time, update_by, update_time
+		id, user_id, card_id, title, remark, region, create_by, create_time, update_by, update_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
@@ -26,11 +27,11 @@
 		where id = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.Message">
-		insert into tc_message (id, user_id, title,
+		insert into tc_message (id, user_id, card_id, title,
 		remark, region, create_by,
 		create_time, update_by, update_time
 		)
-		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{title,jdbcType=VARCHAR},
+		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR}, #{title,jdbcType=VARCHAR},
 		#{remark,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR},
 		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
 		)
@@ -43,6 +44,9 @@
 			</if>
 			<if test="userId != null">
 				user_id,
+			</if>
+			<if test="cardId != null">
+				card_id,
 			</if>
 			<if test="title != null">
 				title,
@@ -73,6 +77,9 @@
 			<if test="userId != null">
 				#{userId,jdbcType=CHAR},
 			</if>
+			<if test="cardId != null">
+				#{cardId,jdbcType=CHAR},
+			</if>
 			<if test="title != null">
 				#{title,jdbcType=VARCHAR},
 			</if>
@@ -102,6 +109,9 @@
 			<if test="userId != null">
 				user_id = #{userId,jdbcType=CHAR},
 			</if>
+			<if test="cardId != null">
+				card_id = #{userId,jdbcType=CHAR},
+			</if>
 			<if test="title != null">
 				title = #{title,jdbcType=VARCHAR},
 			</if>
@@ -129,6 +139,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.java.entity.Message">
 		update tc_message
 		set user_id = #{userId,jdbcType=CHAR},
+		card_id = #{cardId,jdbcType=CHAR},
 		title = #{title,jdbcType=VARCHAR},
 		remark = #{remark,jdbcType=VARCHAR},
 		region = #{region,jdbcType=VARCHAR},
@@ -144,15 +155,27 @@
 		WHERE msg.`user_id` = #{userId} AND msg.`msg_type` = '1'
 	</select>
 
-	<select id="getMsgList" parameterType="com.java.entity.Message" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		FROM `tc_message` WHERE 1=1
+	<select id="getMsgList" parameterType="com.java.entity.Message" resultType="com.java.dto.MsgDto">
+		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName, 
+		msg.`id`, msg.`title`, msg.`region`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		FROM tc_message msg
+		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
+		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
 		<where>
 			<if test="userId != null and userId  != ''">
-				user_id = #{userId}
+				msg.user_id = #{userId}
 			</if>
 		</where>
-		ORDER BY create_time DESC
+		GROUP BY msg.`id`
+		ORDER BY msg.create_time DESC
 	</select>
+
+	<select id="getLastMsgTime" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT MAX(update_time) lastMsgTime FROM `tc_message` WHERE user_id = #{userId};
+	</select>
+	
+	<select id="getMyMsgCount" parameterType="java.lang.String" resultType="Integer">
+		SELECT COUNT(0) msgCount FROM `tc_message` WHERE user_id = #{userId};
+	</select>
+
 </mapper>

@@ -6,6 +6,8 @@ public class Message {
     private String id;
 
     private String userId;
+    
+    private String cardId;
 
     private String title;
 
@@ -30,11 +32,19 @@ public class Message {
     }
 
     public String getUserId() {
-        return userId;
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getCardId() {
+        return cardId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public String getTitle() {
