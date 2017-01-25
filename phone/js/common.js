@@ -11,7 +11,7 @@
  * 全局参数
  */
 // 全局域名
-var host = "http://localhost:8001";
+var host = "http://localhost:8001/tc100";
 
 /**
  * 全局正则
