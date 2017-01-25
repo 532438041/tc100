@@ -17,10 +17,9 @@
     
     //首页轮播
     var baseParam1 = {'actType':'A1'}
-    var param1 = $.fn.serializePageJson(1,5,baseParam1);
+    var param1 = serializePageJson(1,5,baseParam1);
     $.ajax({
         type:"post",
-        async:false,       
         url:host+"/getActiveList.json",
         data:param1,
         dataType:"json",
@@ -28,20 +27,31 @@
         success : function(dataResult) {
             var dataList = dataResult.data.dataList;
             var imgStr = "";
+            var imgBtnStr = "";
             for(var i=0;i<dataList.length;i++){
-                imgStr += "<li><img src='img/lunbo.png' target='"+dataList[i].actName+"'></li>"
+                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/lunbo.png" /></a></div>';
+                if(i==0){
+                imgBtnStr +='<div class="mui-indicator mui-active"></div>';
+                }else{
+                imgBtnStr +='<div class="mui-indicator"></div>';
+                }
             }
-            $("#slideBoxIndex #lunbobd").html(imgStr);
-            console.log(imgStr);
-            jQuery(".slideBoxIndex").slide({mainCell:".bd ul",autoPlay:true});
+            $("#slideBoxIndex").html(imgStr);
+            $("#yuandian").html(imgBtnStr);
+            var lunbo = mui('.mui-slider');
+            lunbo.slider({
+              interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+            });
+            $("#yuandian div").click(function(){
+                lunbo.slider().gotoItem($(this).index());//跳转到第index张图片，index从0开始；
+            })
         }
     })
     //同城购
     var baseParam2 = {'actType':'B2'}
-    var param2 = $.fn.serializePageJson(1,5,baseParam2);
+    var param2 = serializePageJson(1,5,baseParam2);
     $.ajax({
         type:"post",
-        async:false,       
         url:host+"/getActiveList.json",
         data:param2,
         dataType:"json",
@@ -58,16 +68,14 @@
                 actStr += '<i>'+dataList[i].createTime+'</i>';
                 actStr += '</div></a></li>';
             }
-            console.log(actStr);
             $("#activeB2").html(actStr);
         }
     })
     //同城搜
     $.ajax({
         type:"post",
-        async:false,       
         url:host+"/getMsgList.json",
-        data:$.fn.serializePageJson(1,5),
+        data:serializePageJson(1,5),
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
@@ -82,8 +90,14 @@
                 magStr+='<i>'+dataList[i].createTime+'</i>';
                 magStr+='</div></a></li>';
             }
-            $(".same_city_search #messageList").html(magStr);
-            console.log(magStr);
+            $("#messageList").html(magStr);
         }
     })
 })($);
+/**
+ * 页面跳转 
+ * @param {Object} urlStr
+ */
+function openUrl(urlStr){
+    uexWindow.open('', '0', urlStr, '0', '', '', 0x0);
+}
