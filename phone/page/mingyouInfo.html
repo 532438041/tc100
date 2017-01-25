@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Flying hormone" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/mui.min.css" />
+		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/common.js" ></script>
+		<title>活动详情</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				font-family: "微软雅黑";
+				background: #f8f8f8;
+				font-size: 12px;
+			}
+			
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			p {
+				margin: 0;
+			}
+			
+			header {
+				background: #ff3366;
+				height: 60px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			header h1 {
+				font-size: 22px;
+				text-align: center;
+				color: #fff;
+				line-height: 60px;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			header a {
+				position: absolute;
+				height: 100%;
+			}
+			
+			header a img {
+				height: 30px;
+			}
+			
+			.dingwei img {
+				position: absolute;
+				top: 15px;
+				left: 5px;
+			}
+			
+			.dingwei span {
+				display: block;
+				line-height: 60px;
+				font-size: 32px;
+				color: #fff;
+			}
+			
+			.xiaoxi {
+				color: #fff;
+				font-size: 15px;
+				text-align: right;
+				line-height: 30px;
+				position: absolute;
+				top: 15px;
+				right: 5px;
+				height: 30px;
+				width: 55px;
+				background: url(../img/card.png) no-repeat;
+				background-size: auto 100%;
+			}
+			li,ol,ul{ list-style: none;}
+			.xiangqing{ position: relative; }
+			.xiangqing img{ width: 100%;}
+			.xiangqing div{ position: absolute; top: 50%; background: #000; width: 80%; left: 10%; text-align: center; padding: 20px; padding-bottom: 40px;}
+			.xiangqing li{     word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; overflow: auto; color: #fff;}
+			.xiangqing h3{ color: #fff; margin-bottom: 10px;}
+			.xiangqing h4{ color: #fff; font-size: 0.8rem; margin-top: 5px;}
+			
+			footer{
+				position: fixed;
+				bottom: 0;
+				z-index: 100;
+				height: 60px;
+				width: 100%;
+				background: #fff;
+			}
+			footer div{ width: 50%; float: left; height: 100%;}
+			footer div p{ width: 100%; height: 100%; line-height: 60px;}
+			.liulan{ text-align: right; padding-right: 10px;}
+			.liulan img{ height: 15px; margin-right: 5px;}
+			.liulan p{ font-size: 20px;}
+			.caozuo{ position: relative;}
+			.caozuo>a>img{ height: 30px; margin: 15px; position: absolute; left: 0;}
+			.caozuo a{ font-size: 20px; line-height: 60px; position: relative; text-indent: 60px; background: #ececec; padding-right: 10px;}
+			footer i{ font-style: normal; color: #ff3366;}
+			footer nav a{
+				    display: table-cell;
+				    overflow: hidden;
+				    width: 1%;
+				    height: 50px;
+				    text-align: center;
+				    vertical-align: middle;
+				    white-space: nowrap;
+				    text-overflow: ellipsis;
+				    color: #929292;
+			}
+			
+			footer nav a img {
+				width: 15%;
+				display: block;
+				margin: 0 auto;
+				margin-top: 5px;
+			}
+			
+			footer nav span {
+				color: #020202;
+			}
+			
+			footer nav .action span {
+				color: #ff3366;
+			}
+			footer ul{ display: none;  position: absolute; top: -240px; left: 0; width: 100%; z-index: 100;background:#fff;}
+			footer li{ line-height: 60px; height: 60px; background: url(img/opa_bai.png) repeat; text-indent: 0;}
+			footer li img{ width: 25px; margin: 15px; margin-top: 3px; vertical-align: middle;}
+			footer a{color: #666; display: inline-block; height: 60px; line-height: 60px;}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<h1>活动详情</h1>
+			<a class="xiaoxi">名片</a>
+		</header>
+		
+		<section class="xiangqing">
+			<img src="../img/sanme_city_go.jpg" />
+			<div>
+				<h3 id="title">全场商品满200减50</h3>
+				<ul>
+					<li>111111111111111111111111111111111111111111111</li>
+					<li>2222222</li>
+					<li>333333333333333333333333333333333333333333333333333333333</li>
+				</ul>
+				<h4>活动时间：2017年X月XX日-X月XX日</h4>
+			</div>
+		</section>
+
+		<footer>
+		<!--<nav class="mui-bar mui-bar-tab">
+				<a class="action" href="">
+					<img src="img/shouye.png" />
+					<span class="mui-tab-label">首页</span>
+				</a>
+				<a href="">
+					<img src="img/fabu2.png" />
+					<span class="mui-tab-label">发布</span>
+				</a>
+				<a href="info.html">
+					<img src="img/mine.png" />
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+		-->
+			<div class="caozuo">
+				<a id="caozuo"><img src="../img/setting.png" />
+					操作
+					<ul>
+						<li><img src="../img/eyes.png" />关注</li>
+						<li><img src="../img/share.png" />分享</li>
+						<li><img src="../img/repeat.png" />重复</li>
+						<li><img src="../img/shuitie.png" />水贴</li>
+					</ul>
+				</a>
+				
+			</div>
+			<div class="liulan">
+				<p><img src="../img/eyes2.png" />浏览<i>1010</i>次</p>
+			</div>
+		</footer>
+		<script>
+			$(document).ready(function(){
+				$("#caozuo").click(function(){
+					if($(this).find("ul").css("display") == "block"){
+						$(this).find("ul").hide()
+					}else{
+						$(this).find("ul").show()
+					}
+				});
+				$("#caozuo li").click(function(event){
+		            event.stopPropagation();
+		       });
+			});
+		</script>
+	</body>
+
+</html>
