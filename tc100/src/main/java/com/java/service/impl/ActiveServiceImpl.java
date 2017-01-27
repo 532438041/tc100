@@ -1,5 +1,7 @@
 package com.java.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,16 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 	public PageResult<Active> getActiveList(PageParam<Active> pageParam) {
 		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
 		return PageUtil.toPagedResult(activeDao.getActiveList(pageParam.getReqParam()));
+	}
+
+	@Override
+	public List<Active> getMyActList(String userId, String actType) {
+		return activeDao.getMyActList(userId, actType);
+	}
+
+	@Override
+	public int addViewCount(String actId) {
+		return activeDao.addViewCount(actId);
 	}
 
 }

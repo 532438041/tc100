@@ -8,5 +8,9 @@ import com.java.entity.Active;
 public interface ActiveDao extends BaseDao<Active>{
 
 	List<Active> getActiveList(Active reqParam);
+
+	List<Active> getMyActList(String userId, String actType);
+
+	int addViewCount(String actId);
     
 }

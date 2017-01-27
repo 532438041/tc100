@@ -47,7 +47,8 @@
 		)
 		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR},
 		#{cateId,jdbcType=CHAR}, #{actType,jdbcType=CHAR}, #{mainPic,jdbcType=VARCHAR},
-		#{summary,jdbcType=VARCHAR}, #{detailSummary,jdbcType=VARCHAR},
+		#{summary,jdbcType=VARCHAR},
+		#{detailSummary,jdbcType=VARCHAR},
 		#{detailContent,jdbcType=VARCHAR},
 		#{state,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},
 		#{viewCount,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{createBy,jdbcType=CHAR},
@@ -247,7 +248,8 @@
 		detail_summary = #{detailSummary,jdbcType=VARCHAR},
 		detail_content = #{detailContent,jdbcType=VARCHAR},
 		state = #{state,jdbcType=CHAR},
-		start_time = #{startTime,jdbcType=TIMESTAMP},
+		start_time =
+		#{startTime,jdbcType=TIMESTAMP},
 		end_time =
 		#{endTime,jdbcType=TIMESTAMP},
 		view_count = #{viewCount,jdbcType=INTEGER},
@@ -265,6 +267,21 @@
 		FROM `tc_active` act
 		WHERE act.`act_type` = #{actType}
 		AND act.`state` = '1' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
+		<if test="userId != null and userId != '' ">
+			AND act.user_id = #{userId}
+		</if>
 		ORDER BY act.`view_count`
 	</select>
+
+	<select id="getMyActList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM `tc_active` act
+		WHERE act.`act_type` = #{actType} AND act.`state` = '1' AND act.user_id = #{userId}
+		ORDER BY act.create_time DESC
+	</select>
+
+	<update id="addViewCount" parameterType="java.lang.String">
+		UPDATE `tc_active` SET `view_count` = `view_count` + 1 WHERE `id` = #{actId}
+	</update>
 </mapper>

@@ -11,6 +11,10 @@ public class ActiveLog {
 
     private String actId;
 
+    private String fromActId;
+
+    private String logType;
+
     private String createBy;
 
     private Date createTime;
@@ -49,6 +53,22 @@ public class ActiveLog {
 
     public void setActId(String actId) {
         this.actId = actId;
+    }
+
+    public String getFromActId() {
+        return fromActId;
+    }
+
+    public void setFromActId(String fromActId) {
+        this.fromActId = fromActId;
+    }
+
+    public String getLogType() {
+        return logType;
+    }
+
+    public void setLogType(String logType) {
+        this.logType = logType;
     }
 
     public String getCreateBy() {
