@@ -425,7 +425,7 @@
                     var dataList = dataResult.data.dataList;
                     var actStr = "";
                     for(var i=0;i<dataList.length;i++){
-                        actStr += '<a onclick="openUrl(\'/info.html?actId='+dataList[i].id+'\');"><img src="../img/img_8.jpg" /></a>';
+                        actStr += '<a href="info.html?actId='+dataList[i].id+'"><img src="../img/img_8.jpg" /></a>';
                     }
                     $("#actA1").html(actStr);
                 }

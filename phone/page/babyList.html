@@ -383,7 +383,7 @@
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
-                            actStr += '<a><img src="../img/img_1.png" /></a>';
+                            actStr += '<a href="info_goods.html?actId='+dataList[i].id+'"><img src="../img/img_1.png" /></a>';
                         }
                         $("#actD1").html(actStr);
                     }
@@ -402,7 +402,7 @@
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
                             actStr += '<li class="mui-table-view-cell mui-media">';
-                            actStr += '<a href="javascript:;" onclick="openUrl(\'/info_goods.html\');">';
+                            actStr += '<a href="info_goods.html?actId='+dataList[i].id+'">';
                             actStr += '<img class="mui-media-object mui-pull-left" src="'+dataList[i].main_pic+'">';
                             actStr += '<div class="mui-media-body">'+dataList[i].actName;
                             actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';

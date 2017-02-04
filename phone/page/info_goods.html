@@ -11,6 +11,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/mui.min.js" ></script>
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
@@ -423,10 +424,12 @@
             appcan.button(".mui-icon-back", "btn-act", function() {  
                appcan.window.close(-1);  
             }) 
+            
+            var actId = $.query.get("actId")? $.query.get("actId") : 0;
             $(function(){
                 $.ajax({
                     type:"post",
-                    url:host+"/getActItem.json?actId="+1,
+                    url:host+"/getActItem.json?actId="+actId,
                     data:'',
                     dataType:"json",
                     contentType: "application/json",
