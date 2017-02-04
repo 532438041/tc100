@@ -12,6 +12,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../js/jquery.Query.js" ></script>
 		<script type="text/javascript" src="../js/mui.min.js" ></script>
 		<script type="text/javascript" src="../js/common.js" ></script>
 		<!--<script type="text/javascript" src="js/upload_yulan.js" ></script>-->
@@ -148,7 +149,7 @@
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>添加名片</h1>
+			<h1 id="title">添加名片</h1>
 		</header>
 		<section class="quyu">
 			<form action="" method="post" id="upchuan0">
@@ -187,12 +188,11 @@
 		</footer>
 <script>
 // JavaScript Document
-$(document).ready(function(){  
-			$(".top").append('<input id="upload0" type="file" accept="image/jpeg,image/bmp" />');
-			$("#btn1").click(function(){
-				fileSelect(yulan,'#upload'+0);
-			});
-			
+$(document).ready(function(){
+    $(".top").append('<input id="upload0" type="file" accept="image/jpeg,image/bmp" />');
+    $("#btn1").click(function(){
+    	fileSelect(yulan,'#upload'+0);
+    });
   	function fileSelect(id1,id2) {
         $(id2).click(); 
 		 $(function() {
@@ -222,11 +222,21 @@ $(document).ready(function(){
 		 reader.readAsDataURL(file)
 		 }
 	};
-	//名片添加
+	
+	//名片添加、编辑
+    var msg = "添加成功！";
+    var baseParam = {'picUrl':'../img/touxiang.png','userId':'1'}
+	var cardId = $.query.get("cardId")? $.query.get("cardId") : "";
+    if(cardId!=""){
+        $("#title").html("编辑名片");
+        msg = "编辑成功！";
+        baseParam = {'picUrl':'../img/touxiang.png','userId':'1','id':cardId}
+        alert(baseParam);
+    }
     $("#addCard").click(function(){
         //名片添加
-        var baseParam = {'picUrl':'../img/touxiang.png','userId':'1'}
         var param = $("#upchuan0").serializeJson(baseParam);
+        console.log(param);
         $.ajax({
            type:"post",
            async:false,       
@@ -236,12 +246,13 @@ $(document).ready(function(){
            contentType: "application/json",
            success : function(dataResult) {
                if(dataResult.msg=='success'){
-                   alert("添加成功！");
-                   openUrl("my_card.html");
+                   alert(msg);
+                   window.location.href = "my_card.html";
                }
            }
        })
     })
+    
 });
 
 </script>

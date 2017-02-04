@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js"></script>
+        <script type="text/javascript" src="js/appcan.js"></script>
+        <script type="text/javascript" src="js/appcan.control.js"></script>
 		<script type="text/javascript" src="../js/common.js" ></script>
 		<title>我的名片</title>
 		<style>
@@ -132,7 +134,7 @@
 		</header>
 		<section class="yiyou">
 			<h3>已有名片</h3>
-			<p><a>删除</a><a>编辑</a><a href="add_card.html">添加</a></p>
+			<p><a id="del" href="javascript:;">删除</a><a id="edit" href="javascript:;">编辑</a><a href="add_card.html">添加</a></p>
 		</section>
 		<section class="card_list">
 			<ul id="cardList">
@@ -157,6 +159,8 @@
 		</footer>
 		<script>
 			$(document).ready(function(){
+			     var isChangeId = "";
+			    //添加
     		    $.ajax({
                     type:"post",
                     async:false,       
@@ -169,7 +173,7 @@
                         var cardStr = "";
                         if(dataList.length>0){
                             for(var i=0;i<dataList.length;i++){
-                                cardStr +='<li>';
+                                cardStr +='<li data-id="'+dataList[i].id+'">';
                                 cardStr +='<img src="'+dataList[i].picUrl+'" />';
                                 cardStr +='<p>'+dataList[i].cardName+'</p>';
                                 cardStr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
@@ -178,16 +182,43 @@
                         }
                         $("#cardList").html(cardStr);
                         
-                        
                         $(".card_list li").click(function(){
                             if( $(this).find("span").css("display") == "block"){
                                 $(this).find("span").hide();
+                                isChangeId = "";
                             }else{
                                 $(this).find("span").show();
+                                isChangeId = $(this).attr("data-id");
                             }
                         });
                     }
                 }) 
+                //删除
+                $("#del").click(function(){
+                    if(isChangeId!="" && confirm('你确定要删除?')){
+                        //名片删除
+                        $.ajax({
+                           type:"post",
+                           async:false,       
+                           url:host+"/delCard.json?cardId="+isChangeId,
+                           data:"",
+                           dataType:"json",
+                           contentType: "application/json",
+                           success : function(dataResult) {
+                               if(dataResult.msg=='success'){
+                                   alert("删除成功！");
+                                   window.location.reload();
+                               }
+                           }
+                       })
+                   }
+                })
+                //编辑
+                $("#edit").click(function(){
+                    if(isChangeId!=""){
+                        window.location.href = "add_card.html?cardId="+isChangeId;
+                    }
+                })
 			});
 		</script>
 	</body>
