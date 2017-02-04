@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Flying hormone" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<title>我的模版</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				font-family: "微软雅黑";
+				background: #f8f8f8;
+				font-size: 12px;
+				padding-bottom: 60px;
+			}
+			
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			i{
+				font-style: normal; color: #f2a605;
+			}
+			
+			a{
+				color: #FF3366;
+			}
+			
+			p {
+				margin: 0;
+				text-indent: 2rem;
+				background: #fff;
+				font-size: 0.7rem;
+				line-height: 50px;
+				color: #999;
+			}
+			
+			header {
+				background: #ff3366;
+				height: 60px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			header h1 {
+				font-size: 22px;
+				text-align: center;
+				color: #fff;
+				line-height: 60px;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			header a {
+				position: absolute;
+				height: 100%;
+			}
+			
+			header a img {
+				height: 30px;
+			}
+			
+			.dingwei img {
+				position: absolute;
+				top: 15px;
+				left: 5px;
+			}
+			
+			.dingwei span {
+				display: block;
+				line-height: 60px;
+				font-size: 32px;
+				color: #fff;
+			}
+			
+			.xiaoxi {
+				color: #fff;
+				font-size: 15px;
+				text-align: right;
+				line-height: 40px;
+				position: absolute;
+				top: 15px;
+				right: 5px;
+				height: 30px;
+				width: 60px;
+				background: url(img/fabu.png) no-repeat;
+				background-size: auto 100%;
+			}
+			footer nav a{
+				    display: table-cell;
+				    overflow: hidden;
+				    width: 1%;
+				    height: 50px;
+				    text-align: center;
+				    vertical-align: middle;
+				    white-space: nowrap;
+				    text-overflow: ellipsis;
+				    color: #929292;
+			}
+			
+			footer nav a img {
+				width: 15%;
+				display: block;
+				margin: 0 auto;
+				margin-top: 5px;
+			}
+			
+			footer nav span {
+				color: #020202;
+			}
+			
+			footer nav .action span {
+				color: #ff3366;
+			}
+			
+			section{ margin-bottom: 10px;}
+			section a{ border: 1px solid #ff3366; padding: 0 5px; border-radius: 5px; float: right; margin-top: 13px; margin-right: 5px;}
+			section h3{ float: left; font-size: 1rem; line-height: 50px; text-indent: 15px;}
+			section div{ position: relative; height: 50px; border-bottom: 1px solid #f8f8f8; overflow: hidden; background: #fff;}
+			section  span.mui-icon{ display: none; position: absolute; top: 10px; right: 10px; color: #0173bd;}
+			.shengcheng i{ margin-right: 5px;}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<h1>我的模版</h1>
+		</header>
+		<section class="jieshou">
+			<div>
+				<h3>已接受的模版</h3>
+				<a>模版使用</a>
+				<a>预览</a>
+			</div>
+			<div>
+				<p>用户<i>小溪</i>于2016.9.29向你推送了一个模板</p>
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+			</div>
+			<div>
+				<p>用户<i>小溪</i>于2016.9.29向你推送了一个模板</p>
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+			</div>
+		</section>
+		
+		<section class="shengcheng">
+			<div>
+				<h3>我生成的模版</h3>
+				<a href="moban_shiyong.html">模版使用</a>
+				<a>推送</a>
+				<a>预览</a>
+			</div>
+			<div>
+				<p><i>模板一</i>   2016.9.29  10：00  设计</p>
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+			</div>
+			<div>
+				<p><i>模板二</i>   2016.9.29  10：00  设计</p>
+				<span class="mui-icon mui-icon-checkmarkempty"></span>
+			</div>
+		</section>
+
+		<footer>
+			<nav class="mui-bar mui-bar-tab">
+				<a class="action" href="">
+					<img src="img/shouye.png" />
+					<span class="mui-tab-label">首页</span>
+				</a>
+				<a href="">
+					<img src="img/fabu2.png" />
+					<span class="mui-tab-label">发布</span>
+				</a>
+				<a href="info.html">
+					<img src="img/mine.png" />
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+		</footer>
+<script>
+	$(document).ready(function(){
+		$("section div").click(function(){
+			if($(this).find("span").css("display") == "block"){
+				$(this).find("span").hide();
+			}else{
+				$("section div span").hide();
+				$(this).find("span").show();
+			}
+		});
+	});
+</script>
+	</body>
+
+</html>

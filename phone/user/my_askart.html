@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<html>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -12,10 +13,7 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js" ></script>
-        <script type="text/javascript" src="../js/appcan.js"></script>
-        <script type="text/javascript" src="../js/appcan.control.js"></script>
-		<script type="text/javascript" src="../js/common.js" ></script>
-		<title>同城搜列表</title>
+		<title>提问详情</title>
 		<style>
 			* {
 				margin: 0;
@@ -46,6 +44,10 @@
 			
 			p {
 				margin: 0;
+			}
+			
+			ul,li,ol{
+				list-style: none;
 			}
 			
 			header {
@@ -206,7 +208,7 @@
 			}
 			
 			.same_city_search {
-				
+				margin-bottom: 10px;
 			}
 			
 			.same_city_search h2 {
@@ -238,14 +240,15 @@
 			.same_city_search i {
 				font-style: normal;
 				position: absolute;
-				top: 10px;
+				top: 20px;
 				right: 15px;
 				color: #999;
 			}
 			
 			.same_city_search .mui-table-view .mui-media-object {
-				max-width: 22%;
+				max-width: 13%;
 				height: auto;
+				border-radius: 50%;
 			}
 			
 			.same_city_search .mui-table-view-cell>a:not(.mui-btn) {
@@ -288,14 +291,18 @@
 				top: 5px;
 				right: 5px;
 			}
-			.quyu{ position: relative; margin-top: 10px; background: #fff; height: 42px;}
-			.quyu select{ background: none; margin-bottom: 0;  position: absolute; z-index: 20;}
 			.xiangxia{ position: absolute; top: 5px; right: 10px; z-index: 0; }
 			.tu_2 img{
 				width: 100%;
 				padding: 10px 15px;
 				background: #fff;
 			}
+			
+			.same_city_search .mui-table-view-cell{ padding: 20px 15px;}
+			.mui-media-body p{ font-size: 0.6rem;}
+			.huida i{position: absolute; top: 10px; right: 10px; font-style: normal; color: #999; border: 1px solid #ccc; padding: 0 6px; line-height: 17px; border-radius: 5px;}
+			.huida div>img{ width: 33.33%;}
+			.huida p{ margin-bottom: 5px;}
 			footer nav a{
 				    display: table-cell;
 				    overflow: hidden;
@@ -328,21 +335,59 @@
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>同城搜列表</h1>
-			<a class="xiaoxi" href="../user/message_edit.html">免费发布</a>
+			<h1>提问详情</h1>
 		</header>
-		<section class="quyu">
-			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-			</select>
-			<span class="mui-icon mui-icon-arrowdown xiangxia"></span>
-		</section>
 		<section class="same_city_search">
 			<div>
-				<ul class="mui-table-view" id="messageList">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+							<div class="mui-media-body">
+								小溪
+								<p class='mui-ellipsis'>我想买一个马桶塞子</p>
+								<p>我想买一个那种抽拉式的马桶塞子，请留下价钱，地址</p>
+								<i>9分钟前发布</i>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+		
+		<section class="huida">
+			<div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+							<div class="mui-media-body">
+								小狗
+								<p class='mui-ellipsis'>我想买一个马桶塞子</p>
+								<i>查看名片</i>
+								<div>
+									<img src="../img/img_7.png"  />
+									<img src="../img/img_7.png"  />
+									<img src="../img/img_7.png"  />
+								</div>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+							<div class="mui-media-body">
+								小狗
+								<p class='mui-ellipsis'>我有，15元/个</p>
+								<i>查看名片</i>
+								<div>
+									<img src="../img/img_7.png"  />
+									<img src="../img/img_7.png"  />
+									<img src="../img/img_7.png"  />
+								</div>
+							</div>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</section>
@@ -363,38 +408,9 @@
 				</a>
 			</nav>
 		</footer>
-        <script>
-        /**
-         * 放回上一级 
-         */
-        appcan.button(".mui-icon-back", "btn-act", function() {  
-           appcan.window.close(-1);  
-        })
-        $(document).ready(function(){
-            //同城搜
-            $.ajax({
-                type:"post",
-                url:host+"/getMsgList.json",
-                data:serializePageJson(1,20),
-                dataType:"json",
-                contentType: "application/json",
-                success : function(dataResult) {
-                    var dataList = dataResult.data.dataList;
-                    var magStr = "";
-                    for(var i=0;i<dataList.length;i++){
-                        magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="info_msg.html">';
-                        magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
-                        magStr+='<div class="mui-media-body">'+dataList[i].title;
-                        magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
-                        magStr+='<i>'+dataList[i].createTime+'</i>';
-                        magStr+='</div></a></li>';
-                    }
-                    $("#messageList").html(magStr);
-                }
-            })
-        });
-        </script>
+<script>
+
+</script>
 	</body>
 
 </html>

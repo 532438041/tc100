@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
-	<head>
+    <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -11,11 +11,8 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/mui.min.js" ></script>
-        <script type="text/javascript" src="../js/appcan.js"></script>
-        <script type="text/javascript" src="../js/appcan.control.js"></script>
-		<script type="text/javascript" src="../js/common.js" ></script>
-		<title>同城搜列表</title>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<title>项目名称</title>
 		<style>
 			* {
 				margin: 0;
@@ -29,7 +26,7 @@
 				width: 100%;
 				overflow-x: hidden;
 				font-family: "微软雅黑";
-				background: #f8f8f8;
+				background: #f2f3f7;
 				font-size: 12px;
 				padding-bottom: 60px;
 			}
@@ -50,7 +47,7 @@
 			
 			header {
 				background: #ff3366;
-				height: 60px;
+				height: 140px;
 				overflow: hidden;
 				position: relative;
 			}
@@ -82,22 +79,21 @@
 			.dingwei span {
 				display: block;
 				line-height: 60px;
-				font-size: 32px;
+				font-size: 20px;
 				color: #fff;
+				text-indent: 30px;
 			}
 			
 			.xiaoxi {
 				color: #fff;
 				font-size: 15px;
-				text-align: right;
-				line-height: 40px;
+				text-align: center;
+				line-height: 24px;
 				position: absolute;
 				top: 15px;
 				right: 5px;
 				height: 30px;
-				width: 90px;
-				background: url(../img/fabu.png) no-repeat;
-				background-size: auto 100%;
+				width: 80px;
 			}
 			
 			.lunbo {
@@ -206,7 +202,7 @@
 			}
 			
 			.same_city_search {
-				
+				margin-top: 10px;
 			}
 			
 			.same_city_search h2 {
@@ -246,6 +242,7 @@
 			.same_city_search .mui-table-view .mui-media-object {
 				max-width: 22%;
 				height: auto;
+				border-radius: 10px;
 			}
 			
 			.same_city_search .mui-table-view-cell>a:not(.mui-btn) {
@@ -288,26 +285,23 @@
 				top: 5px;
 				right: 5px;
 			}
-			.quyu{ position: relative; margin-top: 10px; background: #fff; height: 42px;}
-			.quyu select{ background: none; margin-bottom: 0;  position: absolute; z-index: 20;}
-			.xiangxia{ position: absolute; top: 5px; right: 10px; z-index: 0; }
-			.tu_2 img{
-				width: 100%;
-				padding: 10px 15px;
-				background: #fff;
-			}
-			footer nav a{
-				    display: table-cell;
-				    overflow: hidden;
-				    width: 1%;
-				    height: 50px;
-				    text-align: center;
-				    vertical-align: middle;
-				    white-space: nowrap;
-				    text-overflow: ellipsis;
-				    color: #929292;
-			}
+			.sec1 h3{ height: 50px; line-height: 50px; font-size: 1rem; text-indent: 1rem;}
+			.sec1>a{ display: block; height: 50px; overflow: hidden; border-top: 1px solid #f2f3f7; position: relative;}
+			.sec1>a img{ height: 30px; display: inline-block; position: absolute; top: 10px; left: 1rem;}
+			.sec1 p{ color: #000; line-height: 50px;}
+			.sec1 a>p:first-child{ text-indent: 50px;  float: left;}
+			.sec1 a>p:last-child{ float: right; margin-right: 20px;}
+			.sec1 a>p:last-child span{ margin-left: 10px;}
 			
+			.nav_8{ padding-bottom:20px;}
+			section{ background: #fff; margin-bottom: 10px;}
+			.mui-content{background: #fff;}
+			section li{ list-style: none; overflow: hidden; text-align: center; min-height: 70px; position: relative;}
+			.mui-table-view-cell>a:not(.mui-btn){ position: static;  margin: 0;}
+			.mui-table-view-cell{ padding: 0;}
+			.mui-content{ padding: 10px 0;}
+			section li img{ display: block; width: 30%;  position: absolute; bottom: 25px; left: 35%;}
+			section li p{ position: absolute; bottom: 0; text-align: center; width: 100%; color: #000;}
 			footer nav a img {
 				width: 15%;
 				display: block;
@@ -322,79 +316,117 @@
 			footer nav .action span {
 				color: #ff3366;
 			}
+			.touxiang img{ height: 80px; margin: 30px 15px; border: 2px solid #fff; border-radius: 50%;}
+			header p{ display: inline; line-height: 140px; color: #fff; font-size: 1.3rem; position: relative; left: 140px;}
+			header p span{ background: url(img/xiaoxi.png) no-repeat; background-size: 100%; display: block; width: 30px; height: 30px; position: absolute; top: -20px; left: 40px; text-align: center; line-height: 24px; font-size: 0.6rem; color: #ff3366;}
 		</style>
 	</head>
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>同城搜列表</h1>
-			<a class="xiaoxi" href="../user/message_edit.html">免费发布</a>
+			<a class="touxiang"><img src="../img/touxiang.png" /></a>
+			<p>小溪<span>3</span></p>
+			<a class="xiaoxi"><span class="mui-icon mui-icon-gear"></span>设置</a>
 		</header>
-		<section class="quyu">
-			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-			</select>
-			<span class="mui-icon mui-icon-arrowdown xiangxia"></span>
+		<section class="sec1">
+			<h3>同城搜</h3>
+			<a href="my_ask.html">
+				<p><img src="../img/ask.png" />我的提问</p>
+				<p>6<span class="mui-icon mui-icon-arrowright"></span></p>
+			</a>
+			<a>
+				<p><img src="../img/ans.png" />我的回答</p>
+				<p>0<span class="mui-icon mui-icon-arrowright"></span></p>
+			</a>
 		</section>
-		<section class="same_city_search">
-			<div>
-				<ul class="mui-table-view" id="messageList">
-				</ul>
+		<section class="nav_8">
+			<div class="mui-content">
+			    <div class="mui-row">
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a href="my_guanzhu.html">
+			                	<img src="../img/guanzhu.png" />
+			                	<p>我的关注</p>  
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a href="my_fabu.html">
+			                	<img src="../img/fabu3.png" />
+			                	<p>我的发布</p>
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a href="my_card.html">
+			                	<img src="../img/card2.png" />
+			                	<p>我的名片</p>
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a>
+			                	<img src="../img/fankui.png" />
+			                	<p>问题反馈</p>
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a href="my_tuiguang.html">
+			                	<img src="../img/tuiguang.png" />
+			                	<p>促销推广</p>
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a href="jiangcheng.html">
+			                	<img src="../img/zhidu.png" />
+			                	<p>奖惩制度</p>
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a href="my_moban.html">
+			                	<img src="../img/moban.png" />
+			                	<p>我的模板</p>
+			                </a>
+			            </li>
+			        </div>
+			        <div class="mui-col-sm-3">
+			            <li class="mui-table-view-cell">
+			                <a>
+			                	<img src="../img/us.png" />
+			                	<p>加入我们</p>
+			                </a>
+			            </li>
+			        </div>
+			    </div>
 			</div>
 		</section>
 
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
-				<a class="action" href="">
+				<a class="mui-tab-item action" href="#tabbar">
 					<img src="../img/shouye.png" />
 					<span class="mui-tab-label">首页</span>
 				</a>
-				<a href="">
+				<a class="mui-tab-item mui-active" href="#tabbar-with-chat">
 					<img src="../img/fabu2.png" />
 					<span class="mui-tab-label">发布</span>
 				</a>
-				<a href="info.html">
+				<a class="mui-tab-item" href="#tabbar-with-contact">
 					<img src="../img/mine.png" />
 					<span class="mui-tab-label">我的</span>
 				</a>
 			</nav>
 		</footer>
-        <script>
-        /**
-         * 放回上一级 
-         */
-        appcan.button(".mui-icon-back", "btn-act", function() {  
-           appcan.window.close(-1);  
-        })
-        $(document).ready(function(){
-            //同城搜
-            $.ajax({
-                type:"post",
-                url:host+"/getMsgList.json",
-                data:serializePageJson(1,20),
-                dataType:"json",
-                contentType: "application/json",
-                success : function(dataResult) {
-                    var dataList = dataResult.data.dataList;
-                    var magStr = "";
-                    for(var i=0;i<dataList.length;i++){
-                        magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="info_msg.html">';
-                        magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
-                        magStr+='<div class="mui-media-body">'+dataList[i].title;
-                        magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
-                        magStr+='<i>'+dataList[i].createTime+'</i>';
-                        magStr+='</div></a></li>';
-                    }
-                    $("#messageList").html(magStr);
-                }
-            })
-        });
-        </script>
+
 	</body>
 
 </html>

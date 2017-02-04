@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<html>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -11,11 +12,8 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/mui.min.js" ></script>
-        <script type="text/javascript" src="../js/appcan.js"></script>
-        <script type="text/javascript" src="../js/appcan.control.js"></script>
-		<script type="text/javascript" src="../js/common.js" ></script>
-		<title>同城搜列表</title>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<title>编辑</title>
 		<style>
 			* {
 				margin: 0;
@@ -46,6 +44,7 @@
 			
 			p {
 				margin: 0;
+				font-size: 0.6rem;
 			}
 			
 			header {
@@ -90,13 +89,13 @@
 				color: #fff;
 				font-size: 15px;
 				text-align: right;
-				line-height: 40px;
+				line-height: 30px;
 				position: absolute;
 				top: 15px;
 				right: 5px;
 				height: 30px;
-				width: 90px;
-				background: url(../img/fabu.png) no-repeat;
+				width: 62px;
+				background: url(../img/pen.png) no-repeat;
 				background-size: auto 100%;
 			}
 			
@@ -205,58 +204,65 @@
 				white-space: normal;
 			}
 			
-			.same_city_search {
-				
+			.shucailei {
+				margin-top: 10px;
 			}
 			
-			.same_city_search h2 {
-				background: #5bc4fd;
-				color: #fff;
+			.shucailei h2 {
+				background: #fff;
+				color: #666;
 				padding: 10px;
-				font-size: 18px;
+				font-size: 14px;
 				line-height: 23px;
 				position: relative;
 			}
 			
-			.same_city_search h2 span {
+			.shucailei h2 span {
 				float: right;
 			}
 			
-			.same_city_search>p {
+			.shucailei h2 a {
+				float: right;
+				color: #666;
+				border: 1px solid #ff3366;
+				padding: 0 10px;
+				border-radius: 5px;
+			}
+			
+			.shucailei>p {
 				background: #f9efc9;
 				text-align: center;
 				position: relative;
 				line-height: 30px;
 			}
 			
-			.same_city_search>p a {
+			.shucailei>p a {
 				position: absolute;
 				right: 5px;
 				color: #ff5256;
 			}
 			
-			.same_city_search i {
+			.shucailei i {
 				font-style: normal;
-				position: absolute;
-				top: 10px;
-				right: 15px;
-				color: #999;
+				color: #ff3366;
+				margin-right: 10px;
+				font-size: 0.5rem;
 			}
 			
-			.same_city_search .mui-table-view .mui-media-object {
-				max-width: 22%;
+			.shucailei .mui-table-view .mui-media-object {
+				max-width: 30%;
 				height: auto;
 			}
 			
-			.same_city_search .mui-table-view-cell>a:not(.mui-btn) {
+			.shucailei .mui-table-view-cell>a:not(.mui-btn) {
 				white-space: normal;
 			}
 			
-			.same_city_search .mui-ellipsis {
+			.shucailei .mui-ellipsis {
 				white-space: normal;
 			}
 			
-			.same_city_search .search {
+			.shucailei .search {
 				background: #87d4fe;
 				border: none;
 				height: 32px;
@@ -270,7 +276,7 @@
 				left: 20%;
 			}
 			
-			.same_city_search .search input[type=text] {
+			.shucailei .search input[type=text] {
 				background: none;
 				border: none;
 				text-indent: 10px;
@@ -282,20 +288,46 @@
 				height: 100%;
 			}
 			
-			.same_city_search .search img {
+			.shucailei .search img {
 				height: 60%;
 				position: absolute;
 				top: 5px;
 				right: 5px;
 			}
-			.quyu{ position: relative; margin-top: 10px; background: #fff; height: 42px;}
-			.quyu select{ background: none; margin-bottom: 0;  position: absolute; z-index: 20;}
-			.xiangxia{ position: absolute; top: 5px; right: 10px; z-index: 0; }
-			.tu_2 img{
-				width: 100%;
-				padding: 10px 15px;
-				background: #fff;
+			.shucailei li{
+				padding: 10px;
 			}
+			.mui-media-body{
+				padding-right: 30px;
+			}
+			.del_bianji{
+				position: absolute;
+				top: 10px;
+				right: 0;
+				font-size: 0.6rem;
+			}
+			.del_bianji a{
+				color: #999;
+				padding: 2px 6px;
+				margin-right: 5px;
+				border: 1px solid #ccc;
+			}
+			.buff{
+				height: 30px;
+			}
+			.buff a{
+				width: 33%;
+				display: block;
+				float: left;
+				color: #999;
+				background: #fff;
+				line-height: 30px;
+				text-align: center;
+				border-right: 1px solid #eee;
+				line-height: 38px;
+			}
+			.buff a.active{ color: #ff3366;}
+			
 			footer nav a{
 				    display: table-cell;
 				    overflow: hidden;
@@ -322,31 +354,110 @@
 			footer nav .action span {
 				color: #ff3366;
 			}
+			.mui-table-view-cell>a:not(.mui-btn){
+				padding: 0;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>同城搜列表</h1>
-			<a class="xiaoxi" href="../user/message_edit.html">免费发布</a>
+			<h1>编辑</h1>
+			<a class="xiaoxi">发布</a>
 		</header>
-		<section class="quyu">
-			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-			</select>
-			<span class="mui-icon mui-icon-arrowdown xiangxia"></span>
+		<section class="buff">
+			<a class="active">正在发布</a>
+			<a>等待发布</a>
+			<a>已下架</a>
 		</section>
-		<section class="same_city_search">
+		<section class="shucailei">
+			<h2>蔬菜类<a>添加商品</a></h2>
 			<div>
-				<ul class="mui-table-view" id="messageList">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<div>
+							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<div>
+							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<div>
+							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</section>
-
+		
+		<section class="shucailei">
+			<h2>分类名称<a>添加商品</a></h2>
+			<div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<div>
+							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<div>
+							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<div>
+							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="">
@@ -363,38 +474,7 @@
 				</a>
 			</nav>
 		</footer>
-        <script>
-        /**
-         * 放回上一级 
-         */
-        appcan.button(".mui-icon-back", "btn-act", function() {  
-           appcan.window.close(-1);  
-        })
-        $(document).ready(function(){
-            //同城搜
-            $.ajax({
-                type:"post",
-                url:host+"/getMsgList.json",
-                data:serializePageJson(1,20),
-                dataType:"json",
-                contentType: "application/json",
-                success : function(dataResult) {
-                    var dataList = dataResult.data.dataList;
-                    var magStr = "";
-                    for(var i=0;i<dataList.length;i++){
-                        magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="info_msg.html">';
-                        magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
-                        magStr+='<div class="mui-media-body">'+dataList[i].title;
-                        magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
-                        magStr+='<i>'+dataList[i].createTime+'</i>';
-                        magStr+='</div></a></li>';
-                    }
-                    $("#messageList").html(magStr);
-                }
-            })
-        });
-        </script>
+
 	</body>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<html>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -9,13 +10,10 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="../css/mui.min.css" />
-		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/mui.min.js" ></script>
-        <script type="text/javascript" src="../js/appcan.js"></script>
-        <script type="text/javascript" src="../js/appcan.control.js"></script>
-		<script type="text/javascript" src="../js/common.js" ></script>
-		<title>同城搜列表</title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<title>请人代做</title>
 		<style>
 			* {
 				margin: 0;
@@ -33,6 +31,8 @@
 				font-size: 12px;
 				padding-bottom: 60px;
 			}
+			
+			a{ color: #666;}
 			
 			h1,
 			h2,
@@ -95,8 +95,8 @@
 				top: 15px;
 				right: 5px;
 				height: 30px;
-				width: 90px;
-				background: url(../img/fabu.png) no-repeat;
+				width: 60px;
+				background: url(img/fabu.png) no-repeat;
 				background-size: auto 100%;
 			}
 			
@@ -115,7 +115,7 @@
 				position: absolute;
 				top: 0;
 				right: 0;
-				background: url(../img/opa.png) repeat;
+				background: url(img/opa.png) repeat;
 				width: 50px;
 				height: 20px;
 			}
@@ -206,7 +206,7 @@
 			}
 			
 			.same_city_search {
-				
+				margin-top: 10px;
 			}
 			
 			.same_city_search h2 {
@@ -288,14 +288,27 @@
 				top: 5px;
 				right: 5px;
 			}
-			.quyu{ position: relative; margin-top: 10px; background: #fff; height: 42px;}
-			.quyu select{ background: none; margin-bottom: 0;  position: absolute; z-index: 20;}
-			.xiangxia{ position: absolute; top: 5px; right: 10px; z-index: 0; }
+			.quyu{ position: relative;}
+			.quyu select{ background: none; margin-bottom: 0; }
+			.xiangxia{ position: absolute; top: 10px; right: 10px; z-index: -100; }
 			.tu_2 img{
 				width: 100%;
 				padding: 10px 15px;
 				background: #fff;
 			}
+			.mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left;}
+			
+			.mui-table-view-cell>p{ width: 30%; float: right; text-align: right; line-height: 40px;}
+			.mui-icon{ font-size: 16px;}
+			.mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;}
+			.beizhu p{ line-height: 40px; color: #cd4400; text-indent: 15px;}
+			.xianshang,.xianxia{ margin-top: 5px;}
+			.xianxia h3,.xianshang h3{ line-height: 40px; height: 40px; font-size: 16px; background: #fff; text-indent: 15px;}
+			.xianshang a{ line-height: 40px; height: 40px; background: #fff; display: block; margin-top: 2px; text-indent: 50px;}
+			.xianxia a:last-child{ float: right; width: 100px; margin-right: 10px;}
+			.xianxia a:last-child p{ float: left; line-height: 36px; border: 1px solid #eee; line-height: inherit; margin-top: 5px; padding: 2px 6px; }
+			.xianxia a:last-child span{  line-height: 40px; }
+			.xianxia li a div{ line-height: 40px;}
 			footer nav a{
 				    display: table-cell;
 				    overflow: hidden;
@@ -328,73 +341,49 @@
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>同城搜列表</h1>
-			<a class="xiaoxi" href="../user/message_edit.html">免费发布</a>
+			<h1>请人代做</h1>
 		</header>
-		<section class="quyu">
-			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-			</select>
-			<span class="mui-icon mui-icon-arrowdown xiangxia"></span>
+		<section class="beizhu">
+			<p>此模块为官方特约合作。资费40/次</p>
 		</section>
-		<section class="same_city_search">
-			<div>
-				<ul class="mui-table-view" id="messageList">
-				</ul>
-			</div>
+		<section class="xianxia">
+			<h3>线下特约地址</h3>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" class="">
+						<img class="mui-media-object mui-pull-left" src="img/touxiang.png">
+						<div class="mui-media-body">
+							小溪
+						</div>
+					</a>
+					<a><p>查看名片</p><span class="mui-icon mui-icon-arrowright"></span></a>
+				</li>
+			</ul>
+		</section>
+		<section class="xianshang">
+			<h3>线上特约地址</h3>
+			<a>淘宝链接点击进入</a>
 		</section>
 
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="">
-					<img src="../img/shouye.png" />
+					<img src="img/shouye.png" />
 					<span class="mui-tab-label">首页</span>
 				</a>
 				<a href="">
-					<img src="../img/fabu2.png" />
+					<img src="img/fabu2.png" />
 					<span class="mui-tab-label">发布</span>
 				</a>
 				<a href="info.html">
-					<img src="../img/mine.png" />
+					<img src="img/mine.png" />
 					<span class="mui-tab-label">我的</span>
 				</a>
 			</nav>
 		</footer>
-        <script>
-        /**
-         * 放回上一级 
-         */
-        appcan.button(".mui-icon-back", "btn-act", function() {  
-           appcan.window.close(-1);  
-        })
-        $(document).ready(function(){
-            //同城搜
-            $.ajax({
-                type:"post",
-                url:host+"/getMsgList.json",
-                data:serializePageJson(1,20),
-                dataType:"json",
-                contentType: "application/json",
-                success : function(dataResult) {
-                    var dataList = dataResult.data.dataList;
-                    var magStr = "";
-                    for(var i=0;i<dataList.length;i++){
-                        magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="info_msg.html">';
-                        magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
-                        magStr+='<div class="mui-media-body">'+dataList[i].title;
-                        magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
-                        magStr+='<i>'+dataList[i].createTime+'</i>';
-                        magStr+='</div></a></li>';
-                    }
-                    $("#messageList").html(magStr);
-                }
-            })
-        });
-        </script>
+<script>
+
+</script>
 	</body>
 
 </html>

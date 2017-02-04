@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Flying hormone" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<!--<script type="text/javascript" src="js/upload_yulan.js" ></script>-->
+		<title>添加商品</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				font-family: "微软雅黑";
+				background: #f8f8f8;
+				font-size: 12px;
+				padding-bottom: 60px;
+			}
+			
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			p {
+				margin: 0;
+				background: #fff;
+				padding: 10px;
+				font-size: 0.6rem;
+				line-height: 1.8rem;
+				padding-top: 20px;
+				color: #333;
+			}
+			
+			header {
+				background: #ff3366;
+				height: 60px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			header h1 {
+				font-size: 22px;
+				text-align: center;
+				color: #fff;
+				line-height: 60px;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			header a {
+				position: absolute;
+				height: 100%;
+			}
+			
+			header a img {
+				height: 30px;
+			}
+			
+			.dingwei img {
+				position: absolute;
+				top: 15px;
+				left: 5px;
+			}
+			
+			.dingwei span {
+				display: block;
+				line-height: 60px;
+				font-size: 32px;
+				color: #fff;
+			}
+			
+			input{ background: none; border: 1px solid;}
+			input[type=text]{ border-color: #ccc;}
+			input[type="button"]{ background: none;}
+			p,span{ font-size: 0.8rem; color: #999;}
+			.top input{ }
+			.top{ height: 120px;  overflow: hidden; position: relative; background: #fff; border-bottom: 1px solid #dedede;}
+			.top span{ display: block; height: 60px; line-height: 60px; text-indent: 20px;}
+			.top a{ display: inline-block; text-align: center;  color: #ff3366; padding: 0 25px; margin-left: 20px; border: 1px solid #ff3366; }
+			.top>div{ height: 100px;   position: absolute; top: 10px; right: 10px;  overflow: hidden;}
+			.top>div img{  height: 100%;}
+			
+			
+			.main{ background: #fff;}
+			.main p{ border-bottom: 1px solid #ccc; text-indent: 0; padding-top: 10px; padding-right: 0; width: 50%; float: left;}
+			.main input{ display: inline; width: 60%; margin-bottom: 0; padding: 0;}
+			.main i{  font-style: normal;  float: left; text-align: right; line-height: 30px;}
+			.main input[type="text"]{ height: 30px; margin-right: 4px;}
+			.main textarea{ width: 75%; margin-bottom: 0;}
+			.main input[type=submit]{ background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 15px; }
+			#upload0{ display: none;}
+			p.w100{ width: 100%;}
+			p.w100 input{  width: 75%;}
+			input.submitt{ padding: 5px;}
+			
+			
+			footer nav a{
+				    display: table-cell;
+				    overflow: hidden;
+				    width: 1%;
+				    height: 50px;
+				    text-align: center;
+				    vertical-align: middle;
+				    white-space: nowrap;
+				    text-overflow: ellipsis;
+				    color: #929292;
+			}
+			
+			footer nav a img {
+				width: 15%;
+				display: block;
+				margin: 0 auto;
+				margin-top: 5px;
+			}
+			
+			footer nav span {
+				color: #020202;
+			}
+			
+			footer nav .action span {
+				color: #ff3366;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<h1>添加商品</h1>
+		</header>
+		<section class="quyu">
+			<form action="" method="post" id="upchuan0">
+				<div class="top">
+					<span>商品图片</span>
+					<a id="btn1">上传</a>
+					<div id="yulan"><img src="img/img_4.png" /></div>
+				</div>
+				<div class="main">
+					<p><i>原价：</i><input type="text" value="" />斤</p>
+					<p><i>V：</i><input type="text" value="" /></p>
+					<p><i>特价：</i><input type="text" value="" />斤</p>
+					<p><i>V：</i><input type="text" value="" /></p>
+					<p class="w100"><i>时间：</i><input type="text" value="" /></p>
+					<p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" /></textarea></p>
+					<input class="submitt" type="submit" value="完成" />
+				</div>
+			</form>
+		</section>
+		
+
+		<footer>
+			<nav class="mui-bar mui-bar-tab">
+				<a class="action" href="">
+					<img src="img/shouye.png" />
+					<span class="mui-tab-label">首页</span>
+				</a>
+				<a href="">
+					<img src="img/fabu2.png" />
+					<span class="mui-tab-label">发布</span>
+				</a>
+				<a href="info.html">
+					<img src="img/mine.png" />
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+		</footer>
+<script>
+// JavaScript Document
+$(document).ready(function(){  
+			
+			$(".top").append('<input id="upload0" type="file" accept="image/jpeg,image/bmp" />');
+		
+			
+			$("#btn1").click(function(){
+				fileSelect(yulan,'#upload'+0);
+			});
+	 
+  	function fileSelect(id1,id2) {
+        $(id2).click(); 
+		 $(function() {
+		 $(id2).change(function(e) {
+		 var file = e.target.files[0]
+		 preview1(file)
+		 })
+		 })
+		function preview1(file) {
+		 var img = new Image();
+		 var url = img.src = URL.createObjectURL(file);
+		 var $img = $(img);
+		 
+		 img.onload = function() {
+		 URL.revokeObjectURL(url);
+		 $(id1).empty();
+		 $(id1).append($img);
+		 
+		 }
+		 }
+		 function preview2(file) {
+		 var reader = new FileReader()
+		 reader.onload = function(e) {
+		 var $img = $('<img>').attr("src", e.target.result);
+		 $(id1).empty().append($img);
+		 }
+		 reader.readAsDataURL(file)
+		 }
+	};
+	  
+});
+
+</script>
+	</body>
+
+</html>

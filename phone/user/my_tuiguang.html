@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Flying hormone" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<title>我的推广</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				font-family: "微软雅黑";
+				background: #f8f8f8;
+				font-size: 12px;
+				padding-bottom: 60px;
+			}
+			
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			p {
+				margin: 0;
+			}
+			
+			ul,
+			li,
+			ol {
+				list-style: none;
+			}
+			
+			header {
+				background: #ff3366;
+				height: 60px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			header h1 {
+				font-size: 22px;
+				text-align: center;
+				color: #fff;
+				line-height: 60px;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			header a {
+				position: absolute;
+				height: 100%;
+			}
+			
+			header a img {
+				height: 30px;
+			}
+			
+			.dingwei img {
+				position: absolute;
+				top: 15px;
+				left: 5px;
+			}
+			
+			.dingwei span {
+				display: block;
+				line-height: 60px;
+				font-size: 32px;
+				color: #fff;
+			}
+			
+			.xiaoxi {
+				color: #fff;
+				font-size: 15px;
+				text-align: right;
+				line-height: 30px;
+				position: absolute;
+				top: 15px;
+				right: 20px;
+				height: 30px;
+				width: 90px;
+			}
+			
+			section{ background: #fff; margin-top: 10px;}
+			section div{ height: auto; background: #fff; overflow: hidden;}
+			section h3{ font-size: 0.8rem; font-weight: bold; height: 50px; line-height: 50px; float: left; text-indent: 10px;}
+			section p{ float: right; height: 50px; line-height: 50px;}
+			section p span{ margin-top: 3px; margin-right: 10px;}
+			section p a{ color: #ff3366; border: 1px solid #ff3366; padding: 0 10px; border-radius: 5px; margin-right: 5px;}
+			section i{ font-style: normal; font-weight: normal; font-size: 0.6rem; margin-left: 10px; color: #666;}
+			section li{ height: 50px; line-height: 50px; border-top: 1px solid #ccc; clear: both;}
+			section h4{ color: #666; line-height: 50px; float: left; margin-left: 20px;  margin-left: 4rem; font-size: 0.8rem;}
+			li p{ float: right;}
+			section li a{ color: #ccc; border: 1px solid #ccc; padding: 0 10px; border-radius: 5px;}
+			
+			.shuoming li{ padding: 10px 15px; line-height: 20px; height: auto; overflow: hidden; color: #666; }
+			section.sec_3 div.tu_tu{ width: 85%; overflow: hidden; position: relative; left: 15%; margin-left: -10px;}
+			section.sec_3 div.tu_tu img{ width: 100%;}
+			section.sec_3 div.tu_tu p{ font-size: 0.6rem; float: left; height: auto; overflow: hidden;}
+			section.sec_3 div.tu_tu span{ font-size: 0.8rem; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 5px; padding: 0 6px; border-radius: 5px;}
+			section.sec_3 div.tu_tu i{ border: 1px solid #ccc; padding: 5px; color: #ccc;  margin-left: 0; border-radius: 5px;}			
+			footer nav a {
+				display: table-cell;
+				overflow: hidden;
+				width: 1%;
+				height: 50px;
+				text-align: center;
+				vertical-align: middle;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #929292;
+			}
+			
+			footer nav a img {
+				width: 15%;
+				display: block;
+				margin: 0 auto;
+				margin-top: 5px;
+			}
+			
+			footer nav span {
+				color: #020202;
+			}
+			
+			footer nav .action span {
+				color: #ff3366;
+			}
+			@media screen and (max-width: 360px) {
+			    body {
+			        background-color:lightblue;
+			    }
+			    section.sec_3 div.tu_tu i{ padding: 0;}
+			    section.sec_3 div.tu_tu span{ margin: 0;}
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<h1>我的推广</h1>
+		</header>
+		<section class="shuoming">
+			<div>
+				<h3>推广说明</h3>
+				<p><span class="mui-icon mui-icon-arrowup"></span></p>
+			</div>
+			<ul>
+				<li>推广仅能对已发布促销进行推广。推广可以提高所发布内容的排名，并且可以抵消部分负面评价</li>
+			</ul>
+		</section>
+		<section class="shuoming">
+			<div>
+				<h3>首页轮播图<i>正在发布数：0</i></h3>
+				<p><span class="mui-icon mui-icon-arrowup"></span></p>
+			</div>
+			<ul>
+				<li>没有促销发布，请首先发布促销</li>
+			</ul>
+		</section>
+		<section class="sec_3">
+			<div>
+				<h3>超孕车房模块<i>正在发布数：2</i></h3>
+				<p>
+					<a>发布</a><span class="mui-icon mui-icon-arrowup"></span></p>
+			</div>
+			<ul>
+				<li>
+					<h4>超市<i>正在发布数：0</i></h4>
+					<p>
+						<a>编辑</a>
+						<span class="mui-icon mui-icon-arrowup"></span>
+					</p>
+				</li>
+				<li>
+					<h4>孕婴<i>正在发布数：0</i></h4>
+					<p>
+						<a>编辑</a>
+						<span class="mui-icon mui-icon-arrowup"></span>
+					</p>
+				</li>
+				<li>
+					<h4>车辆<i>正在发布数：0</i></h4>
+					<p>
+						<a>编辑</a>
+						<span class="mui-icon mui-icon-arrowup"></span>
+					</p>
+				</li>
+				<li>
+					<h4>房车<i>正在发布数：0</i></h4>
+					<p>
+						<a>编辑</a>
+						<span class="mui-icon mui-icon-arrowup"></span>
+					</p>
+				</li>
+			</ul>
+			<div class="tu_tu">
+				<img src="img/img_8.png" />
+				<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+			</div>
+		</section>
+		<section>
+			<div>
+				<h3>同城购模块<i>正在发布数：2</i></h3>
+				<p>
+					<a>发布</a><span class="mui-icon mui-icon-arrowdown"></span></p>
+			</div>
+		</section>
+
+		<footer>
+			<nav class="mui-bar mui-bar-tab">
+				<a class="action" href="">
+					<img src="img/shouye.png" />
+					<span class="mui-tab-label">首页</span>
+				</a>
+				<a href="">
+					<img src="img/fabu2.png" />
+					<span class="mui-tab-label">发布</span>
+				</a>
+				<a href="info.html">
+					<img src="img/mine.png" />
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+		</footer>
+		<script>
+			$(document).ready(function() {
+				$(".quyu h4").click(function() {
+
+					if($(this).next("ul").css("display") == "block") {
+						$(this).next("ul").hide();
+					} else {
+						$(".quyu h4").next("ul").hide();
+						$(this).next("ul").show();
+					}
+					$(".quyu li").click(function() {
+						$(this).parent().hide();
+						$(this).parent().find("li").removeClass("action");
+						$(this).addClass("action");
+					})
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="Flying hormone" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/mui.min.css" />
+        <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
+        <script type="text/javascript" src="../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/common.js" ></script>
+		<title>我的推广</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+			}
+			
+			body {
+				width: 100%;
+				overflow-x: hidden;
+				font-family: "微软雅黑";
+				background: #f8f8f8;
+				font-size: 12px;
+				padding-bottom: 60px;
+			}
+			
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			p {
+				margin: 0;
+			}
+			
+			ul,
+			li,
+			ol {
+				list-style: none;
+			}
+			
+			header {
+				background: #ff3366;
+				height: 60px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			header h1 {
+				font-size: 22px;
+				text-align: center;
+				color: #fff;
+				line-height: 60px;
+				font-weight: normal;
+				margin: 0;
+			}
+			
+			header a {
+				position: absolute;
+				height: 100%;
+			}
+			
+			header a img {
+				height: 20px;
+			}
+			
+			.dingwei img {
+				position: absolute;
+				top: 15px;
+				left: 5px;
+			}
+			
+			.dingwei span {
+				display: block;
+				line-height: 60px;
+				font-size: 32px;
+				color: #fff;
+			}
+			
+			.xiaoxi {
+				color: #fff;
+				font-size: 15px;
+				text-align: right;
+				line-height: 30px;
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				height: 30px;
+				width: 95px;
+			}
+			
+			section {
+				background: #fff;
+				margin-top: 10px;
+			}
+			
+			section div {
+				height: auto;
+				background: #fff;
+				overflow: hidden;
+				clear: both;
+			}
+			
+			section h3 {
+				font-size: 0.8rem;
+				font-weight: bold;
+				height: 50px;
+				line-height: 50px;
+				float: left;
+				text-indent: 15px;
+			}
+			
+			section p {
+				float: right;
+				height: 50px;
+				line-height: 50px;
+			}
+			
+			section p span {
+				margin-top: 3px;
+				margin-right: 10px;
+			}
+			
+			section p a {
+				color: #ff3366;
+				border: 1px solid #ff3366;
+				padding: 0 10px;
+				border-radius: 5px;
+				margin-right: 5px;
+			}
+			
+			section i ,.lei_1 li{
+				font-style: normal;
+				font-weight: normal;
+				font-size: 0.6rem;
+				color: #cd4400;
+			}
+			
+			section li {
+				height: 50px;
+				line-height: 50px;
+				clear: both;
+			}
+			
+			section h4 {
+				color: #666;
+				line-height: 50px;
+				float: left;
+				margin-left: 20px;
+				margin-left: 4rem;
+				font-size: 0.8rem;
+			}
+			
+			li p {
+				float: right;
+			}
+			
+			section li a {
+				color: #ccc;
+				border: 1px solid #ccc;
+				padding: 0 10px;
+				border-radius: 5px;
+			}
+			
+			.shuoming h3 {
+				color: #999;
+			}
+			
+			.shuoming li {
+				padding: 0 15px;
+				line-height: 20px;
+				height: auto;
+				overflow: hidden;
+				color: #666;
+			}
+			
+			footer nav a {
+				display: table-cell;
+				overflow: hidden;
+				width: 1%;
+				height: 50px;
+				text-align: center;
+				vertical-align: middle;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #929292;
+			}
+			
+			footer nav a img {
+				width: 15%;
+				display: block;
+				margin: 0 auto;
+				margin-top: 5px;
+			}
+			
+			footer nav span {
+				color: #020202;
+			}
+			
+			footer nav .action span {
+				color: #ff3366;
+			}
+			
+			@media screen and (max-width: 360px) {
+				body {
+					background-color: lightblue;
+				}
+				section.sec_3 div.tu_tu i {
+					padding: 0;
+				}
+				section.sec_3 div.tu_tu span {
+					margin: 0;
+				}
+			}
+			textarea{ height: 120px; margin: 0 4%; width: 92%;}
+			.upload h3{ font-style: normal; font-weight: normal; width: auto; color: #666;}
+			.upload h3 input[type=text]{ width: auto; display: inline; height: 30px; margin-left: 10px; }
+			.pore{ position: relative;}
+			.bitian{ position: absolute; right: 10px; top: 0;}
+			.lei_1{ padding-top: 10px; background: #f8f8f8;}
+			.lei_1 li{ text-align: right; margin-right: 15px; line-height: 20px; height: 30px;}
+			.shouye img{ height: 10px;}
+			.shouye>div div{float: left; clear: none; padding: 0 15px;}
+			.shouye>div div img{ width: 100%; height: auto;}
+			.shouye>div div p{ float: none; line-height: 20px; color: #666; padding: 10px 0; margin-bottom: 10px;}
+			.shouye>div div a{ display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
+			.shouye .fir{ width: 60%;}
+			.shouye .sec{ width: 40%; position: relative; height: 100%;}
+			.xiangqing>div div{ width: 50%; float: left; clear: none; color: #666;}
+			.name{ padding-bottom: 20px;}
+			.name a{ padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 5px;}
+			.name a.active{ color: #fff; background: #ff3366;}
+			.name a.w3{ width: 25%;}
+			.name a.w4{ width: 30%;}
+			.submit input:first-child{ width: 60%; float: left; margin-left: 2.5%; height: 30px; line-height: 30px;}
+			.submit input:last-child{ width: 25%; margin: 0 5%;  height: 30px; line-height: 30px; padding: 0; background: #ff3366; border-color: #ff3366;}
+			.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{ font-size: 20px; line-height: 30px; color: #666!important;}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<h1>模版生成</h1>
+			<a class="xiaoxi" href="daizuo.html"><img src="../img/pen2.png" />请人代做</a>
+		</header>
+		<section class="shuoming">
+			<div>
+				<h3>推广</h3>
+				<p><span class="mui-icon mui-icon-arrowup"></span></p>
+			</div>
+			<ul>
+				<li><i>发布说明：</i>发布内容举办地必须为本地。主要包括店庆、开业、店面升级，节目促销等优惠活动。</li>
+				<li><i>资费说明：</i>样式1为收费展示(例如首页轮播大图、四大模块大图部分)展示费用每天80元。样式2为免费展示(例如同城购四大模块非大图部分)</li>
+				<li><i>请人代做：</i>每次40元。</li>
+				<li><i>位置代码：</i>生成规则轮播图A同城购B四大模块超市C婴孕D车辆E房产F+样式1为数字1样式2为数字2。(样式1指首导航页是大图的形式，样式2指导航页是左侧店铺图片+右侧店铺名称和简短活动说明)例如轮播图位置代码为A1,A指轮播图位置为轮播图，1指样式1。</li>
+			</ul>
+		</section>
+		<section class="upload">
+			<div class="pore">
+				<h3>输入位置代码<input id="code" type="text" value="" placeholder="c1" /></h3>
+				<p class="bitian"><span>必填</span></p>
+			</div>
+			<ul class="lei_1">
+				<li>当前发布位置为超市模块，样式类型为1，资费原价3000/月，1500月</li>
+			</ul>
+			<div class="pore shouye" id="type1">
+				<h3><img src="../img/star.png" />样式1：首页显示</h3>
+				<p class="bitian"><span>必填</span></p>
+				<div>
+					<div class="fir"><img src="../img/img_1.png" /></div>
+					<div class="sec">
+						<p>首页详情页页头图片300*100</p>
+						<a>上传</a>
+					</div>
+				</div>
+			</div>
+			<div class="pore shouye" id="type2">
+				<h3><img src="../img/star.png" />样式2：首页显示</h3>
+				<p class="bitian"><span>必填</span></p>
+				<textarea placeholder="活动简介内容输入"></textarea>
+			</div>
+			
+			<div class="xiangqing">
+				<h3>样式1样式2通用详情页</h3>
+				<div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>自动加载样式1首页图片</label>
+						<input name="radio1" type="radio"  checked="">
+					</div>
+					<div class="mui-input-row mui-radio mui-left">
+						<label>不加载</label>
+						<input name="radio1" type="radio">
+					</div>
+				</div>
+				<div>
+					<textarea placeholder="活动简介内容添加"></textarea>
+					<textarea placeholder="附文本编辑器"></textarea>
+				</div>
+			</div>
+			<div class="name">
+				<h3>命名此模板<input type="text" value="" placeholder="A1" /></h3>
+				<a class="w3">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4">推送此模版</a>
+			</div>
+			<div class="submit">
+				<input value="" type="text" placeholder="输入接收对方账户名" />
+				<input value="推送" type="submit"  />
+			</div>
+		</section>
+        <script>
+            /**
+             * 放回上一级 
+             */
+            appcan.button(".mui-icon-back", "btn-act", function() {  
+               appcan.window.close(-1);  
+            })
+            /**
+             * 发布
+             */
+            var type = $.query.get("type")? $.query.get("type") : "0";
+            var num = type.substring(1,type.length);
+            $(function(){
+                if(type!=0){
+                    //位置代码
+                    $("#code").val(type);
+                    if(num==1){
+                        $("#type2").hide();
+                    }else{
+                        $("#type1").hide();
+                    }
+                }
+                
+                $("#nextStep").click(function(){
+                    if(type=="B2"){
+                        uexWindow.open('', '0', "moban_shiyong.html", '0', '', '', 0x0);
+                    }else{
+                        appcan.window.openUrl("good_edit.html");
+                    }
+                })
+            })
+        </script>
+	</body>
+
+</html>

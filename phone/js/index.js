@@ -1,6 +1,13 @@
 (function($) {
     //用户id
-    $.cookie('userId', '1', { expires: 7, path: '/' });
+    setCookie("userId","1",1);
+    function setCookie(c_name,value,expiredays){
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate()+expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
+
     //获取ip所在的
     $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
         $("#ipcity").html(remote_ip_info.city);

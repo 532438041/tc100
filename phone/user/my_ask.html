@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<html>
+
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
@@ -12,10 +13,7 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js" ></script>
-        <script type="text/javascript" src="../js/appcan.js"></script>
-        <script type="text/javascript" src="../js/appcan.control.js"></script>
-		<script type="text/javascript" src="../js/common.js" ></script>
-		<title>同城搜列表</title>
+		<title>我的提问</title>
 		<style>
 			* {
 				margin: 0;
@@ -33,6 +31,8 @@
 				font-size: 12px;
 				padding-bottom: 60px;
 			}
+			
+			a{ color: #666;}
 			
 			h1,
 			h2,
@@ -95,7 +95,7 @@
 				top: 15px;
 				right: 5px;
 				height: 30px;
-				width: 90px;
+				width: 60px;
 				background: url(../img/fabu.png) no-repeat;
 				background-size: auto 100%;
 			}
@@ -206,7 +206,7 @@
 			}
 			
 			.same_city_search {
-				
+				margin-top: 10px;
 			}
 			
 			.same_city_search h2 {
@@ -288,14 +288,19 @@
 				top: 5px;
 				right: 5px;
 			}
-			.quyu{ position: relative; margin-top: 10px; background: #fff; height: 42px;}
-			.quyu select{ background: none; margin-bottom: 0;  position: absolute; z-index: 20;}
-			.xiangxia{ position: absolute; top: 5px; right: 10px; z-index: 0; }
+			.quyu{ position: relative;}
+			.quyu select{ background: none; margin-bottom: 0; }
+			.xiangxia{ position: absolute; top: 10px; right: 10px; z-index: -100; }
 			.tu_2 img{
 				width: 100%;
 				padding: 10px 15px;
 				background: #fff;
 			}
+			.mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left;}
+			
+			.mui-table-view-cell>p{ width: 30%; float: right; text-align: right; line-height: 40px;}
+			.mui-icon{ font-size: 16px;}
+			.mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;}
 			footer nav a{
 				    display: table-cell;
 				    overflow: hidden;
@@ -328,23 +333,42 @@
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>同城搜列表</h1>
-			<a class="xiaoxi" href="../user/message_edit.html">免费发布</a>
+			<h1>我的提问</h1>
 		</header>
-		<section class="quyu">
-			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-			</select>
-			<span class="mui-icon mui-icon-arrowdown xiangxia"></span>
-		</section>
-		<section class="same_city_search">
-			<div>
-				<ul class="mui-table-view" id="messageList">
-				</ul>
-			</div>
+		<section>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" class="" href="my_askart.html">
+						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+						<div class="mui-media-body">
+							小溪
+							<p class="mui-ellipsis">我想买个马桶塞子</p>
+						</div>
+					</a>
+					<p><a>3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" href="my_askart.html">
+						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+						<div class="mui-media-body">
+							小溪
+							<p class="mui-ellipsis">我想买个马桶塞子</p>
+						</div>
+					</a>
+					<p><a>3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" href="my_askart.html">
+						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+						<div class="mui-media-body">
+							小溪
+							<p class="mui-ellipsis">我想买个马桶塞子</p>
+						</div>
+					</a>
+					<p><a>3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
+				</li>
+
+			</ul>
 		</section>
 
 		<footer>
@@ -363,38 +387,9 @@
 				</a>
 			</nav>
 		</footer>
-        <script>
-        /**
-         * 放回上一级 
-         */
-        appcan.button(".mui-icon-back", "btn-act", function() {  
-           appcan.window.close(-1);  
-        })
-        $(document).ready(function(){
-            //同城搜
-            $.ajax({
-                type:"post",
-                url:host+"/getMsgList.json",
-                data:serializePageJson(1,20),
-                dataType:"json",
-                contentType: "application/json",
-                success : function(dataResult) {
-                    var dataList = dataResult.data.dataList;
-                    var magStr = "";
-                    for(var i=0;i<dataList.length;i++){
-                        magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="info_msg.html">';
-                        magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
-                        magStr+='<div class="mui-media-body">'+dataList[i].title;
-                        magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
-                        magStr+='<i>'+dataList[i].createTime+'</i>';
-                        magStr+='</div></a></li>';
-                    }
-                    $("#messageList").html(magStr);
-                }
-            })
-        });
-        </script>
+<script>
+
+</script>
 	</body>
 
 </html>
