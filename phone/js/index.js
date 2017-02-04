@@ -1,6 +1,10 @@
 (function($) {
     //用户id
     $.cookie('userId', '1', { expires: 7, path: '/' });
+    //获取ip所在的
+    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
+        $("#ipcity").html(remote_ip_info.city);
+    });
     //消息个数
     /*
     $.ajax({
@@ -28,6 +32,7 @@
             var dataList = dataResult.data.dataList;
             var imgStr = "";
             var imgBtnStr = "";
+            console.log(dataList);
             for(var i=0;i<dataList.length;i++){
                 imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/lunbo.png" /></a></div>';
                 if(i==0){
@@ -58,10 +63,11 @@
         contentType: "application/json",
         success : function(dataResult) {
             var dataList = dataResult.data.dataList;
+            console.log(dataList);
             var actStr = "";
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li class="mui-table-view-cell mui-media">';
-                actStr += '<a href="javascript:;">';
+                actStr += '<a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\');">';
                 actStr += '<img class="mui-media-object mui-pull-left" src="'+dataList[i].main_pic+'">';
                 actStr += '<div class="mui-media-body">'+dataList[i].actName;
                 actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
@@ -83,7 +89,7 @@
             var magStr = "";
             for(var i=0;i<dataList.length;i++){
                 magStr+='<li class="mui-table-view-cell mui-media">';
-                magStr+='<a href="javascript:;">';
+                magStr+='<a href="javascript:;" onclick="openUrl(\'page/info_msg.html?actId='+dataList[i].id+'\');">';
                 magStr+='<img class="mui-media-object mui-pull-left" src="img/img_2.png">';
                 magStr+='<div class="mui-media-body">'+dataList[i].title;
                 magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
@@ -94,10 +100,3 @@
         }
     })
 })($);
-/**
- * 页面跳转 
- * @param {Object} urlStr
- */
-function openUrl(urlStr){
-    uexWindow.open('', '0', urlStr, '0', '', '', 0x0);
-}

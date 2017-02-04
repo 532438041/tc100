@@ -10,12 +10,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
-		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/mui.min.js" ></script>
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
-		<title>奖励惩罚</title>
+		<title>项目名称</title>
 		<style>
 			* {
 				margin: 0;
@@ -46,13 +46,6 @@
 			
 			p {
 				margin: 0;
-				text-indent: 2rem;
-				background: #fff;
-				padding: 10px;
-				font-size: 1rem;
-				line-height: 1.8rem;
-				padding-top: 20px;
-				color: #333;
 			}
 			
 			header {
@@ -97,13 +90,13 @@
 				color: #fff;
 				font-size: 15px;
 				text-align: right;
-				line-height: 40px;
+				line-height: 30px;
 				position: absolute;
 				top: 15px;
 				right: 5px;
 				height: 30px;
-				width: 60px;
-				background: url(../img/fabu.png) no-repeat;
+				width: 55px;
+				background: url(img/card.png) no-repeat;
 				background-size: auto 100%;
 			}
 			
@@ -122,7 +115,7 @@
 				position: absolute;
 				top: 0;
 				right: 0;
-				background: url(../img/opa.png) repeat;
+				background: url(img/opa.png) repeat;
 				width: 50px;
 				height: 20px;
 			}
@@ -212,58 +205,61 @@
 				white-space: normal;
 			}
 			
-			.same_city_search {
+			.shucailei {
 				margin-top: 10px;
 			}
 			
-			.same_city_search h2 {
-				background: #5bc4fd;
-				color: #fff;
+			.shucailei h2 {
+				background: #fff;
+				color: #666;
 				padding: 10px;
 				font-size: 18px;
 				line-height: 23px;
 				position: relative;
 			}
 			
-			.same_city_search h2 span {
+			.shucailei h2 span {
 				float: right;
 			}
 			
-			.same_city_search>p {
+			.shucailei h2 a {
+				float: right;
+				color: #666;
+			}
+			
+			.shucailei>p {
 				background: #f9efc9;
 				text-align: center;
 				position: relative;
 				line-height: 30px;
 			}
 			
-			.same_city_search>p a {
+			.shucailei>p a {
 				position: absolute;
 				right: 5px;
 				color: #ff5256;
 			}
 			
-			.same_city_search i {
+			.shucailei i {
 				font-style: normal;
-				position: absolute;
-				top: 10px;
-				right: 15px;
-				color: #999;
+				color: #ff3366;
+				margin-right: 10px;
 			}
 			
-			.same_city_search .mui-table-view .mui-media-object {
-				max-width: 22%;
+			.shucailei .mui-table-view .mui-media-object {
+				max-width: 25%;
 				height: auto;
 			}
 			
-			.same_city_search .mui-table-view-cell>a:not(.mui-btn) {
+			.shucailei .mui-table-view-cell>a:not(.mui-btn) {
 				white-space: normal;
 			}
 			
-			.same_city_search .mui-ellipsis {
+			.shucailei .mui-ellipsis {
 				white-space: normal;
 			}
 			
-			.same_city_search .search {
+			.shucailei .search {
 				background: #87d4fe;
 				border: none;
 				height: 32px;
@@ -277,7 +273,7 @@
 				left: 20%;
 			}
 			
-			.same_city_search .search input[type=text] {
+			.shucailei .search input[type=text] {
 				background: none;
 				border: none;
 				text-indent: 10px;
@@ -289,20 +285,19 @@
 				height: 100%;
 			}
 			
-			.same_city_search .search img {
+			.shucailei .search img {
 				height: 60%;
 				position: absolute;
 				top: 5px;
 				right: 5px;
 			}
-			.quyu{ position: relative;}
-			.quyu select{ background: none; margin-bottom: 0; }
-			.xiangxia{ position: absolute; top: 10px; right: 10px; z-index: -100; }
-			.tu_2 img{
-				width: 100%;
-				padding: 10px 15px;
-				background: #fff;
+			.shucailei li{
+				padding: 20px;
 			}
+			.mui-media-body{
+				padding-right: 30px;
+			}
+			
 			footer nav a{
 				    display: table-cell;
 				    overflow: hidden;
@@ -329,43 +324,120 @@
 			footer nav .action span {
 				color: #ff3366;
 			}
+			.mui-table-view-cell>a:not(.mui-btn){
+				padding: 0;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>奖励惩罚</h1>
+			<h1>超市详情</h1>
+			<a class="xiaoxi">名片</a>
 		</header>
-		<section class="quyu">
-			<p>活动内容每被分享一次，该活动的排名资金加5元，累计80元封顶。活动每被评为重复则排名资金减一元，累计20次排名资金小于零元并且轮播图类信息，则活动被强制下架，账号两日内禁止发布免费广告。活动每被评为水贴，排名资金减一元，累计50次排名资金小于零元并且轮播图类信息，则活动被强制下架，帐号五日内禁止发布免费信息。</p>
+		<section class="shucailei">
+			<h2>蔬菜类<a>更多</a></h2>
+			<div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</section>
-		
-
-		<footer>
-			<nav class="mui-bar mui-bar-tab">
-				<a class="action" href="">
-					<img src="../img/shouye.png" />
-					<span class="mui-tab-label">首页</span>
-				</a>
-				<a href="">
-					<img src="../img/fabu2.png" />
-					<span class="mui-tab-label">发布</span>
-				</a>
-				<a href="info.html">
-					<img src="../img/mine.png" />
-					<span class="mui-tab-label">我的</span>
-				</a>
-			</nav>
-		</footer>
-        <script>
-            /**
+		<section class="shucailei">
+			<h2>分类名称<a>更多</a></h2>
+			<div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
+							<div class="mui-media-body">
+								品名：蔬菜
+								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
+								<p>时间：9月20-9月28日</p>
+								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<script>
+             /**
              * 放回上一级 
              */
             appcan.button(".mui-icon-back", "btn-act", function() {  
                appcan.window.close(-1);  
-            })
+            }) 
+            $(function(){
+                $.ajax({
+                    type:"post",
+                    url:host+"/getActItem.json?actId="+1,
+                    data:'',
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var data = dataResult;
+                        console.log(dataResult);
+                        var actStr = "";
+                        $("#infoGoods").html(actStr);
+                    }
+                })
+            });
         </script>
 	</body>
-
 </html>

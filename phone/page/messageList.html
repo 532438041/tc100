@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
 		<script type="text/javascript" src="../js/common.js" ></script>
 		<title>同城搜列表</title>
 		<style>
@@ -348,20 +350,26 @@
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="">
-					<img src="img/shouye.png" />
+					<img src="../img/shouye.png" />
 					<span class="mui-tab-label">首页</span>
 				</a>
 				<a href="">
-					<img src="img/fabu2.png" />
+					<img src="../img/fabu2.png" />
 					<span class="mui-tab-label">发布</span>
 				</a>
 				<a href="info.html">
-					<img src="img/mine.png" />
+					<img src="../img/mine.png" />
 					<span class="mui-tab-label">我的</span>
 				</a>
 			</nav>
 		</footer>
         <script>
+        /**
+         * 放回上一级 
+         */
+        appcan.button(".mui-icon-back", "btn-act", function() {  
+           appcan.window.close(-1);  
+        })
         $(document).ready(function(){
             //同城搜
             $.ajax({
@@ -375,7 +383,7 @@
                     var magStr = "";
                     for(var i=0;i<dataList.length;i++){
                         magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="javascript:;">';
+                        magStr+='<a href="javascript:;" onclick="openUrl(\'info_msg.html\');">';
                         magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
                         magStr+='<div class="mui-media-body">'+dataList[i].title;
                         magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';

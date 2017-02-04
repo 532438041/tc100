@@ -11,8 +11,11 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/mui.min.js"></script>
-		<script type="text/javascript" src="../js/common.js" ></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
+        <script type="text/javascript" src="../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/common.js" ></script>
 		<title>活动详情</title>
 		<style>
 			* {
@@ -93,9 +96,11 @@
 				right: 5px;
 				height: 30px;
 				width: 55px;
-				background: url(../img/card.png) no-repeat;
+				background: url(img/card.png) no-repeat;
 				background-size: auto 100%;
 			}
+			
+			.xiangqing img{ width: 100%;}
 			li,ol,ul{ list-style: none;}
 			.xiangqing{ position: relative; }
 			.xiangqing img{ width: 100%;}
@@ -103,7 +108,6 @@
 			.xiangqing li{     word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; overflow: auto; color: #fff;}
 			.xiangqing h3{ color: #fff; margin-bottom: 10px;}
 			.xiangqing h4{ color: #fff; font-size: 0.8rem; margin-top: 5px;}
-			
 			footer{
 				position: fixed;
 				bottom: 0;
@@ -147,7 +151,7 @@
 			footer nav .action span {
 				color: #ff3366;
 			}
-			footer ul{ display: none;  position: absolute; top: -240px; left: 0; width: 100%; z-index: 100;background:#fff;}
+			footer ul{ display: none;  position: absolute; top: -240px; left: 0; width: 100%; z-index: 100;}
 			footer li{ line-height: 60px; height: 60px; background: url(img/opa_bai.png) repeat; text-indent: 0;}
 			footer li img{ width: 25px; margin: 15px; margin-top: 3px; vertical-align: middle;}
 			footer a{color: #666; display: inline-block; height: 60px; line-height: 60px;}
@@ -161,35 +165,9 @@
 			<a class="xiaoxi">名片</a>
 		</header>
 		
-		<section class="xiangqing">
-			<img src="../img/sanme_city_go.jpg" />
-			<div>
-				<h3 id="title">全场商品满200减50</h3>
-				<ul>
-					<li>111111111111111111111111111111111111111111111</li>
-					<li>2222222</li>
-					<li>333333333333333333333333333333333333333333333333333333333</li>
-				</ul>
-				<h4>活动时间：2017年X月XX日-X月XX日</h4>
-			</div>
+		<section class="xiangqing" id="info">
 		</section>
-
 		<footer>
-		<!--<nav class="mui-bar mui-bar-tab">
-				<a class="action" href="">
-					<img src="img/shouye.png" />
-					<span class="mui-tab-label">首页</span>
-				</a>
-				<a href="">
-					<img src="img/fabu2.png" />
-					<span class="mui-tab-label">发布</span>
-				</a>
-				<a href="info.html">
-					<img src="img/mine.png" />
-					<span class="mui-tab-label">我的</span>
-				</a>
-			</nav>
-		-->
 			<div class="caozuo">
 				<a id="caozuo"><img src="../img/setting.png" />
 					操作
@@ -207,6 +185,12 @@
 			</div>
 		</footer>
 		<script>
+		    /**
+             * 放回上一级 
+             */
+            appcan.button(".mui-icon-back", "btn-act", function() {  
+               appcan.window.close(-1);  
+            }) 
 			$(document).ready(function(){
 				$("#caozuo").click(function(){
 					if($(this).find("ul").css("display") == "block"){
@@ -218,8 +202,30 @@
 				$("#caozuo li").click(function(event){
 		            event.stopPropagation();
 		       });
+		       
+		       var actId = $.query.get("actId")? $.query.get("actId") : 0;
+		       if(actId>0){
+    		       $.ajax({
+                        type:"post",
+                        url:host+"/getActive.json?actId="+actId,
+                        data:'',
+                        dataType:"json",
+                        contentType: "application/json",
+                        success : function(dataResult) {
+                            var data = dataResult.data;
+                            var actStr = "";
+                            actStr+='<img src="'+data.mainPic+'" /><div>';
+                            actStr+='<h3>'+data.actName+'</h3>';
+                            actStr+='<ul>';
+                            actStr+='<li>'+data.summary+'</li>';
+                            actStr+='</ul>';
+                            actStr+='<h4>活动时间：'+data.createTime+'</h4>';
+                            actStr+='</div>';
+                            $("#info").html(actStr);
+                        }
+                    })
+		       }
 			});
 		</script>
 	</body>
-
 </html>

@@ -11,11 +11,11 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../js/mui.min.js" ></script>
+		<script type="text/javascript" src="j../s/mui.min.js" ></script>
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
-		<title>奖励惩罚</title>
+		<title>同城搜详情</title>
 		<style>
 			* {
 				margin: 0;
@@ -34,6 +34,8 @@
 				padding-bottom: 60px;
 			}
 			
+			a{ color: #666;}
+			
 			h1,
 			h2,
 			h3,
@@ -46,13 +48,6 @@
 			
 			p {
 				margin: 0;
-				text-indent: 2rem;
-				background: #fff;
-				padding: 10px;
-				font-size: 1rem;
-				line-height: 1.8rem;
-				padding-top: 20px;
-				color: #333;
 			}
 			
 			header {
@@ -103,7 +98,7 @@
 				right: 5px;
 				height: 30px;
 				width: 60px;
-				background: url(../img/fabu.png) no-repeat;
+				background: url(img/fabu.png) no-repeat;
 				background-size: auto 100%;
 			}
 			
@@ -122,7 +117,7 @@
 				position: absolute;
 				top: 0;
 				right: 0;
-				background: url(../img/opa.png) repeat;
+				background: url(img/opa.png) repeat;
 				width: 50px;
 				height: 20px;
 			}
@@ -303,6 +298,11 @@
 				padding: 10px 15px;
 				background: #fff;
 			}
+			.mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left;}
+			
+			.mui-table-view-cell>p{ width: 30%; float: right; text-align: right; line-height: 40px;}
+			.mui-icon{ font-size: 16px;}
+			.mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;}
 			footer nav a{
 				    display: table-cell;
 				    overflow: hidden;
@@ -329,34 +329,46 @@
 			footer nav .action span {
 				color: #ff3366;
 			}
+			.xiangxi{ margin-top: 10px;}
+			.xiangxi p{ padding-bottom: 15px;}
+			.xiangxi p:first-child{ text-indent: 20px; font-size: 0.6rem;}
+			.xiangxi p:last-child{ font-size: 0.6rem; text-align: right; margin-right: 20px; color: #ccc;}
+			footer a{ margin: 0 10px;}
+			
+			input[type="text"]{ width: auto; margin-bottom: 0;}
+			input[type="submit"]{ float: right; margin-top: 10px; margin-right: 10px;}
+			@media screen and (max-width: 340px) {
+			    footer a, input[type="submit"], input[type="text"]{ margin: 0;}
+			    input[type="submit"]{ margin-top: 10px;}
+			}
 		</style>
 	</head>
 
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>奖励惩罚</h1>
+			<h1>同城搜详情</h1>
 		</header>
-		<section class="quyu">
-			<p>活动内容每被分享一次，该活动的排名资金加5元，累计80元封顶。活动每被评为重复则排名资金减一元，累计20次排名资金小于零元并且轮播图类信息，则活动被强制下架，账号两日内禁止发布免费广告。活动每被评为水贴，排名资金减一元，累计50次排名资金小于零元并且轮播图类信息，则活动被强制下架，帐号五日内禁止发布免费信息。</p>
+		<section>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;" class="">
+						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
+						<div class="mui-media-body">
+							小溪
+							<p class="mui-ellipsis">我想买个马桶塞子</p>
+						</div>
+					</a>
+					<p><a>已有3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
+				</li>
+				<div class="xiangxi">
+					<p>我想买一个那种抽拉式的马桶塞子，请留下价钱，地址</p>
+					<p>需求地址：龙华区  12分钟前发布</p>
+				</div>
+			</ul>
 		</section>
-		
-
 		<footer>
-			<nav class="mui-bar mui-bar-tab">
-				<a class="action" href="">
-					<img src="../img/shouye.png" />
-					<span class="mui-tab-label">首页</span>
-				</a>
-				<a href="">
-					<img src="../img/fabu2.png" />
-					<span class="mui-tab-label">发布</span>
-				</a>
-				<a href="info.html">
-					<img src="../img/mine.png" />
-					<span class="mui-tab-label">我的</span>
-				</a>
-			</nav>
+			<div class="mui-bar mui-bar-tab"><a class="mui-icon mui-icon-plus"></a><input type="text" value="" /><input type="submit" value="回复" /></div>
 		</footer>
         <script>
             /**
@@ -364,7 +376,7 @@
              */
             appcan.button(".mui-icon-back", "btn-act", function() {  
                appcan.window.close(-1);  
-            })
+            }) 
         </script>
 	</body>
 

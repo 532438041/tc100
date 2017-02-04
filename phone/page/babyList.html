@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
 		<script type="text/javascript" src="../js/common.js" ></script>
 		<title>孕婴列表</title>
 		<style>
@@ -362,6 +364,12 @@
 			</nav>
 		</footer>
         <script>
+             /**
+             * 放回上一级 
+             */
+            appcan.button(".mui-icon-back", "btn-act", function() {  
+               appcan.window.close(-1);  
+            }) 
             $(function(){
                 var baseParam1 = {'actType':'D1'}
                 var param1 = serializePageJson(1,20,baseParam1);
@@ -394,7 +402,7 @@
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
                             actStr += '<li class="mui-table-view-cell mui-media">';
-                            actStr += '<a href="javascript:;">';
+                            actStr += '<a href="javascript:;" onclick="openUrl(\'/info_goods.html\');">';
                             actStr += '<img class="mui-media-object mui-pull-left" src="'+dataList[i].main_pic+'">';
                             actStr += '<div class="mui-media-body">'+dataList[i].actName;
                             actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';

@@ -86,3 +86,23 @@ function serializePageJson(pageNum, pageSize, baseParam) {
 	p.reqParam = baseParam || {};
 	return JSON.stringify(p);
 }
+
+/**
+ * 页面跳转 
+ * @param {Object} urlStr
+ */
+function openUrl(urlStr){
+    uexWindow.open('', '0', urlStr, '0', '', '', 0x0);
+}
+
+/**
+ * 获取ip所在地 
+ * country:国家
+ * province:省
+ * city：市
+ */
+function getIpPlace(){
+    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
+        return remote_ip_info.city;
+    });
+}
