@@ -2,7 +2,7 @@ package com.java.common.enums;
 
 public enum LogTypeEnum {
 
-	LIULAN("0", "浏览"), GUANZHU("1", "关注"), FENXIANG("2", "分享"), CHONGFU("3", "重复"), SHUITIE("4", "水贴"), TUISONG("5", "推送"), TUIGUANG("6", "推广");
+	LIULAN("0", "浏览"), GUANZHU("1", "关注"), FENXIANG("2", "分享"), CHONGFU("3", "重复"), SHUITIE("4", "水贴"), TUISONG("5", "推送"), TUIGUANG("6", "推广"), QUXIAO("7", "取消关注");
 
 	private String type;
 	private String msg;

@@ -10,6 +10,7 @@
 		<result column="act_type" property="actType" jdbcType="CHAR" />
 		<result column="main_pic" property="mainPic" jdbcType="VARCHAR" />
 		<result column="summary" property="summary" jdbcType="VARCHAR" />
+		<result column="is_init" property="isInit" jdbcType="VARCHAR" />
 		<result column="detail_summary" property="detailSummary" jdbcType="VARCHAR" />
 		<result column="detail_content" property="detailContent" jdbcType="VARCHAR" />
 		<result column="state" property="state" jdbcType="CHAR" />
@@ -23,7 +24,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, act_name, user_id, card_id, cate_id, act_type, main_pic, summary, detail_summary, detail_content,
+		id, act_name, user_id, card_id, cate_id, act_type, main_pic, summary, is_init, detail_summary, detail_content,
 		state, start_time, end_time, view_count, amount, create_by, create_time, update_by,
 		update_time
 	</sql>
@@ -40,7 +41,7 @@
 	<insert id="insert" parameterType="com.java.entity.Active">
 		insert into tc_active (id, act_name, user_id, card_id,
 		cate_id, act_type, main_pic,
-		summary, detail_summary, detail_content,
+		summary, is_init, detail_summary, detail_content,
 		state, start_time, end_time,
 		view_count, amount, create_by,
 		create_time, update_by, update_time
@@ -48,6 +49,7 @@
 		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR},
 		#{cateId,jdbcType=CHAR}, #{actType,jdbcType=CHAR}, #{mainPic,jdbcType=VARCHAR},
 		#{summary,jdbcType=VARCHAR},
+		#{isInit,jdbcType=VARCHAR},
 		#{detailSummary,jdbcType=VARCHAR},
 		#{detailContent,jdbcType=VARCHAR},
 		#{state,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},
@@ -81,6 +83,9 @@
 			</if>
 			<if test="summary != null">
 				summary,
+			</if>
+			<if test="isInit != null">
+				is_init,
 			</if>
 			<if test="detailSummary != null">
 				detail_summary,
@@ -141,6 +146,9 @@
 			<if test="summary != null">
 				#{summary,jdbcType=VARCHAR},
 			</if>
+			<if test="isInit != null">
+				#{isInit,jdbcType=VARCHAR},
+			</if>
 			<if test="detailSummary != null">
 				#{detailSummary,jdbcType=VARCHAR},
 			</if>
@@ -200,6 +208,9 @@
 			<if test="summary != null">
 				summary = #{summary,jdbcType=VARCHAR},
 			</if>
+			<if test="isInit != null">
+				is_init = #{isInit,jdbcType=VARCHAR},
+			</if>
 			<if test="detailSummary != null">
 				detail_summary = #{detailSummary,jdbcType=VARCHAR},
 			</if>
@@ -245,6 +256,7 @@
 		act_type = #{actType,jdbcType=CHAR},
 		main_pic = #{mainPic,jdbcType=VARCHAR},
 		summary = #{summary,jdbcType=VARCHAR},
+		is_init = #{isInit,jdbcType=VARCHAR},
 		detail_summary = #{detailSummary,jdbcType=VARCHAR},
 		detail_content = #{detailContent,jdbcType=VARCHAR},
 		state = #{state,jdbcType=CHAR},
@@ -266,7 +278,7 @@
 		<include refid="Base_Column_List" />
 		FROM `tc_active` act
 		WHERE act.`act_type` = #{actType}
-		AND act.`state` = '1' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
+		AND act.`state` = '2' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
 		<if test="userId != null and userId != '' ">
 			AND act.user_id = #{userId}
 		</if>

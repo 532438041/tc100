@@ -3,7 +3,6 @@ package com.java.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,7 +64,7 @@ public class MessageController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/getLastMsgTime")
-	public BaseResult getLastMsgTime(@CookieValue("userId") String userId) {
+	public BaseResult getLastMsgTime(String userId) {
 		return new BaseResult().success(messageService.getLastMsgTime(userId));
 	}
 

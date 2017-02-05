@@ -1,7 +1,6 @@
 package com.java.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +22,7 @@ public class IndexController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/getMsgCount")
-	public BaseResult getMsgCount(@CookieValue("userId") String userId) {
+	public BaseResult getMsgCount(String userId) {
 		BaseResult baseResult = new BaseResult();
 		if (ToolsUtil.isNotNull(userId)) {
 			return baseResult.success(userMsgService.getMsgCount(userId));

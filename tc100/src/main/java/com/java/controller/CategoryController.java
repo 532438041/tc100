@@ -3,7 +3,6 @@ package com.java.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +39,7 @@ public class CategoryController {
 
 	@RequestMapping(value = "/saveCate")
 	@SysLog(operationType = "add/update", operationName = "添加、编辑分类")
-	public BaseResult saveCate(@RequestBody BaseParam<Category> baseParam, @CookieValue("userId") String userId) {
+	public BaseResult saveCate(@RequestBody BaseParam<Category> baseParam, String userId) {
 		baseParam.getParam().setUpdateBy(userId);
 		baseParam.getParam().setUpdateTime(new Date());
 		BaseResult baseResult = new BaseResult();
@@ -63,7 +62,7 @@ public class CategoryController {
 
 	@RequestMapping(value = "/deleteCate")
 	@SysLog(operationType = "delete", operationName = "删除分类")
-	public BaseResult deleteCategory(String cateId, @CookieValue("userId") String userId) {
+	public BaseResult deleteCategory(String cateId, String userId) {
 		BaseResult baseResult = new BaseResult();
 		Category category = new Category();
 		category.setId(cateId);

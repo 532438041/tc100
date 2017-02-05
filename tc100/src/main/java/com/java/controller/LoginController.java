@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,7 +79,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/logout")
 	@SysLog(operationType = "select", operationName = "前台用户退出")
-	public BaseResult logout(@CookieValue("userId") String userId, @CookieValue("displayName") String displayName, HttpServletResponse response) {
+	public BaseResult logout(String userId, String displayName, HttpServletResponse response) {
 		ToolsUtil.removeCookie(response, "userId");
 		ToolsUtil.removeCookie(response, "displayName");
 		return new BaseResult().success();

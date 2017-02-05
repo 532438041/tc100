@@ -40,6 +40,9 @@ public class ActiveController {
 	 */
 	@RequestMapping(value = "/getActiveList")
 	public BaseResult getActiveList(@RequestBody PageParam<Active> pageParam) {
+		if (ToolsUtil.isNull(pageParam.getReqParam().getState())) {
+			pageParam.getReqParam().setState("2");
+		}
 		return new BaseResult().success(activeService.getActiveList(pageParam));
 	}
 
@@ -64,6 +67,45 @@ public class ActiveController {
 	@RequestMapping(value = "/getActive")
 	public BaseResult getActive(String actId) {
 		return new BaseResult().success(activeService.selectByPrimaryKey(actId));
+	}
+
+	/**
+	 * 添加活动
+	 * 
+	 * @param @param baseParam
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/saveAct")
+	public BaseResult saveActive(@RequestBody BaseParam<Active> baseParam) {
+		baseParam.getParam().setUpdateTime(new Date());
+		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
+			// 添加
+			baseParam.getParam().setId(ToolsUtil.getUUID());
+			baseParam.getParam().setCreateTime(new Date());
+			baseParam.getParam().setState("1"); // 未发布
+			BaseResult baseResult = new BaseResult();
+			baseResult.setStatus(activeService.insertSelective(baseParam.getParam()));
+			baseResult.setData(baseParam.getParam().getId());
+			return baseResult;
+		} else {
+			// 编辑
+			return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()));
+		}
+	}
+
+	/**
+	 * 活动内容补充 活动发布
+	 * 
+	 * @param @param baseParam
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/publicAct")
+	public BaseResult publicAct(@RequestBody BaseParam<Active> baseParam) {
+		baseParam.getParam().setUpdateTime(new Date());
+		baseParam.getParam().setState("2"); // 发布
+		return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()), "");
 	}
 
 	/**
@@ -133,7 +175,7 @@ public class ActiveController {
 	}
 
 	/**
-	 * 同城购操作 关注 分享 重复 水贴 推送 推广 fromActId 不为空时 为推送操作
+	 * 同城购操作 关注 分享 重复 水贴 推送 推广 取消关注 fromActId 不为空时 为推送操作
 	 * 
 	 * @param @return
 	 * @return BaseResult

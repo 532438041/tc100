@@ -19,6 +19,8 @@ public class Active {
     private String mainPic;
 
     private String summary;
+    
+    private String isInit;
 
     private String detailSummary;
 
@@ -193,4 +195,12 @@ public class Active {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getIsInit() {
+		return isInit;
+	}
+
+	public void setIsInit(String isInit) {
+		this.isInit = isInit;
+	}
 }

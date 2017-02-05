@@ -17,242 +17,242 @@
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
-		<title>我的推广</title>
+		<title>模版生成</title>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				-webkit-box-sizing: border-box;
-			}
-			
-			body {
-				width: 100%;
-				overflow-x: hidden;
-				font-family: "微软雅黑";
-				background: #f8f8f8;
-				font-size: 12px;
-				padding-bottom: 60px;
-			}
-			
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			p {
-				margin: 0;
-			}
-			
-			ul,
-			li,
-			ol {
-				list-style: none;
-			}
-			
-			header {
-				background: #ff3366;
-				height: 60px;
-				overflow: hidden;
-				position: relative;
-			}
-			
-			header h1 {
-				font-size: 22px;
-				text-align: center;
-				color: #fff;
-				line-height: 60px;
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			header a {
-				position: absolute;
-				height: 100%;
-			}
-			
-			header a img {
-				height: 20px;
-			}
-			
-			.dingwei img {
-				position: absolute;
-				top: 15px;
-				left: 5px;
-			}
-			
-			.dingwei span {
-				display: block;
-				line-height: 60px;
-				font-size: 32px;
-				color: #fff;
-			}
-			
-			.xiaoxi {
-				color: #fff;
-				font-size: 15px;
-				text-align: right;
-				line-height: 30px;
-				position: absolute;
-				top: 15px;
-				right: 15px;
-				height: 30px;
-				width: 95px;
-			}
-			
-			section {
-				background: #fff;
-				margin-top: 10px;
-			}
-			
-			section div {
-				height: auto;
-				background: #fff;
-				overflow: hidden;
-				clear: both;
-			}
-			
-			section h3 {
-				font-size: 0.8rem;
-				font-weight: bold;
-				height: 50px;
-				line-height: 50px;
-				float: left;
-				text-indent: 15px;
-			}
-			
-			section p {
-				float: right;
-				height: 50px;
-				line-height: 50px;
-			}
-			
-			section p span {
-				margin-top: 3px;
-				margin-right: 10px;
-			}
-			
-			section p a {
-				color: #ff3366;
-				border: 1px solid #ff3366;
-				padding: 0 10px;
-				border-radius: 5px;
-				margin-right: 5px;
-			}
-			
-			section i ,.lei_1 li{
-				font-style: normal;
-				font-weight: normal;
-				font-size: 0.6rem;
-				color: #cd4400;
-			}
-			
-			section li {
-				height: 50px;
-				line-height: 50px;
-				clear: both;
-			}
-			
-			section h4 {
-				color: #666;
-				line-height: 50px;
-				float: left;
-				margin-left: 20px;
-				margin-left: 4rem;
-				font-size: 0.8rem;
-			}
-			
-			li p {
-				float: right;
-			}
-			
-			section li a {
-				color: #ccc;
-				border: 1px solid #ccc;
-				padding: 0 10px;
-				border-radius: 5px;
-			}
-			
-			.shuoming h3 {
-				color: #999;
-			}
-			
-			.shuoming li {
-				padding: 0 15px;
-				line-height: 20px;
-				height: auto;
-				overflow: hidden;
-				color: #666;
-			}
-			
-			footer nav a {
-				display: table-cell;
-				overflow: hidden;
-				width: 1%;
-				height: 50px;
-				text-align: center;
-				vertical-align: middle;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				color: #929292;
-			}
-			
-			footer nav a img {
-				width: 15%;
-				display: block;
-				margin: 0 auto;
-				margin-top: 5px;
-			}
-			
-			footer nav span {
-				color: #020202;
-			}
-			
-			footer nav .action span {
-				color: #ff3366;
-			}
-			
-			@media screen and (max-width: 360px) {
-				body {
-					background-color: lightblue;
-				}
-				section.sec_3 div.tu_tu i {
-					padding: 0;
-				}
-				section.sec_3 div.tu_tu span {
-					margin: 0;
-				}
-			}
-			textarea{ height: 120px; margin: 0 4%; width: 92%;}
-			.upload h3{ font-style: normal; font-weight: normal; width: auto; color: #666;}
-			.upload h3 input[type=text]{ width: auto; display: inline; height: 30px; margin-left: 10px; }
-			.pore{ position: relative;}
-			.bitian{ position: absolute; right: 10px; top: 0;}
-			.lei_1{ padding-top: 10px; background: #f8f8f8;}
-			.lei_1 li{ text-align: right; margin-right: 15px; line-height: 20px; height: 30px;}
-			.shouye img{ height: 10px;}
-			.shouye>div div{float: left; clear: none; padding: 0 15px;}
-			.shouye>div div img{ width: 100%; height: auto;}
-			.shouye>div div p{ float: none; line-height: 20px; color: #666; padding: 10px 0; margin-bottom: 10px;}
-			.shouye>div div a{ display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
-			.shouye .fir{ width: 60%;}
-			.shouye .sec{ width: 40%; position: relative; height: 100%;}
-			.xiangqing>div div{ width: 50%; float: left; clear: none; color: #666;}
-			.name{ padding-bottom: 20px;}
-			.name a{ padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 5px;}
-			.name a.active{ color: #fff; background: #ff3366;}
-			.name a.w3{ width: 25%;}
-			.name a.w4{ width: 30%;}
-			.submit input:first-child{ width: 60%; float: left; margin-left: 2.5%; height: 30px; line-height: 30px;}
-			.submit input:last-child{ width: 25%; margin: 0 5%;  height: 30px; line-height: 30px; padding: 0; background: #ff3366; border-color: #ff3366;}
-			.mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{ font-size: 20px; line-height: 30px; color: #666!important;}
-		</style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            
+            body {
+                width: 100%;
+                overflow-x: hidden;
+                font-family: "微软雅黑";
+                background: #f8f8f8;
+                font-size: 1em;
+                padding-bottom: 3.875em;
+            }
+            
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            p {
+                margin: 0;
+            }
+            
+            ul,
+            li,
+            ol {
+                list-style: none;
+            }
+            
+            header {
+                background: #ff3366;
+                height: 3em;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            header h1 {
+                font-size: 1.5em;
+                text-align: center;
+                color: #fff;
+                line-height: 2em;
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            header a {
+                position: absolute;
+                height: 100%;
+            }
+            
+            header a img {
+                height: 1.25em;
+            }
+            
+            .dingwei img {
+                position: absolute;
+                top: 1em;
+                left: 5px;
+            }
+            
+            .dingwei span {
+                display: block;
+                line-height: 1.5em;
+                font-size: 2em;
+                color: #fff;
+            }
+            
+            .xiaoxi {
+                color: #fff;
+                font-size: 1em;
+                text-align: right;
+                line-height: 1.5em;
+                position: absolute;
+                top: 1em;
+                right: 1em;
+                height: 1.875em;
+                width: 6em;
+            }
+            
+            section {
+                background: #fff;
+                margin-top: 0.625em;
+            }
+            
+            section div {
+                height: auto;
+                background: #fff;
+                overflow: hidden;
+                clear: both;
+            }
+            
+            section h3 {
+                font-size: 0.8em;
+                font-weight: bold;
+                height: 3.125em;
+                line-height: 3.125em;
+                float: left;
+                text-indent: 1em;
+            }
+            
+            section p {
+                float: right;
+                height: 3.125em;
+                line-height: 3.125em;
+            }
+            
+            section p span {
+                margin-top: 3px;
+                margin-right: 0.625em;
+            }
+            
+            section p a {
+                color: #ff3366;
+                border: 1px solid #ff3366;
+                padding: 0 0.625em;
+                border-radius: 5px;
+                margin-right: 5px;
+            }
+            
+            section i ,.lei_1 li{
+                font-style: normal;
+                font-weight: normal;
+                font-size: 0.6em;
+                color: #cd4400;
+            }
+            
+            section li {
+                height: 3.125em;
+                line-height: 3.125em;
+                clear: both;
+            }
+            
+            section h4 {
+                color: #666;
+                line-height: 3.125em;
+                float: left;
+                margin-left: 1.25em;
+                margin-left: 4em;
+                font-size: 0.8em;
+            }
+            
+            li p {
+                float: right;
+            }
+            
+            section li a {
+                color: #ccc;
+                border: 1px solid #ccc;
+                padding: 0 0.625em;
+                border-radius: 5px;
+            }
+            
+            .shuoming h3 {
+                color: #999;
+            }
+            
+            .shuoming li {
+                padding: 0 1em;
+                line-height: 1.25em;
+                height: auto;
+                overflow: hidden;
+                color: #666;
+            }
+            
+            footer nav a {
+                display: table-cell;
+                overflow: hidden;
+                width: 1%;
+                height: 3.125em;
+                text-align: center;
+                vertical-align: middle;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                color: #929292;
+            }
+            
+            footer nav a img {
+                width: 15%;
+                display: block;
+                margin: 0 auto;
+                margin-top: 5px;
+            }
+            
+            footer nav span {
+                color: #020202;
+            }
+            
+            footer nav .action span {
+                color: #ff3366;
+            }
+            
+            @media screen and (max-width: 360px) {
+                body {
+                    background-color: lightblue;
+                }
+                section.sec_3 div.tu_tu i {
+                    padding: 0;
+                }
+                section.sec_3 div.tu_tu span {
+                    margin: 0;
+                }
+            }
+            textarea{ height: 7.5em; margin: 0 4%; width: 92%;}
+            .upload h3{ font-style: normal; font-weight: normal; width: auto; color: #666;}
+            .upload h3 input[type=text]{ width: auto; display: inline; height: 1.875em; margin-left: 0.625em; }
+            .pore{ position: relative;}
+            .bitian{ position: absolute; right: 0.625em; top: 0;}
+            .lei_1{ padding-top: 0.625em; background: #f8f8f8;}
+            .lei_1 li{ text-align: right; margin-right: 1em; line-height: 1.25em; height: 1.875em;}
+            .shouye img{ height: 0.625em;}
+            .shouye>div div{float: left; clear: none; padding: 0 1em;}
+            .shouye>div div img{ width: 100%; height: auto;}
+            .shouye>div div p{ float: none; line-height: 1.25em; color: #666; padding: 0.625em 0; margin-bottom: 0.625em;}
+            .shouye>div div a{ display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
+            .shouye .fir{ width: 60%;}
+            .shouye .sec{ width: 40%; position: relative; height: 100%;}
+            .xiangqing>div div{ width: 50%; float: left; clear: none; color: #666;}
+            .name{ padding-bottom: 1.25em;}
+            .name a{ padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 5px;}
+            .name a.active{ color: #fff; background: #ff3366;}
+            .name a.w3{ width: 25%;}
+            .name a.w4{ width: 30%;}
+            .submit input:first-child{ width: 60%; float: left; margin-left: 2.5%; height: 1.875em; line-height: 1.875em;}
+            .submit input:last-child{ width: 25%; margin: 0 5%;  height: 1.875em; line-height: 1.875em; padding: 0; background: #ff3366; border-color: #ff3366;}
+            .mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{ font-size: 1.25em; line-height: 1.875em; color: #666!important;}
+        </style>
 	</head>
 
 	<body>
@@ -263,7 +263,7 @@
 		</header>
 		<section class="shuoming">
 			<div>
-				<h3>推广</h3>
+				<h3>说明</h3>
 				<p><span class="mui-icon mui-icon-arrowup"></span></p>
 			</div>
 			<ul>
@@ -274,55 +274,57 @@
 			</ul>
 		</section>
 		<section class="upload">
-			<div class="pore">
-				<h3>输入位置代码<input id="code" type="text" value="" placeholder="c1" /></h3>
-				<p class="bitian"><span>必填</span></p>
-			</div>
-			<ul class="lei_1">
-				<li>当前发布位置为超市模块，样式类型为1，资费原价3000/月，1500月</li>
-			</ul>
-			<div class="pore shouye" id="type1">
-				<h3><img src="../img/star.png" />样式1：首页显示</h3>
-				<p class="bitian"><span>必填</span></p>
-				<div>
-					<div class="fir"><img src="../img/img_1.png" /></div>
-					<div class="sec">
-						<p>首页详情页页头图片300*100</p>
-						<a>上传</a>
-					</div>
-				</div>
-			</div>
-			<div class="pore shouye" id="type2">
-				<h3><img src="../img/star.png" />样式2：首页显示</h3>
-				<p class="bitian"><span>必填</span></p>
-				<textarea placeholder="活动简介内容输入"></textarea>
-			</div>
-			
-			<div class="xiangqing">
-				<h3>样式1样式2通用详情页</h3>
-				<div>
-					<div class="mui-input-row mui-radio mui-left">
-						<label>自动加载样式1首页图片</label>
-						<input name="radio1" type="radio"  checked="">
-					</div>
-					<div class="mui-input-row mui-radio mui-left">
-						<label>不加载</label>
-						<input name="radio1" type="radio">
-					</div>
-				</div>
-				<div>
-					<textarea placeholder="活动简介内容添加"></textarea>
-					<textarea placeholder="附文本编辑器"></textarea>
-				</div>
-			</div>
-			<div class="name">
-				<h3>命名此模板<input type="text" value="" placeholder="A1" /></h3>
-				<a class="w3">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4">推送此模版</a>
-			</div>
-			<div class="submit">
-				<input value="" type="text" placeholder="输入接收对方账户名" />
-				<input value="推送" type="submit"  />
-			</div>
+		    <form id="actForm">
+    			<div class="pore">
+    				<h3>输入位置代码<input id="code" name="actType" type="text" value="" placeholder="输入位置代码" readonly="readonly"/></h3>
+    				<p class="bitian"><span>必填</span></p>
+    			</div>
+    			<ul class="lei_1">
+    				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费原价3000/月，1500月</li>
+    			</ul>
+    			<div class="pore shouye" id="type1">
+    				<h3><img src="../img/star.png" />样式1：首页显示</h3>
+    				<p class="bitian"><span>必填</span></p>
+    				<div>
+    					<div class="fir"><img id="mainPic" name ="mainPic" src="../img/img_1.png" /></div>
+    					<div class="sec">
+    						<p>首页详情页页头图片300*100</p>
+    						<a onclick="uploadImg();">上传</a>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="pore shouye" id="type2">
+    				<h3><img src="../img/star.png" />样式2：首页显示</h3>
+    				<p class="bitian"><span>必填</span></p>
+    				<textarea placeholder="活动简介内容输入" name="summary" id="summary"></textarea>
+    			</div>
+    			
+    			<div class="xiangqing">
+    				<h3>样式1样式2通用详情页</h3>
+    				<div>
+    					<div class="mui-input-row mui-radio mui-left">
+    						<label>自动加载样式1首页图片</label>
+    						<input name="isInit" value="1" type="radio" checked="">
+    					</div>
+    					<div class="mui-input-row mui-radio mui-left">
+    						<label>不加载</label>
+    						<input name="isInit" value="0" type="radio">
+    					</div>
+    				</div>
+    				<div>
+    					<textarea placeholder="活动简介内容添加" name="detailSummary" id="detailSummary"></textarea>
+    					<textarea placeholder="附文本编辑器" name="detailContent" id="detailContent"></textarea>
+    				</div>
+    			</div>
+    			<div class="name">
+    				<h3>命名此模板<input type="text" value="" placeholder="" name="actName"/></h3>
+    				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4">推送此模版</a>
+    			</div>
+    			<div class="submit">
+    				<input value="" type="text" placeholder="输入接收对方账户名" />
+    				<input value="推送" type="submit"  />
+    			</div>
+			</form>
 		</section>
         <script>
             /**
@@ -334,27 +336,164 @@
             /**
              * 发布
              */
-            var type = $.query.get("type")? $.query.get("type") : "0";
+            // type值范围：A1（轮播） B2（同城购活动）直接进入模板生成 下一步到模板使用页面
+            // C D E F为频道活动 进入发布模式选择页面 然后下一步到模板生成页面 若为C D 则下一步到商品详情 其他的到模板使用页面
+            var type = $.query.get("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
-                if(type!=0){
-                    //位置代码
-                    $("#code").val(type);
-                    if(num==1){
-                        $("#type2").hide();
-                    }else{
-                        $("#type1").hide();
-                    }
+                // 若类型传参错误 则返回上一个页面
+                if(type == "0"){
+                    appcan.window.close(-1); 
+                    return false;
                 }
                 
-                $("#nextStep").click(function(){
-                    if(type=="B2"){
-                        uexWindow.open('', '0', "moban_shiyong.html", '0', '', '', 0x0);
-                    }else{
-                        appcan.window.openUrl("good_edit.html");
-                    }
+                switch(type){
+                    case "A1":
+                        $("#typeName").text("名优活动");
+                        break;
+                    case "B2":
+                        $("#typeName").text("同城购活动");
+                        break;
+                    case "C1":
+                        $("#typeName").text("超市模块");
+                        break;
+                    case "D1":
+                        $("#typeName").text("婴育模块");
+                        break;
+                    case "E1":
+                        $("#typeName").text("车辆模块");
+                        break;
+                    case "F1":
+                        $("#typeName").text("房产模块");
+                        break;
+                    case "C2":
+                        $("#typeName").text("超市模块");
+                        break;
+                    case "D2":
+                        $("#typeName").text("婴育模块");
+                        break;
+                    case "E2":
+                        $("#typeName").text("车辆模块");
+                        break;
+                    case "F2":
+                        $("#typeName").text("房产模块");
+                        break;
+                }
+                
+                //类型为1 隐藏类型2
+                //位置代码
+                $("#typeNum").text(num);
+                $("#code").val(type);
+                if(num == 1){
+                    $("#type2").hide();
+                }else{
+                    $("#type1").hide();
+                }
+                
+                // 预览
+                $("#preview").click(function(){
+                    var result = saveAct();
+                    if(result.status > 0){
+                        appcan.window.open({
+                            dataType:0,
+                            data:"info.html?actId="+result.data
+                        });
+                   }
                 })
+                
+                // 下一步
+                $("#nextStep").click(function(){
+                    var result = saveAct();
+                    if(result.status > 0){
+                        // 只有超市 婴育
+                        if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
+                            appcan.window.open({
+                                dataType:0,
+                                data:"good_edit.html"
+                            });
+                        }else{
+                            appcan.window.open({
+                                dataType:0,
+                                data:"moban_shiyong.html?type=A1&actId="+result.data
+                            });
+                        }
+                   }
+                })
+                
+                // 异步保存当前页面信息
+                function saveAct(){
+                    // 数据校验
+                    if($.trim($("#code").val()).length == 0){
+                        appcan.window.alert({
+                            title:'提示',
+                            content:'位置代码不能为空',
+                            buttons:'确定'
+                        });
+                        return false;
+                    }
+                    if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
+                        appcan.window.alert({
+                            title:'提示',
+                            content:'活动简介不能为空',
+                            buttons:'确定'
+                        });
+                        return false;
+                    }
+                    if($.trim($("#detailSummary").val()).length == 0){
+                        appcan.window.alert({
+                            title:'提示',
+                            content:'活动简介不能为空',
+                            buttons:'确定'
+                        });
+                        return false;
+                    }
+                    
+                    var baseParam = {
+                        userId : appcan.locStorage.getVal("userId")
+                    };
+                    var param = $("#actForm").serializeJson(baseParam);
+                    var result = null;
+                    $.ajax({
+                       type:"post",
+                       async:false,       
+                       url:host+"/saveAct.json",
+                       data:param,
+                       dataType:"json",
+                       contentType: "application/json",
+                       success : function(dataResult) {
+                            result = dataResult;
+                       }
+                   })
+                   return result;
+                }
             })
+            
+            // 上传图片
+            function uploadImg(){
+                var data = {
+                    min:1,
+                    max:1,
+                    quality:0.8,
+                    detailedInfo:true
+                }
+                uexImage.openPicker(data,function(error,info){
+                    //上传图片
+                    var param = {
+                        userId : appcan.locStorage.getVal("userId"),
+                        files : info.detailedImageInfo
+                    };
+                    $.ajax({
+                       type:"post",      
+                       url:host+"/image/uploadImg.json",
+                       data:param,
+                       dataType:"json",
+                       contentType: "application/json",
+                       success : function(dataResult) {
+                            $("mainPic").attr("src", dataResult.imgUrl);
+                       }
+                   })
+                });
+            }
         </script>
 	</body>
 
