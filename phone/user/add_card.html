@@ -235,15 +235,34 @@ $(document).ready(function(){
     var baseParam = {'picUrl':'../img/touxiang.png','userId':'1'}
 	var cardId = $.query.get("cardId")? $.query.get("cardId") : "";
     if(cardId!=""){
+        //获取修改对象
+        $.ajax({
+           type:"post",
+           async:false,       
+           url:host+"/getCard.json?cardId="+cardId,
+           data:"",
+           dataType:"json",
+           contentType: "application/json",
+           success : function(dataResult) {
+               console.log(dataResult);
+               if(dataResult.msg=='success'){
+               var data = dataResult.data; 
+                   $("#picUrl").attr("src",data.picUrl);
+                   $("#cardName").val(data.cardName);
+                   $("#address").val(data.address);
+                   $("#telphone").val(data.telphone);
+                   $("#route").val(data.route);
+                   $("#region").text(data.region);
+               }
+           }
+       })
         $("#title").html("编辑名片");
         msg = "编辑成功！";
         baseParam = {'picUrl':'../img/touxiang.png','userId':'1','id':cardId}
-        alert(baseParam);
     }
     $("#addCard").click(function(){
         //名片添加
         var param = $("#upchuan0").serializeJson(baseParam);
-        console.log(param);
         $.ajax({
            type:"post",
            async:false,       
