@@ -114,7 +114,7 @@
 			.main i{  font-style: normal; width: 30%; float: left; text-align: right; line-height: 40px;}
 			
 			.main textarea{ width: 60%; margin-bottom: 0;}
-			.main input[type=submit]{ background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 15px;}
+			.main input[type=button]{ background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 15px;}
 			#upload0{ display: none;}
 			.main h3{ line-height: 50px; height: 50px; text-indent: 15px; font-size: 1.2rem; color: #666; border-bottom: 1px solid #ccc;}
 			.main h3 a{ font-size: 0.8rem; color: #ccc; float: right; margin-right: 15px; border: 1px solid #ccc; height: 30px; line-height: 30px; text-align: center; text-indent: 0; padding: 0 6px; border-radius: 5px; margin-top: 10px;}
@@ -158,7 +158,7 @@
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>同城搜编辑</h1>
+			<h1>同城搜添加</h1>
 		</header>
 		<section class="quyu">
 			<form action="" method="post" id="upchuan0">
@@ -168,12 +168,12 @@
 				</div>
 				<div class="main">
 					<h3>基本信息<a>选择已有名片</a></h3>
-					<p><img src="../img/touxiang.png" /><i>店铺名：</i><input type="text" value="" /></p>
-					<p><i>主题：</i><input type="text" value="" /></p>
-					<p><i>提供服务的区域：</i><input type="text" value="" /></p>
-					<p><i>内容：</i><input type="text" value="" /></p>
-					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" /></textarea></p>
-					<input class="submitt" type="submit" value="发布10：05" />
+					<p><img src="../img/touxiang.png" /><i>店铺名：</i><input type="text" id="cardName" value="" readonly="readonly"/></p>
+					<p><i>主题：</i><input type="text" id="title" name="title" value="" /></p>
+					<p><i>提供服务的区域：</i><input type="text" name="region" id="region" value="" /></p>
+					<p><i>内容：</i><input type="text" id="remark" name="remark" value="" /></p>
+					<p style="border: none;"><i>经营范围：</i><textarea type="text" id="cardRegion" value="" readonly="readonly"/></textarea></p>
+					<input class="submit" type="button" id="addMsg" value="发布" />
 				</div>
 			</form>
 		</section>
@@ -199,14 +199,86 @@
             /**
              * 放回上一级 
              */
+            var time = 0;
             appcan.button(".mui-icon-back", "btn-act", function() {  
                appcan.window.close(-1);  
             })
             // JavaScript Document
             $(document).ready(function(){
-            	  
+                //最后一发布信息时间
+                  $.ajax({
+                       type:"post",
+                       async:false,       
+                       url:host+"/getLastMsgTime.json?userId=1",
+                       data:"",
+                       dataType:"json",
+                       contentType: "application/json",
+                       success : function(dataResult) {
+                           var intDiff = parseInt(dataResult.data);
+                           if(dataResult.data!="" && dataResult.data!=null){
+                               var timestamp = Date.parse(new Date());
+                               var lasttamp = Date.parse(new Date(dataResult.data));
+                               var lastTime = (timestamp-lasttamp)/1000;
+                               console.log(lastTime);
+                               if(lastTime<3600){
+                                   timer(intDiff);
+                               }
+                           }else{
+                               $(".submit").val("发布");
+                           }
+                       }
+                   })
+                   //获取名片信息
+                  $.ajax({
+                       type:"post",
+                       async:false,       
+                       url:host+"/getCard.json?cardId=1",
+                       data:"",
+                       dataType:"json",
+                       contentType: "application/json",
+                       success : function(dataResult) {
+                           var data = dataResult.data;
+                           $("#cardName").val(data.cardName);
+                           $("#cardRegion").val(data.region);
+                       }
+                   })
+                   //添加信息
+                   $("#addMsg").click(function(){
+                        //最后发布1小时内不能提交
+                        alert(time);
+                        if(time>0){
+                            alert();
+                            return false;
+                        }
+                        //同城搜信息添加
+                        var msg = "添加成功！";
+                        var baseParam = {'cardId':"1","userId":"1"}
+                        var param = $("#upchuan0").serializeJson(baseParam);
+                        console.log(param);
+                        $.ajax({
+                           type:"post",
+                           async:false,       
+                           url:host+"/saveMsg.json",
+                           data:param,
+                           dataType:"json",
+                           contentType: "application/json",
+                           success : function(dataResult) {
+                               console.log(dataResult);
+                               if(dataResult.status==1){
+                                   alert(msg);
+                                   window.location.href = "my_ask.html";
+                               }
+                           }
+                       })
+                    })
             });
-        
+            function timer(intDiff) {
+               window.setInterval(function () {
+                   $(".submit").val("发布"+intDiff);
+                   time = intDiff;
+                   intDiff--;
+               }, 1000);
+           }
         </script>
 	</body>
 
