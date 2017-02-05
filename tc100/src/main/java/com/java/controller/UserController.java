@@ -36,6 +36,18 @@ public class UserController {
 	}
 
 	/**
+	 * 获取我的名片
+	 * 
+	 * @param @param cardId
+	 * @param @return 
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getCard")
+	public BaseResult getCard(String cardId) {
+		return new BaseResult().success(userCardService.selectByPrimaryKey(cardId));
+	}
+
+	/**
 	 * 保存我的名片
 	 * 
 	 * @param @param baseParam
