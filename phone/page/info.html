@@ -172,7 +172,7 @@
 				<a id="caozuo"><img src="../img/setting.png" />
 					操作
 					<ul>
-						<li><img src="../img/eyes.png" />关注</li>
+						<li id="guanzhu"><img src="../img/eyes.png" />关注</li>
 						<li><img src="../img/share.png" />分享</li>
 						<li><img src="../img/repeat.png" />重复</li>
 						<li><img src="../img/shuitie.png" />水贴</li>
@@ -205,25 +205,39 @@
 		       
 		       var actId = $.query.get("actId")? $.query.get("actId") : 0;
 		       if(actId>0){
-    		       $.ajax({
+		       //关注
+                $("#guanzhu").click(function(){
+                    $.ajax({
                         type:"post",
-                        url:host+"/getActive.json?actId="+actId,
+                        url:host+"/operateAct.json?actId="+actId+"&userId=1&logType=1",
                         data:'',
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            var data = dataResult.data;
-                            var actStr = "";
-                            actStr+='<img src="'+data.mainPic+'" /><div>';
-                            actStr+='<h3>'+data.actName+'</h3>';
-                            actStr+='<ul>';
-                            actStr+='<li>'+data.summary+'</li>';
-                            actStr+='</ul>';
-                            actStr+='<h4>活动时间：'+data.createTime+'</h4>';
-                            actStr+='</div>';
-                            $("#info").html(actStr);
+                            alert("关注成功！");
                         }
                     })
+                })
+                //活动详情
+		       $.ajax({
+                    type:"post",
+                    url:host+"/getActive.json?actId="+actId,
+                    data:'',
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var data = dataResult.data;
+                        var actStr = "";
+                        actStr+='<img src="'+data.mainPic+'" /><div>';
+                        actStr+='<h3>'+data.actName+'</h3>';
+                        actStr+='<ul>';
+                        actStr+='<li>'+data.summary+'</li>';
+                        actStr+='</ul>';
+                        actStr+='<h4>活动时间：'+data.createTime+'</h4>';
+                        actStr+='</div>';
+                        $("#info").html(actStr);
+                    }
+                })
 		       }
 			});
 		</script>
