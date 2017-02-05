@@ -13,8 +13,8 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js"></script>
-        <script type="text/javascript" src="js/appcan.js"></script>
-        <script type="text/javascript" src="js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
 		<script type="text/javascript" src="../js/common.js" ></script>
 		<title>我的名片</title>
 		<style>
@@ -158,6 +158,12 @@
 			</nav>
 		</footer>
 		<script>
+            /**
+             * 放回上一级 
+             */
+            appcan.button(".mui-icon-back", "btn-act", function() {  
+               appcan.window.close(-1);  
+            });
 			$(document).ready(function(){
 			     var isChangeId = "";
 			    //添加
