@@ -340,38 +340,7 @@
 			<h1>我的提问</h1>
 		</header>
 		<section>
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;" class="" href="my_askart.html">
-						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-						<div class="mui-media-body">
-							小溪
-							<p class="mui-ellipsis">我想买个马桶塞子</p>
-						</div>
-					</a>
-					<p><a>3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
-				</li>
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;" href="my_askart.html">
-						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-						<div class="mui-media-body">
-							小溪
-							<p class="mui-ellipsis">我想买个马桶塞子</p>
-						</div>
-					</a>
-					<p><a>3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
-				</li>
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;" href="my_askart.html">
-						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-						<div class="mui-media-body">
-							小溪
-							<p class="mui-ellipsis">我想买个马桶塞子</p>
-						</div>
-					</a>
-					<p><a>3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
-				</li>
-
+			<ul class="mui-table-view" id="myMsgList">
 			</ul>
 		</section>
 
@@ -391,32 +360,33 @@
 				</a>
 			</nav>
 		</footer>
-<script>
-$(function(){
-    $.ajax({
-        type:"post",
-        async:false,       
-        url:host+"/getCardList.json?userId=1",
-        data:"",
-        dataType:"json",
-        contentType: "application/json",
-        success : function(dataResult) {
-            var dataList = dataResult.data;
-            var cardStr = "";
-            if(dataList.length>0){
-                for(var i=0;i<dataList.length;i++){
-                    cardStr +='<li data-id="'+dataList[i].id+'">';
-                    cardStr +='<img src="'+dataList[i].picUrl+'" />';
-                    cardStr +='<p>'+dataList[i].cardName+'</p>';
-                    cardStr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
-                    cardStr +=' </li>';
-                }
-            }
-            $("#cardList").html(cardStr);
-        }
-    }) 
-})
-</script>
+        <script>
+            $(function(){
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getMyMsgList.json?userId="+appcan.locStorage.getVal("userId"),
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var dataList = dataResult.data;
+                        var msgStr = "";
+                        if(dataList.length>0){
+                            for(var i=0;i<dataList.length;i++){
+                                msgStr +='<li class="mui-table-view-cell mui-media">';
+                                msgStr +='<a href="javascript:;" onclick="openUrl(\'my_askart.html?msgId='+dataList[i].id+'\',\'my_askart\')">';
+                                msgStr +='<img class="mui-media-object mui-pull-left" src="'+dataList[i].picUrl+'">';
+                                msgStr +='<div class="mui-media-body">'+dataList[i].cardName;
+                                msgStr +='<p class="mui-ellipsis">'+dataList[i].title+'</p></div></a>';
+                                msgStr +='<p><a>'+dataList[i].reviewCount+'个回答<span class="mui-icon mui-icon-arrowright"></span></a></p></li>';
+                            }
+                        }
+                        $("#myMsgList").html(msgStr);
+                    }
+                }) 
+            })
+        </script>
 	</body>
 
 </html>

@@ -412,9 +412,54 @@
 				</a>
 			</nav>
 		</footer>
-<script>
-
-</script>
+        <script>
+            $(function(){
+                var msgId = $.query.get("msgId")? $.query.get("msgId") : "";
+                if(msgId!=""){
+                    //问题详情
+                    $.ajax({
+                        type:"post",
+                        async:false,       
+                        url:host+"/getMsgReview.json?msgId="+msgId,
+                        data:"",
+                        dataType:"json",
+                        contentType: "application/json",
+                        success : function(dataResult) {
+                            console.log(dataResult);
+                            /*
+                            var dataList = dataResult.data;
+                            var msgStr = "";
+                            if(dataList.length>0){
+                                for(var i=0;i<dataList.length;i++){
+                                }
+                            }
+                            $("#myMsgList").html(msgStr);*/
+                            
+                        }
+                    });
+                    //回复列表
+                    $.ajax({
+                        type:"post",
+                        async:false,       
+                        url:host+"/getMsgReview.json?msgId="+msgId,
+                        data:"",
+                        dataType:"json",
+                        contentType: "application/json",
+                        success : function(dataResult) {
+                            console.log(dataResult);
+                            /*
+                            var dataList = dataResult.data;
+                            var msgStr = "";
+                            if(dataList.length>0){
+                                for(var i=0;i<dataList.length;i++){
+                                }
+                            }
+                            $("#myMsgList").html(msgStr);*/
+                            
+                        }
+                    });
+                }
+            })
+        </script>
 	</body>
-
 </html>

@@ -234,6 +234,16 @@
                         $("#info").html(actStr);
                     }
                 })
+                //浏览记录
+                $.ajax({
+                    type:"post",
+                    url:host+"/addViewCount.json?actId="+actId+"&userId="+appcan.locStorage.getVal("userId"),
+                    data:'',
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                    }
+                })
 		       }
 			});
 		</script>

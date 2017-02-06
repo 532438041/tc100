@@ -227,7 +227,7 @@ $(document).ready(function(){
 	
 	//名片添加、编辑
     var msg = "添加成功！";
-    var baseParam = {'picUrl':'../img/touxiang.png','userId':'1'}
+    var baseParam = {'picUrl':'../img/touxiang.png','userId':appcan.locStorage.getVal("userId")}
 	var cardId = $.query.get("cardId")? $.query.get("cardId") : "";
     if(cardId!=""){
         //获取修改对象
