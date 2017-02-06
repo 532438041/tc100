@@ -110,3 +110,13 @@ function getIpPlace(){
         return remote_ip_info.city;
     });
 }
+$(function(){
+    /**
+     * 放回上一级 
+     */
+    $(".mui-icon-back").click(function(){
+        appcan.button(".mui-icon-back", "btn-act", function() {  
+           appcan.window.close(-1);  
+        })
+    })
+})
