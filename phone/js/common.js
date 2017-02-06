@@ -91,8 +91,12 @@ function serializePageJson(pageNum, pageSize, baseParam) {
  * 页面跳转 
  * @param {Object} urlStr
  */
-function openUrl(urlStr){
-    uexWindow.open('', '0', urlStr, '0', '', '', 0x0);
+function openUrl(urlStr,urlName){
+    appcan.window.open({
+        name:urlName,
+        dataType:0,
+        data:urlStr
+    });
 }
 
 /**

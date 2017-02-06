@@ -204,12 +204,13 @@
 		       });
 		       
 		       var actId = $.query.get("actId")? $.query.get("actId") : 0;
+		       var userId = appcan.locStorage.setVal("userId", "1");
 		       if(actId>0){
 		       //关注
                 $("#guanzhu").click(function(){
                     $.ajax({
                         type:"post",
-                        url:host+"/operateAct.json?actId="+actId+"&userId=1&logType=1",
+                        url:host+"/operateAct.json?actId="+actId+"&logType=1",
                         data:'',
                         dataType:"json",
                         contentType: "application/json",

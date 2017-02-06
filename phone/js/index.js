@@ -7,18 +7,17 @@
         $("#ipcity").html(remote_ip_info.city);
     });
     //消息个数
-    /*
     $.ajax({
-            type:"post",
-            async:false,       
-            url:host+"/getMsgCount.json",
-            data:"",
-            dataType:"json",
-            contentType: "application/json",
-            success : function(dataResult) {
-                console.log(dataResult);
-            }
-        })*/
+        type:"post",
+        async:false,       
+        url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId"),
+        data:"",
+        dataType:"json",
+        contentType: "application/json",
+        success : function(dataResult) {
+            console.log(dataResult);
+        }
+    })
     
     //首页轮播
     var baseParam1 = {'actType':'A1'}
@@ -30,10 +29,10 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
+            console.log(dataResult);
             var dataList = dataResult.data.dataList;
             var imgStr = "";
             var imgBtnStr = "";
-            console.log(dataList);
             for(var i=0;i<dataList.length;i++){
                 imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/lunbo.png" /></a></div>';
                 if(i==0){
@@ -63,8 +62,8 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
+            console.log(dataResult);
             var dataList = dataResult.data.dataList;
-            console.log(dataList);
             var actStr = "";
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li class="mui-table-view-cell mui-media">';
