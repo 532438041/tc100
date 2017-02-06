@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="../css/mui.min.css" />
 		<script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../js/mui.min.js" ></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
 		<script type="text/javascript" src="../js/common.js" ></script>
 		<title>我的关注</title>
 		<style>
@@ -335,43 +337,9 @@
 		<section class="same_city_search">
 			<div>
 				<ul class="mui-table-view"  id="gz2">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../img/img_4.png">
-							<div class="mui-media-body">
-								小小时尚
-								<p class='mui-ellipsis'>我想要买一个水龙头，要五个丝的我想要买一个的......</p>
-								<i>9分钟前发布</i>
-							</div>
-						</a>
-						<div class="opa"><img src="../img/quxiao.png" />取消关注</div>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-							<div class="mui-media-body">
-								天天向上
-								<p class='mui-ellipsis'>家里的马桶坏了，请人上门维修。</p>
-								<i>5分钟前发布</i>
-							</div>
-						</a>
-						<div class="opa"><img src="../img/quxiao.png" />取消关注</div>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../img/img_6.png">
-							<div class="mui-media-body">
-								小周周
-								<p class='mui-ellipsis'>需要重新粉墙，周末有空可以来看。</p>
-								<i>2分钟前发布</i>
-							</div>
-						</a>
-						<div class="opa"><img src="../img/quxiao.png" />取消关注</div>
-					</li>
 				</ul>
 			</div>
 		</section>
-
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="">
@@ -389,6 +357,12 @@
 			</nav>
 		</footer>
         <script>
+            /**
+             * 放回上一级 
+             */
+            appcan.button(".mui-icon-back", "btn-act", function() {  
+               appcan.window.close(-1);  
+            })
             $(function(){
                 $.ajax({
                     type:"post",
@@ -399,7 +373,6 @@
                     contentType: "application/json",
                     success : function(dataResult) {
                         var dataList = dataResult.data;
-                        console.log(dataResult);
                         var gz1 = "";
                         var gz2 = "";
                         if(dataList.length>0){
@@ -407,16 +380,16 @@
                                 var actType = dataList[i].actType;
                                 var num = actType.substring(1,actType.length);
                                 if(num==1){
-                                    gz1 += '<a><img src="'+dataList[i].mainPic+'" />';
-                                    gz1 += '<div class="opa"><img src="../img/quxiao.png" />取消关注</div></a>';
+                                    gz1 += '<a href="javascript:;" onclick="openUrl(\'../page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+dataList[i].mainPic+'" />';
+                                    gz1 += '<div class="opa" onclick="cancel('+dataList[i].id+');"><img src="../img/quxiao.png" />取消关注</div></a>';
                                 }else{
                                     gz2 += '<li class="mui-table-view-cell mui-media">';
-                                    gz2 += '<a href="javascript:;">';
+                                    gz2 += '<a href="javascript:;" onclick="openUrl(\'../page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
                                     gz2 += '<img class="mui-media-object mui-pull-left" src="'+dataList[i].mainPic+'">';
                                     gz2 += '<div class="mui-media-body">'+dataList[i].actName;
                                     gz2 += '<p class="mui-ellipsis">'+dataList[i].summary+'......</p>';
                                     gz2 += '<i>9分钟前发布</i>';
-                                    gz2 += '</div></a><div class="opa"><img src="../img/quxiao.png" />取消关注</div></li>';
+                                    gz2 += '</div></a><div class="opa" onclick="cancel('+dataList[i].id+');"><img src="../img/quxiao.png" />取消关注</div></li>';
                                 }
                             }
                         }
@@ -425,6 +398,10 @@
                     }
                 }) 
             })
+            function cancel(actId){
+                alert("取消关注成功");
+                openUrl("my_guanzhu.html","my_guanzhu");
+            }
         </script>
 	</body>
 
