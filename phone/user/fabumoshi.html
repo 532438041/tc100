@@ -344,7 +344,7 @@
 			<h3>
 				模式一：图片模式
 				<span>收费</span>
-				<a href="moban_shengcheng.html">选择模式一</a>
+				<a href="javascript:;" onclick="fabu('1');">选择模式一</a>
 			</h3>
 			<a>
 				<img src="../img/img_1.png" />
@@ -355,7 +355,7 @@
 			<h3>
 				模式二：简单模式
 				<span>免费</span>
-				<a href="moban_shengcheng.html">选择模式二</a>
+				<a href="javascript:;" onclick="fabu('2');">选择模式二</a>
 			</h3>
 			<div>
 				<ul class="mui-table-view">
@@ -390,6 +390,13 @@
 			</nav>
 		</footer>
         <script>
+            var type = $.query.get("type")? $.query.get("type") : "";
+            function fabu(param){
+                if(type!=""){
+                    type = type+param;
+                    openUrl('moban_shengcheng.html?type='+type,'moban_shengcheng');
+                }
+            }
         </script>
 	</body>
 

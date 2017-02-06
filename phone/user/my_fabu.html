@@ -164,9 +164,9 @@
 			<div>
 				<h3>超孕车房模块<i>正在发布数：2</i></h3>
 				<p>
-					<a>发布</a><span class="mui-icon mui-icon-arrowup"></span></p>
+					<a>发布</a><span class="mui-icon mui-icon-arrowup quyu"></span></p>
 			</div>
-			<ul>
+			<ul class="quyu">
 				<li>
 					<h4>超市<i>正在发布数：0</i></h4>
 					<p>
@@ -204,15 +204,15 @@
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="">
-					<img src="img/shouye.png" />
+					<img src="../img/shouye.png" />
 					<span class="mui-tab-label">首页</span>
 				</a>
 				<a href="">
-					<img src="img/fabu2.png" />
+					<img src="../img/fabu2.png" />
 					<span class="mui-tab-label">发布</span>
 				</a>
 				<a href="info.html">
-					<img src="img/mine.png" />
+					<img src="../img/mine.png" />
 					<span class="mui-tab-label">我的</span>
 				</a>
 			</nav>
@@ -220,7 +220,7 @@
 		<script>
 			$(document).ready(function() {
 				$(".quyu h4").click(function() {
-
+				    alert();
 					if($(this).next("ul").css("display") == "block") {
 						$(this).next("ul").hide();
 					} else {
