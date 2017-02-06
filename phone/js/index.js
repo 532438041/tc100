@@ -29,12 +29,11 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
-            console.log(dataResult);
             var dataList = dataResult.data.dataList;
             var imgStr = "";
             var imgBtnStr = "";
             for(var i=0;i<dataList.length;i++){
-                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/lunbo.png" /></a></div>';
+                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="img/lunbo.png" /></a></div>';
                 if(i==0){
                 imgBtnStr +='<div class="mui-indicator mui-active"></div>';
                 }else{
@@ -62,12 +61,11 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
-            console.log(dataResult);
             var dataList = dataResult.data.dataList;
             var actStr = "";
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li class="mui-table-view-cell mui-media">';
-                actStr += '<a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\');">';
+                actStr += '<a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
                 actStr += '<img class="mui-media-object mui-pull-left" src="'+dataList[i].main_pic+'">';
                 actStr += '<div class="mui-media-body">'+dataList[i].actName;
                 actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
@@ -89,7 +87,7 @@
             var magStr = "";
             for(var i=0;i<dataList.length;i++){
                 magStr+='<li class="mui-table-view-cell mui-media">';
-                magStr+='<a href="javascript:;" onclick="openUrl(\'page/info_msg.html?actId='+dataList[i].id+'\');">';
+                magStr+='<a href="javascript:;" onclick="openUrl(\'page/info_msg.html?actId='+dataList[i].id+'\',\'actinfomsg\');">';
                 magStr+='<img class="mui-media-object mui-pull-left" src="img/img_2.png">';
                 magStr+='<div class="mui-media-body">'+dataList[i].title;
                 magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
