@@ -190,25 +190,26 @@
 				</div>
 				<div class="main">
 					<h3>编辑名片<a>选择其他名片</a></h3>
-					<p><i>名称或店铺名：</i><input type="text" value="" placeholder="请输入店铺名称" /></p>
-					<p><i>省市区：</i><input type="text" value="" placeholder="请输入省市区" /></p>
-					<p><i>详细地址：</i><input type="text" value="" placeholder="请输入详细地址" /></p>
-					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" /></textarea></p>
+					<p><i>名称或店铺名：</i><input type="text" value="" id="cardName" placeholder="请输入店铺名称" /></p>
+					<p><i>详细地址：</i><input type="text" value="" id="address" placeholder="请输入详细地址" /></p>
+					<p><i>联系电话：</i><input type="text" value="" id="telphone" placeholder="请输入联系电话" /></p>
+					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" id="region"/></textarea></p>
 				</div>
 			</form>
 		</section>
 		
 		<section class="quyu2">
 			<form action="" method="post" id="upchuan0">
+			    <input type="hidden" name="cardId" id="cardId" />
 				<div class="top">
 					<h3><a>发布补充</a></h3>
 				</div>
 				<div class="main">
 					<h3>选择线上广告发布时间</h3>
-					<p><i>开始时间：</i><input type="text" value="" placeholder="例子" /></p>
+					<p><i>开始时间：</i><input type="date" value="" placeholder="" name="startTime" id="startTime" /></p>
 					<p>
 						<i>截止时间：</i>
-						<input type="text" value="" placeholder="例子" />
+						<input type="date" value="" placeholder="" name="endTime" id="endTime"/>
 						<span>注：最长发布不得超过10天，四大模块为1个月</span>
 						<span>线下活动开始时间：2016-10-14</span>
 						<span>线下活动地点：阜阳市 颍东区</span>
@@ -305,12 +306,30 @@
                 $("#type1").hide();
             }
             
+            // 获取默认名片
+            $.ajax({
+               type:"get",     
+               url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
+               dataType:"json",
+               contentType: "application/json",
+               success : function(dataResult) {
+                   var data = dataResult.data;
+                    if(data.length > 0){
+                        $("#cardId").val(data[0].id);
+                        $("#cardName").val(data[0].cardName);
+                        $("#address").val(data[0].address);
+                        $("#telphone").val(data[0].telphone);
+                        $("#region").val(data[0].region);
+                    }
+               }
+           })
+            
             // 预览
             $("#preview").click(function(){
                 var result = saveAct();
                 if(result.status > 0){
-                    alert(2);
                     appcan.window.open({
+                        name:"info",
                         dataType:0,
                         data:"info.html?actId="+$.query.get("actId")
                     });
@@ -321,8 +340,8 @@
             $("#nextStep").click(function(){
                 var result = saveAct();
                 if(result.status > 0){
-                    alert(1);
                     appcan.window.open({
+                        name:"index",
                         dataType:0,
                         data:"../index.html"
                     });
@@ -332,6 +351,14 @@
             // 异步保存当前页面信息
             function saveAct(){
                 // 数据校验
+                if($.trim($("#cardId").val()).length == 0){
+                    appcan.window.alert({
+                        title:'提示',
+                        content:'请先选择名片',
+                        buttons:'确定'
+                    });
+                    return false;
+                }
                 
                 var baseParam = {
                     userId : appcan.locStorage.getVal("userId"),

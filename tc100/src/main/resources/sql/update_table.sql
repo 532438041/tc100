@@ -13,4 +13,6 @@ COMMENT '推送原actId' AFTER `act_id`;
 ALTER TABLE `tc_active` ADD COLUMN `is_init` CHAR(1) 
 COMMENT '是否自动加载首页图片' AFTER `summary`;
 
+-------------------------------- 修改同城购 状态字段备注信息 -------------------------------------
+ALTER TABLE `tc_active` MODIFY COLUMN state CHAR(1) COMMENT '状态 0删除 1存在 2发布';
 

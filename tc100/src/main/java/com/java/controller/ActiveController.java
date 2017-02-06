@@ -184,7 +184,7 @@ public class ActiveController {
 	public BaseResult operateAct(String actId, String fromActId, String userId, String logType) {
 		if (ToolsUtil.isNotNull(fromActId)) {
 			// fromActId 不为空时 为推送操作 新增一条
-
+			
 		} else {
 			// 修改竞价排名资金
 

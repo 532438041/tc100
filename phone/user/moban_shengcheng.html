@@ -395,6 +395,7 @@
                     var result = saveAct();
                     if(result.status > 0){
                         appcan.window.open({
+                            name:"info",
                             dataType:0,
                             data:"info.html?actId="+result.data
                         });
@@ -408,11 +409,13 @@
                         // 只有超市 婴育
                         if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
                             appcan.window.open({
+                                name:"good_edit",
                                 dataType:0,
                                 data:"good_edit.html"
                             });
                         }else{
                             appcan.window.open({
+                                name:"moban_shiyong",
                                 dataType:0,
                                 data:"moban_shiyong.html?type=A1&actId="+result.data
                             });

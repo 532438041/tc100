@@ -191,6 +191,6 @@
 		select
 		<include refid="Base_Column_List" />
 		from tc_user_card
-		WHERE user_id = #{userId} AND state != '0' ORDER BY create_time DESC
+		WHERE user_id = #{userId} AND state != '0' ORDER BY state DESC, create_time DESC
 	</select>
 </mapper>
