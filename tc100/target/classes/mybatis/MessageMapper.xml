@@ -16,11 +16,13 @@
 	<sql id="Base_Column_List">
 		id, user_id, card_id, title, remark, region, create_by, create_time, update_by, update_time
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select
-		<include refid="Base_Column_List" />
-		from tc_message
-		where id = #{id,jdbcType=CHAR}
+	<select id="selectByPrimaryKey" resultType="com.java.dto.MsgDto" parameterType="java.lang.String">
+		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName, 
+		msg.`id`, msg.`title`, msg.`region`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		FROM tc_message msg
+		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
+		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
+		WHERE msg.id = #{id,jdbcType=CHAR}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
 		delete from tc_message
@@ -149,11 +151,6 @@
 		update_time = #{updateTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=CHAR}
 	</update>
-
-	<select id="getMsgCount" parameterType="java.lang.String" resultType="Integer">
-		SELECT COUNT(0) msgCount FROM `tc_user_msg` msg
-		WHERE msg.`user_id` = #{userId} AND msg.`msg_type` = '1'
-	</select>
 
 	<select id="getMsgList" parameterType="com.java.entity.Message" resultType="com.java.dto.MsgDto">
 		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName, 

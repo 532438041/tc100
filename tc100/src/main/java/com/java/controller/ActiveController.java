@@ -14,9 +14,11 @@ import com.java.common.enums.LogTypeEnum;
 import com.java.entity.Active;
 import com.java.entity.ActiveItem;
 import com.java.entity.ActiveLog;
+import com.java.entity.UserFav;
 import com.java.service.ActiveItemService;
 import com.java.service.ActiveLogService;
 import com.java.service.ActiveService;
+import com.java.service.UserFavService;
 import com.java.utils.ToolsUtil;
 
 @RestController
@@ -30,6 +32,9 @@ public class ActiveController {
 
 	@Autowired
 	private ActiveLogService activeLogService;
+
+	@Autowired
+	private UserFavService userFavService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -181,17 +186,39 @@ public class ActiveController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/operateAct")
-	public BaseResult operateAct(String actId, String fromActId, String userId, String logType) {
+	public BaseResult operateAct(String actId, String fromActId, String userId, String logType, String favId) {
 		if (ToolsUtil.isNotNull(fromActId)) {
-			// fromActId 不为空时 为推送操作 新增一条
-			
+			// fromActId 不为空时 为5推送操作 新增一条
+
 		} else {
-			// 修改竞价排名资金
+			if (logType.equals("1")) {
+				// 1关注
+				UserFav userFav = new UserFav();
+				userFav.setId(ToolsUtil.getUUID());
+				userFav.setCreateTime(new Date());
+				userFav.setActId(actId);
+				userFav.setUserId(userId);
+				userFavService.insert(userFav);
+			} else if (logType.equals("2")) {
+				// 2分享
 
+			} else if (logType.equals("3")) {
+				// 3重复
+
+			} else if (logType.equals("4")) {
+				// 4水贴
+
+			} else if (logType.equals("6")) {
+				// 6推广
+
+			} else if (logType.equals("7")) {
+				// 7取消关注
+				userFavService.deleteByPrimaryKey(favId);
+			}
 			// 记录操作日志
-
+			addActLog(actId, userId, fromActId, logType);
 		}
-		return null;
+		return new BaseResult().success();
 	}
 
 	/**

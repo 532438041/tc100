@@ -405,13 +405,13 @@
                             appcan.window.open({
                                 name:"good_edit",
                                 dataType:0,
-                                data:"good_edit.html"
+                                data:"good_edit.html?type="+type+"&actId="+result.data
                             });
                         }else{
                             appcan.window.open({
                                 name:"moban_shiyong",
                                 dataType:0,
-                                data:"moban_shiyong.html?type=A1&actId="+result.data
+                                data:"moban_shiyong.html?type="+type+"&actId="+result.data
                             });
                         }
                    }

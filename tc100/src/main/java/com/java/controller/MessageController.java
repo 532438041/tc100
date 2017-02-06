@@ -26,7 +26,7 @@ public class MessageController {
 	private MessageReviewService messageReviewService;
 
 	/**
-	 * 获取同城搜列表 若参数中加msgId 则为同城搜详情
+	 * 获取同城搜列表
 	 * 
 	 * @param @param pageParam
 	 * @param @return
@@ -35,6 +35,18 @@ public class MessageController {
 	@RequestMapping(value = "/getMsgList")
 	public BaseResult getMsgList(@RequestBody PageParam<Message> pageParam) {
 		return new BaseResult().success(messageService.getMsgList(pageParam));
+	}
+
+	/**
+	 * 获取同城搜详情
+	 * 
+	 * @param @param msgId
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getMsg")
+	public BaseResult getMsg(String msgId) {
+		return new BaseResult().success(messageService.selectByPrimaryKey(msgId));
 	}
 
 	/**

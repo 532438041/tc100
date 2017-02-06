@@ -8,14 +8,11 @@
     });
     //消息个数
     $.ajax({
-        type:"post",
-        async:false,       
+        type:"get",  
         url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId"),
-        data:"",
         dataType:"json",
-        contentType: "application/json",
-        success : function(dataResult) {
-            console.log(dataResult);
+        success:function(dataResult) {
+            $(".xiaoxi").html(dataResult.data);
         }
     })
     

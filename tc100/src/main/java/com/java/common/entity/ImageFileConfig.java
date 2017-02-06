@@ -15,7 +15,7 @@ public class ImageFileConfig {
 	/**
 	 * 图片上传本地路径
 	 */
-	public static final String uploadFilePath = "E:/tc100/img";
+	public static final String uploadFilePath = "E:/tc100/img"; //"C:/tc100/img";
 
 	/**
 	 * 可上传图片最大值
