@@ -119,4 +119,14 @@ $(function(){
            appcan.window.close(-1);  
         })
     })
+    
+    /**
+     * 页面底部菜单点击事件
+     */
+    $("#myInfo").click(function(){
+        openUrl('../user/info.html','myInfo');
+    })
+    $("#tcIndex").click(function(){
+        openUrl('../index.html','index');
+    })
 })
