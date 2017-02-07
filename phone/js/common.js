@@ -11,7 +11,8 @@
  * 全局参数
  */
 // 全局域名
-var host = "http://localhost:8001/tc100";
+var hostIp = "http://10.43.134.170";
+var host = "http://10.43.134.170:8001/tc100";
 
 /**
  * 全局正则
@@ -126,8 +127,8 @@ $(function(){
     $("#myInfo").click(function(){
         openUrl('../user/info.html','myInfo');
     })
-    $("#myInfo").click(function(){
-        openUrl('../user/info.html','myInfo');
+    $("#myfabu").click(function(){
+        openUrl('../user/moban_shengcheng.html?type=A1','moban_shengcheng');
     })
     $("#tcIndex").click(function(){
         openUrl('../index.html','index');

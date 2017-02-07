@@ -30,7 +30,7 @@
             var imgStr = "";
             var imgBtnStr = "";
             for(var i=0;i<dataList.length;i++){
-                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+(dataList[i].mainPic).replace("../","")+'" /></a></div>';
+                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
                 if(i==0){
                 imgBtnStr +='<div class="mui-indicator mui-active"></div>';
                 }else{
@@ -63,7 +63,7 @@
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li class="mui-table-view-cell mui-media">';
                 actStr += '<a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
-                actStr += '<img class="mui-media-object mui-pull-left" src="'+dataList[i].main_pic+'">';
+                actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
                 actStr += '<div class="mui-media-body">'+dataList[i].actName;
                 actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
                 actStr += '<i>'+dataList[i].createTime+'</i>';
