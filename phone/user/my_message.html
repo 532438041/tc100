@@ -344,7 +344,7 @@
 		</header>
 		<section>
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media msgType1">
 					<a href="javascript:;" class="">
 						<img class="mui-media-object mui-pull-left" src="../img/xiaoxi1.png">
 						<div class="mui-media-body">
@@ -353,7 +353,7 @@
 						</div>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media msgType2">
 					<a href="javascript:;">
 						<img class="mui-media-object mui-pull-left" src="../img/xiaoxi2.png">
 						<div class="mui-media-body">
@@ -363,7 +363,7 @@
 					</a>
 					<p class="moban_btn"><a>预览</a><a>使用</a></p>
 				</li>
-				<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media msgType0">
 					<a href="javascript:;">
 						<img class="mui-media-object mui-pull-left" src="../img/xiaoxi3.png">
 						<div class="mui-media-body">
@@ -371,10 +371,7 @@
 							<p class="mui-ellipsis">重要提示</p>
 						</div>
 					</a>
-					<span class="tishi_btn">2</span>
-					
 				</li>
-
 			</ul>
 		</section>
 
@@ -396,30 +393,23 @@
 		</footer>
         <script>
             $(function(){
+               totalCount(0);
+               totalCount(1);
+               totalCount(2);
+            })
+            function totalCount(msgType){
                 $.ajax({
                     type:"post",
                     async:false,       
-                    url:host+"/getMyMsgList.json?userId="+appcan.locStorage.getVal("userId"),
+                    url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId")+"&msgType="+msgType+"&state=1",
                     data:"",
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        var dataList = dataResult.data;
-                        var msgStr = "";
-                        if(dataList.length>0){
-                            for(var i=0;i<dataList.length;i++){
-                                msgStr +='<li class="mui-table-view-cell mui-media">';
-                                msgStr +='<a href="javascript:;" onclick="openUrl(\'my_askart.html?msgId='+dataList[i].id+'\',\'my_askart\')">';
-                                msgStr +='<img class="mui-media-object mui-pull-left" src="'+dataList[i].picUrl+'">';
-                                msgStr +='<div class="mui-media-body">'+dataList[i].cardName;
-                                msgStr +='<p class="mui-ellipsis">'+dataList[i].title+'</p></div></a>';
-                                msgStr +='<p><a>'+dataList[i].reviewCount+'个回答<span class="mui-icon mui-icon-arrowright"></span></a></p></li>';
-                            }
-                        }
-                        $("#myMsgList").html(msgStr);
+                        $(".msgType"+msgType).append('<span class="tishi_btn">'+dataResult.data+'</span>');
                     }
                 })
-            })
+            }
         </script>
 	</body>
 
