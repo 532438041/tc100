@@ -182,7 +182,7 @@
 				
 			</div>
 			<div class="liulan">
-				<p><img src="../img/eyes2.png" />浏览<i>1010</i>次</p>
+				<p><img src="../img/eyes2.png" />浏览<i id="viewCount">1010</i>次</p>
 			</div>
 		</footer>
 		<script>
@@ -199,13 +199,12 @@
 		       });
 		       
 		       var actId = $.query.get("actId")? $.query.get("actId") : 0;
-		       var userId = appcan.locStorage.setVal("userId", "1");
 		       if(actId>0){
 		       //关注
                 $("#guanzhu").click(function(){
                     $.ajax({
                         type:"post",
-                        url:host+"/operateAct.json?actId="+actId+"&logType=1",
+                        url:host+"/operateAct.json?actId="+actId+"&logType=1&userId="+appcan.locStorage.getVal("userId"),
                         data:'',
                         dataType:"json",
                         contentType: "application/json",
@@ -232,6 +231,7 @@
                         actStr+='<h4>活动时间：'+data.createTime+'</h4>';
                         actStr+='</div>';
                         $("#info").html(actStr);
+                        $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
                     }
                 })
                 //浏览记录
