@@ -351,18 +351,18 @@
 
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
-				<a class="action" href="">
-					<img src="../img/shouye.png" />
-					<span class="mui-tab-label">首页</span>
-				</a>
-				<a href="">
-					<img src="../img/fabu2.png" />
-					<span class="mui-tab-label">发布</span>
-				</a>
-				<a href="info.html">
-					<img src="../img/mine.png" />
-					<span class="mui-tab-label">我的</span>
-				</a>
+				<a class="action" href="javascript:;" id="tcIndex">
+                    <img src="../img/shouye.png" />
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="">
+                    <img src="../img/fabu2.png" />
+                    <span class="mui-tab-label">发布</span>
+                </a>
+                <a href="javascript:;" id="myInfo">
+                    <img src="../img/mine.png" />
+                    <span class="mui-tab-label">我的</span>
+                </a>
 			</nav>
 		</footer>
         <script>
@@ -379,7 +379,7 @@
                     var magStr = "";
                     for(var i=0;i<dataList.length;i++){
                         magStr+='<li class="mui-table-view-cell mui-media">';
-                        magStr+='<a href="info_msg.html">';
+                        magStr+='<a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
                         magStr+='<img class="mui-media-object mui-pull-left" src="../img/img_4.png">';
                         magStr+='<div class="mui-media-body">'+dataList[i].title;
                         magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
