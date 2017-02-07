@@ -372,7 +372,7 @@
                         var msgStr = "";
                         if(data!=null){
                             msgStr +='<li class="mui-table-view-cell mui-media">';
-                            msgStr +='<a href="javascript:;" class="">';
+                            msgStr +='<a href="javascript:;" onclick="openUrl(\'../user/my_askart.html?msgId='+data.id+'\',\'my_askart\')">';
                             msgStr +='<img class="mui-media-object mui-pull-left" src="'+data.picUrl+'">';
                             msgStr +='<div class="mui-media-body">';
                             msgStr +=data.cardName;
