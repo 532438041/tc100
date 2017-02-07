@@ -30,7 +30,7 @@
             var imgStr = "";
             var imgBtnStr = "";
             for(var i=0;i<dataList.length;i++){
-                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="img/lunbo.png" /></a></div>';
+                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+(dataList[i].mainPic).replace("../","")+'" /></a></div>';
                 if(i==0){
                 imgBtnStr +='<div class="mui-indicator mui-active"></div>';
                 }else{
@@ -41,7 +41,7 @@
             $("#yuandian").html(imgBtnStr);
             var lunbo = mui('.mui-slider');
             lunbo.slider({
-              interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+                interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
             });
             $("#yuandian div").click(function(){
                 lunbo.slider().gotoItem($(this).index());//跳转到第index张图片，index从0开始；

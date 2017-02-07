@@ -126,6 +126,9 @@ $(function(){
     $("#myInfo").click(function(){
         openUrl('../user/info.html','myInfo');
     })
+    $("#myInfo").click(function(){
+        openUrl('../user/info.html','myInfo');
+    })
     $("#tcIndex").click(function(){
         openUrl('../index.html','index');
     })

@@ -200,7 +200,7 @@
 		       });
 		       
 		       var actId = $.query.get("actId")? $.query.get("actId") : 0;
-		       if(actId>0){
+		       if(actId!=""){
 		       //关注
                 $("#guanzhu").click(function(){
                     $.ajax({
@@ -277,7 +277,8 @@
                         actStr+='<img src="'+data.mainPic+'" /><div>';
                         actStr+='<h3>'+data.actName+'</h3>';
                         actStr+='<ul>';
-                        actStr+='<li>'+data.summary+'</li>';
+                        actStr+='<li>'+data.detailSummary+'</li>';
+                        actStr+='<li>'+data.detailContent+'</li>';
                         actStr+='</ul>';
                         actStr+='<h4>活动时间：'+data.createTime+'</h4>';
                         actStr+='</div>';
