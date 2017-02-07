@@ -191,6 +191,11 @@ public class ActiveController {
 			// fromActId 不为空时 为5推送操作 新增一条
 
 		} else {
+			// 判断该用户是否操作过 不重复记录
+			int canOperate = activeLogService.isLoged(actId, userId, logType);
+			if (canOperate > 0) {
+				return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
+			}
 			if (logType.equals("1")) {
 				// 1关注
 				UserFav userFav = new UserFav();
@@ -225,7 +230,7 @@ public class ActiveController {
 				activeService.operateAct(actId, -2);
 			} else if (logType.equals("6")) {
 				// 6推广
-				
+
 			} else if (logType.equals("7")) {
 				// 7取消关注
 				userFavService.deleteByPrimaryKey(favId);
