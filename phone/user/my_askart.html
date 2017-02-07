@@ -343,55 +343,14 @@
 		</header>
 		<section class="same_city_search">
 			<div>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-							<div class="mui-media-body">
-								小溪
-								<p class='mui-ellipsis'>我想买一个马桶塞子</p>
-								<p>我想买一个那种抽拉式的马桶塞子，请留下价钱，地址</p>
-								<i>9分钟前发布</i>
-							</div>
-						</a>
-					</li>
+				<ul class="mui-table-view" id="myMsg">
 				</ul>
 			</div>
 		</section>
 		
 		<section class="huida">
 			<div>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-							<div class="mui-media-body">
-								小狗
-								<p class='mui-ellipsis'>我想买一个马桶塞子</p>
-								<i>查看名片</i>
-								<div>
-									<img src="../img/img_7.png"  />
-									<img src="../img/img_7.png"  />
-									<img src="../img/img_7.png"  />
-								</div>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-							<div class="mui-media-body">
-								小狗
-								<p class='mui-ellipsis'>我有，15元/个</p>
-								<i>查看名片</i>
-								<div>
-									<img src="../img/img_7.png"  />
-									<img src="../img/img_7.png"  />
-									<img src="../img/img_7.png"  />
-								</div>
-							</div>
-						</a>
-					</li>
+				<ul class="mui-table-view" id="myMsgReviewList">
 				</ul>
 			</div>
 		</section>
@@ -420,20 +379,27 @@
                     $.ajax({
                         type:"post",
                         async:false,       
-                        url:host+"/getMsgReview.json?msgId="+msgId,
+                        url:host+"/getMsg.json?msgId="+msgId,
                         data:"",
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            console.log(dataResult);
-                            /*
-                            var dataList = dataResult.data;
+                            var data = dataResult.data;
                             var msgStr = "";
-                            if(dataList.length>0){
-                                for(var i=0;i<dataList.length;i++){
-                                }
+                            if(data!=null){
+                                msgStr +='<li class="mui-table-view-cell mui-media">';
+                                msgStr +='<a href="javascript:;">';
+                                msgStr +='<img class="mui-media-object mui-pull-left" src="'+data.picUrl+'">';
+                                msgStr +='<div class="mui-media-body">';
+                                msgStr +=data.cardName;
+                                msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
+                                msgStr +='<p>'+data.remark+'</p>';
+                                msgStr +='<i>'+data.createTime+'</i>';
+                                msgStr +='</div>';
+                                msgStr +='</a>';
+                                msgStr +='</li>';
                             }
-                            $("#myMsgList").html(msgStr);*/
+                            $("#myMsg").html(msgStr);
                             
                         }
                     });
@@ -446,16 +412,26 @@
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            console.log(dataResult);
-                            /*
                             var dataList = dataResult.data;
-                            var msgStr = "";
+                            var msgReviewStr = "";
                             if(dataList.length>0){
                                 for(var i=0;i<dataList.length;i++){
+                                    msgReviewStr +='<li class="mui-table-view-cell mui-media">';
+                                    msgReviewStr +='<a href="javascript:;">';
+                                    msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+dataList[i].picUrl+'">';
+                                    msgReviewStr +='<div class="mui-media-body">';
+                                    msgReviewStr +=dataList[i].cardName;
+                                    msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
+                                    msgReviewStr +='<i>查看名片</i>';
+                                    msgReviewStr +='<div>';
+                                    msgReviewStr +='<img src="'+dataList[i].msgPic+'"  />';
+                                    msgReviewStr +='</div>';
+                                    msgReviewStr +='</div>';
+                                    msgReviewStr +='</a>';
+                                    msgReviewStr +='</li>';
                                 }
                             }
-                            $("#myMsgList").html(msgStr);*/
-                            
+                            $("#myMsgReviewList").html(msgReviewStr);
                         }
                     });
                 }

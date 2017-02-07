@@ -154,7 +154,7 @@
 		SELECT COUNT(0) logCount FROM `tc_active_log` WHERE
 		act_id = #{actId} 
 		<if test="userId != null and userId !=''">
-			AND  = #{userId} 
+			AND user_id = #{userId} 
 		</if>
 		AND log_type = #{logType}
 	</select>

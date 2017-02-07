@@ -121,7 +121,7 @@ $(function(){
     })
     
     /**
-     * 页面底部菜单点击事件
+     * 页面底部菜单点击事件 不包含首页
      */
     $("#myInfo").click(function(){
         openUrl('../user/info.html','myInfo');

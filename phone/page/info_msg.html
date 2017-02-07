@@ -352,21 +352,7 @@
 			<h1>同城搜详情</h1>
 		</header>
 		<section>
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;" class="">
-						<img class="mui-media-object mui-pull-left" src="../img/touxiang.png">
-						<div class="mui-media-body">
-							小溪
-							<p class="mui-ellipsis">我想买个马桶塞子</p>
-						</div>
-					</a>
-					<p><a>已有3个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>
-				</li>
-				<div class="xiangxi">
-					<p>我想买一个那种抽拉式的马桶塞子，请留下价钱，地址</p>
-					<p>需求地址：龙华区  12分钟前发布</p>
-				</div>
+			<ul class="mui-table-view" id="msgInfo">
 			</ul>
 		</section>
 		<footer>
@@ -377,14 +363,30 @@
             $(function(){
                 $.ajax({
                     type:"post",
-                    url:host+"/getMsg.json?actId="+msgId,
+                    url:host+"/getMsg.json?msgId="+msgId,
                     data:'',
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        console.log(msgId);
-                        console.log(dataResult);
                         var data = dataResult.data;
+                        var msgStr = "";
+                        if(data!=null){
+                            msgStr +='<li class="mui-table-view-cell mui-media">';
+                            msgStr +='<a href="javascript:;" class="">';
+                            msgStr +='<img class="mui-media-object mui-pull-left" src="'+data.picUrl+'">';
+                            msgStr +='<div class="mui-media-body">';
+                            msgStr +=data.cardName;
+                            msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
+                            msgStr +='</div>';
+                            msgStr +='</a>';
+                            msgStr +='<p><a>已有'+data.reviewCount+'个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>';
+                            msgStr +='</li>';
+                            msgStr +='<div class="xiangxi">';
+                            msgStr +='<p>'+data.remark+'</p>';
+                            msgStr +='<p>需求地址：'+data.region+'  '+data.createTime+'</p>';
+                            msgStr +='</div>';
+                        }
+                        $("#msgInfo").html(msgStr);
                     }
                 })
             })
