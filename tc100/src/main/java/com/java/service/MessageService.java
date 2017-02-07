@@ -18,4 +18,6 @@ public interface MessageService extends BaseService<Message> {
 
 	List<MsgDto> getMsgList(String userId);
 
+	MsgDto getMsg(String msgId);
+
 }

@@ -30,4 +30,6 @@ public interface ActiveService extends BaseService<Active> {
 
 	int addViewCount(String actId);
 
+	void operateAct(String actId, int amount);
+
 }

@@ -296,4 +296,8 @@
 	<update id="addViewCount" parameterType="java.lang.String">
 		UPDATE `tc_active` SET `view_count` = `view_count` + 1 WHERE `id` = #{actId}
 	</update>
+	
+	<update id="operateAct" parameterType="java.util.HashMap">
+		UPDATE `tc_active` SET `amount` = `amount` + #{amount} WHERE `id` = #{actId}
+	</update>
 </mapper>

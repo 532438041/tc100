@@ -172,7 +172,7 @@ public class ActiveController {
 		if (isLoged <= 0) {
 			activeService.addViewCount(actId);
 			// 记录操作日志
-			addActLog(actId, userId, null, LogTypeEnum.LIULAN.getType());
+			addActLog(actId, null, userId, LogTypeEnum.LIULAN.getType());
 			return new BaseResult().success();
 		} else {
 			return new BaseResult().success(-1, "请勿重复操作！");
@@ -201,16 +201,31 @@ public class ActiveController {
 				userFavService.insert(userFav);
 			} else if (logType.equals("2")) {
 				// 2分享
-
+				int isLoged = activeLogService.isLoged(actId, null, "2");
+				if (isLoged >= 10) {
+					return new BaseResult().failed(0, "分享金额已封顶");
+				}
+				activeService.operateAct(actId, 5);
 			} else if (logType.equals("3")) {
 				// 3重复
-
+				int isLoged = activeLogService.isLoged(actId, null, "3");
+				if (isLoged >= 20) {
+					return new BaseResult().failed(0, "重复次数已封顶");
+				} else if (isLoged == 19) {
+					// 帖子下架
+					Active active = new Active();
+					active.setId(actId);
+					active.setUpdateTime(new Date());
+					active.setState("1");
+					activeService.updateByPrimaryKeySelective(active);
+				}
+				activeService.operateAct(actId, -2);
 			} else if (logType.equals("4")) {
 				// 4水贴
-
+				activeService.operateAct(actId, -2);
 			} else if (logType.equals("6")) {
 				// 6推广
-
+				
 			} else if (logType.equals("7")) {
 				// 7取消关注
 				userFavService.deleteByPrimaryKey(favId);

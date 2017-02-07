@@ -31,4 +31,12 @@ public class ActiveDaoImpl extends BaseDaoImpl<Active>implements ActiveDao {
 		return this.getSqlSession().update(getStateMentName("addViewCount"), actId);
 	}
 
+	@Override
+	public void operateAct(String actId, int amount) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("actId", actId);
+		map.put("amount", amount);
+		this.getSqlSession().update(getStateMentName("operateAct"), map);
+	}
+
 }

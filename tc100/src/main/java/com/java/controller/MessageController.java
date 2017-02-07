@@ -46,7 +46,7 @@ public class MessageController {
 	 */
 	@RequestMapping(value = "/getMsg")
 	public BaseResult getMsg(String msgId) {
-		return new BaseResult().success(messageService.selectByPrimaryKey(msgId));
+		return new BaseResult().success(messageService.getMsg(msgId));
 	}
 
 	/**

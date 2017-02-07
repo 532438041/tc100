@@ -36,4 +36,9 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 		return activeDao.addViewCount(actId);
 	}
 
+	@Override
+	public void operateAct(String actId, int amount) {
+		activeDao.operateAct(actId, amount);
+	}
+
 }

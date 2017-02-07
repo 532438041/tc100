@@ -13,5 +13,7 @@ public interface MessageDao extends BaseDao<Message>{
 	String getLastMsgTime(String userId);
 
 	int getMyMsgCount(String userId);
+
+	MsgDto getMsg(String msgId);
     
 }

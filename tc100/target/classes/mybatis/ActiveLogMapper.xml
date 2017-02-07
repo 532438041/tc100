@@ -152,6 +152,10 @@
 	</update>
 	<select id="isLoged" parameterType="java.util.HashMap" resultType="Integer">
 		SELECT COUNT(0) logCount FROM `tc_active_log` WHERE
-		act_id = #{actId} AND user_id = #{userId} AND log_type = #{logType}
+		act_id = #{actId} 
+		<if test="userId != null and userId !=''">
+			AND  = #{userId} 
+		</if>
+		AND log_type = #{logType}
 	</select>
 </mapper>

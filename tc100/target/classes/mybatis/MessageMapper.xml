@@ -174,5 +174,14 @@
 	<select id="getMyMsgCount" parameterType="java.lang.String" resultType="Integer">
 		SELECT COUNT(0) msgCount FROM `tc_message` WHERE user_id = #{userId};
 	</select>
+	
+	<select id="getMsg" resultType="com.java.dto.MsgDto" parameterType="java.lang.String">
+		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName, 
+		msg.`id`, msg.`title`, msg.`region`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		FROM tc_message msg
+		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
+		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
+		WHERE msg.id = #{msgId}
+	</select>
 
 </mapper>

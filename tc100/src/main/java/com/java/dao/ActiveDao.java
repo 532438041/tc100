@@ -12,5 +12,7 @@ public interface ActiveDao extends BaseDao<Active>{
 	List<Active> getMyActList(String userId, String actType);
 
 	int addViewCount(String actId);
+
+	void operateAct(String actId, int amount);
     
 }

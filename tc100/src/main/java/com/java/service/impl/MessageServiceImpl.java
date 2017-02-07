@@ -44,4 +44,9 @@ public class MessageServiceImpl extends BaseServiceImpl<Message>implements Messa
 		return messageDao.getMyMsgCount(userId);
 	}
 
+	@Override
+	public MsgDto getMsg(String msgId) {
+		return messageDao.getMsg(msgId);
+	}
+
 }

@@ -27,4 +27,9 @@ public class MessageDaoImpl extends BaseDaoImpl<Message>implements MessageDao {
 		return this.getSqlSession().selectOne("getMyMsgCount", userId);
 	}
 
+	@Override
+	public MsgDto getMsg(String msgId) {
+		return this.getSqlSession().selectOne("getMsg", msgId);
+	}
+
 }
