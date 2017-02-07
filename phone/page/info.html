@@ -19,144 +19,145 @@
         <script type="text/javascript" src="../js/common.js" ></script>
 		<title>活动详情</title>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				-webkit-box-sizing: border-box;
-			}
-			
-			body {
-				width: 100%;
-				overflow-x: hidden;
-				font-family: "微软雅黑";
-				background: #f8f8f8;
-				font-size: 12px;
-			}
-			
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			p {
-				margin: 0;
-			}
-			
-			header {
-				background: #ff3366;
-				height: 60px;
-				overflow: hidden;
-				position: relative;
-			}
-			
-			header h1 {
-				font-size: 22px;
-				text-align: center;
-				color: #fff;
-				line-height: 60px;
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			header a {
-				position: absolute;
-				height: 100%;
-			}
-			
-			header a img {
-				height: 30px;
-			}
-			
-			.dingwei img {
-				position: absolute;
-				top: 15px;
-				left: 5px;
-			}
-			
-			.dingwei span {
-				display: block;
-				line-height: 60px;
-				font-size: 32px;
-				color: #fff;
-			}
-			
-			.xiaoxi {
-				color: #fff;
-				font-size: 15px;
-				text-align: right;
-				line-height: 30px;
-				position: absolute;
-				top: 15px;
-				right: 5px;
-				height: 30px;
-				width: 55px;
-				background: url(img/card.png) no-repeat;
-				background-size: auto 100%;
-			}
-			
-			.xiangqing img{ width: 100%;}
-			li,ol,ul{ list-style: none;}
-			.xiangqing{ position: relative; }
-			.xiangqing img{ width: 100%;}
-			.xiangqing div{ position: absolute; top: 50%; background: #000; width: 80%; left: 10%; text-align: center; padding: 20px; padding-bottom: 40px;}
-			.xiangqing li{     word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; overflow: auto; color: #fff;}
-			.xiangqing h3{ color: #fff; margin-bottom: 10px;}
-			.xiangqing h4{ color: #fff; font-size: 0.8rem; margin-top: 5px;}
-			footer{
-				position: fixed;
-				bottom: 0;
-				z-index: 100;
-				height: 60px;
-				width: 100%;
-				background: #fff;
-			}
-			footer div{ width: 50%; float: left; height: 100%;}
-			footer div p{ width: 100%; height: 100%; line-height: 60px;}
-			.liulan{ text-align: right; padding-right: 10px;}
-			.liulan img{ height: 15px; margin-right: 5px;}
-			.liulan p{ font-size: 20px;}
-			.caozuo{ position: relative;}
-			.caozuo>a>img{ height: 30px; margin: 15px; position: absolute; left: 0;}
-			.caozuo a{ font-size: 20px; line-height: 60px; position: relative; text-indent: 60px; background: #ececec; padding-right: 10px;}
-			footer i{ font-style: normal; color: #ff3366;}
-			footer nav a{
-				    display: table-cell;
-				    overflow: hidden;
-				    width: 1%;
-				    height: 50px;
-				    text-align: center;
-				    vertical-align: middle;
-				    white-space: nowrap;
-				    text-overflow: ellipsis;
-				    color: #929292;
-			}
-			
-			footer nav a img {
-				width: 15%;
-				display: block;
-				margin: 0 auto;
-				margin-top: 5px;
-			}
-			
-			footer nav span {
-				color: #020202;
-			}
-			
-			footer nav .action span {
-				color: #ff3366;
-			}
-			footer ul{ display: none;  position: absolute; top: -240px; left: 0; width: 100%; z-index: 100;}
-			footer li{ line-height: 60px; height: 60px; background: url(img/opa_bai.png) repeat; text-indent: 0;}
-			footer li img{ width: 25px; margin: 15px; margin-top: 3px; vertical-align: middle;}
-			footer a{color: #666; display: inline-block; height: 60px; line-height: 60px;}
-		</style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            
+            body {
+                width: 100%;
+                overflow-x: hidden;
+                font-family: "微软雅黑";
+                background: #f8f8f8;
+                font-size: 1em;
+            }
+            
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            p {
+                margin: 0;
+            }
+            
+            header {
+                background: #ff3366;
+                height: 3em;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            header h1 {
+                font-size: 1.5em;
+                text-align: center;
+                color: #fff;
+                line-height: 2em;
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            header a {
+                position: absolute;
+                height: 100%;
+            }
+            
+            header a img {
+                height: 1.5em;
+            }
+            
+            .dingwei img {
+                position: absolute;
+                top: 1em;
+                left: 5px;
+            }
+            
+            .dingwei span {
+                display: block;
+                line-height: 1.5em;
+                font-size: 2em;
+                color: #fff;
+            }
+            
+            .xiaoxi {
+                color: #fff;
+                font-size: 1em;
+                text-align: right;
+                line-height: 1.5em;
+                position: absolute;
+                top: 1em;
+                right: 5px;
+                height: 1.5em;
+                width: 3.5em;
+                background: url(img/card.png) no-repeat;
+                background-size: auto 100%;
+            }
+            
+            .xiangqing img{ width: 100%;}
+            li,ol,ul{ list-style: none;}
+            .xiangqing{ position: relative; }
+            .xiangqing img{ width: 100%;}
+            .xiangqing div{ position: absolute; top: 50%; background: #000; width: 80%; left: 10%; text-align: center; padding: 1.25em; padding-bottom: 2.5em;}
+            .xiangqing li{     word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; overflow: auto; color: #fff;}
+            .xiangqing h3{ color: #fff; margin-bottom: 0.625em;}
+            .xiangqing h4{ color: #fff; font-size: 0.8rem; margin-top: 5px;}
+            
+            footer{
+                position: fixed;
+                bottom: 0;
+                z-index: 100;
+                height: 3em;
+                width: 100%;
+                background: #fff;
+            }
+            footer div{ width: 50%; float: left; height: 100%;}
+            footer div p{ width: 100%; height: 100%; line-height: 3em;}
+            .liulan{ text-align: right; padding-right: 0.625em;}
+            .liulan img{ height: 1em; margin-right: 5px;}
+            .liulan p{ font-size: 1.25em;}
+            .caozuo{ position: relative;}
+            .caozuo>a>img{ height: 1.5em; margin: 0.5em; position: absolute; left: 0;}
+            .caozuo a{ font-size: 1.25em; line-height: 2.5em; position: relative; text-indent: 3em; background: #ececec; padding-right: 0.625em;}
+            footer i{ font-style: normal; color: #ff3366;}
+            footer nav a{
+                    display: table-cell;
+                    overflow: hidden;
+                    width: 1%;
+                    height: 3.125em;
+                    text-align: center;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #929292;
+            }
+            
+            footer nav a img {
+                width: 15%;
+                display: block;
+                margin: 0 auto;
+                margin-top: 5px;
+            }
+            
+            footer nav span {
+                color: #020202;
+            }
+            
+            footer nav .action span {
+                color: #ff3366;
+            }
+            footer ul{ display: none;  position: absolute; top: -12em; left: 0; width: 100%; z-index: 100;}
+            footer li{ line-height: 3em; height: 3em; background: url(img/opa_bai.png) repeat; text-indent: 0;}
+            footer li img{ width: 1.5em; margin: 0.5em; margin-top: 3px; vertical-align: middle;}
+            footer a{color: #666; display: inline-block; height: 3em; line-height: 3em;}
+        </style>
 	</head>
 
 	<body>
@@ -205,11 +206,14 @@
                     $.ajax({
                         type:"post",
                         url:host+"/operateAct.json?actId="+actId+"&logType=1&userId="+appcan.locStorage.getVal("userId"),
-                        data:'',
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            alert("关注成功！");
+                            if(dataResult.status == 0){
+                                alert(dataResult.msg);
+                            }else{
+                                alert("操作成功！");
+                            }
                         }
                     })
                 })
@@ -218,11 +222,14 @@
                     $.ajax({
                         type:"post",
                         url:host+"/operateAct.json?actId="+actId+"&logType=2&userId="+appcan.locStorage.getVal("userId"),
-                        data:'',
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            alert("分享成功！");
+                            if(dataResult.status == 0){
+                                alert(dataResult.msg);
+                            }else{
+                                alert("操作成功！");
+                            }
                         }
                     })
                 })
@@ -231,11 +238,14 @@
                     $.ajax({
                         type:"post",
                         url:host+"/operateAct.json?actId="+actId+"&logType=3&userId="+appcan.locStorage.getVal("userId"),
-                        data:'',
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            alert("重复成功！");
+                            if(dataResult.status == 0){
+                                alert(dataResult.msg);
+                            }else{
+                                alert("操作成功！");
+                            }
                         }
                     })
                 })
@@ -244,11 +254,14 @@
                     $.ajax({
                         type:"post",
                         url:host+"/operateAct.json?actId="+actId+"&logType=4&userId="+appcan.locStorage.getVal("userId"),
-                        data:'',
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            alert("水贴成功！");
+                            if(dataResult.status == 0){
+                                alert(dataResult.msg);
+                            }else{
+                                alert("操作成功！");
+                            }
                         }
                     })
                 })
@@ -256,7 +269,6 @@
 		       $.ajax({
                     type:"post",
                     url:host+"/getActive.json?actId="+actId,
-                    data:'',
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
@@ -277,7 +289,6 @@
                 $.ajax({
                     type:"post",
                     url:host+"/addViewCount.json?actId="+actId+"&userId="+appcan.locStorage.getVal("userId"),
-                    data:'',
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {

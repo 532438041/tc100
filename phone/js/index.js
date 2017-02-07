@@ -9,7 +9,7 @@
     //消息个数
     $.ajax({
         type:"get",  
-        url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId"),
+        url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId")+"&state=1",
         dataType:"json",
         success:function(dataResult) {
             $(".xiaoxi").html(dataResult.data);

@@ -236,7 +236,7 @@ public class ActiveController {
 				userFavService.deleteByPrimaryKey(favId);
 			}
 			// 记录操作日志
-			addActLog(actId, userId, fromActId, logType);
+			addActLog(actId, fromActId, userId, logType);
 		}
 		return new BaseResult().success();
 	}

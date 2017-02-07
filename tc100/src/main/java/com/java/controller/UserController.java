@@ -12,6 +12,7 @@ import com.java.common.entity.BaseResult;
 import com.java.entity.UserCard;
 import com.java.service.UserCardService;
 import com.java.service.UserFavService;
+import com.java.service.UserMsgService;
 import com.java.utils.ToolsUtil;
 
 @RestController
@@ -22,6 +23,9 @@ public class UserController {
 
 	@Autowired
 	private UserFavService userFavService;
+
+	@Autowired
+	private UserMsgService userMsgService;
 
 	/**
 	 * 获取我的名片列表
@@ -39,7 +43,7 @@ public class UserController {
 	 * 获取我的名片
 	 * 
 	 * @param @param cardId
-	 * @param @return 
+	 * @param @return
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/getCard")
@@ -91,6 +95,46 @@ public class UserController {
 	@RequestMapping(value = "/getFavList")
 	public BaseResult getFavList(String userId) {
 		return new BaseResult().success(userFavService.getFavList(userId));
+	}
+
+	/**
+	 * 获取用户的消息个数 msgType 0系统消息 1活动消息 2推广消息 state 1未读 2已读 值为空是 为获取全部
+	 * 
+	 * @param @param userId
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getMsgCount")
+	public BaseResult getMsgCount(String userId, String msgType, String state) {
+		BaseResult baseResult = new BaseResult();
+		if (ToolsUtil.isNotNull(userId)) {
+			return baseResult.success(userMsgService.getMsgCount(userId, msgType, state));
+		}
+		return baseResult.failed(0, "用户未登录！");
+	}
+
+	/**
+	 * 获取用户的消息列表 msgType 0系统消息 1活动消息 2推广消息 state 1未读 2已读 值为空是 为获取全部
+	 * 
+	 * @param @param userId
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getUserMsgList")
+	public BaseResult getUserMsgList(String userId, String msgType, String state) {
+		return new BaseResult().success(userMsgService.getUserMsgList(userId, msgType, state));
+	}
+
+	/**
+	 * 获取我的消息详情
+	 * 
+	 * @param @param msgId
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getUserMsg")
+	public BaseResult getUserMsg(String msgId) {
+		return new BaseResult().success(userMsgService.selectByPrimaryKey(msgId));
 	}
 
 }

@@ -225,8 +225,8 @@
 					</p>
 					<p class="tuijian">
 						<i>推荐码：</i>
-						<input type="text" value="" placeholder="123456" />
-						<span>可用</span>
+						<input type="text" value="" placeholder="无则 不填" />
+                        <span>检测</span>
 					</p>
 				</div>
 			</form>
@@ -329,9 +329,9 @@
                 var result = saveAct();
                 if(result.status > 0){
                     appcan.window.open({
-                        name:"info",
+                        name:"page_info",
                         dataType:0,
-                        data:"info.html?actId="+$.query.get("actId")
+                        data:"../page/info.html?actId="+$.query.get("actId")
                     });
                }
             })

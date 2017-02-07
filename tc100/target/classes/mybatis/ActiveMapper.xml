@@ -294,10 +294,10 @@
 	</select>
 
 	<update id="addViewCount" parameterType="java.lang.String">
-		UPDATE `tc_active` SET `view_count` = `view_count` + 1 WHERE `id` = #{actId}
+		UPDATE `tc_active` SET `view_count` = IFNULL(`view_count`, 0) + 1 WHERE `id` = #{actId}
 	</update>
 	
 	<update id="operateAct" parameterType="java.util.HashMap">
-		UPDATE `tc_active` SET `amount` = `amount` + #{amount} WHERE `id` = #{actId}
+		UPDATE `tc_active` SET `amount` = IFNULL(`amount`, 0) + #{amount} WHERE `id` = #{actId}
 	</update>
 </mapper>

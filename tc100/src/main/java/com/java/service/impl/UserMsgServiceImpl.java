@@ -1,5 +1,7 @@
 package com.java.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +12,18 @@ import com.java.service.UserMsgService;
 
 @Service
 public class UserMsgServiceImpl extends BaseServiceImpl<UserMsg>implements UserMsgService {
-	
+
 	@Autowired
 	private UserMsgDao userMsgDao;
-	
+
 	@Override
-	public int getMsgCount(String userId) {
-		return userMsgDao.getMsgCount(userId);
+	public int getMsgCount(String userId, String msgType, String state) {
+		return userMsgDao.getMsgCount(userId, msgType, state);
 	}
+
+	@Override
+	public List<UserMsg> getUserMsgList(String userId, String msgType, String state) {
+		return userMsgDao.getUserMsgList(userId, msgType, state);
+	}
+
 }

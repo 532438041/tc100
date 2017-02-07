@@ -18,7 +18,7 @@
         <script type="text/javascript" src="js/appcan.control.js"></script>
         <script type="text/javascript" src="js/common.js" ></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <title>项目名称</title>
+        <title>首页</title>
         <style>
             * {
                 margin: 0;
@@ -27,14 +27,13 @@
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
             }
-            
             body {
                 width: 100%;
                 overflow-x: hidden;
                 font-family: "微软雅黑";
                 background: #f8f8f8;
-                font-size: 12px;
-                padding-bottom: 60px;
+                font-size: 1em;
+                padding-bottom: 3em;
             }
             
             h1,
@@ -49,20 +48,21 @@
             
             p {
                 margin: 0;
+                font-size: 1em;
             }
             
             header {
                 background: #ff3366;
-                height: 60px;
+                height: 3em;
                 overflow: hidden;
                 position: relative;
             }
             
             header h1 {
-                font-size: 22px;
+                font-size: 1.5em;
                 text-align: center;
                 color: #fff;
-                line-height: 60px;
+                line-height: 2em;
                 font-weight: normal;
                 margin: 0;
             }
@@ -73,33 +73,33 @@
             }
             
             header a img {
-                height: 30px;
+                height: 2em;
             }
             
             .dingwei img {
                 position: absolute;
-                top: 15px;
-                left: 5px;
+                top: 0.5em;
+                left: 0.3em;
             }
             
             .dingwei span {
                 display: block;
-                line-height: 60px;
-                font-size: 20px;
+                line-height: 3em;
+                font-size: 1em;
                 color: #fff;
-                text-indent: 30px;
+                text-indent: 2em;
             }
             
             .xiaoxi {
                 color: #ff3366;
-                font-size: 15px;
+                font-size: 1em;
                 text-align: center;
-                line-height: 24px;
+                line-height: 1.5em;
                 position: absolute;
-                top: 15px;
-                right: 5px;
-                height: 30px;
-                width: 30px;
+                top: 0.5em;
+                right: 0.5em;
+                height: 2em;
+                width: 2em;
                 background: url(img/xiaoxi.png) no-repeat;
                 background-size: 100% 100%;
             }
@@ -122,8 +122,7 @@
                 background: url(img/opa.png) repeat;
                 width: 50px;
                 height: 20px;
-                z-index: 1000;
-                cursor: pointer;
+                z-index: 100;
             }
             
             .lunbo span.mui-icon {
@@ -138,8 +137,8 @@
             .lanmu nav {
                 width: 90%;
                 margin: 0 auto;
-                margin-top: 15px;
-                font-size: 16px;
+                margin-top: 1em;
+                font-size: 1em;
             }
             
             .lanmu a {
@@ -152,7 +151,6 @@
                 width: 70%;
                 display: block;
                 margin: 0 auto;
-                cursor: pointer;
             }
             
             .lanmu span {
@@ -170,19 +168,20 @@
                 background: #ff5256;
                 color: #fff;
                 padding: 10px;
-                font-size: 18px;
-                line-height: 23px;
+                font-size: 1em;
+                line-height: 1.5em;
             }
             
             .same_city_buy h2 span {
                 float: right;
+                font-size: 1.5em;
             }
             
             .same_city_buy>p {
                 background: #f9efc9;
                 text-align: center;
                 position: relative;
-                line-height: 30px;
+                line-height: 1em;
             }
             
             .same_city_buy>p a {
@@ -197,6 +196,7 @@
                 top: 10px;
                 right: 15px;
                 color: #999;
+                font-size: 1em;
             }
             
             .same_city_buy .mui-table-view .mui-media-object {
@@ -220,13 +220,14 @@
                 background: #5bc4fd;
                 color: #fff;
                 padding: 10px;
-                font-size: 18px;
-                line-height: 23px;
+                font-size: 1em;
+                line-height: 1.5em;
                 position: relative;
             }
             
             .same_city_search h2 span {
                 float: right;
+                font-size: 1.5em;
             }
             
             .same_city_search>p {
@@ -248,6 +249,7 @@
                 top: 10px;
                 right: 15px;
                 color: #999;
+                font-size: 1em;
             }
             
             .same_city_search .mui-table-view .mui-media-object {
@@ -267,14 +269,12 @@
             .same_city_search .search {
                 background: #87d4fe;
                 border: none;
-                height: 32px;
                 position: absolute;
                 width: 60%;
                 padding: 0;
                 margin: 0 auto;
-                margin-top: 5px;
                 display: block;
-                top: 0;
+                top: 0.6em;
                 left: 20%;
             }
             
@@ -284,8 +284,8 @@
                 text-indent: 10px;
                 padding: 0;
                 margin: 0;
-                height: 23px;
-                font-size: 12px;
+                height: 1em;
+                font-size: 1em;
                 width: 100%;
                 height: 100%;
             }
@@ -293,8 +293,8 @@
             .same_city_search .search img {
                 height: 60%;
                 position: absolute;
-                top: 5px;
-                right: 5px;
+                top: 20%;
+                right: 1%;
             }
             
             footer nav a{
@@ -318,10 +318,19 @@
             
             footer nav span {
                 color: #020202;
+                font-size: 1em;
             }
             
             footer nav .action span {
                 color: #ff3366;
+            }
+            .mui-slider-indicator .mui-indicator{
+                width: 0.5em;
+                height: 0.5em;
+            }
+            .mui-bar-tab{
+                height: 3em;
+                font-size: 1em;
             }
         </style>
     </head>

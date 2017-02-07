@@ -137,9 +137,26 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 
-	<select id="getMsgCount" parameterType="java.lang.String" resultType="Integer">
+	<select id="getMsgCount" parameterType="java.util.HashMap" resultType="Integer">
 		SELECT COUNT(0) msgCount FROM `tc_user_msg` msg
-		WHERE msg.`user_id` = #{userId} AND msg.`msg_type` = '1'
+		WHERE msg.`user_id` = #{userId}
+		<if test="msgType!=null and msgType!=''">
+			AND msg.`msg_type` = #{msgType}
+		</if>
+		<if test="state!=null and state!=''">
+			AND msg.`state` = #{state}
+		</if>
+	</select>
+	
+	<select id="getUserMsgList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> FROM `tc_user_msg` msg
+		WHERE msg.`user_id` = #{userId}
+		<if test="msgType!=null and msgType!=''">
+			AND msg.`msg_type` = #{msgType}
+		</if>
+		<if test="state!=null and state!=''">
+			AND msg.`state` = #{state}
+		</if>
 	</select>
 
 </mapper>

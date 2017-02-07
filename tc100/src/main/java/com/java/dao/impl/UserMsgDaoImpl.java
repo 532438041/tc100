@@ -1,5 +1,9 @@
 package com.java.dao.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.java.base.impl.BaseDaoImpl;
@@ -10,8 +14,21 @@ import com.java.entity.UserMsg;
 public class UserMsgDaoImpl extends BaseDaoImpl<UserMsg>implements UserMsgDao {
 
 	@Override
-	public int getMsgCount(String userId) {
-		return this.getSqlSession().selectOne(getStateMentName("getMsgCount"), userId);
+	public int getMsgCount(String userId, String msgType, String state) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("msgType", msgType);
+		map.put("state", state);
+		return this.getSqlSession().selectOne(getStateMentName("getMsgCount"), map);
+	}
+
+	@Override
+	public List<UserMsg> getUserMsgList(String userId, String msgType, String state) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("msgType", msgType);
+		map.put("state", state);
+		return this.getSqlSession().selectOne(getStateMentName("getUserMsgList"), map);
 	}
 
 }

@@ -30,7 +30,7 @@ public enum LogTypeEnum {
 
 	public static String getMsgByType(String type) {
 		for (LogTypeEnum logTypeEnum : LogTypeEnum.values()) {
-			if (type == logTypeEnum.getType()) {
+			if (type.equals(logTypeEnum.getType())) {
 				return logTypeEnum.getMsg();
 			}
 		}

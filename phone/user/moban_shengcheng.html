@@ -252,6 +252,7 @@
             .submit input:first-child{ width: 60%; float: left; margin-left: 2.5%; height: 1.875em; line-height: 1.875em;}
             .submit input:last-child{ width: 25%; margin: 0 5%;  height: 1.875em; line-height: 1.875em; padding: 0; background: #ff3366; border-color: #ff3366;}
             .mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{ font-size: 1.25em; line-height: 1.875em; color: #666!important;}
+            #upload0{ display: none ;}
         </style>
 	</head>
 
@@ -286,7 +287,7 @@
     				<h3><img src="../img/star.png" />样式1：首页显示</h3>
     				<p class="bitian"><span>必填</span></p>
     				<div>
-    					<div class="fir"><img id="mainPic" name ="mainPic" src="../img/img_1.png" /></div>
+    					<div id="yulan" class="fir"><img id="mainPic" name ="mainPic" src="../img/img_8.png" /></div>
     					<div class="sec">
     						<p>首页详情页页头图片300*100</p>
     						<a onclick="uploadImg();">上传</a>
@@ -335,6 +336,49 @@
             var type = $.query.get("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
+                
+                $(".fir img").height($(".fir img").width()/3);
+                $("body").append('<input id="upload0" type="file" accept="image/jpeg,image/bmp" />');
+                $(".sec a").click(function(){
+                    fileSelect(yulan,'#upload'+0);
+                });
+                
+                function fileSelect(id1,id2) {
+                    $(id2).click(); 
+                    $(function() {
+                    $(id2).one("change",function(e) {
+                    var file = e.target.files[0];
+                    console.log(file.size/1024);
+                    console.log(file);
+                    if(file.size/1024 > 1024){
+                        alert("请选择1M大小 以下的图片");
+                    }else{
+                        preview1(file);
+                    }
+                    })
+                    })
+                function preview1(file) {
+                    var img = new Image();
+                    var url = img.src = URL.createObjectURL(file);
+                    var $img = $(img);
+                    
+                    img.onload = function() {
+                    URL.revokeObjectURL(url);
+                    $(id1).empty();
+                    $(id1).append($img);
+                    $(".fir img").height($(".fir img").width()/3);
+                    }
+                    }
+                function preview2(file) {
+                    var reader = new FileReader()
+                    reader.onload = function(e) {
+                    var $img = $('<img>').attr("src", e.target.result);
+                    $(id1).empty().append($img);
+                    }
+                    reader.readAsDataURL(file)
+                    }
+                };
+                
                 // 若类型传参错误 则返回上一个页面
                 if(type == "0"){
                     appcan.window.close(-1); 
@@ -389,9 +433,9 @@
                     var result = saveAct();
                     if(result.status > 0){
                         appcan.window.open({
-                            name:"info",
+                            name:"page_info",
                             dataType:0,
-                            data:"info.html?actId="+result.data
+                            data:"../page/info.html?actId="+result.data
                         });
                    }
                 })

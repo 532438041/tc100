@@ -19,113 +19,113 @@
         <script type="text/javascript" src="../js/common.js" ></script>
 		<title>我的名片</title>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				-webkit-box-sizing: border-box;
-			}
-			
-			body {
-				width: 100%;
-				overflow-x: hidden;
-				font-family: "微软雅黑";
-				background: #f8f8f8;
-				font-size: 12px;
-				padding-bottom: 60px;
-			}
-			
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			p {
-				margin: 0;
-				font-size: 0.6rem;
-			}
-			
-			header {
-				background: #ff3366;
-				height: 60px;
-				overflow: hidden;
-				position: relative;
-			}
-			
-			header h1 {
-				font-size: 22px;
-				text-align: center;
-				color: #fff;
-				line-height: 60px;
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			header a {
-				position: absolute;
-				height: 100%;
-			}
-			
-			header a img {
-				height: 30px;
-			}
-			
-			.dingwei img {
-				position: absolute;
-				top: 15px;
-				left: 5px;
-			}
-			
-			.dingwei span {
-				display: block;
-				line-height: 60px;
-				font-size: 32px;
-				color: #fff;
-			}
-			
-			
-			footer nav a{
-				    display: table-cell;
-				    overflow: hidden;
-				    width: 1%;
-				    height: 50px;
-				    text-align: center;
-				    vertical-align: middle;
-				    white-space: nowrap;
-				    text-overflow: ellipsis;
-				    color: #929292;
-			}
-			
-			footer nav a img {
-				width: 15%;
-				display: block;
-				margin: 0 auto;
-				margin-top: 5px;
-			}
-			
-			footer nav span {
-				color: #020202;
-			}
-			
-			footer nav .action span {
-				color: #ff3366;
-			}
-			
-			.yiyou{ height: 40px; line-height: 40px; position: relative; background: #fff; margin: 5px 0;}
-			.yiyou h3{ height: 40px; line-height: 40px;  font-size: 1rem; text-indent: 1rem;}
-			.yiyou p{ position: absolute; top: 0; right: 0; line-height: 40px;}
-			.yiyou p a{ color: #999; border: 1px solid #ddd; padding: 2px 10px; border-radius: 4px; margin-right: 5px;}
-			.card_list li{ height: 80px; background: #fff; margin-bottom: 5px; position: relative;}
-			.card_list img{ width: 50px; margin-top: 15px; margin-left: 10px;}
-			.card_list p{ position: absolute; left: 90px; top: 0; line-height: 80px; color: #333; font-size: 16px;}
-			.card_list span{ display: none; position: absolute; top: 15px; right: 10px; font-size: 40px; color: #0070c5;}
-		</style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            
+            body {
+                width: 100%;
+                overflow-x: hidden;
+                font-family: "微软雅黑";
+                background: #f8f8f8;
+                font-size: 1em;
+                padding-bottom: 3.875em;
+            }
+            
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            p {
+                margin: 0;
+                font-size: 0.8em;
+            }
+            
+            header {
+                background: #ff3366;
+                height: 3em;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            header h1 {
+                font-size: 1.5em;
+                text-align: center;
+                color: #fff;
+                line-height: 2em;
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            header a {
+                position: absolute;
+                height: 100%;
+            }
+            
+            header a img {
+                height: 2em;
+            }
+            
+            .dingwei img {
+                position: absolute;
+                top: 1em;
+                left: 5px;
+            }
+            
+            .dingwei span {
+                display: block;
+                line-height: 1.5em;
+                font-size: 2em;
+                color: #fff;
+            }
+            
+            
+            footer nav a{
+                    display: table-cell;
+                    overflow: hidden;
+                    width: 1%;
+                    height: 3.125em;
+                    text-align: center;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #929292;
+            }
+            
+            footer nav a img {
+                width: 15%;
+                display: block;
+                margin: 0 auto;
+                margin-top: 5px;
+            }
+            
+            footer nav span {
+                color: #020202;
+            }
+            
+            footer nav .action span {
+                color: #ff3366;
+            }
+            
+            .yiyou{ height: 2.5em; line-height: 2.5em; position: relative; background: #fff; margin: 5px 0;}
+            .yiyou h3{ height: 2.5em; line-height: 2.5em;  font-size: 1em; text-indent: 1em;}
+            .yiyou p{ position: absolute; top: 0; right: 0; line-height: 2.5em;}
+            .yiyou p a{ color: #999; border: 1px solid #ddd; padding: 2px 0.625em; border-radius: 4px; margin-right: 5px;}
+            .card_list li{ height: 5em; background: #fff; margin-bottom: 5px; position: relative;}
+            .card_list img{ width: 3.125em; margin-top: 1em; margin-left: 0.625em;}
+            .card_list p{ position: absolute; left: 5.625em; top: 0; line-height: 5em; color: #333; font-size: 1em;}
+            .card_list span{ display: none; position: absolute; top: 1em; right: 0.625em; font-size: 2.5em; color: #0070c5;}
+        </style>
 	</head>
 
 	<body>
