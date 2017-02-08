@@ -358,8 +358,8 @@
                             for(var i=0;i<dataList.length;i++){
                                 var itemList = dataList[i].itemList;
                                 itemStr +='<section class="shucailei">';
-                                itemStr +='<h2>'+dataList[i].cateName+'<a>更多</a></h2>';
-                                itemStr +='<div><ul class="mui-table-view">';
+                                itemStr +='<h2>'+dataList[i].cateName+'<a href="javascript:;" onclick="openUrl(\'goodsList.html?actId='+actId+'&cateId='+dataList[i].cateId+'\',\'goodsList\')">更多</a></h2>';
+                                itemStr +='<div><ul class="mui-table-view">'
                                 for(var j=0;j<itemList.length;j++){
                                     itemStr +='<li class="mui-table-view-cell mui-media">';
                                     itemStr +='<a href="javascript:;">';
