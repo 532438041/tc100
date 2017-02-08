@@ -89,7 +89,7 @@
             .dingwei img {
                 position: absolute;
                 top: 1em;
-                left: 5px;
+                left: 0.3125em;
             }
             
             .dingwei span {
@@ -110,19 +110,19 @@
             .top a{ display: inline; text-align: center;  color: #ff3366; font-size: 1em; }
             .top>div{ height: 4.375em; width: 4.375em; border-radius: 50%; position: absolute; top: 0.625em; right: 0.625em;  overflow: hidden;}
             .top>div img{ width: 100%; height: 100%;}
-            .top h3{ line-height: 3.125em; height: 3.125em; text-indent: 1em; font-size: 1.2em; color: #666; border-bottom: 1px solid #ccc; margin-bottom: 5px;}
+            .top h3{ line-height: 3.125em; height: 3.125em; text-indent: 1em; font-size: 1.2em; color: #666; border-bottom: 1px solid #ccc; margin-bottom: 0.3125em;}
             
             
             .main{ background: #fff;}
             .main p{ border-bottom: 1px solid #ccc; text-indent: 0.625em; padding-top: 0.625em; clear: both; height: auto; overflow: hidden; position: relative;}
-            .main input{ display: inline; width: 67%; margin-bottom: 0; padding: 0; font-size: 0.8em; text-indent: 5px;}
+            .main input{ display: inline; width: 67%; margin-bottom: 0; padding: 0; font-size: 0.8em; text-indent: 0.3125em;}
             .main i{  font-style: normal; width: 30%; float: left; text-align: right; line-height: 2.5em;}
             
             .main textarea{ width: 67%; margin-bottom: 0; padding: 0 0.625em;  font-size: 0.8em; line-height: 1.25em; height: 6.25em;}
             .main input[type=submit]{ background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 1em;}
             #upload0{ display: none;}
             .main h3{ line-height: 3.125em; height: 3.125em; text-indent: 1em; font-size: 1.2em; color: #666; border-bottom: 1px solid #ccc;}
-            .main h3 a{ font-size: 0.8em; color: #666; float: right; margin-right: 1em; border: 1px solid #ccc; height: 1.875em; line-height: 1.875em; text-align: center; text-indent: 0; padding: 0 6px; border-radius: 5px; margin-top: 0.625em;}
+            .main h3 a{ font-size: 0.8em; color: #666; float: right; margin-right: 1em; border: 1px solid #ccc; height: 1.875em; line-height: 1.875em; text-align: center; text-indent: 0; padding: 0 0.375em; border-radius: 0.3125em; margin-top: 0.625em;}
             .main p img{ height: 2.5em; position: absolute; left: 1.25em;}
             
             .quyu2{ margin-top: 0.625em;}
@@ -137,7 +137,7 @@
             .main .tuijian input{ width: 50%;}
             .btn{ }
             .btn p{ text-align: right; padding-top: 0.625em;}
-            .btn span{ display: inline-block; width: 40%; border: 1px solid #FF3366; background: #ff3366; text-align: center;  border-radius: 5px;}
+            .btn span{ display: inline-block; width: 40%; border: 1px solid #FF3366; background: #ff3366; text-align: center;  border-radius: 0.3125em;}
             .btn span a{ color: #fff; }
             .btn span.action{ color: #ff3366; background: #fff;margin-left: 10%;}
             .btn span.action a{ color: #ff3366; background: #fff; }
@@ -158,7 +158,7 @@
                 width: 15%;
                 display: block;
                 margin: 0 auto;
-                margin-top: 5px;
+                margin-top: 0.3125em;
             }
             
             footer nav span {
@@ -183,7 +183,7 @@
 			<h1>模版使用</h1>
 		</header>
 		<section class="quyu">
-			<form action="" method="post" id="upchuan0">
+			<form>
 				<div class="top">
 					<p>当前发布位置为<i id="typeName" style="color: #cd4400"></i>，样式类型为<i id="typeNum" style="color: #cd4400"></i>，资费原价3000/月，1500月</p>
 					<h3><a onclick="openUrl('add_card.html');">完善名片</a></h3>
@@ -199,7 +199,7 @@
 		</section>
 		
 		<section class="quyu2">
-			<form action="" method="post" id="upchuan0">
+			<form id="fabuForm">
 			    <input type="hidden" name="cardId" id="cardId" />
 				<div class="top">
 					<h3><a>发布补充</a></h3>
@@ -216,10 +216,8 @@
 					</p>
 					<p class="fenlei">
 						<i>分类：</i>
-						<select>
-							<option>所有</option>
-							<option>分类1</option>
-							<option>分类2</option>
+						<select name="cateId">
+							<option value="">所有</option>
 						</select>
 						<span class="mui-icon mui-icon-arrowdown"></span>
 					</p>
@@ -324,6 +322,27 @@
                }
            })
             
+            // 获取分类
+            var baseParam = {
+                pid : '1'
+            }
+            var param = serializePageJson(1, 100, baseParam);
+            $.ajax({
+               type:"post",     
+               url:host+"/getCateByPid.json",
+               data:param,
+               dataType:"json",
+               contentType: "application/json",
+               success : function(dataResult) {
+                    var data = dataResult.data.dataList;
+                    var str = "";
+                    for(var i = 0; i < data.length; i++){
+                        str+='<option value="'+data[i].id+'">'+data[i].cateName+'</option>';
+                    }
+                    $(".fenlei select").append(str);
+               }
+           })
+            
             // 预览
             $("#preview").click(function(){
                 var result = saveAct();
@@ -364,7 +383,7 @@
                     userId : appcan.locStorage.getVal("userId"),
                     id : $.query.get("actId")
                 };
-                var param = $("#upchuan0").serializeJson(baseParam);
+                var param = $("#fabuForm").serializeJson(baseParam);
                 var result = null;
                 $.ajax({
                    type:"post",
