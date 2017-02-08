@@ -1,199 +1,228 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.java.dao.impl.ActiveItemDaoImpl" >
-  <resultMap id="BaseResultMap" type="com.java.entity.ActiveItem" >
-    <id column="id" property="id" jdbcType="CHAR" />
-    <result column="item_pic" property="itemPic" jdbcType="VARCHAR" />
-    <result column="list_price" property="listPrice" jdbcType="DECIMAL" />
-    <result column="list_unit" property="listUnit" jdbcType="CHAR" />
-    <result column="spe_price" property="spePrice" jdbcType="DECIMAL" />
-    <result column="spe_unit" property="speUnit" jdbcType="CHAR" />
-    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
-    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="act_id" property="actId" jdbcType="CHAR" />
-    <result column="create_by" property="createBy" jdbcType="CHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_by" property="updateBy" jdbcType="CHAR" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, item_pic, list_price, list_unit, spe_price, spe_unit, start_time, end_time, remark, 
-    act_id, create_by, create_time, update_by, update_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tc_active_item
-    where id = #{id,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from tc_active_item
-    where id = #{id,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.java.entity.ActiveItem" >
-    insert into tc_active_item (id, item_pic, list_price, 
-      list_unit, spe_price, spe_unit, 
-      start_time, end_time, remark, 
-      act_id, create_by, create_time, 
-      update_by, update_time)
-    values (#{id,jdbcType=CHAR}, #{itemPic,jdbcType=VARCHAR}, #{listPrice,jdbcType=DECIMAL}, 
-      #{listUnit,jdbcType=CHAR}, #{spePrice,jdbcType=DECIMAL}, #{speUnit,jdbcType=CHAR}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
-      #{actId,jdbcType=CHAR}, #{createBy,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.java.entity.ActiveItem" >
-    insert into tc_active_item
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="itemPic != null" >
-        item_pic,
-      </if>
-      <if test="listPrice != null" >
-        list_price,
-      </if>
-      <if test="listUnit != null" >
-        list_unit,
-      </if>
-      <if test="spePrice != null" >
-        spe_price,
-      </if>
-      <if test="speUnit != null" >
-        spe_unit,
-      </if>
-      <if test="startTime != null" >
-        start_time,
-      </if>
-      <if test="endTime != null" >
-        end_time,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="actId != null" >
-        act_id,
-      </if>
-      <if test="createBy != null" >
-        create_by,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateBy != null" >
-        update_by,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=CHAR},
-      </if>
-      <if test="itemPic != null" >
-        #{itemPic,jdbcType=VARCHAR},
-      </if>
-      <if test="listPrice != null" >
-        #{listPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="listUnit != null" >
-        #{listUnit,jdbcType=CHAR},
-      </if>
-      <if test="spePrice != null" >
-        #{spePrice,jdbcType=DECIMAL},
-      </if>
-      <if test="speUnit != null" >
-        #{speUnit,jdbcType=CHAR},
-      </if>
-      <if test="startTime != null" >
-        #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null" >
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="actId != null" >
-        #{actId,jdbcType=CHAR},
-      </if>
-      <if test="createBy != null" >
-        #{createBy,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        #{updateBy,jdbcType=CHAR},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.ActiveItem" >
-    update tc_active_item
-    <set >
-      <if test="itemPic != null" >
-        item_pic = #{itemPic,jdbcType=VARCHAR},
-      </if>
-      <if test="listPrice != null" >
-        list_price = #{listPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="listUnit != null" >
-        list_unit = #{listUnit,jdbcType=CHAR},
-      </if>
-      <if test="spePrice != null" >
-        spe_price = #{spePrice,jdbcType=DECIMAL},
-      </if>
-      <if test="speUnit != null" >
-        spe_unit = #{speUnit,jdbcType=CHAR},
-      </if>
-      <if test="startTime != null" >
-        start_time = #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null" >
-        end_time = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="actId != null" >
-        act_id = #{actId,jdbcType=CHAR},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        update_by = #{updateBy,jdbcType=CHAR},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.java.entity.ActiveItem" >
-    update tc_active_item
-    set item_pic = #{itemPic,jdbcType=VARCHAR},
-      list_price = #{listPrice,jdbcType=DECIMAL},
-      list_unit = #{listUnit,jdbcType=CHAR},
-      spe_price = #{spePrice,jdbcType=DECIMAL},
-      spe_unit = #{speUnit,jdbcType=CHAR},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR},
-      act_id = #{actId,jdbcType=CHAR},
-      create_by = #{createBy,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=CHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=CHAR}
-  </update>
+<mapper namespace="com.java.dao.impl.ActiveItemDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.ActiveItem">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="item_pic" property="itemPic" jdbcType="VARCHAR" />
+		<result column="list_price" property="listPrice" jdbcType="DECIMAL" />
+		<result column="list_unit" property="listUnit" jdbcType="CHAR" />
+		<result column="spe_price" property="spePrice" jdbcType="DECIMAL" />
+		<result column="spe_unit" property="speUnit" jdbcType="CHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="act_id" property="actId" jdbcType="CHAR" />
+		<result column="item_name" property="itemName" jdbcType="CHAR" />
+		<result column="cate_id" property="cateId" jdbcType="CHAR" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="CHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, item_pic, list_price, list_unit, spe_price, spe_unit, start_time, end_time, remark,
+		act_id, item_name, cate_id, create_by, create_time, update_by, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tc_active_item
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_active_item
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.ActiveItem">
+		insert into tc_active_item (id, item_pic, list_price,
+		list_unit, spe_price, spe_unit,
+		start_time, end_time, remark,
+		act_id, item_name, cate_id, create_by, create_time,
+		update_by, update_time)
+		values (#{id,jdbcType=CHAR}, #{itemPic,jdbcType=VARCHAR}, #{listPrice,jdbcType=DECIMAL},
+		#{listUnit,jdbcType=CHAR}, #{spePrice,jdbcType=DECIMAL}, #{speUnit,jdbcType=CHAR},
+		#{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},
+		#{actId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{cateId,jdbcType=CHAR}, #{createBy,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.ActiveItem">
+		insert into tc_active_item
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="itemPic != null">
+				item_pic,
+			</if>
+			<if test="listPrice != null">
+				list_price,
+			</if>
+			<if test="listUnit != null">
+				list_unit,
+			</if>
+			<if test="spePrice != null">
+				spe_price,
+			</if>
+			<if test="speUnit != null">
+				spe_unit,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="endTime != null">
+				end_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="actId != null">
+				act_id,
+			</if>
+			<if test="itemName != null">
+				item_name,
+			</if>
+			<if test="cateId != null">
+				cate_id,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="itemPic != null">
+				#{itemPic,jdbcType=VARCHAR},
+			</if>
+			<if test="listPrice != null">
+				#{listPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="listUnit != null">
+				#{listUnit,jdbcType=CHAR},
+			</if>
+			<if test="spePrice != null">
+				#{spePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="speUnit != null">
+				#{speUnit,jdbcType=CHAR},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="actId != null">
+				#{actId,jdbcType=CHAR},
+			</if>
+			<if test="itemName != null">
+				#{itemName,jdbcType=CHAR},
+			</if>
+			<if test="cateId != null">
+				#{cateId,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.ActiveItem">
+		update tc_active_item
+		<set>
+			<if test="itemPic != null">
+				item_pic = #{itemPic,jdbcType=VARCHAR},
+			</if>
+			<if test="listPrice != null">
+				list_price = #{listPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="listUnit != null">
+				list_unit = #{listUnit,jdbcType=CHAR},
+			</if>
+			<if test="spePrice != null">
+				spe_price = #{spePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="speUnit != null">
+				spe_unit = #{speUnit,jdbcType=CHAR},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				end_time = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="actId != null">
+				act_id = #{actId,jdbcType=CHAR},
+			</if>
+			<if test="itemName != null">
+				item_name = #{itemName,jdbcType=CHAR},
+			</if>
+			<if test="cateId != null">
+				cate_id = #{cateId,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.ActiveItem">
+		update tc_active_item
+		set item_pic = #{itemPic,jdbcType=VARCHAR},
+		list_price = #{listPrice,jdbcType=DECIMAL},
+		list_unit = #{listUnit,jdbcType=CHAR},
+		spe_price = #{spePrice,jdbcType=DECIMAL},
+		spe_unit = #{speUnit,jdbcType=CHAR},
+		start_time = #{startTime,jdbcType=TIMESTAMP},
+		end_time = #{endTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR},
+		act_id = #{actId,jdbcType=CHAR},
+		item_name = #{itemName,jdbcType=CHAR},
+		cate_id = #{cateId,jdbcType=CHAR},
+		create_by = #{createBy,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=CHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	
+	<select id="getItemList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tc_active_item
+		where cate_id = #{cateId}
+	</select>
 </mapper>

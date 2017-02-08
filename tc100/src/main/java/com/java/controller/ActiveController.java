@@ -1,6 +1,10 @@
 package com.java.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,10 +18,12 @@ import com.java.common.enums.LogTypeEnum;
 import com.java.entity.Active;
 import com.java.entity.ActiveItem;
 import com.java.entity.ActiveLog;
+import com.java.entity.ItemCate;
 import com.java.entity.UserFav;
 import com.java.service.ActiveItemService;
 import com.java.service.ActiveLogService;
 import com.java.service.ActiveService;
+import com.java.service.ItemCateService;
 import com.java.service.UserFavService;
 import com.java.utils.ToolsUtil;
 
@@ -35,6 +41,9 @@ public class ActiveController {
 
 	@Autowired
 	private UserFavService userFavService;
+
+	@Autowired
+	private ItemCateService itemCateService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -114,6 +123,26 @@ public class ActiveController {
 	}
 
 	/**
+	 * 保存商品分类信息 返回分类id
+	 * 
+	 * @param @param baseParam
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/saveItemCate")
+	public BaseResult saveItemCate(ItemCate itemCate) {
+		itemCate.setUpdateTime(new Date());
+		if (ToolsUtil.isNull(itemCate.getId())) {
+			itemCate.setId(ToolsUtil.getUUID());
+			itemCate.setCreateTime(new Date());
+			itemCateService.insert(itemCate);
+		} else {
+			itemCateService.updateByPrimaryKeySelective(itemCate);
+		}
+		return new BaseResult().success(itemCate.getId());
+	}
+
+	/**
 	 * 保存活动商品
 	 * 
 	 * @param @param baseParam
@@ -154,7 +183,18 @@ public class ActiveController {
 	 */
 	@RequestMapping(value = "/getActItem")
 	public BaseResult getActItem(String actId) {
-		return null;
+		// 获取分类
+		List<ItemCate> cateList = itemCateService.getItemCateList(actId);
+		ArrayList<Map<String, Object>> resultList = new ArrayList<>();
+		for (ItemCate itemCate : cateList) {
+			List<ActiveItem> itemList = activeItemService.getItemList(itemCate.getId());
+			Map<String, Object> map = new HashMap<>();
+			map.put("cateId", itemCate.getId());
+			map.put("cateName", itemCate.getCateName());
+			map.put("itemList", itemList);
+			resultList.add(map);
+		}
+		return new BaseResult().success(resultList);
 	}
 
 	/**

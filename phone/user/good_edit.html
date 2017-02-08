@@ -325,8 +325,14 @@
                 margin: 0 2%;
                 line-height: 1.5em;
             }
+            .shucailei>span a{
+                color: #ff3366;
+            }
             .shucailei>span:last-child{
                 background: #ff3366;
+                color: #fff;
+            }
+            .shucailei>span:last-child a{
                 color: #fff;
             }
             .mui-media-body{
@@ -402,70 +408,18 @@
 			<a class="active">正在发布</a>
 			<a>已下架</a>
 		</section>
-		<section class="shucailei">
-			<h2><span id="kaihe" class="mui-icon mui-icon-arrowdown"></span>蔬菜类<a>添加商品</a></h2>
-			<div>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<div>
-							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<div>
-							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<div>
-							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</section>
 		
-		<section class="shucailei">
-			<h2><input type="text" value="分类名称" /><a href="javascript:;" onclick="openUrl('add_good.html','add_good')">添加商品</a></h2>
+		<section class="shucailei" id="addView">
+			<h2><input type="text" value="" id="cateName" placeholder="分类名称" /><a href="javascript:;" onclick="addGood();">添加商品</a></h2>
 			<div>
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell mui-media">
-						<div>
-							<img class="mui-media-object mui-pull-left" src="../img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-							<p class="del_bianji"><a>删除</a><a>编辑</a></p>
-						</div>
+						
 					</li>
 				</ul>
 			</div>
-			<span>预览</span>
-            <span>下一步</span>
+			<span><a id="preview">预览</a></span>
+            <span><a id="nextStep">下一步</a></span>
 		</section>
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
@@ -484,20 +438,96 @@
 			</nav>
 		</footer>
 <script>
-    $(document).ready(function(){
-        $("#kaihe").click(function(){
-            
-            if($(this).is(".mui-icon-arrowdown")){
-                $(this).removeClass("mui-icon-arrowdown");
-                $(this).addClass("mui-icon-arrowup");
-                $(this).parent("h2").next("div").hide();
-            }else{
-                $(this).removeClass("mui-icon-arrowup");
-                $(this).addClass("mui-icon-arrowdown");
-                $(this).parent("h2").next("div").show();
-            }
+//获取已添加的商品
+var type = $.query.get("type");
+var actId = $.query.get("actId");
+
+$(function(){
+    
+    // 获取默认名片
+    $.ajax({
+       type:"get",
+       url:host+"/getActItem.json?actId="+actId,
+       dataType:"json",
+       success : function(dataResult) {
+           var data = dataResult.data;
+           var str = '';
+           for (var i=0; i < data.length; i++) {
+             str+='<section class="shucailei"><h2><span class="kaihe mui-icon mui-icon-arrowdown"></span>'
+             +data[i].cateName+'<a href="javascript:;" onclick="addGood('
+             +data[i].cateId+');">添加商品</a></h2>'
+             +'<div><ul class="mui-table-view">';
+             var itemList = data[i].itemList;
+             for (var j=0; j < itemList.length; j++) {
+               str+='<li class="mui-table-view-cell mui-media"><div><img class="mui-media-object mui-pull-left" src="'
+               + hostIp+itemList[j].itemPic +'"><div class="mui-media-body">品名：'
+               +itemList[j].itemName +'<p><i>特价：'
+               +itemList[j].spePrice +'元/'
+               +itemList[j].speUnit+'g</i>原价：<s>'
+               +itemList[j].listPrice+'元/'
+               +itemList[j].listUnit+'g</s></p><p>时间：'
+               +itemList[j].startTime+'-'
+               +itemList[j].endTime+'</p><p class="mui-ellipsis">说明：'
+               +itemList[j].remark+'</p></div><p class="del_bianji"><a>删除</a><a>编辑</a></p></div></li>';
+             };
+             str+='</ul></div></section>';
+           };
+           
+           $("#addView").before(str);
+           $(".kaihe").click(function(){
+                if($(this).is(".mui-icon-arrowdown")){
+                    $(this).removeClass("mui-icon-arrowdown");
+                    $(this).addClass("mui-icon-arrowup");
+                    $(this).parent("h2").next("div").hide();
+                }else{
+                    $(this).removeClass("mui-icon-arrowup");
+                    $(this).addClass("mui-icon-arrowdown");
+                    $(this).parent("h2").next("div").show();
+                }
+            });
+       }
+   });
+   
+   // 预览
+    $("#preview").click(function(){
+        appcan.window.open({
+            name:"page_info",
+            dataType:0,
+            data:"../page/info.html?type="+type+"&actId="+actId
         });
-    });
+    })
+    
+    // 下一步
+    $("#nextStep").click(function(){
+        appcan.window.open({
+            name:"moban_shiyong",
+            dataType:0,
+            data:"moban_shiyong.html?type="+type+"&actId="+actId
+        });
+    })
+    
+});
+
+function addGood(cateId){
+    if($("#cateName").val().length == 0){
+        alert("请先填写分类名称");
+        return false;
+    }
+    // 保存分类
+    $.ajax({
+       type:"post",
+       url:host+"/saveItemCate.json?id="+(cateId||"")+"&cateName="+$("#cateName").val()+"&actId="+actId,
+       dataType:"json",
+       success : function(dataResult) {
+           appcan.window.open({
+                name:"add_good",
+                dataType:0,
+                data:"add_good.html?type="+type+"&actId="+actId+"&cateId="+dataResult.data
+            });
+       }
+   });
+}
+
 </script>
 	</body>
 

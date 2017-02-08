@@ -23,6 +23,10 @@ public class ActiveItem {
     private String remark;
 
     private String actId;
+    
+    private String itemName;
+    
+    private String cateId;
 
     private String createBy;
 
@@ -143,4 +147,20 @@ public class ActiveItem {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	public String getCateId() {
+		return cateId;
+	}
+
+	public void setCateId(String cateId) {
+		this.cateId = cateId;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 }

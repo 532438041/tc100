@@ -112,11 +112,11 @@
             .main i{  font-style: normal;  float: left; text-align: right; line-height: 1.875em;}
             .main input[type="text"]{ height: 1.875em; margin-right: 0.25em;}
             .main textarea{ width: 75%; margin-bottom: 0;}
-            .main input[type=submit]{ background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 1em; }
+            .main input[type=button]{ background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 1em; }
             #upload0{ display: none;}
             p.w100{ width: 100%;}
             p.w100 input{  width: 75%;}
-            input.submitt{ padding: 0.3125em;}
+            input.submit{ padding: 0.3125em;}
             
             
             footer nav a{
@@ -156,21 +156,23 @@
 			<h1>添加商品</h1>
 		</header>
 		<section class="quyu">
-			<form action="" method="post" id="upchuan0">
+			<form id="goodForm">
 				<div class="top">
 					<span>商品图片</span>
 					<a id="btn1">上传</a>
 					<p>上传图片大小请在1M以下</p>
-					<div id="yulan"><img src="../img/img_4.png" /></div>
+					<div id="yulan"><img id="itemPic" src="../img/img_4.png" /></div>
 				</div>
 				<div class="main">
-					<p><i>原价：</i><input type="text" value="" />斤</p>
-					<p><i>V：</i><input type="text" value="" /></p>
-					<p><i>特价：</i><input type="text" value="" />斤</p>
-					<p><i>V：</i><input type="text" value="" /></p>
-					<p class="w100"><i>时间：</i><input type="text" value="" /></p>
-					<p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" /></textarea></p>
-					<input class="submitt" type="submit" value="完成" />
+					<p class="w100"><i>品名：</i><input type="text" value="" name="itemName"/></p>
+					<p><i>原价：</i><input type="text" value="" name="listPrice"/>斤</p>
+					<p><i>V：</i><input type="text" value="" name="listUnit"/></p>
+					<p><i>特价：</i><input type="text" value="" name="spePrice"/>斤</p>
+					<p><i>V：</i><input type="text" value="" name="speUnit"/></p>
+					<p class="w100"><i>开始时间：</i><input type="date" value="" name="startTime"/></p>
+					<p class="w100"><i>结束时间：</i><input type="date" value="" name="endTime"/></p>
+					<p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" name="remark"/></textarea></p>
+					<input class="submit" type="button" value="完成" onclick="saveItem();"/>
 				</div>
 			</form>
 		</section>
@@ -193,8 +195,33 @@
 			</nav>
 		</footer>
 <script>
-// JavaScript Document
+
+var itemId = $.query.get("itemId");
+var actId = $.query.get("actId");
+var cateId = $.query.get("cateId");
+var type = $.query.get("type");
+
 $(document).ready(function(){  
+    if(!!itemId){
+        // 绑定数据
+        $.ajax({
+           type:"get",
+           url:host+"/getItem.json?itemId="+itemId,
+           dataType:"json",
+           success : function(dataResult) {
+               var data = dataResult.data;
+               $("input[name='itemName']").val(data.itemName);
+               $("input[name='listPrice']").val(data.listPrice);
+               $("input[name='listUnit']").val(data.listUnit);
+               $("input[name='spePrice']").val(data.spePrice);
+               $("input[name='speUnit']").val(data.speUnit);
+               $("input[name='startTime']").val(data.startTime);
+               $("input[name='endTime']").val(data.endTime);
+               $("input[name='remark']").val(data.remark);
+           }
+       });
+    }
+    
 	$(".top").append('<input id="upload0" type="file" accept="image/jpeg,image/bmp" />');
 	$("#btn1").click(function(){
 		fileSelect(yulan,'#upload'+0);
@@ -234,6 +261,30 @@ $(document).ready(function(){
 		 }
 	};
 });
+
+function saveItem(){
+    var baseParam = {
+        id : itemId,
+        cateId:cateId,
+        actId:actId
+    };
+    var param = $("#goodForm").serializeJson(baseParam);
+    var result = null;
+    $.ajax({
+       type:"post",
+       url:host+"/saveItem.json",
+       data:param,
+       dataType:"json",
+       contentType: "application/json",
+       success : function(dataResult) {
+            appcan.window.open({
+                name:"back_good_edit",
+                dataType:0,
+                data:"good_edit.html?type="+type+"&actId="+actId
+            });
+       }
+   })
+}
 </script>
 	</body>
 

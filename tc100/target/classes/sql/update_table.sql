@@ -16,3 +16,5 @@ COMMENT '是否自动加载首页图片' AFTER `summary`;
 -------------------------------- 修改同城购 状态字段备注信息 -------------------------------------
 ALTER TABLE `tc_active` MODIFY COLUMN state CHAR(1) COMMENT '状态 0删除 1存在 2发布';
 
+ALTER TABLE `tc_active_item` ADD COLUMN cate_id CHAR(32) COMMENT '商品关联分类id' AFTER `act_id`;
+ALTER TABLE `tc_active_item` ADD COLUMN item_name CHAR(100) COMMENT '品名' AFTER `act_id`;
