@@ -85,7 +85,7 @@
             for(var i=0;i<dataList.length;i++){
                 magStr+='<li class="mui-table-view-cell mui-media">';
                 magStr+='<a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
-                magStr+='<img class="mui-media-object mui-pull-left" src="img/img_2.png">';
+                magStr+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
                 magStr+='<div class="mui-media-body">'+dataList[i].title;
                 magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
                 magStr+='<i>'+dataList[i].createTime+'</i>';

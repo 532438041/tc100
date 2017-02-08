@@ -390,7 +390,7 @@
                             if(data!=null){
                                 msgStr +='<li class="mui-table-view-cell mui-media">';
                                 msgStr +='<a href="javascript:;">';
-                                msgStr +='<img class="mui-media-object mui-pull-left" src="'+data.picUrl+'">';
+                                msgStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+data.picUrl+'">';
                                 msgStr +='<div class="mui-media-body">';
                                 msgStr +=data.cardName;
                                 msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
@@ -419,7 +419,7 @@
                                 for(var i=0;i<dataList.length;i++){
                                     msgReviewStr +='<li class="mui-table-view-cell mui-media">';
                                     msgReviewStr +='<a href="javascript:;">';
-                                    msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+dataList[i].picUrl+'">';
+                                    msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
                                     msgReviewStr +='<div class="mui-media-body">';
                                     msgReviewStr +=dataList[i].cardName;
                                     msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
