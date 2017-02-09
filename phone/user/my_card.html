@@ -166,7 +166,7 @@
     		    appcan.ajax({
                     type:"post",
                     async:false,       
-                    url:host+"/getCardList.json?userId=1",
+                    url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
                     data:"",
                     dataType:"json",
                     contentType: "application/json",

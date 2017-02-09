@@ -156,40 +156,40 @@
 		</header>
 		<section>
 			<div>
-				<h3>首页轮播图<i>正在发布数：0</i></h3>
+				<h3>首页轮播图<i id="Acount">正在发布数：0</i></h3>
 				<p>
 					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','fabumoshi')">发布</a><span class="mui-icon mui-icon-arrowup"></span></p>
 			</div>
 		</section>
 		<section>
 			<div>
-				<h3>超孕车房模块<i>正在发布数：2</i></h3>
+				<h3>超孕车房模块<i id="CDEFCount">正在发布数：0</i></h3>
 				<p>
 					<a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a><span class="mui-icon mui-icon-arrowup quyu"></span></p>
 			</div>
 			<ul class="quyu">
 				<li>
-					<h4>超市<i>正在发布数：0</i></h4>
+					<h4>超市<i id="Ccount">正在发布数：0</i></h4>
 					<p>
 						<a>编辑内容</a>
                         <a>编辑模版</a>
 					</p>
 				</li>
 				<li>
-					<h4>孕婴<i>正在发布数：0</i></h4>
+					<h4>孕婴<i id="Dcount">正在发布数：0</i></h4>
 					<p>
 						<a>编辑内容</a>
                         <a>编辑模版</a>
 					</p>
 				</li>
 				<li>
-					<h4>车辆<i>正在发布数：0</i></h4>
+					<h4>车辆<i id="Ecount">正在发布数：0</i></h4>
 					<p>
 						<a>编辑</a>
 					</p>
 				</li>
 				<li>
-					<h4>房车<i>正在发布数：0</i></h4>
+					<h4>房车<i id="Fcount">正在发布数：0</i></h4>
 					<p>
 						<a>编辑</a>
 					</p>
@@ -198,7 +198,7 @@
 		</section>
 		<section>
 			<div>
-				<h3>同城购模块<i>正在发布数：2</i></h3>
+				<h3>同城购模块<i id='Bcount'>正在发布数：0</i></h3>
 				<p>
 					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="mui-icon mui-icon-arrowdown"></span></p>
 			</div>
@@ -236,6 +236,112 @@
 						$(this).addClass("action");
 					})
 				});
+				//轮播发布数
+				$.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=A1,A2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#Acount").html('正在发布数：'+count);
+                        }
+                    }
+                })
+                //同城购数量
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=B1,B2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        console.log(dataResult);
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#Bcount").html('正在发布数：'+count);
+                        }
+                    }
+                })
+                //超市数量
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=C1,C2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#Ccount").html('正在发布数：'+count);
+                        }
+                    }
+                })
+                //孕婴数量
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=D1,D2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#Dcount").html('正在发布数：'+count);
+                        }
+                    }
+                })
+                //车辆数量
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=E1,E2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#Ecount").html('正在发布数：'+count);
+                        }
+                    }
+                })
+                //房产数量
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=F1,F2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#Fcount").html('正在发布数：'+count);
+                        }
+                    }
+                })  
+                //超孕车房数量
+                $.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getActCount.json?userId="+appcan.locStorage.getVal("userId")+"&actType=C1,C2,D1,D2,E1,E2,F1,F2&state=2",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var count = dataResult.data;
+                        if(count>0){
+                            $("#CDEFCount").html('正在发布数：'+count);
+                        }
+                    }
+                })  
 			});
 		</script>
 	</body>
