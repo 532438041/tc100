@@ -114,10 +114,13 @@
 		update_time = #{updateTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=CHAR}
 	</update>
-	<select id="getItemCateList" parameterType="java.lang.String" resultMap="BaseResultMap">
+	<select id="getItemCateList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from tc_item_cate
 		where act_id = #{actId}
+		<if test="cateId !=null and cateId !=''">
+			and cate_id = cateId
+		</if>
 	</select>
 </mapper>

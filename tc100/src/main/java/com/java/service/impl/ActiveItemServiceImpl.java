@@ -17,8 +17,8 @@ public class ActiveItemServiceImpl extends BaseServiceImpl<ActiveItem>implements
 	private ActiveItemDao activeItemDao;
 
 	@Override
-	public List<ActiveItem> getItemList(String cateId) {
-		return activeItemDao.getItemList(cateId);
+	public List<ActiveItem> getItemList(String cateId, int limit) {
+		return activeItemDao.getItemList(cateId, limit);
 	}
 
 }

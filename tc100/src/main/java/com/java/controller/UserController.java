@@ -137,4 +137,10 @@ public class UserController {
 		return new BaseResult().success(userMsgService.selectByPrimaryKey(msgId));
 	}
 
+	@RequestMapping(value = "/getReceiveAct")
+	public BaseResult getReceiveAct(String userId) {
+		
+		return null;
+	}
+
 }

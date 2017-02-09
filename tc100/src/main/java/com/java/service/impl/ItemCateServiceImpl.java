@@ -17,8 +17,8 @@ public class ItemCateServiceImpl extends BaseServiceImpl<ItemCate>implements Ite
 	private ItemCateDao itemCateDao;
 
 	@Override
-	public List<ItemCate> getItemCateList(String actId) {
-		return itemCateDao.getItemCateList(actId);
+	public List<ItemCate> getItemCateList(String actId, String cateId) {
+		return itemCateDao.getItemCateList(actId, cateId);
 	}
 
 }

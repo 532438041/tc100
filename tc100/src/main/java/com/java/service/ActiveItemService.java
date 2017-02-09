@@ -7,6 +7,6 @@ import com.java.entity.ActiveItem;
 
 public interface ActiveItemService extends BaseService<ActiveItem>{
 
-	List<ActiveItem> getItemList(String cateId);
+	List<ActiveItem> getItemList(String cateId, int limit);
   
 }

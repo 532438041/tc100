@@ -61,6 +61,19 @@ public class ActiveController {
 	}
 
 	/**
+	 * 获取个数 传参actType=A1 若多个 则用actType C1,C2,D1,D2 state 若不传值 为查询未发布和发布的
+	 * 
+	 * @param @param userId
+	 * @param @param actType
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getActCount")
+	public BaseResult getActCount(String userId, String actType, String state) {
+		return new BaseResult().success(activeService.getActCount(userId, actType, state));
+	}
+
+	/**
 	 * 获取我的模板 我的活动列表
 	 * 
 	 * @param @return
@@ -182,12 +195,12 @@ public class ActiveController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/getActItem")
-	public BaseResult getActItem(String actId) {
+	public BaseResult getActItem(String actId, String cateId, int limit) {
 		// 获取分类
-		List<ItemCate> cateList = itemCateService.getItemCateList(actId);
+		List<ItemCate> cateList = itemCateService.getItemCateList(actId, cateId);
 		ArrayList<Map<String, Object>> resultList = new ArrayList<>();
 		for (ItemCate itemCate : cateList) {
-			List<ActiveItem> itemList = activeItemService.getItemList(itemCate.getId());
+			List<ActiveItem> itemList = activeItemService.getItemList(itemCate.getId(), limit);
 			Map<String, Object> map = new HashMap<>();
 			map.put("cateId", itemCate.getId());
 			map.put("cateName", itemCate.getCateName());

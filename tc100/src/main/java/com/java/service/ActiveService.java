@@ -32,4 +32,6 @@ public interface ActiveService extends BaseService<Active> {
 
 	void operateAct(String actId, int amount);
 
+	int getActCount(String userId, String actType, String state);
+
 }

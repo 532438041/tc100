@@ -219,10 +219,13 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 	
-	<select id="getItemList" parameterType="java.lang.String" resultMap="BaseResultMap">
+	<select id="getItemList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from tc_active_item
 		where cate_id = #{cateId}
+		<if test="limit !=null and limit !=''">
+			limit 0, #{limit}
+		</if>
 	</select>
 </mapper>

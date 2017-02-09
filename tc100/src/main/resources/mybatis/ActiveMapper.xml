@@ -289,15 +289,28 @@
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM `tc_active` act
-		WHERE act.`act_type` = #{actType} AND act.`state` = '1' AND act.user_id = #{userId}
+		WHERE act.`state` = '1' AND act.user_id = #{userId}
+		<if test="actType!=null and actType!=''">
+			act.`act_type` = #{actType}
+		</if>
 		ORDER BY act.create_time DESC
 	</select>
 
 	<update id="addViewCount" parameterType="java.lang.String">
 		UPDATE `tc_active` SET `view_count` = IFNULL(`view_count`, 0) + 1 WHERE `id` = #{actId}
 	</update>
-	
+
 	<update id="operateAct" parameterType="java.util.HashMap">
 		UPDATE `tc_active` SET `amount` = IFNULL(`amount`, 0) + #{amount} WHERE `id` = #{actId}
 	</update>
+
+	<select id="getActCount" parameterType="java.util.HashMap" resultType="Integer">
+		SELECT COUNT(0) FROM `tc_active` WHERE user_id = #{userId} AND FIND_IN_SET(act_type, #{actType})
+		<if test="state!=null and state!=''">
+			AND state = #{state}
+		</if>
+		<if test="state==null or state == ''">
+			AND state != 0
+		</if>
+	</select>
 </mapper>
