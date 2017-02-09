@@ -439,13 +439,13 @@
 		</footer>
 <script>
 //获取已添加的商品
-var type = $.query.get("type");
-var actId = $.query.get("actId");
+var type = getVal("type");
+var actId = getVal("actId");
 
 $(function(){
     
     // 获取默认名片
-    $.ajax({
+    appcan.ajax({
        type:"get",
        url:host+"/getActItem.json?actId="+actId,
        dataType:"json",
@@ -490,20 +490,12 @@ $(function(){
    
    // 预览
     $("#preview").click(function(){
-        appcan.window.open({
-            name:"page_info",
-            dataType:0,
-            data:"../page/info.html?type="+type+"&actId="+actId
-        });
+        openUrl("../page/info.html?type="+type+"&actId="+actId,"actInfo");
     })
     
     // 下一步
     $("#nextStep").click(function(){
-        appcan.window.open({
-            name:"moban_shiyong",
-            dataType:0,
-            data:"moban_shiyong.html?type="+type+"&actId="+actId
-        });
+        openUrl("moban_shiyong.html?type="+type+"&actId="+actId,"moban_shiyong");
     })
     
 });
@@ -514,16 +506,12 @@ function addGood(cateId){
         return false;
     }
     // 保存分类
-    $.ajax({
+    appcan.ajax({
        type:"post",
        url:host+"/saveItemCate.json?id="+(cateId||"")+"&cateName="+$("#cateName").val()+"&actId="+actId,
        dataType:"json",
        success : function(dataResult) {
-           appcan.window.open({
-                name:"add_good",
-                dataType:0,
-                data:"add_good.html?type="+type+"&actId="+actId+"&cateId="+dataResult.data
-            });
+           openUrl("add_good.html?type="+type+"&actId="+actId+"&cateId="+dataResult.data,"add_good");
        }
    });
 }

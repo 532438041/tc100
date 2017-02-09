@@ -187,7 +187,7 @@
 			<form>
 				<div class="top">
 					<p>当前发布位置为<i id="typeName" style="color: #cd4400"></i>，样式类型为<i id="typeNum" style="color: #cd4400"></i>，资费原价3000/月，1500月</p>
-					<h3><a onclick="openUrl('add_card.html');">完善名片</a></h3>
+					<h3><a onclick="openUrl('add_card.html', 'add_card');">完善名片</a></h3>
 				</div>
 				<div class="main">
 					<h3>编辑名片<a>选择其他名片</a></h3>
@@ -253,7 +253,8 @@
 			</nav>
 		</footer>
     <script>
-        var type = $.query.get("type") || "0";
+        var type = getVal("type") || "0";
+        var actId = getVal("actId");
         var num = type.substring(1,type.length);
         $(function(){
             // 若类型传参错误 则返回上一个页面
@@ -306,7 +307,7 @@
             }
             
             // 获取默认名片
-            $.ajax({
+            appcan.ajax({
                type:"get",     
                url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
                dataType:"json",
@@ -328,7 +329,7 @@
                 pid : '1'
             }
             var param = serializePageJson(1, 100, baseParam);
-            $.ajax({
+            appcan.ajax({
                type:"post",     
                url:host+"/getCateByPid.json",
                data:param,
@@ -346,30 +347,16 @@
             
             // 预览
             $("#preview").click(function(){
-                var result = saveAct();
-                if(result.status > 0){
-                    appcan.window.open({
-                        name:"page_info",
-                        dataType:0,
-                        data:"../page/info.html?actId="+$.query.get("actId")
-                    });
-               }
+                saveAct("preview");
             })
             
             // 发布
             $("#nextStep").click(function(){
-                var result = saveAct();
-                if(result.status > 0){
-                    appcan.window.open({
-                        name:"index",
-                        dataType:0,
-                        data:"../index.html"
-                    });
-               }
+                saveAct("nextStep");
             })
             
             // 异步保存当前页面信息
-            function saveAct(){
+            function saveAct(obj){
                 // 数据校验
                 if($.trim($("#cardId").val()).length == 0){
                     appcan.window.alert({
@@ -382,11 +369,11 @@
                 
                 var baseParam = {
                     userId : appcan.locStorage.getVal("userId"),
-                    id : $.query.get("actId")
+                    id : actId
                 };
                 var param = $("#fabuForm").serializeJson(baseParam);
                 var result = null;
-                $.ajax({
+                appcan.ajax({
                    type:"post",
                    async:false,       
                    url:host+"/publicAct.json",
@@ -395,9 +382,17 @@
                    contentType: "application/json",
                    success : function(dataResult) {
                         result = dataResult;
+                        if(obj == "preview"){
+                           if(result.status > 0){
+                                openUrl("../page/info.html?actId="+actId,"page_info");
+                           }
+                        }else{
+                           if(result.status > 0){
+                                openUrl("../index.html","index");
+                           }
+                       }
                    }
                })
-               return result;
             }
         })
     

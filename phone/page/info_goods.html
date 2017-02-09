@@ -342,9 +342,9 @@
 		</header>
 		<div id="infoGoods"></div>
 		<script>
-            var actId = $.query.get("actId")? $.query.get("actId") : 0;
+            var actId = getVal("actId");
             $(function(){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     url:host+"/getActItem.json?actId="+actId,
                     data:'',

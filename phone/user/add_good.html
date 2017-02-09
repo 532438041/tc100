@@ -196,15 +196,15 @@
 		</footer>
 <script>
 
-var itemId = $.query.get("itemId");
-var actId = $.query.get("actId");
-var cateId = $.query.get("cateId");
-var type = $.query.get("type");
+var itemId = getVal("itemId");
+var actId = getVal("actId");
+var cateId = getVal("cateId");
+var type = getVal("type");
 
 $(document).ready(function(){  
     if(!!itemId){
         // 绑定数据
-        $.ajax({
+        appcan.ajax({
            type:"get",
            url:host+"/getItem.json?itemId="+itemId,
            dataType:"json",
@@ -270,18 +270,14 @@ function saveItem(){
     };
     var param = $("#goodForm").serializeJson(baseParam);
     var result = null;
-    $.ajax({
+    appcan.ajax({
        type:"post",
        url:host+"/saveItem.json",
        data:param,
        dataType:"json",
        contentType: "application/json",
        success : function(dataResult) {
-            appcan.window.open({
-                name:"back_good_edit",
-                dataType:0,
-                data:"good_edit.html?type="+type+"&actId="+actId
-            });
+           openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
        }
    })
 }

@@ -374,10 +374,10 @@
 		</footer>
         <script>
             $(function(){
-                var msgId = $.query.get("msgId")? $.query.get("msgId") : "";
+                var msgId = getVal("msgId");
                 if(msgId!=""){
                     //问题详情
-                    $.ajax({
+                    appcan.ajax({
                         type:"post",
                         async:false,       
                         url:host+"/getMsg.json?msgId="+msgId,
@@ -405,7 +405,7 @@
                         }
                     });
                     //回复列表
-                    $.ajax({
+                    appcan.ajax({
                         type:"post",
                         async:false,       
                         url:host+"/getMsgReview.json?msgId="+msgId,

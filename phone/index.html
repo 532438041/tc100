@@ -370,9 +370,9 @@
             </nav>
         </section>
         <section class="same_city_buy">
-            <h2>同城购<span class="mui-icon mui-icon-arrowright" onclick="openUrl('page/samecityBuyList.html');"></span></h2>
+            <h2>同城购<span class="mui-icon mui-icon-arrowright" onclick="openUrl('page/samecityBuyList.html','samecityBuyList');"></span></h2>
             <p>我也想出现在这里？
-                <a onclick="openUrl('user/moban_shengcheng.html?type=B2');">免费发布</a>
+                <a onclick="openUrl('user/moban_shengcheng.html?type=B2','moban_shengcheng');">免费发布</a>
             </p>
             <div>
                 <ul class="mui-table-view" id="activeB2"></ul>
@@ -383,7 +383,7 @@
                 <div class="search">
                 <input value="" placeholder="发布同城需求" type="text" /><img src="img/fabu.png" />
                 </div>
-                <span class="mui-icon mui-icon-arrowright" onclick="openUrl('page/messageList.html');"></span></h2>
+                <span class="mui-icon mui-icon-arrowright" onclick="openUrl('page/messageList.html','messageList');"></span></h2>
             <p>
                 <a></a>
             </p>
@@ -393,15 +393,15 @@
         </section>
         <footer>
             <nav class="mui-bar mui-bar-tab">
-                <a class="action" href="">
+                <a class="action" href="javascript:;" id="tcIndex">
                     <img src="img/shouye.png" />
                     <span class="mui-tab-label">首页</span>
                 </a>
-                <a href="javascript:;" onclick="openUrl('user/moban_shengcheng.html?type=A1','moban_shengcheng');">
+                <a href="javascript:;" id="myfabu">
                     <img src="img/fabu2.png" />
                     <span class="mui-tab-label">发布</span>
                 </a>
-                <a href="javacript:;" onclick="openUrl('user/info.html','myInfo');">
+                <a href="javascript:;" id="myInfo">
                     <img src="img/mine.png" />
                     <span class="mui-tab-label">我的</span>
                 </a>

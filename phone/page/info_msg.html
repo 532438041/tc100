@@ -360,9 +360,9 @@
 			<div class="mui-bar mui-bar-tab"><a class="mui-icon mui-icon-plus"></a><input type="text" value="" /><input type="submit" value="回复" /></div>
 		</footer>
         <script>
-            var msgId = $.query.get("msgId")? $.query.get("msgId") : 0;
+            var msgId = getVal("msgId");
             $(function(){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     url:host+"/getMsg.json?msgId="+msgId,
                     data:'',

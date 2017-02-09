@@ -11,8 +11,8 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://localhost";
-var host = "http://localhost:8001/tc100";
+var hostIp = "http://192.168.1.104";
+var host = "http://192.168.1.104:8001/tc100";
 
 /**
  * 全局正则
@@ -93,11 +93,33 @@ function serializePageJson(pageNum, pageSize, baseParam) {
  * @param {Object} urlStr
  */
 function openUrl(urlStr,urlName){
+    // 将参数截取 放入到locStorage
+    if (urlStr.indexOf("?") != -1) {   
+      var str = urlStr.substr(urlStr.indexOf("?")+1);
+      var strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {   
+          var temp = strs[i].split("=");
+          setVal(temp[0],temp[1]);
+      }   
+    }
+    
     appcan.window.open({
         name:urlName,
         dataType:0,
         data:urlStr
     });
+}
+
+// 页面跳转传参
+function setVal(key,value){
+    appcan.locStorage.setVal(key,value);
+}
+
+// 页面跳转取参
+function getVal(key){
+    var value = appcan.locStorage.getVal(key);
+    appcan.locStorage.remove(key); // 取了值后 清除掉
+    return value;
 }
 
 /**
@@ -125,10 +147,18 @@ $(function(){
      * 页面底部菜单点击事件 不包含首页
      */
     $("#myInfo").click(function(){
-        openUrl('../user/info.html','myInfo');
+        if(window.location.href.indexOf("index") != -1){
+            openUrl('user/info.html','myInfo');
+        }else{
+            openUrl('../user/info.html','myInfo');
+        }
     })
     $("#myfabu").click(function(){
-        openUrl('../user/moban_shengcheng.html?type=A1','moban_shengcheng');
+        if(window.location.href.indexOf("index") != -1){
+            openUrl('user/moban_shengcheng.html?type=A1','moban_shengcheng');
+        }else{
+            openUrl('../user/moban_shengcheng.html?type=A1','moban_shengcheng');
+        }
     })
     $("#tcIndex").click(function(){
         openUrl('../index.html','index');

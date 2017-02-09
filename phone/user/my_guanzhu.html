@@ -362,7 +362,7 @@
         <script>
             var userId = appcan.locStorage.getVal("userId");
             $(function(){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     async:false,       
                     url:host+"/getFavList.json?userId=1",
@@ -398,7 +398,7 @@
             })
             //取消关注
             function cancel(actId,favId){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     url:host+"/operateAct.json?actId="+actId+"&logType=7&userId="+userId+"&favId="+favId,
                     data:'',

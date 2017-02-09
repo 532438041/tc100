@@ -204,45 +204,46 @@ $(document).ready(function(){
   	function fileSelect(id1,id2) {
         $(id2).click(); 
 		 $(function() {
-		 $(id2).one("change",function(e) {
-         var file = e.target.files[0];
-            console.log(file.size/1024);
-            if(file.size/1024 > 1024){
-                alert("请选择1M大小 以下的图片");
-            }else{
-                preview1(file);
-            }
-		 })
+    		 $(id2).one("change",function(e) {
+                 var file = e.target.files[0];
+                    if(file.size/1024 > 1024){
+                        alert("请选择1M大小 以下的图片");
+                    }else{
+                        preview1(file);
+                    }
+    		 })
 		 })
 		function preview1(file) {
-		 var img = new Image();
-		 var url = img.src = URL.createObjectURL(file);
-		 var $img = $(img);
+		      appcan.ajax({
+                   type:"post",    
+                   url:host+"/image/uploadImg.json",
+                   data:JSON.stringify({file:$("#upload0").val(),userId:appcan.locStorage.getVal("userId")}),
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                        
+                   }
+               })
+    		 var img = new Image();
+    		 var url = img.src = URL.createObjectURL(file);
+    		 var $img = $(img);
+    		 
+    		 img.onload = function() {
+        		 URL.revokeObjectURL(url);
+        		 $(id1).empty();
+        		 $(id1).append($img);
+    		 }
+		 }
 		 
-		 img.onload = function() {
-		 URL.revokeObjectURL(url);
-		 $(id1).empty();
-		 $(id1).append($img);
-		 
-		 }
-		 }
-		 function preview2(file) {
-		 var reader = new FileReader()
-		 reader.onload = function(e) {
-		 var $img = $('<img>').attr("src", e.target.result);
-		 $(id1).empty().append($img);
-		 }
-		 reader.readAsDataURL(file)
-		 }
 	};
 	
 	//名片添加、编辑
     var msg = "添加成功！";
     var baseParam = {'picUrl':'../img/touxiang.png','userId':appcan.locStorage.getVal("userId")}
-	var cardId = $.query.get("cardId")? $.query.get("cardId") : "";
+	var cardId = getVal("cardId");
     if(cardId!=""){
         //获取修改对象
-        $.ajax({
+        appcan.ajax({
            type:"post",
            async:false,       
            url:host+"/getCard.json?cardId="+cardId,
@@ -269,7 +270,7 @@ $(document).ready(function(){
     $("#addCard").click(function(){
         //名片添加
         var param = $("#upchuan0").serializeJson(baseParam);
-        $.ajax({
+        appcan.ajax({
            type:"post",
            async:false,       
            url:host+"/saveCard.json",

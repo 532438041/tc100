@@ -410,7 +410,7 @@
         	});
         	var baseParam2 = {'actType':'B2'}
                 var param2 = serializePageJson(1,20,baseParam2);
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     url:host+"/getActiveList.json",
                     data:param2,

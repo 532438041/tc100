@@ -435,7 +435,7 @@
         <script>
             $(function(){
                 //提问数量
-                $.ajax({
+                appcan.ajax({
                    type:"post",
                    async:false,       
                    url:host+"/getMyMsgCount.json?userId="+appcan.locStorage.getVal("userId"),

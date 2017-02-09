@@ -163,7 +163,7 @@
 			$(document).ready(function(){
 			     var isChangeId = "";
 			    //添加
-    		    $.ajax({
+    		    appcan.ajax({
                     type:"post",
                     async:false,       
                     url:host+"/getCardList.json?userId=1",
@@ -199,7 +199,7 @@
                 $("#del").click(function(){
                     if(isChangeId!="" && confirm('你确定要删除?')){
                         //名片删除
-                        $.ajax({
+                        appcan.ajax({
                            type:"post",
                            async:false,       
                            url:host+"/delCard.json?cardId="+isChangeId,

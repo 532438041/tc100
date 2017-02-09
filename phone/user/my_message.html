@@ -399,7 +399,7 @@
                totalCount(2);
             })
             function totalCount(msgType){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     async:false,       
                     url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId")+"&msgType="+msgType+"&state=1",

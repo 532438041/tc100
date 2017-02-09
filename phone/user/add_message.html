@@ -203,7 +203,7 @@
             // JavaScript Document
             $(document).ready(function(){
                 //最后一发布信息时间
-                  $.ajax({
+                  appcan.ajax({
                        type:"post",
                        async:false,       
                        url:host+"/getLastMsgTime.json?userId=1",
@@ -226,7 +226,7 @@
                        }
                    })
                    //获取名片信息
-                  $.ajax({
+                  appcan.ajax({
                        type:"post",
                        async:false,       
                        url:host+"/getCard.json?cardId=1",
@@ -252,7 +252,7 @@
                         var baseParam = {'cardId':"1","userId":"1"}
                         var param = $("#upchuan0").serializeJson(baseParam);
                         console.log(param);
-                        $.ajax({
+                        appcan.ajax({
                            type:"post",
                            async:false,       
                            url:host+"/saveMsg.json",

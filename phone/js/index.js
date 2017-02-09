@@ -7,7 +7,7 @@
         $("#ipcity").html(remote_ip_info.city);
     });
     //消息个数
-    $.ajax({
+    appcan.ajax({
         type:"get",  
         url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId")+"&state=1",
         dataType:"json",
@@ -19,7 +19,7 @@
     //首页轮播
     var baseParam1 = {'actType':'A1'}
     var param1 = serializePageJson(1,5,baseParam1);
-    $.ajax({
+    appcan.ajax({
         type:"post",
         url:host+"/getActiveList.json",
         data:param1,
@@ -51,7 +51,7 @@
     //同城购
     var baseParam2 = {'actType':'B2'}
     var param2 = serializePageJson(1,5,baseParam2);
-    $.ajax({
+    appcan.ajax({
         type:"post",
         url:host+"/getActiveList.json",
         data:param2,
@@ -73,7 +73,7 @@
         }
     })
     //同城搜
-    $.ajax({
+    appcan.ajax({
         type:"post",
         url:host+"/getMsgList.json",
         data:serializePageJson(1,5),

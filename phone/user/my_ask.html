@@ -363,7 +363,7 @@
 		</footer>
         <script>
             $(function(){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     async:false,       
                     url:host+"/getMyMsgList.json?userId="+appcan.locStorage.getVal("userId"),

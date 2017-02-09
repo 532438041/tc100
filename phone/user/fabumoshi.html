@@ -390,7 +390,7 @@
 			</nav>
 		</footer>
         <script>
-            var type = $.query.get("type")? $.query.get("type") : "";
+            var type = getVal("type");
             function fabu(param){
                 if(type!=""){
                     type = type+param;

@@ -334,7 +334,7 @@
              */
             // type值范围：A1（轮播） B2（同城购活动）直接进入模板生成 下一步到模板使用页面
             // C D E F为频道活动 进入发布模式选择页面 然后下一步到模板生成页面 若为C D 则下一步到商品详情 其他的到模板使用页面
-            var type = $.query.get("type") || "0";
+            var type = getVal("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
                 
@@ -431,39 +431,16 @@
                 
                 // 预览
                 $("#preview").click(function(){
-                    var result = saveAct();
-                    if(result.status > 0){
-                        appcan.window.open({
-                            name:"page_info",
-                            dataType:0,
-                            data:"../page/info.html?actId="+result.data
-                        });
-                   }
+                    saveAct("preview");
                 })
                 
                 // 下一步
                 $("#nextStep").click(function(){
-                    var result = saveAct();
-                    if(result.status > 0){
-                        // 只有超市 婴育
-                        if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
-                            appcan.window.open({
-                                name:"good_edit",
-                                dataType:0,
-                                data:"good_edit.html?type="+type+"&actId="+result.data
-                            });
-                        }else{
-                            appcan.window.open({
-                                name:"moban_shiyong",
-                                dataType:0,
-                                data:"moban_shiyong.html?type="+type+"&actId="+result.data
-                            });
-                        }
-                   }
+                    saveAct("nextStep");
                 })
                 
                 // 异步保存当前页面信息
-                function saveAct(){
+                function saveAct(obj){
                     // 数据校验
                     if($.trim($("#code").val()).length == 0){
                         appcan.window.alert({
@@ -495,7 +472,7 @@
                     };
                     var param = $("#actForm").serializeJson(baseParam);
                     var result = null;
-                    $.ajax({
+                    appcan.ajax({
                        type:"post",
                        async:false,       
                        url:host+"/saveAct.json",
@@ -504,9 +481,22 @@
                        contentType: "application/json",
                        success : function(dataResult) {
                             result = dataResult;
+                            if(obj == "preview"){
+                               if(result.status > 0){
+                                    openUrl("../page/info.html?actId="+result.data,"actInfo");
+                               }
+                            }else{
+                               if(result.status > 0){
+                                    // 只有超市 婴育
+                                    if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
+                                        openUrl("good_edit.html?type="+type+"&actId="+result.data,"good_edit");
+                                    }else{
+                                        openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
+                                    }
+                               }
+                           }
                        }
                    })
-                   return result;
                 }
             })
             
@@ -524,7 +514,7 @@
                         userId : appcan.locStorage.getVal("userId"),
                         files : info.detailedImageInfo
                     };
-                    $.ajax({
+                    appcan.ajax({
                        type:"post",      
                        url:host+"/image/uploadImg.json",
                        data:param,

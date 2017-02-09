@@ -369,7 +369,7 @@
         <script>
         $(document).ready(function(){
             //同城搜
-            $.ajax({
+            appcan.ajax({
                 type:"post",
                 url:host+"/getMsgList.json",
                 data:serializePageJson(1,20),

@@ -377,10 +377,10 @@
 			</div>
 		</section>
 		<script>
-		    var actId = $.query.get("actId")? $.query.get("actId") : 0;
-		    var cateId = $.query.get("cateId")? $.query.get("cateId") : 0;
+		    var actId = getVal("actId");
+		    var cateId = getVal("cateId");
             $(function(){
-                $.ajax({
+                appcan.ajax({
                     type:"post",
                     url:host+"/getActItem.json?actId="+actId+"&cateId="+cateId,
                     data:'',
