@@ -340,86 +340,7 @@
 			<h1>超市详情</h1>
 			<a class="xiaoxi">名片</a>
 		</header>
-		<section class="shucailei">
-			<h2>蔬菜类<a>更多</a></h2>
-			<div>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</section>
-		<section class="shucailei">
-			<h2>分类名称<a>更多</a></h2>
-			<div>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="mui-media-object mui-pull-left" src="img/img_3.png">
-							<div class="mui-media-body">
-								品名：蔬菜
-								<p><i>特价：2元/500g</i>原价：<s>5元/500g</s></p>
-								<p>时间：9月20-9月28日</p>
-								<p class='mui-ellipsis'>说明：产品说明说明产品说明说明产品说明说明</p>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</section>
+		<div id="infoGoods"></div>
 		<script>
             var actId = $.query.get("actId")? $.query.get("actId") : 0;
             $(function(){
@@ -430,10 +351,33 @@
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        var data = dataResult;
+                        var dataList = dataResult.data;
                         console.log(dataResult);
-                        var actStr = "";
-                        $("#infoGoods").html(actStr);
+                        var itemStr = "";
+                        if(dataList.length>0){
+                            for(var i=0;i<dataList.length;i++){
+                                var itemList = dataList[i].itemList;
+                                itemStr +='<section class="shucailei">';
+                                itemStr +='<h2>'+dataList[i].cateName+'<a href="javascript:;" onclick="openUrl(\'goodsList.html?actId='+actId+'&cateId='+dataList[i].cateId+'\',\'goodsList\')">更多</a></h2>';
+                                itemStr +='<div><ul class="mui-table-view">'
+                                for(var j=0;j<itemList.length;j++){
+                                    itemStr +='<li class="mui-table-view-cell mui-media">';
+                                    itemStr +='<a href="javascript:;">';
+                                    itemStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+itemList[i].itemPic+'">';
+                                    itemStr +='<div class="mui-media-body">';
+                                    itemStr +='品名：'+itemList[j].itemName;
+                                    itemStr +='<p><i>特价：'+itemList[i].spePrice+'元/'+itemList[i].speUnit+'g</i>原价：<s>'+itemList[i].listPrice+'元/'+itemList[i].listUnit+'g</s></p>';
+                                    itemStr +='<p>时间：'+itemList[i].startTime+'-'+itemList[i].endTime+'</p>';
+                                    itemStr +='<p class="mui-ellipsis">说明：'+itemList[i].remark+'</p>';
+                                    itemStr +='</div>';
+                                    itemStr +='</a>';
+                                    itemStr +='</li>';
+                                }
+                                itemStr +='</ul></div>';
+                                itemStr +='</section>';
+                            }
+                        }
+                        $("#infoGoods").html(itemStr);
                     }
                 })
             });

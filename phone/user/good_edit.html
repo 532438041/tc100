@@ -454,8 +454,8 @@ $(function(){
            var str = '';
            for (var i=0; i < data.length; i++) {
              str+='<section class="shucailei"><h2><span class="kaihe mui-icon mui-icon-arrowdown"></span>'
-             +data[i].cateName+'<a href="javascript:;" onclick="addGood('
-             +data[i].cateId+');">添加商品</a></h2>'
+             +data[i].cateName+'<a href="javascript:;" onclick="addGood(\''
+             +data[i].cateId+'\');">添加商品</a></h2>'
              +'<div><ul class="mui-table-view">';
              var itemList = data[i].itemList;
              for (var j=0; j < itemList.length; j++) {

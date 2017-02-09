@@ -379,7 +379,7 @@
                         if(dataList.length>0){
                             for(var i=0;i<dataList.length;i++){
                                 actStr += '<li class="mui-table-view-cell mui-media">';
-                                actStr += '<a href="info_goods.html?actId='+dataList[i].id+'">';
+                                actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')">';
                                 actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
                                 actStr += '<div class="mui-media-body">'+dataList[i].actName;
                                 actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
