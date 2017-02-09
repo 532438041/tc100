@@ -331,13 +331,12 @@
 	<body>
 		<header>
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
-			<h1>超市详情</h1>
+			<h1>活动商品列表</h1>
 			<a class="xiaoxi">名片</a>
 		</header>
 		
-		<section class="shucailei">
+		<section class="shucailei" id="goodsList">
 			<h2>蔬菜类</h2>
-			
 			<div>
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell mui-media">
@@ -377,21 +376,46 @@
 			</div>
 		</section>
 		<script>
-		    var actId = $.query.get("actId")? $.query.get("actId") : 0;
-		    var cateId = $.query.get("cateId")? $.query.get("cateId") : 0;
+		    var actId = $.query.get("actId")? $.query.get("actId") : '0';
+		    var cateId = $.query.get("cateId")? $.query.get("cateId") : '0';
+		    console.log(actId);
+		    console.log(cateId);
             $(function(){
                 $.ajax({
                     type:"post",
-                    url:host+"/getActItem.json?actId="+actId+"&cateId="+cateId,
+                    url:host+"/getActItem.json?actId="+actId+"&cateId="+cateId+"&limit=-1",
                     data:'',
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
                         console.log(dataResult);
+                        var dataList = dataResult.data;
+                        var itemStr = "";
+                        if(dataList.length>0){
+                            for(var i=0;i<dataList.length;i++){
+                                var itemList = dataList[i].itemList;
+                                itemStr +='<h2>'+dataList[i].cateName+'</h2>';
+                                itemStr +='<div><ul class="mui-table-view">'
+                                for(var j=0;j<itemList.length;j++){
+                                    itemStr +='<li class="mui-table-view-cell mui-media">';
+                                    itemStr +='<a href="javascript:;">';
+                                    itemStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+itemList[i].itemPic+'">';
+                                    itemStr +='<div class="mui-media-body">';
+                                    itemStr +='品名：'+itemList[j].itemName;
+                                    itemStr +='<p><i>特价：'+itemList[i].spePrice+'元/'+itemList[i].speUnit+'g</i>原价：<s>'+itemList[i].listPrice+'元/'+itemList[i].listUnit+'g</s></p>';
+                                    itemStr +='<p>时间：'+itemList[i].startTime+'-'+itemList[i].endTime+'</p>';
+                                    itemStr +='<p class="mui-ellipsis">说明：'+itemList[i].remark+'</p>';
+                                    itemStr +='</div>';
+                                    itemStr +='</a>';
+                                    itemStr +='</li>';
+                                }
+                                itemStr +='</ul></div>';
+                            }
+                        }
+                        $("#goodsList").html(itemStr);
                     }
                 })
             });
 		</script>
 	</body>
-
 </html>

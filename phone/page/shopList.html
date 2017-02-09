@@ -359,7 +359,7 @@
                         var actStr = "";
                         console.log(dataList);
                         for(var i=0;i<dataList.length;i++){
-                            actStr += '<a href="info_goods.html?actId='+dataList[i].id+'"><img src="'+hostIp+dataList[i].mainPic+'" /></a>';
+                            actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" /></a>';
                         }
                         $("#actC1").html(actStr);
                     }

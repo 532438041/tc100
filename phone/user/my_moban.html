@@ -156,39 +156,22 @@
 			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
 			<h1>我的模版</h1>
 		</header>
-		<section class="jieshou">
+		<section class="jieshou"  id="myReceive">
 			<div>
 				<h3>已接受的模版</h3>
 				<a>模版使用</a>
 				<a>预览</a>
 			</div>
-			<div>
-				<p>用户<i>小溪</i>于2016.9.29向你推送了一个模板</p>
-				<span class="mui-icon mui-icon-checkmarkempty"></span>
-			</div>
-			<div>
-				<p>用户<i>小溪</i>于2016.9.29向你推送了一个模板</p>
-				<span class="mui-icon mui-icon-checkmarkempty"></span>
-			</div>
 		</section>
 		
-		<section class="shengcheng">
+		<section class="shengcheng" id="myMoban">
 			<div>
 				<h3>我生成的模版</h3>
 				<a href="moban_shiyong.html">模版使用</a>
 				<a>推送</a>
 				<a>预览</a>
 			</div>
-			<div>
-				<p><i>模板一</i>   2016.9.29  10：00  设计</p>
-				<span class="mui-icon mui-icon-checkmarkempty"></span>
-			</div>
-			<div>
-				<p><i>模板二</i>   2016.9.29  10：00  设计</p>
-				<span class="mui-icon mui-icon-checkmarkempty"></span>
-			</div>
 		</section>
-
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="javascript:;" id="tcIndex">
@@ -215,7 +198,52 @@
 				$(this).find("span").show();
 			}
 		});
-		
+		//推荐的模板
+        $.ajax({
+            type:"post",
+            async:false,       
+            url:host+"/getReceiveAct.json?userId="+appcan.locStorage.getVal("userId"),
+            data:"",
+            dataType:"json",
+            contentType: "application/json",
+            success : function(dataResult) {
+                console.log(dataResult);
+                var dataList = dataResult.data;
+                var mymobanstr = ""; 
+                if(dataList.length>0){
+                    for(var i=0;i<dataList.length;i++){
+                        mymobanstr +='<div>';
+                        mymobanstr +='<p>用户<i>小溪</i>于2016.9.29向你推送了一个模板</p>';
+                        mymobanstr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
+                        mymobanstr +='</div>';
+                    }
+                }
+                $("#myReceive").append(mymobanstr);
+            }
+        })
+		//我生成的模板
+        $.ajax({
+            type:"post",
+            async:false,       
+            url:host+"/getMyActList.json?userId="+appcan.locStorage.getVal("userId"),
+            data:"",
+            dataType:"json",
+            contentType: "application/json",
+            success : function(dataResult) {
+                console.log(dataResult);
+                var dataList = dataResult.data;
+                if(dataList.length>0){
+                    var mymobanstr = ""; 
+                    for(var i=0;i<dataList.length;i++){
+                        mymobanstr +='<div>';
+                        mymobanstr +='<p><i>'+dataList[i].actName+'</i>   '+dataList[i].createTime+'  设计</p>';
+                        mymobanstr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
+                        mymobanstr +='</div>';
+                    }
+                    $("#myMoban").append(mymobanstr);
+                }
+            }
+        })
 	});
 </script>
 	</body>
