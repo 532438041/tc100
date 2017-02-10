@@ -120,7 +120,7 @@
 		from tc_item_cate
 		where act_id = #{actId}
 		<if test="cateId !=null and cateId !=''">
-			and cate_id = cateId
+			and id = #{cateId}
 		</if>
 	</select>
 </mapper>

@@ -11,8 +11,8 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://192.168.1.104";
-var host = "http://192.168.1.104:8001/tc100";
+var hostIp = "http://121.42.181.222";
+var host = "http://121.42.181.222:8090/tc100";
 
 /**
  * 全局正则
@@ -161,6 +161,10 @@ $(function(){
         }
     })
     $("#tcIndex").click(function(){
-        openUrl('../index.html','index');
+        if(window.location.href.indexOf("index") != -1){
+            openUrl('index.html','index');
+        }else{
+            openUrl('../index.html','index');
+        }
     })
 })
