@@ -2,6 +2,10 @@ package com.java.entity;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.java.servlet.JsonDateSerializer;
+
 public class UserCard {
     private String id;
 
@@ -46,7 +50,7 @@ public class UserCard {
     }
 
     public String getPicUrl() {
-        return picUrl;
+        return picUrl == null ? "" : picUrl;
     }
 
     public void setPicUrl(String picUrl) {
@@ -54,7 +58,7 @@ public class UserCard {
     }
 
     public String getCardName() {
-        return cardName;
+        return cardName == null ? "" : cardName;
     }
 
     public void setCardName(String cardName) {
@@ -62,7 +66,7 @@ public class UserCard {
     }
 
     public String getAddress() {
-        return address;
+        return address == null ? "" : address;
     }
 
     public void setAddress(String address) {
@@ -109,6 +113,7 @@ public class UserCard {
         this.createBy = createBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getCreateTime() {
         return createTime;
     }
@@ -125,6 +130,7 @@ public class UserCard {
         this.updateBy = updateBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getUpdateTime() {
         return updateTime;
     }

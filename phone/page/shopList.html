@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -49,58 +50,6 @@
             
             p {
                 margin: 0;
-            }
-            
-            header {
-                background: #ff3366;
-                height: 3em;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 2em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 2em;
-            }
-            
-            .dingwei img {
-                position: absolute;
-                top: 1em;
-                left: 0.3125em;
-            }
-            
-            .dingwei span {
-                display: block;
-                line-height: 1.5em;
-                font-size: 2em;
-                color: #fff;
-            }
-            
-            .xiaoxi {
-                color: #fff;
-                font-size: 1em;
-                text-align: right;
-                line-height: 1.5em;
-                position: absolute;
-                top: 0.75em;
-                right: 0.3125em;
-                height: 1.5em;
-                width: 3.875em;
-                background: url(img/fabu.png) no-repeat;
-                background-size: auto 100%;
             }
             
             .lanmu {
@@ -268,48 +217,22 @@
                 right: 0.3125em;
             }
             .quyu{ position: relative;}
-            .quyu select{ background: none; margin-bottom: 0; }
+            .quyu select{ background: none; margin-bottom: 0; font-size: 0.8em; line-height: 1.5em; }
+            option{ font-size: 0.6em;}
             .xiangxia{ position: absolute; top: 0.625em; right: 0.625em; z-index: -100; }
             .tu_2 img{
                 width: 100%;
                 padding: 0.625em 1em;
                 background: #fff;
             }
-            footer nav a{
-                    display: table-cell;
-                    overflow: hidden;
-                    width: 1%;
-                    height: 3.125em;
-                    text-align: center;
-                    vertical-align: middle;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #929292;
-            }
-            
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
-            
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
-            }
         </style>
 	</head>
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<a class=""><span class="mui-icon mui-icon-back"></span></a>
 			<h1>超市列表</h1>
-			<a class="xiaoxi"  href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a>
+			<a class="xiaoxi3"  href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a>
 		</header>
 		<section class="quyu">
 			<select id="quyu" name="quyu">

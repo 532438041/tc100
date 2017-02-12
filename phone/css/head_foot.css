@@ -1,0 +1,197 @@
+header {
+                background: #ff3366;
+                height: 3em;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            header h1 {
+                font-size: 1.2em;
+                text-align: center;
+                color: #fff;
+                line-height: 2.5em;
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            header a {
+                position: absolute;
+                height: 100%;
+            }
+            
+            header a img {
+                height: 1em;
+            }
+            header .mui-icon{
+                font-size: 2em;
+                line-height: 1.5em;
+                color: #fff;
+            }
+            
+            .dingwei img {
+                position: absolute;
+                top: 1em;
+                left: 1em;
+            }
+            
+            .dingwei span {
+                display: block;
+                line-height: 3em;
+                font-size: 1em;
+                color: #fff;
+                text-indent: 2em;
+            }
+            
+            .xiaoxi {
+                color: #ff3366;
+                font-size: 0.8em;
+                line-height: 1.6em;
+                text-align: center;
+                position: absolute;
+                top: 1em;
+                right: 0.75em;
+                height: 1.8em;
+                width: 2em;
+                background: url(../img/xiaoxi.png) no-repeat;
+                background-size: 100% 100%;
+            }
+            .xiaoxi2 {
+                color: #fff;
+                font-size: 1em;
+                line-height: 1.5em;
+                position: absolute;
+                top: 0.75em;
+                right: 0.75em;
+                height: 1.5em;
+                width: 4em;
+                text-indent: 1.5em;
+                background: url(../img/card.png) no-repeat;
+                /* background-color: white; */
+                background-size: auto 100%;
+            }
+            .xiaoxi3 {
+                color: #fff;
+                font-size: 1em;
+                line-height: 1.5em;
+                position: absolute;
+                top: 0.75em;
+                right: 0.25em;
+                height: 1.5em;
+                width: 4em;
+                text-indent: 1.5em;
+                background: url(../img/fabu.png) no-repeat;
+                /* background-color: white; */
+                background-size: auto 100%;
+            }
+            .xiaoxi4 {
+                color: #fff;
+                font-size: 0.8em;
+                line-height: 1.5em;
+                position: absolute;
+                top: 1.4em;
+                right: 0.25em;
+                height: 1.5em;
+                width: 6em;
+                text-indent: 1.5em;
+                background: url(../img/fabu.png) no-repeat;
+                /* background-color: white; */
+                background-size: auto 100%;
+            }
+            .xiaoxi5 {
+                color: #fff;
+                font-size: 0.8em;
+                line-height: 1.5em;
+                position: absolute;
+                top: 1.4em;
+                right: 0.25em;
+                height: 1.5em;
+                width: 6em;
+                text-indent: 1.5em;
+                background: url(../img/pen.png) no-repeat;
+                /* background-color: white; */
+                background-size: auto 100%;
+            }
+            .xiaoxi6 {
+                color: #fff;
+                font-size: 0.8em;
+                line-height: 1.5em;
+                position: absolute;
+                top: 1.4em;
+                right: 0.25em;
+                height: 1.5em;
+                width: 6em;
+                text-indent: 1.5em;
+                background: url(../img/pen2.png) no-repeat;
+                /* background-color: white; */
+                background-size: auto 100%;
+            }
+            .just_word{
+                color: #fff;
+                font-size: 0.8em;
+                line-height: 1.6em;
+                text-align: center;
+                position: absolute;
+                top: 1em;
+                right: 0.75em;
+                height: 1.8em;
+            }
+            .header2 {
+                background: #ff3366;
+                height: 6.75em;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .header2 h1 {
+                font-size: 1.5em;
+                text-align: center;
+                color: #fff;
+                line-height: 3.875em;
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            
+            .header2 a img {
+                height: 70%;
+            }
+            .header2 .xiaoxi{
+                background: none;
+            }
+            header.header2 .xiaoxi{
+                top: 0;
+                font-size: 0.8em;
+            }
+            header.header2 .xiaoxi .mui-icon{
+                
+            }
+            
+            footer nav a{
+                    display: table-cell;
+                    overflow: hidden;
+                    width: 1%;
+                    height: 3.125em;
+                    text-align: center;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #929292;
+            }
+            
+            footer nav a img {
+                height: 1.2em;
+                display: block;
+                margin: 0 auto;
+                margin-top: 0.3125em;
+                margin-bottom: 0.1em;
+            }
+            
+            footer nav span {
+                color: #020202;
+                font-size: 0.6em;
+            }
+            
+            footer nav .action span {
+                color: #ff3366;
+            }
+            

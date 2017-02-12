@@ -3,153 +3,161 @@ package com.java.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.java.servlet.JsonDateSerializer;
+
 public class ActiveItem {
-    private String id;
+	private String id;
 
-    private String itemPic;
+	private String itemPic;
 
-    private BigDecimal listPrice;
+	private BigDecimal listPrice;
 
-    private String listUnit;
+	private String listUnit;
 
-    private BigDecimal spePrice;
+	private BigDecimal spePrice;
 
-    private String speUnit;
+	private String speUnit;
 
-    private Date startTime;
+	private Date startTime;
 
-    private Date endTime;
+	private Date endTime;
 
-    private String remark;
+	private String remark;
 
-    private String actId;
-    
-    private String itemName;
-    
-    private String cateId;
+	private String actId;
 
-    private String createBy;
+	private String itemName;
 
-    private Date createTime;
+	private String cateId;
 
-    private String updateBy;
+	private String createBy;
 
-    private Date updateTime;
+	private Date createTime;
 
-    public String getId() {
-        return id;
-    }
+	private String updateBy;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	private Date updateTime;
 
-    public String getItemPic() {
-        return itemPic;
-    }
+	public String getId() {
+		return id == null ? "" : id;
+	}
 
-    public void setItemPic(String itemPic) {
-        this.itemPic = itemPic;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public BigDecimal getListPrice() {
-        return listPrice;
-    }
+	public String getItemPic() {
+		return itemPic == null ? "" : itemPic;
+	}
 
-    public void setListPrice(BigDecimal listPrice) {
-        this.listPrice = listPrice;
-    }
+	public void setItemPic(String itemPic) {
+		this.itemPic = itemPic;
+	}
 
-    public String getListUnit() {
-        return listUnit;
-    }
+	public BigDecimal getListPrice() {
+		return listPrice;
+	}
 
-    public void setListUnit(String listUnit) {
-        this.listUnit = listUnit;
-    }
+	public void setListPrice(BigDecimal listPrice) {
+		this.listPrice = listPrice;
+	}
 
-    public BigDecimal getSpePrice() {
-        return spePrice;
-    }
+	public String getListUnit() {
+		return listUnit == null ? "" : listUnit;
+	}
 
-    public void setSpePrice(BigDecimal spePrice) {
-        this.spePrice = spePrice;
-    }
+	public void setListUnit(String listUnit) {
+		this.listUnit = listUnit;
+	}
 
-    public String getSpeUnit() {
-        return speUnit;
-    }
+	public BigDecimal getSpePrice() {
+		return spePrice;
+	}
 
-    public void setSpeUnit(String speUnit) {
-        this.speUnit = speUnit;
-    }
+	public void setSpePrice(BigDecimal spePrice) {
+		this.spePrice = spePrice;
+	}
 
-    public Date getStartTime() {
-        return startTime;
-    }
+	public String getSpeUnit() {
+		return speUnit == null ? "" : speUnit;
+	}
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
+	public void setSpeUnit(String speUnit) {
+		this.speUnit = speUnit;
+	}
 
-    public Date getEndTime() {
-        return endTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getStartTime() {
+		return startTime;
+	}
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getEndTime() {
+		return endTime;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
 
-    public String getActId() {
-        return actId;
-    }
+	public String getRemark() {
+		return remark == null ? "" : remark;
+	}
 
-    public void setActId(String actId) {
-        this.actId = actId;
-    }
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
-    public String getCreateBy() {
-        return createBy;
-    }
+	public String getActId() {
+		return actId == null ? "" : actId;
+	}
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
+	public void setActId(String actId) {
+		this.actId = actId;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public String getCreateBy() {
+		return createBy == null ? "" : createBy;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
 
-    public String getUpdateBy() {
-        return updateBy;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public String getUpdateBy() {
+		return updateBy == null ? "" : updateBy;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public String getCateId() {
-		return cateId;
+		return cateId == null ? "" : id;
 	}
 
 	public void setCateId(String cateId) {
@@ -157,7 +165,7 @@ public class ActiveItem {
 	}
 
 	public String getItemName() {
-		return itemName;
+		return itemName == null ? "" : id;
 	}
 
 	public void setItemName(String itemName) {

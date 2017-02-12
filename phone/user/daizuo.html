@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -51,58 +52,6 @@
             
             p {
                 margin: 0;
-            }
-            
-            header {
-                background: #ff3366;
-                height: 3em;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 2em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 2em;
-            }
-            
-            .dingwei img {
-                position: absolute;
-                top: 1em;
-                left: 0.3125em;
-            }
-            
-            .dingwei span {
-                display: block;
-                line-height: 1.5em;
-                font-size: 2em;
-                color: #fff;
-            }
-            
-            .xiaoxi {
-                color: #fff;
-                font-size: 1em;
-                text-align: right;
-                line-height: 2.5em;
-                position: absolute;
-                top: 1em;
-                right: 0.3125em;
-                height: 2em;
-                width: 3.875em;
-                background: url(img/fabu.png) no-repeat;
-                background-size: auto 100%;
             }
             
             .lunbo {
@@ -310,43 +259,24 @@
             .xianshang,.xianxia{ margin-top: 0.3125em;}
             .xianxia h3,.xianshang h3{ line-height: 2.5em; height: 2.5em; font-size: 1em; background: #fff; text-indent: 1.5em;}
             .xianshang a{ line-height: 2.5em; height: 2.5em; background: #fff; display: block; margin-top: 0.125em; text-indent: 3.125em;}
-            .xianxia a:last-child{ float: right; width: 6.25em; margin-right: 0.625em;}
-            .xianxia a:last-child p{ float: left; line-height: 2.25em; border: 1px solid #eee; line-height: inherit; margin-top: 0.3125em; padding: 0.125em 0.375em; }
+            .xianxia a:last-child{ float: right; width: 30%; margin-right: 0.625em;}
+            .xianxia a:last-child p{ float: left; line-height: 2em; border: 1px solid #eee; padding: 0.125em 0.375em; }
             .xianxia a:last-child span{  line-height: 2.5em; }
             .xianxia li a div{ line-height: 2.5em;}
-            footer nav a{
-                    display: table-cell;
-                    overflow: hidden;
-                    width: 1%;
-                    height: 3.125em;
-                    text-align: center;
-                    vertical-align: middle;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #929292;
+            .mui-table-view .mui-media-object {
+                line-height: inherit;
+                max-width: 20%;
+                height:auto;
             }
-            
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
-            
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
+            .mui-table-view .mui-media-object.mui-pull-left{
+                margin-right: 1em;
             }
         </style>
 	</head>
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<a class=""><span class="mui-icon mui-icon-back"></span></a>
 			<h1>请人代做</h1>
 		</header>
 		<section class="beizhu">

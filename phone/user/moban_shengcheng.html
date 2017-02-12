@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -55,56 +56,6 @@
             li,
             ol {
                 list-style: none;
-            }
-            
-            header {
-                background: #ff3366;
-                height: 3em;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 2em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 1.25em;
-            }
-            
-            .dingwei img {
-                position: absolute;
-                top: 1em;
-                left: 0.3125em;
-            }
-            
-            .dingwei span {
-                display: block;
-                line-height: 1.5em;
-                font-size: 2em;
-                color: #fff;
-            }
-            
-            .xiaoxi {
-                color: #fff;
-                font-size: 1em;
-                text-align: right;
-                line-height: 1.5em;
-                position: absolute;
-                top: 1em;
-                right: 1em;
-                height: 1.875em;
-                width: 6em;
             }
             
             section {
@@ -192,34 +143,6 @@
                 color: #666;
             }
             
-            footer nav a {
-                display: table-cell;
-                overflow: hidden;
-                width: 1%;
-                height: 3.125em;
-                text-align: center;
-                vertical-align: middle;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                color: #929292;
-            }
-            
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
-            
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
-            }
-            
             @media screen and (max-width: 360px) {
                 body {
                     background-color: lightblue;
@@ -232,8 +155,10 @@
                 }
             }
             textarea{ height: 7.5em; margin: 0 4%; width: 92%;}
-            .upload h3{ font-style: normal; font-weight: normal; width: auto; color: #666;}
-            .upload h3 input[type=text]{ width: auto; display: inline; height: 1.875em; margin-left: 0.625em; }
+            .upload h3{ font-style: normal; font-weight: normal; width: 100%; color: #666;}
+            .upload h3 input[type=text]{ width: auto; display: inline; height: 1.875em; margin-left: 0.625em;     font-size: 1em;
+    margin-bottom: 0;
+    line-height: normal;}
             .pore{ position: relative;}
             .bitian{ position: absolute; right: 0.625em; top: 0;}
             .lei_1{ padding-top: 0.625em; background: #f8f8f8;}
@@ -241,18 +166,18 @@
             .shouye img{ height: 0.625em;}
             .shouye>div div{float: left; clear: none; padding: 0 1em;}
             .shouye>div div img{ width: 100%; height: auto;}
-            .shouye>div div p{ float: none; line-height: 1.25em; color: #666; padding: 0.625em 0; margin-bottom: 0.625em;}
-            .shouye>div div a{ display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
+            .shouye>div div p{ float: none; line-height: 1.25em; color: #666; }
+            .shouye>div div a{ line-height:1.5em; display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
             .shouye .fir{ width: 60%;}
             .shouye .sec{ width: 40%; position: relative; height: 100%;}
             .xiangqing>div div{ width: 50%; float: left; clear: none; color: #666;}
             .name{ padding-bottom: 1.25em;}
-            .name a{ padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 0.3125em;}
+            .name a{ font-size: 1em; line-height: 1.2em; padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 0.3125em;}
             .name a.active{ color: #fff; background: #ff3366;}
             .name a.w3{ width: 25%;}
             .name a.w4{ width: 30%;}
-            .submit input:first-child{ width: 60%; float: left; margin-left: 2.5%; height: 1.875em; line-height: 1.875em;}
-            .submit input:last-child{ width: 25%; margin: 0 5%;  height: 1.875em; line-height: 1.875em; padding: 0; background: #ff3366; border-color: #ff3366;}
+            .submit input:first-child{ font-size:1em; width: 60%; float: left; margin-left: 2.5%; height: 1.875em; line-height: 1.875em;}
+            .submit input:last-child{ font-size:1em; width: 25%; margin: 0 5%;  height: 1.875em; line-height: 1.875em; padding: 0; background: #ff3366; border-color: #ff3366;}
             .mui-checkbox input[type=checkbox]:before, .mui-radio input[type=radio]:before{ font-size: 1.25em; line-height: 1.875em; color: #666!important;}
             #upload0{ display: none ;}
         </style>
@@ -260,9 +185,9 @@
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<a class=""><span class="mui-icon mui-icon-back"></span></a>
 			<h1>模版生成</h1>
-			<a class="xiaoxi" href="javascript:;" onclick="openUrl('daizuo.html','daizuo')"><img src="../img/pen2.png" />请人代做</a>
+			<a class="xiaoxi6" href="javascript:;" onclick="openUrl('daizuo.html','daizuo')">请人代做</a>
 		</header>
 		<section class="shuoming">
 			<div>
@@ -277,7 +202,12 @@
 			</ul>
 		</section>
 		<section class="upload">
+		    <form id="imgForm" style="display: none;">
+                <input id="userId" name="userId" value="" type="hidden"/>
+                <input id="upload0" type="file" name="file" accept="image/jpeg,image/bmp" />
+            </form>
 		    <form id="actForm">
+		        <input type="hidden" name="mainPic" class="mainPic" value="" />
     			<div class="pore">
     				<h3>输入位置代码<input id="code" name="actType" type="text" value="" placeholder="输入位置代码" readonly="readonly"/></h3>
     				<p class="bitian"><span>必填</span></p>
@@ -289,10 +219,10 @@
     				<h3><img src="../img/star.png" />样式1：首页显示</h3>
     				<p class="bitian"><span>必填</span></p>
     				<div>
-    					<div id="yulan" class="fir"><img id="mainPic" name ="mainPic" src="../img/img_8.png" /></div>
+    					<div id="yulan" class="fir"><img id="mainPic" src="../img/img_8.png" /></div>
     					<div class="sec">
     						<p>首页详情页页头图片300*100</p>
-    						<a onclick="uploadImg();">上传</a>
+    						<a>上传</a>
     					</div>
     				</div>
     			</div>
@@ -320,7 +250,7 @@
     				</div>
     			</div>
     			<div class="name">
-    				<h3>命名此模板<input type="text" value="" placeholder="" name="actName"/></h3>
+    				<h3>命名此模板<input type="text" value="" placeholder="A1" name="actName"/></h3>
     				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4">推送此模版</a>
     			</div>
     			<div class="submit">
@@ -340,7 +270,7 @@
             $(function(){
                 
                 $(".fir img").height($(".fir img").width()/3);
-                $("body").append('<input id="upload0" type="file" accept="image/jpeg,image/bmp" />');
+                $("#userId").val(appcan.locStorage.getVal("userId"));
                 $(".sec a").click(function(){
                     fileSelect(yulan,'#upload'+0);
                 });
@@ -360,6 +290,22 @@
                     })
                     })
                 function preview1(file) {
+                     var formData = new FormData($( "#imgForm" )[0]);
+           $.ajax({  
+              url: host+"/image/uploadImg.json",
+              type: 'POST',  
+                  data: formData,  
+                  async: false,  
+                  cache: false,  
+                  contentType: false,  
+                  processData: false,  
+                  success: function (returndata) {  
+                      $(".mainPic").val(returndata.data.imgUrl);
+                  },  
+                  error: function (returndata) {  
+                      
+                  }  
+             });  
                     var img = new Image();
                     var url = img.src = URL.createObjectURL(file);
                     var $img = $(img);

@@ -2,6 +2,10 @@ package com.java.entity;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.java.servlet.JsonDateSerializer;
+
 public class UserFav {
     private String id;
 
@@ -49,6 +53,7 @@ public class UserFav {
         this.createBy = createBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getCreateTime() {
         return createTime;
     }
@@ -65,6 +70,7 @@ public class UserFav {
         this.updateBy = updateBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getUpdateTime() {
         return updateTime;
     }

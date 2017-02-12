@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -51,58 +52,6 @@
             
             p {
                 margin: 0;
-            }
-            
-            header {
-                background: #ff3366;
-                height: 3em;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 2em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 1.875em;
-            }
-            
-            .dingwei img {
-                position: absolute;
-                top: 1em;
-                left: 0.3125em;
-            }
-            
-            .dingwei span {
-                display: block;
-                line-height: 1.5em;
-                font-size: 2em;
-                color: #fff;
-            }
-            
-            .xiaoxi {
-                color: #fff;
-                font-size: 1em;
-                text-align: right;
-                line-height: 2.5em;
-                position: absolute;
-                top: 1em;
-                right: 0.3125em;
-                height: 1.875em;
-                width: 3.875em;
-                background: url(img/fabu.png) no-repeat;
-                background-size: auto 100%;
             }
             
             .lunbo {
@@ -301,47 +250,38 @@
                 padding: 0.625em 1em;
                 background: #fff;
             }
-            .mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left;}
+            .mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left; padding:0; margin: 0;}
             
             .mui-table-view-cell>p{  line-height:1.5em;}
             .mui-icon{ font-size: 1em;}
-            .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;}
+            .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;    line-height: 42px;
+    max-width: 2.3em;
+    height: 2.3em;
+    margin-right: 1em}
+    .mui-table-view .mui-media, .mui-table-view .mui-media-body{ 
+        line-height: 1.5em;
+        font-size: 0.9em;
+    }
             .moban_btn{ position: absolute; top: 0; right: 0;}
             .moban_btn a{ color: #ddd; display: inline-block; width: 4em; text-align: center; border: 1px solid #ddd; border-radius: 0.3125em; margin-right: 0.3125em; margin-top: 0.625em;}
-            .tishi_btn{ border-radius: 50%; background: #f34628; color: #fff; position: absolute; left: 2.5em; top: 0.3125em; width: 1.1em; height: 1.1em; text-align: center; line-height: 1.1em;}
-            footer nav a{
-                    display: table-cell;
-                    overflow: hidden;
-                    width: 1%;
-                    height: 3.125em;
-                    text-align: center;
-                    vertical-align: middle;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #929292;
-            }
-            
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
-            
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
-            }
+            .tishi_btn{ border-radius: 50%;
+    background: #f34628;
+    color: #fff;
+    position: absolute;
+    left: 3.5em;
+    top: 0.8em;
+    width: 1.4em;
+    height: 1.4em;
+    text-align: center;
+    line-height: 1.4em;
+    font-size: 0.7em;
+    }
         </style>
 	</head>
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<a class=""><span class="mui-icon mui-icon-back"></span></a>
 			<h1>我的消息</h1>
 		</header>
 		<section>

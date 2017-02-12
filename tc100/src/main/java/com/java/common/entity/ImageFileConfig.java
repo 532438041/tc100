@@ -25,6 +25,6 @@ public class ImageFileConfig {
 	/**
 	 * 图片请求路径
 	 */
-	public static final String imagePrefix = "/img";
+	public static final String imagePrefix = "/tcimg";
 
 }

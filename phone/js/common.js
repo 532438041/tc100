@@ -11,8 +11,8 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://121.42.181.222";
-var host = "http://121.42.181.222:8090/tc100";
+var hostIp = "http://localhost";
+var host = "http://localhost:8001/tc100";
 
 /**
  * 全局正则

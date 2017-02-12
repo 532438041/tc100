@@ -9,7 +9,7 @@ public class MsgReviewDto extends MessageReview {
 	private String cardName;
 
 	public String getPicUrl() {
-		return picUrl;
+		return picUrl == null ? "" : picUrl;
 	}
 
 	public void setPicUrl(String picUrl) {
@@ -17,7 +17,7 @@ public class MsgReviewDto extends MessageReview {
 	}
 
 	public String getCardName() {
-		return cardName;
+		return cardName == null ? "" : cardName;
 	}
 
 	public void setCardName(String cardName) {

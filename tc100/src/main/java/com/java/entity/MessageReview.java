@@ -2,6 +2,10 @@ package com.java.entity;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.java.servlet.JsonDateSerializer;
+
 public class MessageReview {
     private String id;
 
@@ -24,7 +28,7 @@ public class MessageReview {
     private Date updateTime;
 
     public String getId() {
-        return id;
+        return id == null ? "" : id;
     }
 
     public void setId(String id) {
@@ -32,7 +36,7 @@ public class MessageReview {
     }
 
     public String getUserId() {
-		return userId;
+		return userId == null ? "" : userId;
 	}
 
 	public void setUserId(String userId) {
@@ -40,7 +44,7 @@ public class MessageReview {
 	}
 
 	public String getCardId() {
-        return cardId;
+        return cardId == null ? "" : cardId;
     }
 
     public void setCardId(String cardId) {
@@ -48,7 +52,7 @@ public class MessageReview {
     }
 
     public String getMsgId() {
-        return msgId;
+        return msgId == null ? "" : msgId;
     }
 
     public void setMsgId(String msgId) {
@@ -56,7 +60,7 @@ public class MessageReview {
     }
 
     public String getRemark() {
-        return remark;
+        return remark == null ? "" : remark;
     }
 
     public void setRemark(String remark) {
@@ -64,7 +68,7 @@ public class MessageReview {
     }
 
     public String getMsgPic() {
-        return msgPic;
+        return msgPic == null ? "" : msgPic;
     }
 
     public void setMsgPic(String msgPic) {
@@ -72,13 +76,14 @@ public class MessageReview {
     }
 
     public String getCreateBy() {
-        return createBy;
+        return createBy == null ? "" : createBy;
     }
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getCreateTime() {
         return createTime;
     }
@@ -88,13 +93,14 @@ public class MessageReview {
     }
 
     public String getUpdateBy() {
-        return updateBy;
+        return updateBy == null ? "" : updateBy;
     }
 
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getUpdateTime() {
         return updateTime;
     }

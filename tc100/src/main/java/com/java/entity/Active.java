@@ -3,6 +3,10 @@ package com.java.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.java.servlet.JsonDateSerializer;
+
 public class Active {
     private String id;
 
@@ -45,7 +49,7 @@ public class Active {
     private Date updateTime;
 
     public String getId() {
-        return id;
+        return id == null ? "" : id;
     }
 
     public void setId(String id) {
@@ -53,7 +57,7 @@ public class Active {
     }
 
     public String getActName() {
-        return actName;
+        return actName == null ? "" : actName;
     }
 
     public void setActName(String actName) {
@@ -61,7 +65,7 @@ public class Active {
     }
 
     public String getUserId() {
-		return userId;
+		return userId == null ? "" : userId;
 	}
 
 	public void setUserId(String userId) {
@@ -69,7 +73,7 @@ public class Active {
 	}
 
 	public String getCardId() {
-        return cardId;
+        return cardId == null ? "" : cardId;
     }
 
     public void setCardId(String cardId) {
@@ -77,7 +81,7 @@ public class Active {
     }
 
     public String getCateId() {
-        return cateId;
+        return cateId == null ? "" : cateId;
     }
 
     public void setCateId(String cateId) {
@@ -85,7 +89,7 @@ public class Active {
     }
 
     public String getActType() {
-        return actType;
+        return actType == null ? "" : actType;
     }
 
     public void setActType(String actType) {
@@ -93,7 +97,7 @@ public class Active {
     }
 
     public String getMainPic() {
-        return mainPic;
+        return mainPic == null ? "" : mainPic;
     }
 
     public void setMainPic(String mainPic) {
@@ -101,7 +105,7 @@ public class Active {
     }
 
     public String getSummary() {
-        return summary;
+        return summary == null ? "" : summary;
     }
 
     public void setSummary(String summary) {
@@ -109,7 +113,7 @@ public class Active {
     }
 
     public String getDetailSummary() {
-        return detailSummary;
+        return detailSummary == null ? "" : detailSummary;
     }
 
     public void setDetailSummary(String detailSummary) {
@@ -117,7 +121,7 @@ public class Active {
     }
 
     public String getDetailContent() {
-        return detailContent;
+        return detailContent == null ? "" : detailContent;
     }
 
     public void setDetailContent(String detailContent) {
@@ -125,13 +129,14 @@ public class Active {
     }
 
     public String getState() {
-        return state;
+        return state == null ? "" : state;
     }
 
     public void setState(String state) {
         this.state = state;
     }
-
+    
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getStartTime() {
         return startTime;
     }
@@ -140,6 +145,7 @@ public class Active {
         this.startTime = startTime;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getEndTime() {
         return endTime;
     }
@@ -165,13 +171,14 @@ public class Active {
     }
 
     public String getCreateBy() {
-        return createBy;
+        return createBy == null ? "" : createBy;
     }
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getCreateTime() {
         return createTime;
     }
@@ -181,13 +188,14 @@ public class Active {
     }
 
     public String getUpdateBy() {
-        return updateBy;
+        return updateBy == null ? "" : updateBy;
     }
 
     public void setUpdateBy(String updateBy) {
         this.updateBy = updateBy;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -197,7 +205,7 @@ public class Active {
     }
 
 	public String getIsInit() {
-		return isInit;
+		return isInit == null ? "" : isInit;
 	}
 
 	public void setIsInit(String isInit) {

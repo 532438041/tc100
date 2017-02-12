@@ -12,7 +12,7 @@ public class MsgDto extends Message {
 	private String reviewCount;
 
 	public String getPicUrl() {
-		return picUrl;
+		return picUrl == null ? "" : picUrl;
 	}
 
 	public void setPicUrl(String picUrl) {
@@ -20,7 +20,7 @@ public class MsgDto extends Message {
 	}
 
 	public String getCardName() {
-		return cardName;
+		return cardName == null ? "" : cardName;
 	}
 
 	public void setCardName(String cardName) {

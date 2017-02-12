@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -53,58 +54,6 @@
             
             ul,li,ol{
                 list-style: none;
-            }
-            
-            header {
-                background: #ff3366;
-                height: 3em;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 2em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 2em;
-            }
-            
-            .dingwei img {
-                position: absolute;
-                top: 1em;
-                left: 0.3125em;
-            }
-            
-            .dingwei span {
-                display: block;
-                line-height: 1.5em;
-                font-size: 2em;
-                color: #fff;
-            }
-            
-            .xiaoxi {
-                color: #fff;
-                font-size: 1em;
-                text-align: right;
-                line-height: 2.5em;
-                position: absolute;
-                top: 1em;
-                right: 0.3125em;
-                height: 1.875em;
-                width: 4em;
-                background: url(img/fabu.png) no-repeat;
-                background-size: auto 100%;
             }
             
             .lunbo {
@@ -297,6 +246,7 @@
             }
             .quyu{ position: relative; margin-top: 0.625em; background: #fff; height: 3.125em; position: relative; }
             .quyu>div{ width: 25%; display: block; float: left;   height: 2.5em;}
+            .quyu>div:last-child{ width: 30%;}
             .quyu ul{ width: 400%; display: none; position: absolute; left: 0; background: #fff;  z-index: 20;   padding-left: 0;padding-right: 0; font-size: 0.6rem; text-align: center; border: 1px solid #ccc;}
             .quyu>div span{ color: #ccc; font-size: 1.2rem; }
             .quyu li{ text-indent: 1.25em;  width: auto; height: 3.125em; line-height: 3.125em; text-align: left;}
@@ -310,41 +260,15 @@
                 background: #fff;
             }
             .same_city_search div a img{ width: 100%; background: #fff; padding: 0.625em; margin-top: 0.625em;}
-            footer nav a{
-                    display: table-cell;
-                    overflow: hidden;
-                    width: 1%;
-                    height: 3.125em;
-                    text-align: center;
-                    vertical-align: middle;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    color: #929292;
-            }
             
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
-            
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
-            }
         </style>
 	</head>
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<a class=""><span class="mui-icon mui-icon-back"></span></a>
 			<h1>名优活动列表</h1>
-			<a class="xiaoxi" href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','mobansc')">发布</a>
+			<a class="xiaoxi3" href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','mobansc')">发布</a>
 		</header>
 		<section class="quyu">
 			<div>

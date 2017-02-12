@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -57,101 +58,26 @@
                 list-style: none;
             }
             
-            header {
-                background: #ff3366;
-                height: 3em;
-                overflow: hidden;
-                position: relative;
-            }
-            
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 2em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 2em;
-            }
-            
-            .dingwei img {
-                position: absolute;
-                top: 1em;
-                left: 0.3125em;
-            }
-            
-            .dingwei span {
-                display: block;
-                line-height: 1.5em;
-                font-size: 2em;
-                color: #fff;
-            }
-            
-            .xiaoxi {
-                color: #fff;
-                font-size: 1em;
-                text-align: right;
-                line-height: 1.5em;
-                position: absolute;
-                top: 1em;
-                right: 1.25em;
-                height: 1.5em;
-                width: 6em;
-            }
-            
             section{ background: #fff; margin-top: 0.625em;}
             section div{ height: auto; background: #fff; overflow: hidden;}
             section h3{ font-size: 0.8em; font-weight: bold; height: 3.125em; line-height: 3em; float: left; text-indent: 0.625em;}
             section p{ float: right; height: 3em; line-height: 3em;}
             section p span{ margin-top: 0.1875em; margin-right: 0.625em;}
-            section p a{ color: #ff3366; border: 1px solid #ff3366; padding: 0.25em 0.625em; border-radius: 0.3125em; margin-right: 0.3125em;}
-            section i{ font-style: normal; font-weight: normal; font-size: 0.6em; margin-left: 0.625em; color: #666;}
+            section p a{ color: #ff3366; border: 1px solid #ff3366; padding: 0 0.8em; border-radius: 0.3125em; margin-right: 0.3125em; font-size: 0.8em;}
+            section i{ font-style: normal; font-weight: normal; font-size: 0.75em; margin-left: 0.625em; color: #666;}
             section li{ height: 3em; line-height: 3em; border-top: 1px solid #ccc; clear: both;}
             section h4{ color: #666; line-height: 3em; float: left; margin-left: 1.25em;  margin-left: 4em; font-size: 0.8em;}
             li p{ float: right;}
-            section li a{ color: #ccc; border: 1px solid #ccc; padding: 0 0.625em; border-radius: 0.3125em;}
+            section li a{ color: #ccc; border: 1px solid #ccc; padding: 0 0.8em; border-radius: 0.3125em; font-size: 0.8em;}
             
-            .shuoming li{ padding: 0.625em 1em; line-height: 1.25em; height: auto; overflow: hidden; color: #666; }
+            .shuoming li{ padding: 0.625em 1em; line-height: 1.25em; height: auto; overflow: hidden; color: #666; font-size: 0.8em;}
+            section .mui-icon{margin-right: 10px; font-size: 1.5em}
             section.sec_3 div.tu_tu{ width: 85%; overflow: hidden; position: relative; left: 15%; margin-left: -0.625em;}
             section.sec_3 div.tu_tu img{ width: 100%;}
             section.sec_3 div.tu_tu p{ font-size: 0.6em; float: left; height: auto; overflow: hidden;}
-            section.sec_3 div.tu_tu span{ font-size: 0.8em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0 0.375em; border-radius: 0.3125em;}
-            section.sec_3 div.tu_tu i{ border: 1px solid #ccc; padding: 0.3125em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
-            footer nav a {
-                display: table-cell;
-                overflow: hidden;
-                width: 1%;
-                height: 3.125em;
-                text-align: center;
-                vertical-align: middle;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                color: #929292;
-            }
-            
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
-            
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
-            }
+            section.sec_3 div.tu_tu span{ font-size: 0.8em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0.3em 1em; border-radius: 0.3125em;}
+            section.sec_3 div.tu_tu i{ font-size:1em; border: 1px solid #ccc; padding: 0.6em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
+           
             @media screen and (max-width: 360px) {
                 body {
                     background-color:lightblue;
@@ -164,7 +90,7 @@
 
 	<body>
 		<header>
-			<a class="dingwei"><span class="mui-icon mui-icon-back"></span></a>
+			<a class=""><span class="mui-icon mui-icon-back"></span></a>
 			<h1>我的推广</h1>
 		</header>
 		<section class="shuoming">

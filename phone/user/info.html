@@ -11,6 +11,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/media.css" />
         <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="../js/jquery.Query.js" ></script>
         <script type="text/javascript" src="../js/jquery-cookie.js"></script>
@@ -51,30 +52,7 @@
                 margin: 0;
             }
             
-            header {
-                background: #ff3366;
-                height: 8.75em;
-                overflow: hidden;
-                position: relative;
-            }
             
-            header h1 {
-                font-size: 1.5em;
-                text-align: center;
-                color: #fff;
-                line-height: 3.875em;
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            header a {
-                position: absolute;
-                height: 100%;
-            }
-            
-            header a img {
-                height: 2em;
-            }
             
             .dingwei img {
                 position: absolute;
@@ -308,29 +286,27 @@
             .mui-content{ padding: 0.625em 0;}
             section li img{ display: block; width: 30%;  position: absolute; bottom: 1.5em; left: 35%;}
             section li p{ position: absolute; bottom: 0; text-align: center; width: 100%; color: #000;}
-            footer nav a img {
-                width: 15%;
-                display: block;
-                margin: 0 auto;
-                margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-            }
             
-            footer nav span {
-                color: #020202;
-            }
-            
-            footer nav .action span {
-                color: #ff3366;
-            }
-            .touxiang img{ height: 5em; margin: 1.875em 1em; border: 2px solid #fff; border-radius: 50%;}
-            header p{ display: inline; line-height: 6.75em; color: #fff; font-size: 1.3em; position: relative; left: 6.75em;}
-            header p span{ background: url(img/xiaoxi.png) no-repeat; background-size: 100%; display: block; width: 1.875em; height: 1.875em; position: absolute; top: -1.25em; left: 2.5em; text-align: center; line-height: 1.5em; font-size: 0.6em; color: #ff3366;}
+            .touxiang img{ height: 70%; margin: 15% 1em; border: 2px solid #fff; border-radius: 50%;}
+            header p{ display: inline; line-height: 6.75em; color: #fff; font-size: 1em; position: relative; left: 6.75em;}
+            header p span{     background: url(../img/xiaoxi.png) no-repeat;
+                    background-size: 100%;
+                    display: block;
+                    width: 2.5em;
+                    height: 2.5em;
+                    position: absolute;
+                    top: -1.75em;
+                    left: 3.5em;
+                    text-align: center;
+                    line-height: 1.5em;
+                    font-size: 0.6em;
+                    color: #ff3366;}
+            .mui-table-view-cell p{ line-height: 1em;}
         </style>
 	</head>
 
 	<body>
-		<header>
+		<header class="header2">
 			<a class="touxiang"><img src="../img/touxiang.png" /></a>
 			<p>小溪<span>3</span></p>
 			<a class="xiaoxi"><span class="mui-icon mui-icon-gear"></span>设置</a>
