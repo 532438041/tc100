@@ -308,7 +308,7 @@
 	<body>
 		<header class="header2">
 			<a class="touxiang"><img src="../img/touxiang.png" /></a>
-			<p>小溪<span>3</span></p>
+			<p>小溪<span class="xiaoxi" style="display: none;">3</span></p>
 			<a class="xiaoxi"><span class="setting22"></span>设置</a>
 		</header>
 		<section class="sec1">
@@ -411,11 +411,29 @@
 		</footer>
         <script>
             $(function(){
+                var userId = appcan.locStorage.getVal("userId");
+                if(userId !=null && userId !=""){
+                    appcan.ajax({
+                        type:"get",  
+                        url:host+"/getMsgCount.json?userId="+userId+"&state=1",
+                        dataType:"json",
+                        success:function(dataResult) {
+                            if(dataResult.data>0){
+                                $(".xiaoxi").show();
+                                $(".xiaoxi").html(dataResult.data);
+                            }else{
+                                $(".xiaoxi").hide();
+                            }
+                        }
+                    })
+                }else{
+                     $(".xiaoxi").hide();
+                }
                 //提问数量
                 appcan.ajax({
                    type:"post",
                    async:false,       
-                   url:host+"/getMyMsgCount.json?userId="+appcan.locStorage.getVal("userId"),
+                   url:host+"/getMyMsgCount.json?userId="+userId,
                    data:"",
                    dataType:"json",
                    contentType: "application/json",

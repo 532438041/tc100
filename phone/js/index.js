@@ -1,20 +1,29 @@
 (function($) {
     //用户id
     appcan.locStorage.setVal("userId", "1");
-    
+    var userId = appcan.locStorage.getVal("userId");
     //获取ip所在的
     $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
         $("#ipcity").html(remote_ip_info.city);
     });
     //消息个数
-    appcan.ajax({
-        type:"get",  
-        url:host+"/getMsgCount.json?userId="+appcan.locStorage.getVal("userId")+"&state=1",
-        dataType:"json",
-        success:function(dataResult) {
-            $(".xiaoxi").html(dataResult.data);
-        }
-    })
+    if(userId !=null && userId !=""){
+        appcan.ajax({
+            type:"get",  
+            url:host+"/getMsgCount.json?userId="+userId+"&state=1",
+            dataType:"json",
+            success:function(dataResult) {
+                if(dataResult.data>0){
+                    $(".xiaoxi").show();
+                    $(".xiaoxi").html(dataResult.data);
+                }else{
+                    $(".xiaoxi").hide();
+                }
+            }
+        })
+    }else{
+         $(".xiaoxi").hide();
+    }
     
     //首页轮播
     var baseParam1 = {'actType':'A1'}
