@@ -113,7 +113,7 @@
 
 	<body>
 		<header>
-			<a class=""><span class="mui-icon mui-icon-back"></span></a>
+			<a><span class="leftleft"></span></a>
 			<h1>活动详情</h1>
 			<a class="xiaoxi3">名片</a>
 		</header>
@@ -134,7 +134,7 @@
 				
 			</div>
 			<div class="liulan">
-				<p><img src="../img/eyes2.png" />浏览<i id="viewCount">1010</i>次</p>
+				<p><img src="../img/eyes2.png" />浏览<i id="viewCount">0</i>次</p>
 			</div>
 		</footer>
 		<script>
@@ -225,13 +225,15 @@
                     success : function(dataResult) {
                         var data = dataResult.data;
                         var actStr = "";
-                        actStr+='<img src="'+hostIp+data.mainPic+'" /><div>';
-                        actStr+='<h3>'+data.actName+'</h3>';
+                        if(data.is_init == "1"){
+                            actStr+='<img src="'+hostIp+data.mainPic+'" />';
+                        }
+                        actStr+='<div><h3>'+data.actName+'</h3>';
                         actStr+='<ul>';
                         actStr+='<li>'+data.detailSummary+'</li>';
                         actStr+='<li>'+data.detailContent+'</li>';
                         actStr+='</ul>';
-                        actStr+='<h4>活动时间：'+data.createTime+'</h4>';
+                        actStr+='<h4>活动时间：'+(data.startTime||'')+'-'+(data.endTime||'')+'</h4>';
                         actStr+='</div>';
                         $("#info").html(actStr);
                         $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);

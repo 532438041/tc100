@@ -98,7 +98,14 @@
             .main select{ width: 67%; font-size: 0.8em; line-height: 1.5em;}
             option{ font-size: 0.4em;}
             .fenlei{ position: relative;}
-            .main p.fenlei span{ position: absolute; right: 1em; top: 50%; width: auto; font-size: 1.25em; margin-top: -0.625em;}
+            .main p.fenlei span{     position: absolute;
+                display: block;
+                right: 1em;
+                top: 50%;
+                width: 1em;
+                font-size: 1.25em;
+                float: right;
+                margin-top: -0.625em;}
             .fenlei select{ margin: 0; padding: 0.625em; background: none; position: absolute; z-index: 100;}
             .main .tuijian span{ position: absolute; right: 1em; top: 1em; width: 10%; color: #FF3366;}
             .main .tuijian input{ width: 50%;}
@@ -120,7 +127,7 @@
 
 	<body>
 		<header>
-			<a class="mui-icon mui-icon-back"></a>
+			<a class="leftleft"></a>
 			<h1>模版使用</h1>
 		</header>
 		<section class="quyu">
@@ -160,7 +167,7 @@
 						<select name="cateId">
 							<option value="">所有</option>
 						</select>
-						<span class="mui-icon mui-icon-arrowdown"></span>
+						<span class="bottombottom"></span>
 					</p>
 					<p class="tuijian">
 						<i>推荐码：</i>

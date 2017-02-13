@@ -11,8 +11,8 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://localhost";
-var host = "http://localhost:8001/tc100";
+var hostIp = "http://121.42.181.222";
+var host = "http://121.42.181.222:8090/tc100";
 
 /**
  * 全局正则
@@ -137,8 +137,8 @@ $(function(){
     /**
      * 放回上一级 
      */
-    $(".mui-icon-back").click(function(){
-        appcan.button(".mui-icon-back", "btn-act", function() {  
+    $(".leftleft").click(function(){
+        appcan.button(".leftleft", "btn-act", function() {  
            appcan.window.close(-1);  
         })
     })

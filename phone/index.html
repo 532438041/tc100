@@ -86,16 +86,20 @@
             }
             
             .lanmu nav {
-                width: 90%;
+                width: 100%;
                 margin: 0 auto;
-                margin-top: 1em;
+                margin-top: 0.5em;
                 font-size: 1em;
+                height: auto;
+                overflow: hidden;
             }
             
             .lanmu a {
+                color:#000;
                 display: block;
                 float: left;
                 width: 25%;
+                text-align: center;
             }
             
             .lanmu a img {
@@ -124,8 +128,7 @@
             }
             
             .same_city_buy h2 span {
-                float: right;
-                font-size: 1.5em;
+                
             }
             
             .same_city_buy>p {
@@ -178,8 +181,7 @@
             }
             
             .same_city_search h2 span {
-                float: right;
-                font-size: 1.5em;
+                
             }
             
             .same_city_search>p {
@@ -265,7 +267,7 @@
         <header>
             <a class="dingwei"><img src="img/dingwei.png" /><span id="ipcity"></span></a>
             <h1>首页</h1>
-            <a class="xiaoxi" href="javascript:;" onclick="openUrl('user/my_message.html','my_message');"></a>
+            <a class="xiaoxi" href="javascript:;" onclick="openUrl('user/my_message.html','my_message');">0</a>
         </header>
         <section class="lunbo">
             <div class="mui-slider">
@@ -276,26 +278,26 @@
         </section>
         <section class="lanmu">
             <nav class="">
-                <a class="mui-tab-item" onclick="openUrl('page/shopList.html','shopList');">
+                <a class="" onclick="openUrl('page/shopList.html','shopList');">
                     <img src="img/shopcar.png" />
-                    <span class="mui-tab-label">超市</span>
+                    超市
                 </a>
-                <a class="mui-tab-item mui-active" onclick="openUrl('page/babyList.html','babyList');">
+                <a class="" onclick="openUrl('page/babyList.html','babyList');">
                     <img src="img/baby.png" />
-                    <span class="mui-tab-label">孕婴</span>
+                    孕婴
                 </a>
-                <a class="mui-tab-item" onclick="openUrl('page/carList.html','carList');">
+                <a class="" onclick="openUrl('page/carList.html','carList');">
                     <img src="img/car.png" />
-                    <span class="mui-tab-label">车辆</span>
+                    车辆
                 </a>
-                <a class="mui-tab-item" onclick="openUrl('page/houseList.html','houseList');">
+                <a class="" onclick="openUrl('page/houseList.html','houseList');">
                     <img src="img/house.png" />
-                    <span class="mui-tab-label">房产</span>
+                    房产
                 </a>
             </nav>
         </section>
         <section class="same_city_buy">
-            <h2>同城购<span class="mui-icon mui-icon-arrowright" onclick="openUrl('page/samecityBuyList.html','samecityBuyList');"></span></h2>
+            <h2>同城购<span class="rightright2" onclick="openUrl('page/samecityBuyList.html','samecityBuyList');"></span></h2>
             <p>我也想出现在这里？
                 <a onclick="openUrl('user/moban_shengcheng.html?type=B2','moban_shengcheng');">免费发布</a>
             </p>
@@ -308,7 +310,7 @@
                 <div class="search">
                 <input value="" placeholder="发布同城需求" type="text" /><img src="img/fabu.png" />
                 </div>
-                <span class="mui-icon mui-icon-arrowright" onclick="openUrl('page/messageList.html','messageList');"></span></h2>
+                <span class="rightright2" onclick="openUrl('page/messageList.html','messageList');"></span></h2>
             <p>
                 <a></a>
             </p>
