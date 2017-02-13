@@ -56,7 +56,7 @@
             .xiangqing{ position: relative; }
             .xiangqing img{ width: 100%;}
             .xiangqing div{ position: absolute; top: 50%; background: #000; width: 80%; left: 10%; text-align: center; padding: 1.25em; padding-bottom: 2.5em;}
-            .xiangqing li{     word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; overflow: auto; color: #fff;}
+            .xiangqing li{     word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; line-height: 1.2em; color: #fff;}
             .xiangqing h3{ color: #fff; margin-bottom: 0.625em;}
             .xiangqing h4{ color: #fff; font-size: 0.8rem; margin-top: 0.3125em;}
             
@@ -225,7 +225,7 @@
                     success : function(dataResult) {
                         var data = dataResult.data;
                         var actStr = "";
-                        if(data.is_init == "1"){
+                        if(data.isInit == "1"){
                             actStr+='<img src="'+hostIp+data.mainPic+'" />';
                         }
                         actStr+='<div><h3>'+data.actName+'</h3>';
@@ -233,7 +233,7 @@
                         actStr+='<li>'+data.detailSummary+'</li>';
                         actStr+='<li>'+data.detailContent+'</li>';
                         actStr+='</ul>';
-                        actStr+='<h4>活动时间：'+(data.startTime||'')+'-'+(data.endTime||'')+'</h4>';
+                        actStr+='<h4>活动时间：'+(data.startTime||'')+' 至 '+(data.endTime||'')+'</h4>';
                         actStr+='</div>';
                         $("#info").html(actStr);
                         $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
