@@ -157,7 +157,7 @@ public class ActiveItem {
 	}
 
 	public String getCateId() {
-		return cateId == null ? "" : id;
+		return cateId == null ? "" : cateId;
 	}
 
 	public void setCateId(String cateId) {
@@ -165,7 +165,7 @@ public class ActiveItem {
 	}
 
 	public String getItemName() {
-		return itemName == null ? "" : id;
+		return itemName == null ? "" : itemName;
 	}
 
 	public void setItemName(String itemName) {
