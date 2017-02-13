@@ -218,7 +218,7 @@
 		    <form id="actForm">
 		        <input type="hidden" name="mainPic" class="mainPic" value="" />
     			<div class="pore">
-    				<h3>输入位置代码<input id="code" name="actType" type="text" value="" placeholder="输入位置代码" readonly="readonly"/></h3>
+    				<h3>输入位置代码<input id="code" type="text" value="" placeholder="输入位置代码" readonly="readonly"/></h3>
     				<p class="bitian"><span>必填</span></p>
     			</div>
     			<ul class="lei_1">
@@ -432,7 +432,8 @@
                     }
                     
                     var baseParam = {
-                        userId : appcan.locStorage.getVal("userId")
+                        userId : appcan.locStorage.getVal("userId"),
+                        actType: type
                     };
                     var param = $("#actForm").serializeJson(baseParam);
                     var result = null;

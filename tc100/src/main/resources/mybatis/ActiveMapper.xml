@@ -187,28 +187,28 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Active">
 		update tc_active
 		<set>
-			<if test="actName != null">
+			<if test="actName != null and actName != ''">
 				act_name = #{actName,jdbcType=VARCHAR},
 			</if>
-			<if test="userId != null">
+			<if test="userId != null and userId != ''">
 				user_id = #{userId,jdbcType=CHAR},
 			</if>
-			<if test="cardId != null">
+			<if test="cardId != null and cardId != ''">
 				card_id = #{cardId,jdbcType=CHAR},
 			</if>
-			<if test="cateId != null">
+			<if test="cateId != null and cateId != ''">
 				cate_id = #{cateId,jdbcType=CHAR},
 			</if>
-			<if test="actType != null">
+			<if test="actType != null and actType != ''">
 				act_type = #{actType,jdbcType=CHAR},
 			</if>
-			<if test="mainPic != null">
+			<if test="mainPic != null and mainPic != ''">
 				main_pic = #{mainPic,jdbcType=VARCHAR},
 			</if>
-			<if test="summary != null">
+			<if test="summary != null and summary != ''">
 				summary = #{summary,jdbcType=VARCHAR},
 			</if>
-			<if test="isInit != null">
+			<if test="isInit != null and isInit != ''">
 				is_init = #{isInit,jdbcType=VARCHAR},
 			</if>
 			<if test="detailSummary != null">
