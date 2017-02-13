@@ -38,14 +38,16 @@
             var dataList = dataResult.data.dataList;
             var imgStr = "";
             var imgBtnStr = "";
+            imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[dataList.length-1].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[dataList.length-1].mainPic+'" /></a></div>';
             for(var i=0;i<dataList.length;i++){
-                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
+                imgStr += '<div class="mui-slider-item"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
                 if(i==0){
                 imgBtnStr +='<div class="mui-indicator mui-active"></div>';
                 }else{
                 imgBtnStr +='<div class="mui-indicator"></div>';
                 }
             }
+            imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[0].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[0].mainPic+'" /></a></div>';
             $("#slideBoxIndex").html(imgStr);
             $("#yuandian").html(imgBtnStr);
             var lunbo = mui('.mui-slider');
