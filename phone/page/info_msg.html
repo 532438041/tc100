@@ -153,6 +153,7 @@
             
             .same_city_buy .mui-table-view-cell>a:not(.mui-btn) {
                 white-space: normal;
+				line-height: 1.2em;
             }
             
             .same_city_buy .mui-ellipsis {
@@ -250,11 +251,11 @@
                 padding: 0.625em 1em;
                 background: #fff;
             }
-            .mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left;}
+            .mui-table-view-cell>a:not(.mui-btn){ width: 65%; float: left;}
             
-            .mui-table-view-cell>p{ width: 30%; float: right; text-align: right; line-height: 2.5em;}
+            .mui-table-view-cell>p{ width: 35%; float: right; text-align: right; line-height: 2.5em;}
             .mui-icon{ font-size: 1em;}
-            .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;}
+            .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%; width: 3em; height: 3em; max-width: 3em; line-height: inherit;}
             
             .xiangxi{ margin-top: 0.625em;}
             .xiangxi p{ padding-bottom: 1em;}
@@ -263,13 +264,14 @@
             footer a{ margin: 0 0.625em;}
             footer .mui-bar-tab{ height: 2.5em;}
             footer .mui-bar .mui-icon{ font-size: 2em; margin: 5px;float: left; }
-            input[type="text"]{     width: auto;
+            input[type="text"]{ 
+				width: 60%;
                 margin-bottom: 0;
                 padding: 0;
                 height: auto;
-                line-height: inherit;
-                font-size: 1.5em;
-                margin-top: 0.4em;}
+               	line-height: 2em;
+                font-size: 1em;
+                margin-top: 0.3em;}
             input[type="submit"]{ float: right; margin-top: 1.5em; margin-right: 0.625em; font-size: 0.6em;}
             @media screen and (max-width: 340px) {
                 footer a, input[type="submit"], input[type="text"]{ margin: 0;}
@@ -277,6 +279,9 @@
             }
             @media screen and (max-width: 380px) {
                 input[type="text"]{ width: 50%;}
+            }
+			.rightright{
+                margin-top: 0.75em;
             }
         </style>
 	</head>
@@ -314,7 +319,7 @@
                             msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
                             msgStr +='</div>';
                             msgStr +='</a>';
-                            msgStr +='<p><a>已有'+data.reviewCount+'个回答<span class="mui-icon mui-icon-arrowright"></span></a></p>';
+                            msgStr +='<p><a>已有'+data.reviewCount+'个回答<span class="rightright"></span></a></p>';
                             msgStr +='</li>';
                             msgStr +='<div class="xiangxi">';
                             msgStr +='<p>'+data.remark+'</p>';

@@ -170,7 +170,7 @@
             .shouye>div div a{ line-height:1.5em; display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
             .shouye .fir{ width: 60%;}
             .shouye .sec{ width: 40%; position: relative; height: 100%;}
-            .xiangqing>div div{ width: 50%; float: left; clear: none; color: #666;}
+            .xiangqing>div div{  float: left; clear: none; color: #666; padding-left: 0.5em;}
             .name{ padding-bottom: 1.25em;}
             .name a{ font-size: 1em; line-height: 1.2em; padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 0.3125em;}
             .name a.active{ color: #fff; background: #ff3366;}
@@ -189,12 +189,27 @@
             .mui-checkbox label, .mui-radio label{
                 font-size: 0.8em;
             }
+			.danxuan{
+                margin-bottom: 1em;
+            }
+            .danxuan label{
+                font-size: 0.8em;
+                line-height: 1.2em;
+            }
+            .danxuan input{
+                float: left;
+                height: 1.5em;
+                width: 1.5em;
+                font-size: 0.5em;
+                margin:0 0.5em;
+                margin-top: 0.2em
+            }
         </style>
 	</head>
 
 	<body>
 		<header>
-			<a class=""><span class="leftleft"></span></a>
+			<a><span class="leftleft"></span></a>
 			<h1>模版生成</h1>
 			<a class="xiaoxi6" href="javascript:;" onclick="openUrl('daizuo.html','daizuo')">请人代做</a>
 		</header>
@@ -244,11 +259,11 @@
     			<div class="xiangqing">
     				<h3>样式1样式2通用详情页</h3>
     				<div>
-    					<div class="mui-input-row mui-radio mui-left">
+    					<div class="danxuan">
     						<label>自动加载样式1首页图片</label>
     						<input name="isInit" value="1" type="radio" checked="">
     					</div>
-    					<div class="mui-input-row mui-radio mui-left">
+    					<div class="danxuan">
     						<label>不加载</label>
     						<input name="isInit" value="0" type="radio">
     					</div>
