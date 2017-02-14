@@ -19,6 +19,8 @@
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
+        <link rel="stylesheet" href="../js/webuploader/webuploader.css" />
+        <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
 		<title>模版生成</title>
 		<style>
             * {
@@ -164,7 +166,7 @@
             .lei_1{ padding-top: 0.625em; background: #f8f8f8;}
             .lei_1 li{ text-align: right; margin-right: 1em; line-height: 1.25em; height: 1.875em;}
             .shouye img{ height: 0.625em;}
-            .shouye>div div{float: left; clear: none; padding: 0 1em;}
+            .shouye>div .fir,.shouye>div .sec{float: left; clear: none; padding: 0 0.5em;}
             .shouye>div div img{ width: 100%; height: auto;}
             .shouye>div div p{ float: none; line-height: 1.25em; color: #666; }
             .shouye>div div a{ line-height:1.5em; display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
@@ -204,6 +206,10 @@
                 margin:0 0.5em;
                 margin-top: 0.2em
             }
+            .webuploader-pick{
+            line-height:1.5em; display: block; width: 100%; text-align: center ; 
+            background: #ff3366; color: #fff;padding: 0 0;
+            }
         </style>
 	</head>
 
@@ -226,10 +232,6 @@
 			</ul>
 		</section>
 		<section class="upload">
-		    <form id="imgForm" style="display: none;">
-                <input id="userId" name="userId" value="" type="hidden"/>
-                <input id="upload0" type="file" name="file" accept="image/jpeg,image/bmp" />
-            </form>
 		    <form id="actForm">
 		        <input type="hidden" name="mainPic" class="mainPic" value="" />
     			<div class="pore">
@@ -246,7 +248,7 @@
     					<div id="yulan" class="fir"><img id="mainPic" src="../img/img_8.png" /></div>
     					<div class="sec">
     						<p>首页详情页页头图片300*100</p>
-    						<a>上传</a>
+    						<div id="filePicker">上传</div>
     					</div>
     				</div>
     			</div>
@@ -302,62 +304,31 @@
             $(function(){
                 
                 $(".fir img").height($(".fir img").width()/3);
-                $("#userId").val(appcan.locStorage.getVal("userId"));
-                $(".sec a").click(function(){
-                    fileSelect(yulan,'#upload'+0);
+                
+                // 初始化Web Uploader
+                var uploader = WebUploader.create({
+                    // 选完文件后，是否自动上传。
+                    auto: true,
+                    // swf文件路径
+                    swf: '../js/webuploader/Uploader.swf',
+                    // 文件接收服务端。
+                    server: host+"/image/uploadImg.json?userId="+appcan.locStorage.getVal("userId"),
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: '#filePicker',
+                    // 只允许选择图片文件。
+                    accept: {
+                        title: 'Images',
+                        extensions: 'gif,jpg,jpeg,bmp,png',
+                        mimeTypes: 'image/*'
+                    }
                 });
                 
-                function fileSelect(id1,id2) {
-                    $(id2).click(); 
-                    $(function() {
-                    $(id2).one("change",function(e) {
-                    var file = e.target.files[0];
-                    console.log(file.size/1024);
-                    console.log(file);
-                    if(file.size/1024 > 1024){
-                        alert("请选择1M大小 以下的图片");
-                    }else{
-                        preview1(file);
-                    }
-                    })
-                    })
-                function preview1(file) {
-                     var formData = new FormData($( "#imgForm" )[0]);
-           $.ajax({  
-              url: host+"/image/uploadImg.json",
-              type: 'POST',  
-                  data: formData,  
-                  async: false,  
-                  cache: false,  
-                  contentType: false,  
-                  processData: false,  
-                  success: function (returndata) {  
-                      $(".mainPic").val(returndata.data.imgUrl);
-                  },  
-                  error: function (returndata) {  
-                      
-                  }  
-             });  
-                    var img = new Image();
-                    var url = img.src = URL.createObjectURL(file);
-                    var $img = $(img);
-                    
-                    img.onload = function() {
-                    URL.revokeObjectURL(url);
-                    $(id1).empty();
-                    $(id1).append($img);
-                    $(".fir img").height($(".fir img").width()/3);
-                    }
-                    }
-                function preview2(file) {
-                    var reader = new FileReader()
-                    reader.onload = function(e) {
-                    var $img = $('<img>').attr("src", e.target.result);
-                    $(id1).empty().append($img);
-                    }
-                    reader.readAsDataURL(file)
-                    }
-                };
+                // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                uploader.on('uploadSuccess', function(file, dataResult) {
+                    $("#mainPic").attr("src", hostIp+dataResult.data.imgUrl);
+                    $(".mainPic").val(dataResult.data.imgUrl);
+                });
                 
                 // 若类型传参错误 则返回上一个页面
                 if(type == "0"){
@@ -404,8 +375,6 @@
                 $("#code").val(type);
                 if(num == 1){
                     $("#type2").hide();
-                }else{
-                    $("#type1").hide();
                 }
                 
                 // 预览
