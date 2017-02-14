@@ -308,7 +308,7 @@
 	<body>
 		<header class="header2">
 			<a class="touxiang"><img src="../img/touxiang.png" /></a>
-			<p>小溪<span class="xiaoxi" style="display: none;">0</span></p>
+			<p>小溪<span id="xiaoxiCount" onclick="openUrl('my_message.html','my_message');">0</span></p>
 			<a class="xiaoxi"><span class="setting22"></span>设置</a>
 		</header>
 		<section class="sec1">
@@ -418,16 +418,9 @@
                         url:host+"/getMsgCount.json?userId="+userId+"&state=1",
                         dataType:"json",
                         success:function(dataResult) {
-                            if(dataResult.data>0){
-                                $(".xiaoxi").show();
-                                $(".xiaoxi").html(dataResult.data);
-                            }else{
-                                $(".xiaoxi").hide();
-                            }
+                            $("#xiaoxiCount").html(dataResult.data);
                         }
                     })
-                }else{
-                     $(".xiaoxi").hide();
                 }
                 //提问数量
                 appcan.ajax({

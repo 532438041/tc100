@@ -100,9 +100,12 @@ function openUrl(urlStr,urlName){
       for(var i = 0; i < strs.length; i ++) {   
           var temp = strs[i].split("=");
           setVal(temp[0],temp[1]);
-      }   
+      } 
+      urlStr = urlStr+"&t=" + new Date().getTime();  
+    }else{
+      urlStr = urlStr+"?t=" + new Date().getTime();  
     }
-    
+    urlName = urlName+new Date().getTime();
     appcan.window.open({
         name:urlName,
         dataType:0,

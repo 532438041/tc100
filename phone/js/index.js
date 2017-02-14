@@ -13,16 +13,9 @@
             url:host+"/getMsgCount.json?userId="+userId+"&state=1",
             dataType:"json",
             success:function(dataResult) {
-                if(dataResult.data>0){
-                    $(".xiaoxi").show();
-                    $(".xiaoxi").html(dataResult.data);
-                }else{
-                    $(".xiaoxi").hide();
-                }
+                $(".xiaoxi").html(dataResult.data);
             }
         })
-    }else{
-         $(".xiaoxi").hide();
     }
     
     //首页轮播

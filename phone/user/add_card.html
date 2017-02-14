@@ -149,7 +149,7 @@
 $(document).ready(function(){
 	//名片添加、编辑
     var msg = "添加成功！";
-    var baseParam = {'picUrl':$(".picUrl").val(),'userId':appcan.locStorage.getVal("userId")}
+    var baseParam = {'userId':appcan.locStorage.getVal("userId")}
 	var cardId = getVal("cardId");
     if(cardId!=""){
         //获取修改对象
@@ -164,7 +164,8 @@ $(document).ready(function(){
                console.log(dataResult);
                if(dataResult.msg=='success'){
                var data = dataResult.data; 
-                   $("#picUrl").attr("src",data.picUrl);
+                   $("#picUrl").attr("src",hostIp+data.picUrl);
+                   $(".picUrl").val(data.picUrl);
                    $("#cardName").val(data.cardName);
                    $("#address").val(data.address);
                    $("#telphone").val(data.telphone);
@@ -175,12 +176,11 @@ $(document).ready(function(){
        })
         $("#title").html("编辑名片");
         msg = "编辑成功！";
-        baseParam = {'picUrl':$(".picUrl").val(),'userId':'1','id':cardId}
+        baseParam = {'userId':appcan.locStorage.getVal("userId"),'id':cardId}
     }
     $("#addCard").click(function(){
         //名片添加
-        var base = {'userId':appcan.locStorage.getVal("userId")}
-        var param = $("#upchuan0").serializeJson(base);
+        var param = $("#upchuan0").serializeJson(baseParam);
         console.log(param);
         appcan.ajax({
            type:"post",
@@ -191,7 +191,6 @@ $(document).ready(function(){
            contentType: "application/json",
            success : function(dataResult) {
                if(dataResult.msg=='success'){
-                   alert(msg);
                    window.location.href = "my_card.html";
                }
            }

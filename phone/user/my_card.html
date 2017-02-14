@@ -153,8 +153,9 @@
                 })
                 //编辑
                 $("#edit").click(function(){
+                    alert(isChangeId);
                     if(isChangeId!=""){
-                        window.location.href = "add_card.html?cardId="+isChangeId;
+                        openUrl("add_card.html?cardId="+isChangeId,"addCard");
                     }
                 })
 			});
