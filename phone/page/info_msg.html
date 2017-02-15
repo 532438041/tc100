@@ -251,13 +251,13 @@
                 padding: 0.625em 1em;
                 background: #fff;
             }
-            .mui-table-view-cell>a:not(.mui-btn){ width: 65%; float: left;}
+            .mui-table-view-cell>a:not(.mui-btn){ width: 65%; float: left; line-height: 1.2em;}
             
             .mui-table-view-cell>p{ width: 35%; float: right; text-align: right; line-height: 2.5em;}
             .mui-icon{ font-size: 1em;}
             .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%; width: 3em; height: 3em; max-width: 3em; line-height: inherit;}
             
-            .xiangxi{ margin-top: 0.625em;}
+            .xiangxi{ padding: 0.8em; }
             .xiangxi p{ padding-bottom: 1em;}
             .xiangxi p:first-child{ text-indent: 1.25em; font-size: 0.6rem;}
             .xiangxi p:last-child{ font-size: 0.6rem; text-align: right; margin-right: 1.25em; color: #ccc;}
@@ -271,8 +271,15 @@
                 height: auto;
                	line-height: 2em;
                 font-size: 1em;
-                margin-top: 0.3em;}
-            input[type="submit"]{ float: right; margin-top: 1.5em; margin-right: 0.625em; font-size: 0.6em;}
+                margin-top: 0.15em;}
+            input[type="submit"]{ 
+                    float: right;    
+                    margin-top: 0.4em;
+                    margin-right: 0.625em;
+                    font-size: 1em; 
+                    border: 1px solid #ff3366;
+                    background-color: #ff3366;
+            }
             @media screen and (max-width: 340px) {
                 footer a, input[type="submit"], input[type="text"]{ margin: 0;}
                 input[type="submit"]{ margin-top: 0.625em;}
@@ -296,7 +303,7 @@
 			</ul>
 		</section>
 		<footer>
-			<div class="mui-bar mui-bar-tab"><a class="mui-icon mui-icon-plus"></a><input type="text" value="" /><input type="submit" value="回复" /></div>
+			<div class="mui-bar mui-bar-tab"><a class="jiajia"></a><input type="text" value="" /><input type="submit" value="回复" /></div>
 		</footer>
         <script>
             var msgId = getVal("msgId");
@@ -319,7 +326,7 @@
                             msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
                             msgStr +='</div>';
                             msgStr +='</a>';
-                            msgStr +='<p><a>已有'+data.reviewCount+'个回答<span class="rightright"></span></a></p>';
+                            msgStr +='<p><a>已有'+data.reviewCount+'个回答<span class="rightright" style="margin-top: 0.8em; margin-left: 0.2em;"></span></a></p>';
                             msgStr +='</li>';
                             msgStr +='<div class="xiangxi">';
                             msgStr +='<p>'+data.remark+'</p>';

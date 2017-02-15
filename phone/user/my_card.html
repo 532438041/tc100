@@ -114,7 +114,7 @@
                                 cardStr +='<li data-id="'+dataList[i].id+'">';
                                 cardStr +='<img src="'+hostIp+dataList[i].picUrl+'" />';
                                 cardStr +='<p>'+dataList[i].cardName+'</p>';
-                                cardStr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
+                                cardStr +='<span class="duidui"></span>';
                                 cardStr +=' </li>';
                             }
                         }
@@ -153,7 +153,6 @@
                 })
                 //编辑
                 $("#edit").click(function(){
-                    alert(isChangeId);
                     if(isChangeId!=""){
                         openUrl("add_card.html?cardId="+isChangeId,"addCard");
                     }
