@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+.header {
+	padding: 20px 0;
+	margin-bottom: 50px;
+	border-bottom: 1px solid #e5e5e5;
+	background-color: #1b1b1b;
+	color: #FFF;
+}
+
+.header h1 {
+	font-weight: bold;
+	font-size: 50px;
+	letter-spacing: -1px;
+}
+
+.header p {
+	font-weight: 300;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 100px;
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+}
+
+a:focus {
+	outline: none;
+}
+
+.mt0 {
+	margin-top: 0;
+}
+
+.mr0 {
+	margin-right: 0;
+}
+
+.mb0 {
+	margin-bottom: 0;
+}
+
+.ml0 {
+	margin-left: 0;
+}
+
+.ml10 {
+	margin-left: 10px;
+}
+
+.mt10 {
+	margin-top: 10px;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.pointer:hover {
+	cursor: pointer;
+}
+
+/* page begin  */
+.page-main {
+	padding: 0 10px;
+}
+
+.page-pager {
+	text-align: center;
+}
+
+.search-from {
+	border-bottom: 1px solid #eee;
+	margin: 15px 0;
+	padding: 0 0 10px 5px;
+}
+
+.search-from input[type="text"] {
+	width: 150px;
+}
+
+.search-from label {
+	font-weight: 400;
+}
+
+.page-content .page-left {
+	float: left;
+	width: 19%;
+	border: 1px solid #ddd;
+}
+
+.page-content .page-right {
+	float: right;
+	width: 80%;
+}
+/* page end  */
+
+/* table begin */
+.table th, .table td {
+	text-align: center;
+}
+
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+	border-bottom-width: 0px;
+}
+
+tbody tr.tr-nodata td {
+	padding: 20px;
+}
+
+.table thead tr {
+	background: #f2f2f2 linear-gradient(to bottom, #f8f8f8 0px, #ececec 100%) repeat-x scroll 0 0;
+	color: #707070;
+	font-weight: 400;
+}
+
+.table .operate a:hover {
+	cursor: pointer;
+}
+
+.w5 {
+	width: 5%;
+}
+
+.w8 {
+	width: 8%;
+}
+
+.w10 {
+	width: 10%;
+}
+
+.w12 {
+	width: 12%;
+}
+
+.w15 {
+	width: 15%;
+}
+
+.w20 {
+	width: 20%;
+}
+
+.w25 {
+	width: 25%;
+}
+
+.w30 {
+	width: 30%;
+}
+
+/* table end */

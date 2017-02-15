@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- 确保移动端全屏显示 不能缩放 -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<meta name="description" content="后台管理系统">
+<title>后台管理系统</title>
+<!-- bootstrap -->
+<link href="/tc100/static/css/base/bootstrap.css" rel="stylesheet">
+<link href="/tc100/static/css/base/font-awesome.min.css" rel="stylesheet">
+<link href="/tc100/static/css/base/bootstrapValidator.css" rel="stylesheet">
+<link href="/tc100/static/css/base/public.css" rel="stylesheet">
+<link href="/tc100/static/css/system/login.css" rel="stylesheet">
+</head>
+
+<body ng-app="loginApp">
+	
+	<div class="main-navigation">
+		
+	</div>
+	
+	<div class="container" ng-controller="loginController">
+		<div class="login-page">
+			<h4 class="title">
+				<span>
+					<a class="active">登 录</a>
+				</span>
+			</h4>
+			<div class="login-form">
+				<form role="form" class="form-horizontal" id="loginForm">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<span class="fa fa-user fa-lg fa-fw"></span>
+							</div>
+							<input type="text" name="userName" class="form-control input-lg" autocomplete="off" placeholder="手机号/邮箱" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<span class="fa fa-lock fa-lg fa-fw"></span>
+							</div>
+							<input type="password" name="userPwd" class="form-control input-lg" placeholder="密码" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-block" value="登 录" ng-click="loginBtn()">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="/tc100/static/js/base/angular.min.js"></script>
+	<script src="/tc100/static/js/base/jquery-3.1.1.min.js"></script>
+	<script src="/tc100/static/js/base/jquery-cookie.js"></script>
+	<script src="/tc100/static/js/base/bootstrap.min.js"></script>
+	<script src="/tc100/static/js/base/bootstrapValidator.js"></script>
+	<script src="/tc100/static/js/base/common.js"></script>
+	<script src="/tc100/static/js/base/dialog.js"></script>
+	<script src="/tc100/static/js/system/login.js"></script>
+</body>
+</html>

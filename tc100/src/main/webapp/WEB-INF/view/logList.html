@@ -1,0 +1,119 @@
+<div class="breadcrumbs">
+	<ul class="breadcrumb mb0">
+		<li>
+	       	<span class="fa fa-th-large" style="color: #428bca;"></span>
+        	<a href="index.html">首页</a> 
+            <span class="fa fa-angle-double-right"></span>
+      	</li>
+      	<li>
+        	<a>系统管理</a>
+            <span class="fa fa-angle-double-right"></span>
+       	</li>
+      	<li class="active">系统日志</li>
+    </ul>
+</div>
+
+<div class="page-main" ng-controller="logListController">
+	<form role="form" class="form-inline search-from">
+		<label for="s_method">操作方法：</label>
+		<input id="s_method" name="method" ng-model="s_method" type="text" class="form-control">
+		<label for="s_logType" class="ml10">日志类型：</label>
+		<select class="form-control" id="s_logType" name="logType" ng-model="s_logType">
+			<option value="">--请选择--</option>
+	    	<option value="00">后台操作</option>
+	      	<option value="01">后台异常</option>
+	      	<option value="10">前台操作</option>
+	      	<option value="11">前台异常</option>
+	    </select>
+		<input type="button" class="ml10 btn btn-default" value="查询" ng-click="showList()">
+		<input type="button" class="ml10 btn btn-default" value="重置" ng-click="resetSearch()">
+	</form>
+	<div class="mt10 page-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="w8">操作者</th>
+					<th class="w10">操作Ip</th>
+					<th class="w12">操作日期</th>
+					<th class="w20">操作方法</th>
+					<th class="w12">操作内容</th>
+					<th class="w10">日志类型</th>
+					<th class="w20">异常编码</th>
+					<th class="w8">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tr-nodata" ng-if="logList == null || logList.length == 0">
+					<td colspan="8">暂无数据！</td>
+				</tr>
+				<tr ng-repeat="logData in logList">
+					<td>{{logData.createName || '游客'}}</td>
+					<td>{{logData.reqIp}}</td>
+					<td>{{logData.createTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{logData.method}}</td>
+					<td>{{logData.details}}</td>
+					<td>{{logData.logType | logType : logData.logType}}</td>
+					<td>{{logData.exCode}}</td>
+					<td class="operate">
+						<a ng-click="seeView(logData.id)">查看</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page-pager">
+			
+		</div>
+	</div>
+	<form id="logForm" role="form" class="form-horizontal hidden">
+		<div class="form-group">
+			<label for="createName" class="col-sm-2 control-label">操作者</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="createName" ng-model="createName">
+			</div>
+			<label for="reqIp" class="col-sm-2 control-label">操作Ip</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="reqIp" ng-model="reqIp">
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="createTime" class="col-sm-2 control-label">操作日期</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="createTime" ng-model="createTime">
+			</div>
+			<label for="logType" class="col-sm-2 control-label">日志类型</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="logType" ng-model="logType">
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="details" class="col-sm-2 control-label">操作内容</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="details" ng-model="details">
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="method" class="col-sm-2 control-label">操作方法</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="method" ng-model="method">
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="exCode" class="col-sm-2 control-label">异常编码</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="exCode" ng-model="exCode">
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="exDetail" class="col-sm-2 control-label">异常描述</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="2" id="exDetail" ng-model="exDetail"></textarea>
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="params" class="col-sm-2 control-label">请求参数</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="2" id="params" ng-model="params"></textarea>
+			</div>
+        </div>
+	</form>
+</div>

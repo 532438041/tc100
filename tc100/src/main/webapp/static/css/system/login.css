@@ -1,0 +1,95 @@
+
+/* header */
+html, body {
+	color: #505050;
+	line-height: 1.75em;
+	background: #f6f6f6;
+	position: relative;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+.main-navigation {
+	background: #ffffff none repeat scroll 0 0;
+    border-bottom: 2px solid #e1e1e1;
+    border-top: 1px solid #ebebeb;
+    height: 58px;
+    margin-bottom: 35px;
+}
+
+/* login */
+.container{
+	width:  400px;
+	background: white;
+	box-shadow:0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-page {
+	margin: 50px 0;
+	text-align: center;
+}
+
+.login-page .title {
+	border-bottom: 1px solid #eee;
+	color: #b1b1b1;
+	font-weight: bold;
+	margin: 30px auto;
+	width: 80%;
+}
+
+.login-page .title span {
+	background-color: white;
+	top: 10px;
+	padding: 0 30px;
+	position: relative;
+}
+
+.login-page .title span a {
+	color: #b1b1b1;
+}
+
+.login-page .title span a:hover {
+	color: #717171;
+	text-decoration: none;
+}
+
+.login-page .title span a.active {
+	color: #555;
+}
+
+.login-page .title span a.active :hover {
+	color: #3f3f3f;
+}
+
+.login-page .title span b {
+	margin: 0 10px;
+}
+
+.login-page form {
+	width: 300px;
+	margin: 0 auto 20px;
+}
+
+.login-page .login-form .help-block {
+	text-align: left;
+}
+
+.login-page .third-login p {
+	color: #999;
+	margin-bottom: 15px;
+}
+
+.login-page .third-login ul li a {
+	border: 1px solid #eee;
+	border-radius: 50%;
+	height: 40px;
+	line-height: 36px;
+	width: 40px;
+	display: inline-block;
+	box-shadow: 0 0 10px #eee;
+	font-size: 20px;
+}
+
+.register-msg {
+	color: #9d9d9d;
+	font-size: 12px;
+	line-height: 20px;
+}

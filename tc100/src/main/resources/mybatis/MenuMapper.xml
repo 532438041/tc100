@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.impl.MenuDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.Menu">
+		<id column="id" jdbcType="CHAR" property="id" />
+		<result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+		<result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+		<result column="pid" jdbcType="CHAR" property="pid" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="state" jdbcType="CHAR" property="state" />
+		<result column="create_by" jdbcType="CHAR" property="createBy" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_by" jdbcType="CHAR" property="updateBy" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, menu_name, menu_url, pid, sort, remark, state, create_by,
+		create_time, update_by,
+		update_time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tc_menu
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_menu
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.Menu">
+		insert into tc_menu (id, menu_name, menu_url,
+		pid, sort, remark, state,
+		create_by, create_time, update_by,
+		update_time)
+		values (#{id,jdbcType=CHAR}, #{menuName,jdbcType=VARCHAR},
+		#{menuUrl,jdbcType=VARCHAR},
+		#{pid,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
+		#{state,jdbcType=CHAR},
+		#{createBy,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR},
+		#{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.Menu">
+		insert into tc_menu
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="menuName != null">
+				menu_name,
+			</if>
+			<if test="menuUrl != null">
+				menu_url,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="menuName != null">
+				#{menuName,jdbcType=VARCHAR},
+			</if>
+			<if test="menuUrl != null">
+				#{menuUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=CHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Menu">
+		update tc_menu
+		<set>
+			<if test="menuName != null">
+				menu_name = #{menuName,jdbcType=VARCHAR},
+			</if>
+			<if test="menuUrl != null">
+				menu_url = #{menuUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=CHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=CHAR},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.Menu">
+		update tc_menu
+		set menu_name = #{menuName,jdbcType=VARCHAR},
+		menu_url = #{menuUrl,jdbcType=VARCHAR},
+		pid = #{pid,jdbcType=CHAR},
+		sort = #{sort,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		state = #{state,jdbcType=CHAR},
+		create_by = #{createBy,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=CHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="getMenuTree" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT menu.* FROM tc_user user 
+		LEFT JOIN tc_user_role userRole ON user.id = userRole.user_id
+		LEFT JOIN tc_role role ON userRole.role_id = role.id
+		LEFT JOIN tc_role_menu roleMenu ON role.id = roleMenu.role_id
+		LEFT JOIN tc_menu menu ON menu.id = roleMenu.menu_id
+		WHERE user.id = #{userId} AND state = '1' ORDER BY sort
+	</select>
+	<select id="getMenuList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tc_menu
+		WHERE state = '1' ORDER BY sort
+	</select>
+	<select id="getMenuByPid" resultMap="BaseResultMap" parameterType="com.java.entity.Menu">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM tc_menu
+		WHERE state = '1' AND pid = #{pid} 
+		<if test="menuName != null and menuName != ''">
+			AND menu_name LIKE "%"#{menuName}"%"
+		</if>
+		<if test="menuUrl != null and menuUrl != ''">
+			AND menu_url LIKE "%"#{menuUrl}"%"
+		</if>
+		ORDER BY sort
+	</select>
+</mapper>

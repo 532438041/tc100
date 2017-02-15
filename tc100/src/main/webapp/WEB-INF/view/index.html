@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <!-- 确保移动端全屏显示 不能缩放 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta name="description" content="后台管理系统">
+    <title>后台管理系统</title>
+    <!-- bootstrap -->
+	<link href="/tc100/static/css/base/bootstrap.css" rel="stylesheet">
+	<link href="/tc100/static/css/base/bootstrap-table.css" rel="stylesheet">
+    <link href="/tc100/static/css/base/font-awesome.min.css" rel="stylesheet">
+    <link href="/tc100/static/css/base/bootstrapValidator.css" rel="stylesheet">
+    <link href="/tc100/static/css/base/public.css" rel="stylesheet">
+    <link href="/tc100/static/css/system/index.css" rel="stylesheet">
+</head>
+
+<body ng-app="indexApp">
+	<div>
+    	<!-- 头部及左侧菜单 -->
+        <div class="navbar navbar-default navbar-static-top navHeader" role="navigation" ng-controller="topController">
+        	<div class="navbar-header navHeaderL">
+            </div>
+            
+            <div class="navbar-header navHeaderR">
+            	<ul class="nav navR">
+                	<li>
+                    	<a href="###">
+                        	<span class="fa fa-user"></span>
+                        	<span class="red">Hi，{{displayName}}</span>
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="###">
+                        	<span class="fa fa-cog"></span>
+                            修改密码
+                      	</a>
+                    </li>
+                    <li>
+                    	<a href="###" ng-click="logout()">
+                        	<span class="fa fa-sign-out"></span>
+                        	退出
+                      	</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+        	<div class="navbar-default left-menu" role="navigation" ng-controller="menuController">
+            	<div class="left-menu-title">
+                	<span class="fa fa-home"></span>
+                    工作台
+                </div>
+                <ul class="nav panel-group" id="menuList">
+                    <li class="panel" ng-repeat="topMenu in topMenuList | filter : {pid : '0'}" ng-style="{'border-top' : $index == 0 ? 'none' : ''}">
+                        <a class="pointer" data-target="#collapse{{$index}}" data-toggle="collapse" data-parent="#menuList" ng-click="getIcon($index)">
+                            {{topMenu.menuName}}
+                            <span class="fr fa" ng-class="{'fa-chevron-down' : topMenu.menuUrl == parentMenuName, 'fa-chevron-right' : topMenu.menuUrl != parentMenuName}"></span>
+                       	</a>
+                        <ul id="collapse{{$index}}" class="nav nav-second-level collapse" ng-class="{'in' : topMenu.menuUrl == parentMenuName}">
+                        	<li ng-repeat="secondMenu in secondMenuList | filter : {pid : topMenu.id}" ui-sref-active="active">
+                        		<a ui-sref="{{secondMenu.menuUrl}}" href="##" ng-click="activeMenu(topMenu.menuUrl, secondMenu.menuUrl)">{{secondMenu.menuName}}</a>
+                        	</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+            <div ui-view class="main-content">
+            	
+            </div>
+        </div>
+    </div>
+    
+	<script src="/tc100/static/js/base/angular.min.js"></script>
+	<script src="/tc100/static/js/base/angular-ui-router.js"></script>
+    <script src="/tc100/static/js/base/jquery-3.1.1.min.js"></script>
+    <script src="/tc100/static/js/base/jquery-cookie.js"></script>
+    <script src="/tc100/static/js/base/bootstrap.min.js"></script>
+    <script src="/tc100/static/js/base/bootstrap-table.js"></script>
+    <script src="/tc100/static/js/base/bootstrapValidator.js"></script>
+    <script src="/tc100/static/js/base/formValidator.js"></script>
+    <script src="/tc100/static/js/base/dialog.js"></script>
+	<script src="/tc100/static/js/base/common.js"></script>
+    <script src="/tc100/static/js/system/index.js"></script>
+    <script src="/tc100/static/js/base/ocLazyLoad.min.js"></script>
+</body>
+</html>

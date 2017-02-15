@@ -1,0 +1,71 @@
+<div class="breadcrumbs">
+	<ul class="breadcrumb mb0">
+		<li>
+	       	<span class="fa fa-th-large" style="color: #428bca;"></span>
+        	<a href="index.html">首页</a> 
+            <span class="fa fa-angle-double-right"></span>
+      	</li>
+      	<li>
+        	<a>站点管理</a>
+            <span class="fa fa-angle-double-right"></span>
+       	</li>
+      	<li class="active">文章管理</li>
+    </ul>
+</div>
+
+<div class="page-main" ng-controller="articleListController">
+	<form role="form" class="form-inline search-from">
+		<label for="s_title">文章标题：</label>
+		<input id="s_title" name="title" ng-model="s_title" type="text" class="form-control">
+		<label for="s_displayName" class="ml10">作者：</label>
+		<input id="s_displayName" name="displayName" ng-model="s_displayName" type="text" class="form-control">
+		<input type="button" class="ml10 btn btn-default" value="查询" ng-click="showList()">
+		<input type="button" class="ml10 btn btn-default" value="重置" ng-click="resetSearch()">
+	</form>
+	<div class="mt10 page-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="w15">标题</th>
+					<th class="w20">副标题/简介</th>
+					<th class="w10">作者</th>
+					<th class="w10">来源</th>
+					<th class="w15">文章分类</th>
+					<th class="w10">是否推荐</th>
+					<th class="w10">审核状态</th>
+					<th class="w10">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tr-nodata" ng-if="articleList == null || articleList.length == 0">
+					<td colspan="8">暂无数据！</td>
+				</tr>
+				<tr ng-repeat="articleData in articleList">
+					<td>{{articleData.title}}</td>
+					<td>{{articleData.subtitle}}</td>
+					<td>{{articleData.displayName}}</td>
+					<td>{{articleData.userType == '0' ? '系统' : '作者' }}</td>
+					<td>{{articleData.cateName}}</td>
+					<td>{{articleData.isRecommend == '1' ? '是' : '否' }}</td>
+					<td>{{articleData.state == '3' ? '下架' : '正常' }}</td>
+					<td class="operate">
+						<a ng-if="articleData.state != '3'" ng-click="checkView(articleData.id)">下架</a>
+						<a ng-if="articleData.isRecommend == '0'" ng-click="recommend(articleData.id)">推荐</a>
+						<a href="http://www.liuli.com/article?id={{articleData.id}}" target="_blank">详情</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page-pager">
+			
+		</div>
+	</div>
+	<form id="articleForm" role="form" class="form-horizontal hidden">
+        <div class="form-group">
+			<label for="checkReason" class="col-sm-3 control-label">下架原因</label>
+			<div class="col-sm-9">
+				<textarea class="form-control" rows="3" id="checkReason" name="checkReason" placeholder="下架原因" data-bv-notempty-message="下架原因不能为空！" required></textarea>
+			</div>
+        </div>
+	</form>
+</div>
