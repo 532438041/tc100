@@ -96,6 +96,22 @@ indexApp.config(function($stateProvider, $urlRouterProvider) {
 				return $ocLazyLoad.load([ "/tc100/static/js/system/sysParamList.js" ]);
 			}
 		}
+	}).state("activeFeeList", {
+		url : "/activeFeeList",
+		templateUrl : "activeFeeList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/activeFeeList.js" ]);
+			}
+		}
+	}).state("operateFeeList", {
+		url : "/operateFeeList",
+		templateUrl : "operateFeeList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/operateFeeList.js" ]);
+			}
+		}
 	});
 });
 
