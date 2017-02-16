@@ -294,6 +294,8 @@
         <script>
         $(document).ready(function(){
             //同城搜
+            var baseParam = {'addName':appcan.locStorage.getVal("ipcity")}
+            var param = serializePageJson(1,20,baseParam);
             appcan.ajax({
                 type:"post",
                 url:host+"/getMsgList.json",

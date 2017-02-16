@@ -338,7 +338,7 @@
         			$(this).addClass("action");
         		})
         	});
-        	var baseParam2 = {'actType':'B2'}
+        	var baseParam2 = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity")}
                 var param2 = serializePageJson(1,20,baseParam2);
                 appcan.ajax({
                     type:"post",

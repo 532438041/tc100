@@ -270,7 +270,7 @@
 		</footer>
         <script>
             $(function(){
-                var baseParam1 = {'actType':'F1'}
+                var baseParam1 = {'actType':'F1','addName':appcan.locStorage.getVal("ipcity")}
                 var param1 = serializePageJson(1,20,baseParam1);
                 appcan.ajax({
                     type:"post",
@@ -288,7 +288,7 @@
                     }
                 })
                 
-                var baseParam2 = {'actType':'F2'}
+                var baseParam2 = {'actType':'F2','addName':appcan.locStorage.getVal("ipcity")}
                 var param2 = serializePageJson(1,20,baseParam2);
                 appcan.ajax({
                     type:"post",
