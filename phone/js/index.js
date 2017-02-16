@@ -3,8 +3,13 @@
     appcan.locStorage.setVal("userId", "1");
     var userId = appcan.locStorage.getVal("userId");
     //获取ip所在的
-    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
-        $("#ipcity").html(remote_ip_info.city);
+    appcan.ajax({
+        url: 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',
+        async:false,
+        dataType: "script",
+        success : function() {
+            appcan.locStorage.setVal("ipcity", remote_ip_info.city);
+        }
     });
     //消息个数
     if(userId !=null && userId !=""){
@@ -19,7 +24,7 @@
     }
     
     //首页轮播
-    var baseParam1 = {'actType':'A1'}
+    var baseParam1 = {'actType':'A1','addName':appcan.locStorage.getVal("ipcity")}
     var param1 = serializePageJson(1,5,baseParam1);
     appcan.ajax({
         type:"post",
@@ -28,32 +33,35 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
-            var dataList = dataResult.data.dataList;
-            var imgStr = "";
-            var imgBtnStr = "";
-            imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[dataList.length-1].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[dataList.length-1].mainPic+'" /></a></div>';
-            for(var i=0;i<dataList.length;i++){
-                imgStr += '<div class="mui-slider-item"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
-                if(i==0){
-                imgBtnStr +='<div class="mui-indicator mui-active"></div>';
-                }else{
-                imgBtnStr +='<div class="mui-indicator"></div>';
+            $("#ipcity").html(remote_ip_info.city);
+            if(dataResult!=null && dataResult.data.dataList.length>0){
+                var dataList = dataResult.data.dataList;
+                var imgStr = "";
+                var imgBtnStr = "";
+                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[dataList.length-1].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[dataList.length-1].mainPic+'" /></a></div>';
+                for(var i=0;i<dataList.length;i++){
+                    imgStr += '<div class="mui-slider-item"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
+                    if(i==0){
+                    imgBtnStr +='<div class="mui-indicator mui-active"></div>';
+                    }else{
+                    imgBtnStr +='<div class="mui-indicator"></div>';
+                    }
                 }
+                imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[0].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[0].mainPic+'" /></a></div>';
+                $("#slideBoxIndex").html(imgStr);
+                $("#yuandian").html(imgBtnStr);
+                var lunbo = mui('.mui-slider');
+                lunbo.slider({
+                    interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+                });
+                $("#yuandian div").click(function(){
+                    lunbo.slider().gotoItem($(this).index());//跳转到第index张图片，index从0开始；
+                })
             }
-            imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[0].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[0].mainPic+'" /></a></div>';
-            $("#slideBoxIndex").html(imgStr);
-            $("#yuandian").html(imgBtnStr);
-            var lunbo = mui('.mui-slider');
-            lunbo.slider({
-                interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
-            });
-            $("#yuandian div").click(function(){
-                lunbo.slider().gotoItem($(this).index());//跳转到第index张图片，index从0开始；
-            })
         }
     })
     //同城购
-    var baseParam2 = {'actType':'B2'}
+    var baseParam2 = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity")}
     var param2 = serializePageJson(1,5,baseParam2);
     appcan.ajax({
         type:"post",
@@ -77,10 +85,12 @@
         }
     })
     //同城搜
+    var baseParam3 = {'addName':appcan.locStorage.getVal("ipcity")}
+    var param3 = serializePageJson(1,5,baseParam3);
     appcan.ajax({
         type:"post",
         url:host+"/getMsgList.json",
-        data:serializePageJson(1,5),
+        data:param3,
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
