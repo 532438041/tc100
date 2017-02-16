@@ -6,13 +6,42 @@
             <span class="fa fa-angle-double-right"></span>
       	</li>
       	<li>
-        	<a href="#">菜单1</a> 
+        	<a>系统管理</a> 
             <span class="fa fa-angle-double-right"></span>
        	</li>
-      	<li class="active">菜单11</li>
+      	<li class="active">用户列表</li>
     </ul>
 </div>
-
-<div ng-controller="userListController">
-	
+<div class="page-main" ng-controller="userListController">
+	<form role="form" class="form-inline search-from">
+		<label for="userName">用户名：</label>
+		<input id="userName" name="userName" ng-model="userName" type="text" class="form-control">
+		<input type="button" class="ml10 btn btn-default" value="查询" ng-click="showList()">
+		<input type="button" class="ml10 btn btn-default" value="重置" ng-click="resetSearch()">
+	</form>
+	<div class="mt10 page-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="w16">用户Id</th>
+					<th class="w15">用户名</th>
+					<th class="w21">创建日期</th>
+					<th class="w21">关注帖子</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tr-nodata" ng-if="userList == null || userList == 0">
+					<td colspan="4">暂无数据！</td>
+				</tr>
+				<tr ng-repeat="paramData in userList">
+					<td>{{paramData.id}}</td>
+					<td>{{paramData.userName}}</td>
+					<td>{{paramData.createTime}}</td>
+					<td>{{paramData.favCount}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page-pager">
+		</div>
+	</div>
 </div>
