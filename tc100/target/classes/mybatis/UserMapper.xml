@@ -26,6 +26,24 @@
 		create_time, update_by,
 		update_time
 	</sql>
+	<resultMap id="UserDtoResultMap" type="com.java.dto.UserDto">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+		<result column="display_name" property="displayName" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="CHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="CHAR" />
+		<result column="login_error_count" property="loginErrorCount" jdbcType="INTEGER" />
+		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+		<result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+		<result column="state" property="state" jdbcType="CHAR" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="CHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="favCount" property="favCount" jdbcType="INTEGER" />
+	</resultMap>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -236,10 +254,15 @@
 	<select id="checkLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select * from tc_user where user_name = #{userName}
 	</select>
-	<select id="getUserList" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from tc_user order by create_time desc
+	<select id="getUserList" resultMap="UserDtoResultMap" parameterType="com.java.entity.User">
+		SELECT u.*, COUNT(f.`id`) favCount FROM `tc_user` u
+		LEFT JOIN `tc_user_fav` f ON u.`id` = f.`user_id`
+		<where>
+			<if test="userName!=null and userName!=''">
+				user_name LIKE "%"#{userName}"%"
+			</if>
+		</where>
+		GROUP BY u.`id`
 	</select>
 	<select id="getUserRoleName" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT GROUP_CONCAT(role.role_name) roleName FROM
@@ -250,7 +273,7 @@
 	</select>
 
 	<select id="checkRegister" parameterType="com.java.entity.User" resultType="Integer">
-		SELECT COUNT(0) FROM `tc_user` WHERE user_type = '1' AND state != '0' 
+		SELECT COUNT(0) FROM `tc_user` WHERE user_type = '1' AND state != '0'
 		AND (user_name = #{userName} OR email = #{userName} OR mobile = #{userName})
 	</select>
 

@@ -26,7 +26,7 @@ public class UserServiceImpl extends BaseServiceImpl<User>implements UserService
 	@Override
 	public PageResult<User> getUserList(PageParam<User> pageParam) {
 		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
-		return PageUtil.toPagedResult(userDao.getUserList());
+		return PageUtil.toPagedResult(userDao.getUserList(pageParam.getReqParam()));
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface UserDao extends BaseDao<User>{
 
 	User checkLogin(String userName);
 
-	List<User> getUserList();
+	List<User> getUserList(User user);
 
 	String getUserRoleName(String userId);
 

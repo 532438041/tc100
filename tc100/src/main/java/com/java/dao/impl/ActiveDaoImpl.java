@@ -1,5 +1,6 @@
 package com.java.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class ActiveDaoImpl extends BaseDaoImpl<Active>implements ActiveDao {
 	}
 
 	@Override
-	public void operateAct(String actId, int amount) {
+	public void operateAct(String actId, BigDecimal amount) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("actId", actId);
 		map.put("amount", amount);

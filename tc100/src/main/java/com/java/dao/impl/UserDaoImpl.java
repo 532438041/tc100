@@ -17,8 +17,8 @@ public class UserDaoImpl extends BaseDaoImpl<User>implements UserDao {
 	}
 
 	@Override
-	public List<User> getUserList() {
-		return this.getSqlSession().selectList(getStateMentName("getUserList"));
+	public List<User> getUserList(User user) {
+		return this.getSqlSession().selectList(getStateMentName("getUserList"), user);
 	}
 
 	@Override

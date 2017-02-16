@@ -18,6 +18,8 @@
 		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
 		<result column="view_count" property="viewCount" jdbcType="INTEGER" />
 		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="addName" property="addName" jdbcType="VARCHAR" />
 		<result column="create_by" property="createBy" jdbcType="CHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_by" property="updateBy" jdbcType="CHAR" />
@@ -25,7 +27,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, act_name, user_id, card_id, cate_id, act_type, main_pic, summary, is_init, detail_summary, detail_content,
-		state, start_time, end_time, view_count, amount, create_by, create_time, update_by,
+		state, start_time, end_time, view_count, amount, region, addName, create_by, create_time, update_by,
 		update_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -43,7 +45,7 @@
 		cate_id, act_type, main_pic,
 		summary, is_init, detail_summary, detail_content,
 		state, start_time, end_time,
-		view_count, amount, create_by,
+		view_count, amount, region, addName, create_by,
 		create_time, update_by, update_time
 		)
 		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR},
@@ -53,7 +55,8 @@
 		#{detailSummary,jdbcType=VARCHAR},
 		#{detailContent,jdbcType=VARCHAR},
 		#{state,jdbcType=CHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},
-		#{viewCount,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{createBy,jdbcType=CHAR},
+		#{viewCount,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{region,jdbcType=VARCHAR},
+		#{addName,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR},
 		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
@@ -107,6 +110,12 @@
 			</if>
 			<if test="amount != null">
 				amount,
+			</if>
+			<if test="region != null">
+				region,
+			</if>
+			<if test="addName != null">
+				addName,
 			</if>
 			<if test="createBy != null">
 				create_by,
@@ -170,6 +179,12 @@
 			<if test="amount != null">
 				#{amount,jdbcType=DECIMAL},
 			</if>
+			<if test="region != null">
+				#{region,jdbcType=VARCHAR},
+			</if>
+			<if test="addName != null">
+				#{addName,jdbcType=VARCHAR},
+			</if>
 			<if test="createBy != null">
 				#{createBy,jdbcType=CHAR},
 			</if>
@@ -232,6 +247,12 @@
 			<if test="amount != null">
 				amount = #{amount,jdbcType=DECIMAL},
 			</if>
+			<if test="region != null">
+				region = #{region,jdbcType=VARCHAR},
+			</if>
+			<if test="addName != null">
+				addName = #{addName,jdbcType=VARCHAR},
+			</if>
 			<if test="createBy != null">
 				create_by = #{createBy,jdbcType=CHAR},
 			</if>
@@ -266,6 +287,8 @@
 		#{endTime,jdbcType=TIMESTAMP},
 		view_count = #{viewCount,jdbcType=INTEGER},
 		amount = #{amount,jdbcType=DECIMAL},
+		region = #{region,jdbcType=VARCHAR},
+		addName = #{addName,jdbcType=VARCHAR},
 		create_by = #{createBy,jdbcType=CHAR},
 		create_time = #{createTime,jdbcType=TIMESTAMP},
 		update_by = #{updateBy,jdbcType=CHAR},

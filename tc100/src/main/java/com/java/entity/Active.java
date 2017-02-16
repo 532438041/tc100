@@ -8,63 +8,67 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import com.java.servlet.JsonDateSerializer;
 
 public class Active {
-    private String id;
+	private String id;
 
-    private String actName;
-    
-    private String userId;
+	private String actName;
 
-    private String cardId;
+	private String userId;
 
-    private String cateId;
+	private String cardId;
 
-    private String actType;
+	private String cateId;
 
-    private String mainPic;
+	private String actType;
 
-    private String summary;
-    
-    private String isInit;
+	private String mainPic;
 
-    private String detailSummary;
+	private String summary;
 
-    private String detailContent;
+	private String isInit;
 
-    private String state;
+	private String detailSummary;
 
-    private Date startTime;
+	private String detailContent;
 
-    private Date endTime;
+	private String state;
 
-    private Integer viewCount;
+	private Date startTime;
 
-    private BigDecimal amount;
+	private Date endTime;
 
-    private String createBy;
+	private Integer viewCount;
 
-    private Date createTime;
+	private BigDecimal amount;
 
-    private String updateBy;
+	private String region;
 
-    private Date updateTime;
+	private String addName;
 
-    public String getId() {
-        return id == null ? "" : id;
-    }
+	private String createBy;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	private Date createTime;
 
-    public String getActName() {
-        return actName == null ? "" : actName;
-    }
+	private String updateBy;
 
-    public void setActName(String actName) {
-        this.actName = actName;
-    }
+	private Date updateTime;
 
-    public String getUserId() {
+	public String getId() {
+		return id == null ? "" : id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getActName() {
+		return actName == null ? "" : actName;
+	}
+
+	public void setActName(String actName) {
+		this.actName = actName;
+	}
+
+	public String getUserId() {
 		return userId == null ? "" : userId;
 	}
 
@@ -73,136 +77,136 @@ public class Active {
 	}
 
 	public String getCardId() {
-        return cardId == null ? "" : cardId;
-    }
+		return cardId == null ? "" : cardId;
+	}
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
-    }
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
 
-    public String getCateId() {
-        return cateId == null ? "" : cateId;
-    }
+	public String getCateId() {
+		return cateId == null ? "" : cateId;
+	}
 
-    public void setCateId(String cateId) {
-        this.cateId = cateId;
-    }
+	public void setCateId(String cateId) {
+		this.cateId = cateId;
+	}
 
-    public String getActType() {
-        return actType == null ? "" : actType;
-    }
+	public String getActType() {
+		return actType == null ? "" : actType;
+	}
 
-    public void setActType(String actType) {
-        this.actType = actType;
-    }
+	public void setActType(String actType) {
+		this.actType = actType;
+	}
 
-    public String getMainPic() {
-        return mainPic == null ? "" : mainPic;
-    }
+	public String getMainPic() {
+		return mainPic == null ? "" : mainPic;
+	}
 
-    public void setMainPic(String mainPic) {
-        this.mainPic = mainPic;
-    }
+	public void setMainPic(String mainPic) {
+		this.mainPic = mainPic;
+	}
 
-    public String getSummary() {
-        return summary == null ? "" : summary;
-    }
+	public String getSummary() {
+		return summary == null ? "" : summary;
+	}
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 
-    public String getDetailSummary() {
-        return detailSummary == null ? "" : detailSummary;
-    }
+	public String getDetailSummary() {
+		return detailSummary == null ? "" : detailSummary;
+	}
 
-    public void setDetailSummary(String detailSummary) {
-        this.detailSummary = detailSummary;
-    }
+	public void setDetailSummary(String detailSummary) {
+		this.detailSummary = detailSummary;
+	}
 
-    public String getDetailContent() {
-        return detailContent == null ? "" : detailContent;
-    }
+	public String getDetailContent() {
+		return detailContent == null ? "" : detailContent;
+	}
 
-    public void setDetailContent(String detailContent) {
-        this.detailContent = detailContent;
-    }
+	public void setDetailContent(String detailContent) {
+		this.detailContent = detailContent;
+	}
 
-    public String getState() {
-        return state == null ? "" : state;
-    }
+	public String getState() {
+		return state == null ? "" : state;
+	}
 
-    public void setState(String state) {
-        this.state = state;
-    }
-    
-    @JsonSerialize(using=JsonDateSerializer.class)
-    public Date getStartTime() {
-        return startTime;
-    }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getStartTime() {
+		return startTime;
+	}
 
-    @JsonSerialize(using=JsonDateSerializer.class)
-    public Date getEndTime() {
-        return endTime;
-    }
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getEndTime() {
+		return endTime;
+	}
 
-    public Integer getViewCount() {
-        return viewCount;
-    }
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
 
-    public void setViewCount(Integer viewCount) {
-        this.viewCount = viewCount;
-    }
+	public Integer getViewCount() {
+		return viewCount;
+	}
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+	public void setViewCount(Integer viewCount) {
+		this.viewCount = viewCount;
+	}
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+	public BigDecimal getAmount() {
+		return amount;
+	}
 
-    public String getCreateBy() {
-        return createBy == null ? "" : createBy;
-    }
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
+	public String getCreateBy() {
+		return createBy == null ? "" : createBy;
+	}
 
-    @JsonSerialize(using=JsonDateSerializer.class)
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public String getUpdateBy() {
-        return updateBy == null ? "" : updateBy;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
+	public String getUpdateBy() {
+		return updateBy == null ? "" : updateBy;
+	}
 
-    @JsonSerialize(using=JsonDateSerializer.class)
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public String getIsInit() {
 		return isInit == null ? "" : isInit;
@@ -210,5 +214,21 @@ public class Active {
 
 	public void setIsInit(String isInit) {
 		this.isInit = isInit;
+	}
+
+	public String getAddName() {
+		return addName;
+	}
+
+	public void setAddName(String addName) {
+		this.addName = addName;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 }

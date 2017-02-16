@@ -1,5 +1,6 @@
 package com.java.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 	}
 
 	@Override
-	public void operateAct(String actId, int amount) {
+	public void operateAct(String actId, BigDecimal amount) {
 		activeDao.operateAct(actId, amount);
 	}
 

@@ -19,11 +19,13 @@ import com.java.entity.Active;
 import com.java.entity.ActiveItem;
 import com.java.entity.ActiveLog;
 import com.java.entity.ItemCate;
+import com.java.entity.OperateFee;
 import com.java.entity.UserFav;
 import com.java.service.ActiveItemService;
 import com.java.service.ActiveLogService;
 import com.java.service.ActiveService;
 import com.java.service.ItemCateService;
+import com.java.service.OperateFeeService;
 import com.java.service.UserFavService;
 import com.java.utils.ToolsUtil;
 
@@ -44,6 +46,9 @@ public class ActiveController {
 
 	@Autowired
 	private ItemCateService itemCateService;
+
+	@Autowired
+	private OperateFeeService operateFeeService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -249,6 +254,7 @@ public class ActiveController {
 			if (canOperate > 0) {
 				return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
 			}
+			OperateFee operateFee = operateFeeService.getOpFeeBy(logType);
 			if (logType.equals("1")) {
 				// 1关注
 				UserFav userFav = new UserFav();
@@ -263,7 +269,7 @@ public class ActiveController {
 				if (isLoged >= 10) {
 					return new BaseResult().failed(0, "分享金额已封顶");
 				}
-				activeService.operateAct(actId, 5);
+				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("3")) {
 				// 3重复
 				int isLoged = activeLogService.isLoged(actId, null, "3");
@@ -277,10 +283,10 @@ public class ActiveController {
 					active.setState("1");
 					activeService.updateByPrimaryKeySelective(active);
 				}
-				activeService.operateAct(actId, -2);
+				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("4")) {
 				// 4水贴
-				activeService.operateAct(actId, -2);
+				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("6")) {
 				// 6推广
 
@@ -288,9 +294,9 @@ public class ActiveController {
 				// 7取消关注
 				userFavService.deleteByPrimaryKey(favId);
 			}
-			// 记录操作日志
-			addActLog(actId, fromActId, userId, logType);
 		}
+		// 记录操作日志
+		addActLog(actId, fromActId, userId, logType);
 		return new BaseResult().success();
 	}
 

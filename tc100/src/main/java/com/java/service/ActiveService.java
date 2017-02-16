@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.java.base.BaseService;
@@ -30,7 +31,7 @@ public interface ActiveService extends BaseService<Active> {
 
 	int addViewCount(String actId);
 
-	void operateAct(String actId, int amount);
+	void operateAct(String actId, BigDecimal bigDecimal);
 
 	int getActCount(String userId, String actType, String state);
 
