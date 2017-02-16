@@ -36,7 +36,10 @@
         <table tableName="tc_user_fav" domainObjectName="UserFav" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
         <table tableName="tc_user_msg" domainObjectName="UserMsg" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table tableName="tc_item_cate" domainObjectName="ItemCate" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-         -->
+         <table tableName="tc_active_fee" domainObjectName="ActiveFee" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="tc_operate_fee" domainObjectName="OperateFee" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="tc_sys_param" domainObjectName="SysParam" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    	 -->
     </context>  
     <!-- java -jar D:\Java\liutao\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile E:\workSpace\tc100\tc100\src\main\resources\generatorConfig.xml -overwrite -->
 </generatorConfiguration>  

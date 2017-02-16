@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.impl.SysParamDaoImpl" >
+  <resultMap id="BaseResultMap" type="com.java.entity.SysParam" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_key" property="pKey" jdbcType="VARCHAR" />
+    <result column="p_value" property="pValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, p_name, p_key, p_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tc_sys_param
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tc_sys_param
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.java.entity.SysParam" >
+    insert into tc_sys_param (id, p_name, p_key, 
+      p_value)
+    values (#{id,jdbcType=CHAR}, #{pName,jdbcType=VARCHAR}, #{pKey,jdbcType=VARCHAR}, 
+      #{pValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.java.entity.SysParam" >
+    insert into tc_sys_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pName != null" >
+        p_name,
+      </if>
+      <if test="pKey != null" >
+        p_key,
+      </if>
+      <if test="pValue != null" >
+        p_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pKey != null" >
+        #{pKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pValue != null" >
+        #{pValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.SysParam" >
+    update tc_sys_param
+    <set >
+      <if test="pName != null" >
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pKey != null" >
+        p_key = #{pKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pValue != null" >
+        p_value = #{pValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.java.entity.SysParam" >
+    update tc_sys_param
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_key = #{pKey,jdbcType=VARCHAR},
+      p_value = #{pValue,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
