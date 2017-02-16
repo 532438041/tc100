@@ -97,6 +97,6 @@
 		select
 		<include refid="Base_Column_List" />
 		from tc_sys_param
-		where p_key = #{pKey}
+		where p_key = #{pKey} LIMIT 1
 	</select>
 </mapper>

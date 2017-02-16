@@ -1,82 +1,99 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.java.dao.impl.ActiveFeeDaoImpl" >
-  <resultMap id="BaseResultMap" type="com.java.entity.ActiveFee" >
-    <id column="id" property="id" jdbcType="CHAR" />
-    <result column="act_type" property="actType" jdbcType="CHAR" />
-    <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="unit" property="unit" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, act_type, amount, unit
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tc_active_fee
-    where id = #{id,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from tc_active_fee
-    where id = #{id,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.java.entity.ActiveFee" >
-    insert into tc_active_fee (id, act_type, amount, 
-      unit)
-    values (#{id,jdbcType=CHAR}, #{actType,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL}, 
-      #{unit,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.java.entity.ActiveFee" >
-    insert into tc_active_fee
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="actType != null" >
-        act_type,
-      </if>
-      <if test="amount != null" >
-        amount,
-      </if>
-      <if test="unit != null" >
-        unit,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=CHAR},
-      </if>
-      <if test="actType != null" >
-        #{actType,jdbcType=CHAR},
-      </if>
-      <if test="amount != null" >
-        #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="unit != null" >
-        #{unit,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.ActiveFee" >
-    update tc_active_fee
-    <set >
-      <if test="actType != null" >
-        act_type = #{actType,jdbcType=CHAR},
-      </if>
-      <if test="amount != null" >
-        amount = #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="unit != null" >
-        unit = #{unit,jdbcType=CHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.java.entity.ActiveFee" >
-    update tc_active_fee
-    set act_type = #{actType,jdbcType=CHAR},
-      amount = #{amount,jdbcType=DECIMAL},
-      unit = #{unit,jdbcType=CHAR}
-    where id = #{id,jdbcType=CHAR}
-  </update>
+<mapper namespace="com.java.dao.impl.ActiveFeeDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.ActiveFee">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="act_type" property="actType" jdbcType="CHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="unit" property="unit" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, act_type, amount, unit
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tc_active_fee
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_active_fee
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.ActiveFee">
+		insert into tc_active_fee (id, act_type, amount,
+		unit)
+		values (#{id,jdbcType=CHAR}, #{actType,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL},
+		#{unit,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.ActiveFee">
+		insert into tc_active_fee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="actType != null">
+				act_type,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="unit != null">
+				unit,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="actType != null">
+				#{actType,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="unit != null">
+				#{unit,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.ActiveFee">
+		update tc_active_fee
+		<set>
+			<if test="actType != null">
+				act_type = #{actType,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="unit != null">
+				unit = #{unit,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.ActiveFee">
+		update tc_active_fee
+		set act_type = #{actType,jdbcType=CHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		unit = #{unit,jdbcType=CHAR}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="getActFeeList" parameterType="com.java.entity.ActiveFee" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tc_active_fee
+		<where>
+			<if test="actType!=null and actType!=''">
+				act_type LIKE "%"#{actType}"%"
+			</if>
+		</where>
+	</select>
+	
+	<select id="getActFeeBy" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tc_active_fee
+		where act_type = #{actType} LIMIT 1
+	</select>
 </mapper>

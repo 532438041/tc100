@@ -9,14 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.java.common.entity.BaseParam;
 import com.java.common.entity.BaseResult;
+import com.java.common.entity.PageParam;
+import com.java.entity.User;
 import com.java.entity.UserCard;
 import com.java.service.UserCardService;
 import com.java.service.UserFavService;
 import com.java.service.UserMsgService;
+import com.java.service.UserService;
 import com.java.utils.ToolsUtil;
 
 @RestController
 public class UserController {
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private UserCardService userCardService;
@@ -139,8 +145,12 @@ public class UserController {
 
 	@RequestMapping(value = "/getReceiveAct")
 	public BaseResult getReceiveAct(String userId) {
-		
 		return null;
+	}
+
+	@RequestMapping(value = "/getUserList")
+	public BaseResult getUserList(@RequestBody PageParam<User> pageParam) {
+		return new BaseResult().success(userService.getUserList(pageParam));
 	}
 
 }
