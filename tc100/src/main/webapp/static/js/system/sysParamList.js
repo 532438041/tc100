@@ -12,7 +12,7 @@ angular.module("indexApp").controller("sysParamListController", function($scope,
 	$scope.pageNum = 1;
 	$scope.pageSize = 10;
 	$scope.total = 0;
-	$scope.showList = function() {
+	$scope.showList = function(isCallback) {
 		var param = $(".search-from").serializePageJson($scope.pageNum, $scope.pageSize);
 		$http({
 			method : "post",
@@ -21,6 +21,16 @@ angular.module("indexApp").controller("sysParamListController", function($scope,
 		}).success(function(dataResult) {
 			$scope.paramList = dataResult.data.dataList || [];
 			$scope.total = dataResult.data.total;
+			if (isCallback)
+				return false;
+			$('.page-pager').initPagination({
+				totalCount : $scope.total,
+				limit : $scope.pageSize,
+				callback : function(curr, limit, totalCount) {
+					$scope.pageNum = curr;
+					$scope.showList(true);
+				}
+			});
 		});
 	};
 	$scope.showList();
