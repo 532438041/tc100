@@ -88,6 +88,14 @@ indexApp.config(function($stateProvider, $urlRouterProvider) {
 				return $ocLazyLoad.load([ "/tc100/static/js/system/articleList.js" ]);
 			}
 		}
+	}).state("sysParamList", {
+		url : "/sysParamList",
+		templateUrl : "sysParamList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/sysParamList.js" ]);
+			}
+		}
 	});
 });
 
@@ -153,3 +161,4 @@ indexApp.controller("menuController", function($scope, $location, $http) {
 	});
 
 });
+
