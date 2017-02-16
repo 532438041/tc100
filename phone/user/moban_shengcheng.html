@@ -240,6 +240,8 @@
     			<div class="pore">
     				<h3>输入位置代码<input id="code" type="text" value="" placeholder="输入位置代码" readonly="readonly"/></h3>
     				<p class="bitian"><span>必填</span></p>
+    				<h3>所在市区域<input id="region" type="text" value="" placeholder="输入所在市区域"/></h3>
+    				<p class="bitian"><span>必填</span></p>
     			</div>
     			<ul class="lei_1">
     				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费原价3000/月，1500月</li>
@@ -401,6 +403,14 @@
                         });
                         return false;
                     }
+                    if($.trim($("#region").val()).length == 0){
+                        appcan.window.alert({
+                            title:'提示',
+                            content:'所在市区域不能为空',
+                            buttons:'确定'
+                        });
+                        return false;
+                    }
                     if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
                         appcan.window.alert({
                             title:'提示',
@@ -420,9 +430,11 @@
                     
                     var baseParam = {
                         userId : appcan.locStorage.getVal("userId"),
-                        actType: type
+                        actType: type,
+                        region: $("#detailSummary").val()
                     };
                     var param = $("#actForm").serializeJson(baseParam);
+                    console.log(param);
                     var result = null;
                     appcan.ajax({
                        type:"post",
