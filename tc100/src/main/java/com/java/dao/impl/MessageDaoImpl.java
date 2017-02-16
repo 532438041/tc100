@@ -32,4 +32,9 @@ public class MessageDaoImpl extends BaseDaoImpl<Message>implements MessageDao {
 		return this.getSqlSession().selectOne("getMsg", msgId);
 	}
 
+	@Override
+	public List<String> getMsgRegion(String addName) {
+		return this.getSqlSession().selectList(getStateMentName("getMsgRegion"), addName);
+	}
+
 }

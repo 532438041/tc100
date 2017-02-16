@@ -49,4 +49,9 @@ public class MessageServiceImpl extends BaseServiceImpl<Message>implements Messa
 		return messageDao.getMsg(msgId);
 	}
 
+	@Override
+	public List<String> getMsgRegion(String addName) {
+		return messageDao.getMsgRegion(addName);
+	}
+
 }

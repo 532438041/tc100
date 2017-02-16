@@ -49,4 +49,12 @@ public class ActiveDaoImpl extends BaseDaoImpl<Active>implements ActiveDao {
 		return this.getSqlSession().selectOne(getStateMentName("getActCount"), map);
 	}
 
+	@Override
+	public List<String> getActRegion(String addName, String actType) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("addName", addName);
+		map.put("actType", actType);
+		return this.getSqlSession().selectList(getStateMentName("getActRegion"), map);
+	}
+
 }

@@ -17,5 +17,7 @@ public interface ActiveDao extends BaseDao<Active>{
 	void operateAct(String actId, BigDecimal amount);
 
 	int getActCount(String userId, String actType, String state);
+
+	List<String> getActRegion(String addName, String actType);
     
 }

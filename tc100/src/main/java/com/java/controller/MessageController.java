@@ -129,4 +129,9 @@ public class MessageController {
 		return new BaseResult().success(messageService.getMsgList(userId));
 	}
 
+	@RequestMapping(value = "/getMsgRegion")
+	public BaseResult getMsgRegion(String addName) {
+		return new BaseResult().success(messageService.getMsgRegion(addName));
+	}
+
 }

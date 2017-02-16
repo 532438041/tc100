@@ -47,4 +47,9 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 		return activeDao.getActCount(userId, actType, state);
 	}
 
+	@Override
+	public List<String> getActRegion(String addName, String actType) {
+		return activeDao.getActRegion(addName, actType);
+	}
+
 }

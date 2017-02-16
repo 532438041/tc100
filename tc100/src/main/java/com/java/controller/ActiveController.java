@@ -319,4 +319,9 @@ public class ActiveController {
 		activeLogService.insert(activeLog);
 	}
 
+	@RequestMapping(value = "/getActRegion")
+	public BaseResult getActRegion(String addName, String actType) {
+		return new BaseResult().success(activeService.getActRegion(addName, actType));
+	}
+
 }

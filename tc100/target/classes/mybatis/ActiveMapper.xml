@@ -247,10 +247,10 @@
 			<if test="amount != null">
 				amount = #{amount,jdbcType=DECIMAL},
 			</if>
-			<if test="region != null">
+			<if test="region != null and region != ''">
 				region = #{region,jdbcType=VARCHAR},
 			</if>
-			<if test="addName != null">
+			<if test="addName != null and addName != ''">
 				addName = #{addName,jdbcType=VARCHAR},
 			</if>
 			<if test="createBy != null">
@@ -304,6 +304,15 @@
 		AND act.`state` = '2' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
 		<if test="userId != null and userId != '' ">
 			AND act.user_id = #{userId}
+		</if>
+		<if test="cateId != null and cateId != ''">
+			AND act.cate_id = #{cateId}
+		</if>
+		<if test="region != null and region != ''">
+			AND act.region = #{region}
+		</if>
+		<if test="addName != null and addName != ''">
+			AND act.addName = #{addName}
 		</if>
 		ORDER BY act.`view_count`
 	</select>

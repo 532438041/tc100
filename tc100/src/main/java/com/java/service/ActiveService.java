@@ -21,9 +21,9 @@ public interface ActiveService extends BaseService<Active> {
 
 	/**
 	 * 获取我的模板 我的活动列表
-	 * @param userId 
-	 * @param actType 
 	 * 
+	 * @param userId
+	 * @param actType
 	 * @param @return
 	 * @return List<Active>
 	 */
@@ -34,5 +34,7 @@ public interface ActiveService extends BaseService<Active> {
 	void operateAct(String actId, BigDecimal bigDecimal);
 
 	int getActCount(String userId, String actType, String state);
+
+	List<String> getActRegion(String addName, String actType);
 
 }

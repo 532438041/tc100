@@ -127,10 +127,10 @@
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-			<if test="region != null">
+			<if test="region != null and region != ''">
 				region = #{region,jdbcType=VARCHAR},
 			</if>
-			<if test="addName != null">
+			<if test="addName != null and addName != ''">
 				addName = #{addName,jdbcType=VARCHAR},
 			</if>
 			<if test="createBy != null">
@@ -172,6 +172,12 @@
 		<where>
 			<if test="userId != null and userId  != ''">
 				msg.user_id = #{userId}
+			</if>
+			<if test="region != null and region != ''">
+				AND msg.region = #{region}
+			</if>
+			<if test="addName != null and addName != ''">
+				AND msg.addName = #{addName}
 			</if>
 		</where>
 		GROUP BY msg.`id`

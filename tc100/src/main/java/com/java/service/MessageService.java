@@ -20,4 +20,6 @@ public interface MessageService extends BaseService<Message> {
 
 	MsgDto getMsg(String msgId);
 
+	List<String> getMsgRegion(String addName);
+
 }
