@@ -10,7 +10,7 @@
 angular.module("indexApp").controller("operateFeeController", function($scope, $http) {
 
 	$scope.pageNum = 1;
-	$scope.pageSize = 2;
+	$scope.pageSize = 10;
 	$scope.total = 0;
 	$scope.showList = function(isCallback) {
 		var param = $(".search-from").serializePageJson($scope.pageNum, $scope.pageSize);
