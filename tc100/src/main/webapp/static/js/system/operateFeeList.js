@@ -1,25 +1,25 @@
 /**
- * @Title: sysParamList.js
+ * @Title: operateFeeList.js
  * @Package src/main/webapp/static/js/system/
- * @Description: 系统参数
+ * @Description: 帖子奖惩
  * @author LiuTao
  * @date 2017年1月5日 下午1:54:24
  * @version V1.0
  */
 
-angular.module("indexApp").controller("activeFeeListController", function($scope, $http) {
+angular.module("indexApp").controller("operateFeeController", function($scope, $http) {
 
 	$scope.pageNum = 1;
-	$scope.pageSize = 10;
+	$scope.pageSize = 2;
 	$scope.total = 0;
 	$scope.showList = function(isCallback) {
 		var param = $(".search-from").serializePageJson($scope.pageNum, $scope.pageSize);
 		$http({
 			method : "post",
 			data : param,
-			url : "/tc100/getActFeeList.json"
+			url : "/tc100/getOpFeeList.json"
 		}).success(function(dataResult) {
-			$scope.activeFeeList = dataResult.data.dataList || [];
+			$scope.operateFeeList = dataResult.data.dataList || [];
 			$scope.total = dataResult.data.total;
 			if (isCallback)
 				return false;
@@ -35,20 +35,20 @@ angular.module("indexApp").controller("activeFeeListController", function($scope
 	};
 	$scope.showList();
 	var modal = new Modal({
-		title : "发布资费",
-		content : $('#activeFeeForm'),
+		title : "帖子资费",
+		content : $('#operateFeeForm'),
 		onOk : function() {
 			// 表单校验
-			$('#activeFeeForm').bootstrapValidator('validate');
-			if ($('#activeFeeForm').data('bootstrapValidator').isValid()) {
+			$('#operateFeeForm').bootstrapValidator('validate');
+			if ($('#operateFeeForm').data('bootstrapValidator').isValid()) {
 				var baseParam = {
-					id : $scope.activeFeeId
+					id : $scope.operateFeeId
 				}
-				var param = $("#activeFeeForm").serializeJson(baseParam);
+				var param = $("#operateFeeForm").serializeJson(baseParam);
 				$http({
 					method : "post",
 					data : param,
-					url : "/tc100/saveActFee.json"
+					url : "/tc100/saveOpFee.json"
 				}).success(function(dataResult) {
 					if (dataResult.status == 0) {
 						alert(dataResult.msg);
@@ -63,54 +63,54 @@ angular.module("indexApp").controller("activeFeeListController", function($scope
 		},
 		onModalHide : function() {
 			// 初始化Modal
-			$('#activeFeeForm').bootstrapValidator('validate');
-			$('#activeFeeForm').data('bootstrapValidator').resetForm(true);
+			$('#operateFeeForm').bootstrapValidator('validate');
+			$('#operateFeeForm').data('bootstrapValidator').resetForm(true);
 			modal.showButton(".btn-ok");
-			$scope.activeFeeId = "";
-			$scope.vActType = "";
+			$scope.operateFeeId = "";
+			$scope.vLogType = "";
 			$scope.vAmount = "";
-			$scope.vUnit = "";
+			$scope.vRemark = "";
 		}
 	});
 
-	$scope.addActiveFeeView = function() {
+	$scope.addOperateFeeView = function() {
 		modal.setTitle("添加资费");
 		modal.open();
 	};
 
-	$scope.editActiveFeeView = function(id) {
+	$scope.editOperateFeeView = function(id) {
 		modal.setTitle("编辑资费");
-		$scope.getActiveFeeById(id);
+		$scope.getOperateFeeById(id);
 		modal.open();
 	};
 
-	$scope.seeActiveFeeView = function(id) {
+	$scope.seeOperateFeeView = function(id) {
 		modal.hideButton(".btn-ok");
 		modal.setTitle("查看资费");
-		$scope.getActiveFeeById(id);
+		$scope.getOperateFeeById(id);
 		modal.open();
 	};
 
-	$scope.getActiveFeeById = function(id) {
+	$scope.getOperateFeeById = function(id) {
 		$http({
 			method : "get",
-			url : "/tc100/getActFee.json?id=" + id
+			url : "/tc100/getOpFee.json?id=" + id
 		}).success(function(dataResult) {
 			var data = dataResult.data;
-			$scope.activeFeeId = data.id;
-			$scope.vActType = data.actType;
+			$scope.operateFeeId = data.id;
+			$scope.vLogType = data.logType;
 			$scope.vAmount = data.amount;
-			$scope.vUnit = data.unit;
+			$scope.vRemark = data.remark;
 		});
 	};
 
-	$scope.delActiveFee = function(id) {
+	$scope.delOperateFee = function(id) {
 		confirm({
 			msg : "确认删除？",
 			onOk : function() {
 				$http({
 					method : "post",
-					url : "/tc100/delActFee.json?id=" + id
+					url : "/tc100/delOpFee.json?id=" + id
 				}).success(function(dataResult) {
 					$scope.showList();
 				});
@@ -119,6 +119,6 @@ angular.module("indexApp").controller("activeFeeListController", function($scope
 	};
 
 	$scope.resetSearch = function() {
-		$scope.actType = "";
+		$scope.logType = "";
 	};
 });

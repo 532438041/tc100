@@ -40,7 +40,10 @@
 				<tr ng-repeat="activeFee in activeFeeList">
 					<td>{{activeFee.actType}}</td>
 					<td>{{activeFee.amount}}</td>
-					<td>{{activeFee.unit}}</td>
+					<td ng-if="activeFee.unit=='day'">天</td>
+					<td ng-if="activeFee.unit=='month'">月</td>
+					<td ng-if="activeFee.unit=='year'">年</td>
+					<td ng-if="activeFee.unit=='free'">试用免费</td>
 					<td class="operate">
 						<a ng-click="seeActiveFeeView(activeFee.id)">查看</a>
 						<a ng-click="editActiveFeeView(activeFee.id)">编辑</a>
