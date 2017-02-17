@@ -318,7 +318,7 @@
                                 var num = actType.substring(1,actType.length);
                                 if(num==1){
                                     gz1 += '<a href="javascript:;"><img src="'+dataList[i].mainPic+'" />';
-                                    gz1 += '<div class="opa" onclick="cancel('+dataList[i].id+','+dataList[i].favId+');"><img src="../img/quxiao.png" />取消关注</div></a>';
+                                    gz1 += '<div class="opa" onclick="cancel(\''+dataList[i].id+'\',\''+dataList[i].favId+'\');"><img src="../img/quxiao.png" />取消关注</div></a>';
                                 }else{
                                     gz2 += '<li class="mui-table-view-cell mui-media">';
                                     gz2 += '<a href="javascript:;" onclick="openUrl(\'../page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
@@ -326,7 +326,7 @@
                                     gz2 += '<div class="mui-media-body">'+dataList[i].actName;
                                     gz2 += '<p class="mui-ellipsis">'+dataList[i].summary+'......</p>';
                                     gz2 += '<i>9分钟前发布</i>';
-                                    gz2 += '</div></a><div class="opa" onclick="cancel('+dataList[i].id+','+dataList[i].favId+');"><img src="../img/quxiao.png" />取消关注</div></li>';
+                                    gz2 += '</div></a><div class="opa" onclick="cancel(\''+dataList[i].id+'\',\''+dataList[i].favId+'\');"><img src="../img/quxiao.png" />取消关注</div></li>';
                                 }
                             }
                         }

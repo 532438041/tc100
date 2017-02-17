@@ -122,9 +122,11 @@
                         
                         $(".card_list li").click(function(){
                             if( $(this).find("span").css("display") == "block"){
+                                $(".card_list li span").hide();
                                 $(this).find("span").hide();
                                 isChangeId = "";
                             }else{
+                                $(".card_list li span").hide();
                                 $(this).find("span").show();
                                 isChangeId = $(this).attr("data-id");
                             }
