@@ -274,27 +274,21 @@
 		<section class="quyu">
 			<div>
 				<h4 style="border: none;">区域<span class="bottombottom"></span></h4>
-				<ul name="quyu">
-					<li class="action">区域：开发区 虎门区</li>
-					<li>区域：开发区 虎门区</li>
-					<li>区域：开发区 虎门区</li>
+				<ul name="quyu" id="quyu">
 				</ul>
 			</div>
 			<div>
 				<h4>分类<span class="bottombottom"></span></h4>
-				<ul name="quyu">
-					<li class="action">分类：分类一</li>
-					<li>分类：分类一</li>
-					<li>分类：分类一</li>
+				<ul name="quyu" id="cate">
 				</ul>
 			</div>
 			<div>
 				<h4>智能排序<span class="bottombottom"></span></h4>
-				<ul name="quyu">
-					<li class="action">排序：排序一</li>
-					<li>排序：排序一</li>
-					<li>排序：排序一</li>
-				</ul>
+				<ul name="quyu" id="sort">  
+                    <li class="action" data-id="amount">排序：实力优先</li>
+                    <li data-id="viewCount">排序：浏览优先</li>
+                    <li data-id="dateTime">排序：当前进行</li>
+                </ul>
 			</div>
 		</section>
 		<section class="same_city_search">
@@ -331,17 +325,58 @@
         			$(this).parent().hide();
         			$(this).parent().find("li").removeClass("action");
         			$(this).addClass("action");
+        			mingyouList();
         		})
         	});
-        	/**
-        	 * 列表 
-        	 */
-        	var baseParam1 = {'actType':'A1','addName':appcan.locStorage.getVal("ipcity")}
-            var param1 = serializePageJson(1,20,baseParam1);
+        	//列表
+            mingyouList();
+            //查询   区域列表
+            appcan.ajax({
+                type:"get",
+                url:host+"/getActRegion.json?actType=A1&addName="+appcan.locStorage.getVal("ipcity"),
+                dataType:"json",
+                contentType: "application/json",
+                success : function(dataResult) {
+                    var actStr = '<li class="action" data-id="">区域：全部</li>';
+                    if(dataResult.data.length>0){
+                        for(var i=0;i<dataResult.data.length;i++){
+                            actStr +='<li data-id="'+dataResult.data[i]+'">区域：'+dataResult.data[i]+'</li>';
+                        }
+                    }
+                    $("#quyu").html(actStr);
+                }
+            })
+            //查询   分类列表
+            var baseParam = {'pid':'2'}
+            var param = serializePageJson(1,20,baseParam);
+            appcan.ajax({
+                type:"post",
+                url:host+"/getCateByPid.json",
+                data:param,
+                dataType:"json",
+                contentType: "application/json",
+                success : function(dataResult) {
+                    var dataList = dataResult.data.dataList;
+                    var actStr = '<li class="action" data-id="">区域：全部</li>';
+                    if(dataList.length > 0){
+                        for(var i=0;i<dataList.length;i++){
+                            actStr +='<li data-id='+dataList[i].id+'>区域：'+dataList[i].cateName+'</li>';
+                        }
+                    }
+                    $("#cate").html(actStr);
+                }
+            })
+        	
+        });
+        function mingyouList () {
+            var baseSearchParam = getSearchType();
+            var baseParam = {'actType':'A1','addName':appcan.locStorage.getVal("ipcity")}
+            baseParam = Object.assign(baseParam,baseSearchParam);
+            var param = serializePageJson(1,20,baseParam);
             appcan.ajax({
                 type:"post",
                 url:host+"/getActiveList.json",
-                data:param1,
+                data:param,
                 dataType:"json",
                 contentType: "application/json",
                 success : function(dataResult) {
@@ -353,8 +388,23 @@
                     $("#actA1").html(actStr);
                 }
             })
-        });
-        
+        }
+        function getSearchType () {
+            var baseSearchParam = {'region':'','cateId':'','orderBy':''}
+            var searchType = "";
+            $(".quyu li[class=action]").each(function(){
+                if($(this).parent().attr("id")=='quyu'){
+                    baseSearchParam.region = $(this).attr("data-id");
+                }
+                if($(this).parent().attr("id")=='cate'){
+                    baseSearchParam.cateId = $(this).attr("data-id");
+                }
+                if($(this).parent().attr("id")=='sort'){
+                    baseSearchParam.orderBy = $(this).attr("data-id");
+                }
+            })
+            return baseSearchParam;
+        }
         </script>
 	</body>
 

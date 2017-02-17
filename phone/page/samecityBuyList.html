@@ -282,18 +282,15 @@
 			</div>
 			<div>
 				<h4>分类<span class="bottombottom"></span></h4>
-				<ul name="quyu">
-					<li class="action">分类：分类一</li>
-					<li>分类：分类一</li>
-					<li>分类：分类一</li>
+				<ul name="quyu" id="cate">
 				</ul>
 			</div>
 			<div>
 				<h4>智能排序<span class="bottombottom"></span></h4>
-				<ul name="quyu">
-					<li class="action">排序：排序一</li>
-					<li>排序：排序一</li>
-					<li>排序：排序一</li>
+				<ul name="quyu" id="sort">  
+					<li class="action" data-id="amount">排序：实力优先</li>
+					<li data-id="viewCount">排序：浏览优先</li>
+					<li data-id="dateTime">排序：当前进行</li>
 				</ul>
 			</div>
 		</section>
@@ -333,10 +330,11 @@
         			$(this).parent().hide();
         			$(this).parent().find("li").removeClass("action");
         			$(this).addClass("action");
+        			samecityList();
         		})
         	});
         	//列表
-            samecityList("");
+            samecityList();
             //查询   区域列表
             appcan.ajax({
                 type:"get",
@@ -344,43 +342,46 @@
                 dataType:"json",
                 contentType: "application/json",
                 success : function(dataResult) {
-                    console.log(dataResult.data);
-                    var actStr = '<li class="action">区域：全部</li>';
+                    var actStr = '<li class="action" data-id="">区域：全部</li>';
                     if(dataResult.data.length>0){
                         for(var i=0;i<dataResult.data.length;i++){
-                            actStr +='<li>区域：'+dataResult.data[i]+'</li>';
+                            actStr +='<li data-id="'+dataResult.data[i]+'">区域：'+dataResult.data[i]+'</li>';
                         }
                     }
-                    console.log(actStr);
                     $("#quyu").html(actStr);
                 }
             })
             //查询   分类列表
+            var baseParam = {'pid':'2'}
+            var param = serializePageJson(1,20,baseParam);
             appcan.ajax({
-                type:"get",
-                url:host+"/getActRegion.json?actType=B&addName="+appcan.locStorage.getVal("ipcity"),
+                type:"post",
+                url:host+"/getCateByPid.json",
+                data:param,
                 dataType:"json",
                 contentType: "application/json",
                 success : function(dataResult) {
-                    console.log(dataResult.data);
-                    var actStr = '<li class="action">区域：全部</li>';
-                    if(dataResult.data.length>0){
-                        for(var i=0;i<dataResult.data.length;i++){
-                            actStr +='<li>区域：'+dataResult.data[i]+'</li>';
+                    var dataList = dataResult.data.dataList;
+                    var actStr = '<li class="action" data-id="">区域：全部</li>';
+                    if(dataList.length > 0){
+                        for(var i=0;i<dataList.length;i++){
+                            actStr +='<li data-id='+dataList[i].id+'>区域：'+dataList[i].cateName+'</li>';
                         }
                     }
-                    console.log(actStr);
-                    $("#quyu").html(actStr);
+                    $("#cate").html(actStr);
                 }
             })
         });
-        function samecityList (param) {
-            var baseParam2 = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity"),'region':param}
-            var param2 = serializePageJson(1,20,baseParam2);
+        function samecityList () {
+            var baseSearchParam = getSearchType();
+            var baseParam = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity")}
+            baseParam = Object.assign(baseParam,baseSearchParam);
+            var param = serializePageJson(1,20,baseParam);
+            console.log(param);
             appcan.ajax({
                 type:"post",
                 url:host+"/getActiveList.json",
-                data:param2,
+                data:param,
                 dataType:"json",
                 contentType: "application/json",
                 success : function(dataResult) {
@@ -398,6 +399,22 @@
                     $("#actB2").html(actStr);
                 }
             })
+        }
+        function getSearchType () {
+            var baseSearchParam = {'region':'','cateId':'','orderBy':''}
+            var searchType = "";
+            $(".quyu li[class=action]").each(function(){
+                if($(this).parent().attr("id")=='quyu'){
+                    baseSearchParam.region = $(this).attr("data-id");
+                }
+                if($(this).parent().attr("id")=='cate'){
+                    baseSearchParam.cateId = $(this).attr("data-id");
+                }
+                if($(this).parent().attr("id")=='sort'){
+                    baseSearchParam.orderBy = $(this).attr("data-id");
+                }
+            })
+            return baseSearchParam;
         }
         </script>
 	</body>
