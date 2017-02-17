@@ -1,9 +1,12 @@
 package com.java.controller;
 
+import java.util.Random;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.java.common.entity.BaseResult;
+import com.java.utils.ToolsUtil;
 
 @RestController
 public class SendMsgController {
@@ -18,7 +21,8 @@ public class SendMsgController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/sendMsg")
-	public BaseResult sendMsg(String mobile, String tempCode, String code) {
+	public BaseResult sendMsg(String mobile, String tempCode) {
+		String vCode = ToolsUtil.getUUID(6).toString();
 		String url = "";
 		String appkey = "";
 		String secret = "";
@@ -31,7 +35,7 @@ public class SendMsgController {
 		req.setRecNum("13000000000");
 		req.setSmsTemplateCode("SMS_585014");
 		AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);*/
-		return new BaseResult().success();
+		return new BaseResult().success(vCode);
 	}
 
 }

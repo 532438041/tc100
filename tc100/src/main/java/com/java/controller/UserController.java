@@ -153,4 +153,16 @@ public class UserController {
 		return new BaseResult().success(userService.getUserList(pageParam));
 	}
 
+	/**
+	 * 根据手机号获取用户id 用于推送取用户
+	 * 
+	 * @param @param mobile
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getUserIdByMobile")
+	public BaseResult getUserIdByMobile(String mobile) {
+		return new BaseResult().success(userService.getUserIdByMobile(mobile));
+	}
+
 }

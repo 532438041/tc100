@@ -277,4 +277,8 @@
 		AND (user_name = #{userName} OR email = #{userName} OR mobile = #{userName})
 	</select>
 
+	<select id="getUserIdByMobile" parameterType="java.lang.String" resultType="java.lang.String">
+		select id from tc_user where mobile = #{mobile}
+	</select>
+
 </mapper>

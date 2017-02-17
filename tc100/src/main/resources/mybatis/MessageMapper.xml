@@ -184,11 +184,12 @@
 	</select>
 
 	<select id="getLastMsgTime" parameterType="java.lang.String" resultType="java.lang.String">
-		SELECT MAX(update_time) lastMsgTime FROM `tc_message` WHERE user_id = #{userId};
+		SELECT TIMESTAMPDIFF(SECOND, MAX(update_time), NOW()) lastMsgTime FROM `tc_message` WHERE user_id = #{userId}
 	</select>
 
 	<select id="getMyMsgCount" parameterType="java.lang.String" resultType="Integer">
-		SELECT COUNT(0) msgCount FROM `tc_message` WHERE user_id = #{userId};
+		SELECT COUNT(0) msgCount FROM `tc_message` WHERE user_id = #{userId}
+		AND DATE_ADD(create_time, INTERVAL IFNULL((SELECT p_value FROM `tc_sys_param` WHERE p_key = 'tcsts' LIMIT 1), 2) DAY) > NOW()
 	</select>
 
 	<select id="getMsg" resultType="com.java.dto.MsgDto" parameterType="java.lang.String">

@@ -51,6 +51,8 @@ public class Active {
 	private String updateBy;
 
 	private Date updateTime;
+	
+	private String orderBy;
 
 	public String getId() {
 		return id == null ? "" : id;
@@ -230,5 +232,13 @@ public class Active {
 
 	public void setRegion(String region) {
 		this.region = region;
+	}
+
+	public String getOrderBy() {
+		return orderBy == null ? "" : orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
 	}
 }

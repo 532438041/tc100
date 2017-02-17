@@ -244,10 +244,17 @@ public class ActiveController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/operateAct")
-	public BaseResult operateAct(String actId, String fromActId, String userId, String logType, String favId) {
-		if (ToolsUtil.isNotNull(fromActId)) {
+	public BaseResult operateAct(String actId, String fromActId, String userId, String fromUserId, String logType, String favId) {
+		if (ToolsUtil.isNotNull(fromActId) && logType.equals("5")) {
 			// fromActId 不为空时 为5推送操作 新增一条
-
+			Active active = activeService.selectByPrimaryKey(fromActId);
+			active.setId(ToolsUtil.getUUID());
+			active.setCreateTime(new Date());
+			active.setState("1"); // 未发布
+			active.setViewCount(0);
+			activeService.insert(active);
+			actId = active.getId();
+			userId = fromUserId;
 		} else {
 			// 判断该用户是否操作过 不重复记录
 			int canOperate = activeLogService.isLoged(actId, userId, logType);
@@ -289,7 +296,7 @@ public class ActiveController {
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("6")) {
 				// 6推广
-
+				
 			} else if (logType.equals("7")) {
 				// 7取消关注
 				userFavService.deleteByPrimaryKey(favId);
@@ -312,6 +319,7 @@ public class ActiveController {
 		ActiveLog activeLog = new ActiveLog();
 		activeLog.setId(ToolsUtil.getUUID());
 		activeLog.setActId(actId);
+		activeLog.setFromActId(fromActId);
 		activeLog.setContent(LogTypeEnum.getMsgByType(logType));
 		activeLog.setCreateTime(new Date());
 		activeLog.setLogType(logType);
