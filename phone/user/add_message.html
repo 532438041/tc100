@@ -137,76 +137,95 @@
 		</footer>
         <script>
             var time = 0;
+            var cardId = "";
             // JavaScript Document
             $(document).ready(function(){
-                //最后一发布信息时间
+                  var flag = false;
+                  //获取默认名片夹
+                   appcan.ajax({
+                       type:"get",     
+                       url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
+                       dataType:"json",
+                       contentType: "application/json",
+                       success : function(dataResult) {
+                           var data = dataResult.data;
+                            if(data.length > 0){
+                                cardId = data[0].id;
+                                $("#cardName").val(data[0].cardName);
+                                $("#cardRegion").val(data[0].region);
+                            }
+                       }
+                   })
+                   //最后一发布信息时间
                   appcan.ajax({
                        type:"post",
                        async:false,       
-                       url:host+"/getLastMsgTime.json?userId=1",
+                       url:host+"/getLastMsgTime.json?userId="+appcan.locStorage.getVal("userId"),
                        data:"",
                        dataType:"json",
                        contentType: "application/json",
                        success : function(dataResult) {
                            var intDiff = parseInt(dataResult.data);
                            if(dataResult.data!="" && dataResult.data!=null){
-                               var timestamp = Date.parse(new Date());
-                               var lasttamp = Date.parse(new Date(dataResult.data));
-                               var lastTime = (timestamp-lasttamp)/1000;
-                               console.log(lastTime);
-                               if(lastTime<3600){
-                                   timer(intDiff);
+                               if(dataResult.data<3600){
+                                   console.log(dataResult.data);
+                                   timer(3600-dataResult.data);
+                               }else{
+                                   flag = true;
                                }
                            }else{
+                               flag = true;
                                $(".submit").val("发布");
                            }
-                       }
-                   })
-                   //获取名片信息
-                  appcan.ajax({
-                       type:"post",
-                       async:false,       
-                       url:host+"/getCard.json?cardId=1",
-                       data:"",
-                       dataType:"json",
-                       contentType: "application/json",
-                       success : function(dataResult) {
-                           var data = dataResult.data;
-                           $("#cardName").val(data.cardName);
-                           $("#cardRegion").val(data.region);
                        }
                    })
                    //添加信息
                    $("#addMsg").click(function(){
                         //最后发布1小时内不能提交
-                        if(time>0){
-                            return false;
-                        }
-                        //同城搜信息添加
-                        var msg = "添加成功！";
-                        var baseParam = {'cardId':"1","userId":appcan.locStorage.getVal("userId"),"addName":appcan.locStorage.getVal("ipcity")}
-                        var param = $("#upchuan0").serializeJson(baseParam);
-                        console.log(param);
-                        appcan.ajax({
-                           type:"post",
-                           async:false,       
-                           url:host+"/saveMsg.json",
-                           data:param,
-                           dataType:"json",
-                           contentType: "application/json",
-                           success : function(dataResult) {
-                               console.log(dataResult);
-                               if(dataResult.status==1){
-                                   alert(msg);
-                                   window.location.href = "my_ask.html";
+                        if(flag){
+                            if(!!!$("#title").val()){
+                                alert("主题不能为空！");
+                                return false;
+                            }else if(!!!$("#region").val()){
+                                alert("区域内容不能为空");
+                                return false;
+                            }
+                            var msg = "添加成功！";
+                            var baseParam = {'cardId':cardId,"userId":appcan.locStorage.getVal("userId"),"addName":appcan.locStorage.getVal("ipcity")}
+                            var param = $("#upchuan0").serializeJson(baseParam);
+                            appcan.ajax({
+                               type:"post",
+                               async:false,       
+                               url:host+"/saveMsg.json",
+                               data:param,
+                               dataType:"json",
+                               contentType: "application/json",
+                               success : function(dataResult) {
+                                   if(dataResult.status==1){
+                                       alert(msg);
+                                       openUrl("my_ask.html","myAsk");
+                                   }
                                }
-                           }
-                       })
+                           })
+                        }else{
+                            alert("已发布过，一小时内不能再次发布！");
+                        }
                     })
             });
+            // 时间差倒计时
             function timer(intDiff) {
                window.setInterval(function () {
-                   $(".submit").val("发布"+intDiff);
+                    var m=0;
+                    var s=0;
+                    if(intDiff>0){
+                       m=Math.floor(intDiff/60%60);
+                       s=Math.floor(intDiff%60);
+                       $(".submit").val("发布"+m+":"+s);
+                       flag = false;
+                    }else{
+                       flag = true;
+                       $(".submit").val("发布");
+                    }
                    time = intDiff;
                    intDiff--;
                }, 1000);

@@ -33,6 +33,7 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
+            console.log(dataResult);
             $("#ipcity").html(remote_ip_info.city);
             if(dataResult!=null && dataResult.data.dataList.length>0){
                 var dataList = dataResult.data.dataList;
