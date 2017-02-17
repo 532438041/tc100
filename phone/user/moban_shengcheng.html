@@ -431,10 +431,10 @@
                     var baseParam = {
                         userId : appcan.locStorage.getVal("userId"),
                         actType: type,
-                        region: $("#detailSummary").val()
+                        region: $("#region").val(),
+                        addName: appcan.locStorage.getVal("ipcity")
                     };
                     var param = $("#actForm").serializeJson(baseParam);
-                    console.log(param);
                     var result = null;
                     appcan.ajax({
                        type:"post",

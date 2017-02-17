@@ -236,10 +236,6 @@
 		</header>
 		<section class="quyu">
 			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
 			</select>
 			<span class="bottombottom xiangxia"></span>
 		</section>
@@ -270,7 +266,31 @@
 		</footer>
         <script>
             $(function(){
-                var baseParam1 = {'actType':'C1','addName':appcan.locStorage.getVal("ipcity")}
+                //列表
+                shopList("");
+                //查询 分类
+                appcan.ajax({
+                    type:"get",
+                    url:host+"/getActRegion.json?actType=C&addName="+appcan.locStorage.getVal("ipcity"),
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var actStr = '<option value="">区域：全部</option>';
+                        if(dataResult.data.length>0){
+                            for(var i=0;i<dataResult.data.length;i++){
+                                actStr +='<option value="'+dataResult.data[i]+'">区域：'+dataResult.data[i]+'</option>';
+                            }
+                        }
+                        $("#quyu").html(actStr);
+                    }
+                })
+                //下拉改变
+                $("#quyu").change(function(){
+                    shopList($(this).val());
+                });
+            })
+            function shopList (param) {
+                var baseParam1 = {'actType':'C1','addName':appcan.locStorage.getVal("ipcity"),'region':param}
                 var param1 = serializePageJson(1,20,baseParam1);
                 appcan.ajax({
                     type:"post",
@@ -281,7 +301,6 @@
                     success : function(dataResult) {
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
-                        console.log(dataList);
                         for(var i=0;i<dataList.length;i++){
                             actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" /></a>';
                         }
@@ -289,7 +308,7 @@
                     }
                 })
                 
-                var baseParam2 = {'actType':'C2','addName':appcan.locStorage.getVal("ipcity")}
+                var baseParam2 = {'actType':'C2','addName':appcan.locStorage.getVal("ipcity"),'region':param}
                 var param2 = serializePageJson(1,20,baseParam2);
                 appcan.ajax({
                     type:"post",
@@ -314,7 +333,7 @@
                         $("#actC2").html(actStr);
                     }
                 })
-            })
+            }
         </script>
 	</body>
 

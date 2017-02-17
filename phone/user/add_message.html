@@ -179,14 +179,12 @@
                    //添加信息
                    $("#addMsg").click(function(){
                         //最后发布1小时内不能提交
-                        alert(time);
                         if(time>0){
-                            alert();
                             return false;
                         }
                         //同城搜信息添加
                         var msg = "添加成功！";
-                        var baseParam = {'cardId':"1","userId":"1"}
+                        var baseParam = {'cardId':"1","userId":appcan.locStorage.getVal("userId"),"addName":appcan.locStorage.getVal("ipcity")}
                         var param = $("#upchuan0").serializeJson(baseParam);
                         console.log(param);
                         appcan.ajax({

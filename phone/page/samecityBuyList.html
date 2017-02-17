@@ -277,10 +277,7 @@
 		<section class="quyu">
 			<div>
 				<h4 style="border: none;">区域<span class="bottombottom"></span></h4>
-				<ul name="quyu">
-					<li class="action">区域：开发区 虎门区</li>
-					<li>区域：开发区 虎门区</li>
-					<li>区域：开发区 虎门区</li>
+				<ul name="quyu" id="quyu">
 				</ul>
 			</div>
 			<div>
@@ -338,30 +335,70 @@
         			$(this).addClass("action");
         		})
         	});
-        	var baseParam2 = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity")}
-                var param2 = serializePageJson(1,20,baseParam2);
-                appcan.ajax({
-                    type:"post",
-                    url:host+"/getActiveList.json",
-                    data:param2,
-                    dataType:"json",
-                    contentType: "application/json",
-                    success : function(dataResult) {
-                        var dataList = dataResult.data.dataList;
-                        var actStr = "";
-                        for(var i=0;i<dataList.length;i++){
-                            actStr += '<li class="mui-table-view-cell mui-media">';
-                            actStr += '<a href="info.html?actId='+dataList[i].id+'">';
-                            actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
-                            actStr += '<div class="mui-media-body">'+dataList[i].actName;
-                            actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
-                            actStr += '<i>'+dataList[i].createTime+'</i>';
-                            actStr += '</div></a></li>';
+        	//列表
+            samecityList("");
+            //查询   区域列表
+            appcan.ajax({
+                type:"get",
+                url:host+"/getActRegion.json?actType=B&addName="+appcan.locStorage.getVal("ipcity"),
+                dataType:"json",
+                contentType: "application/json",
+                success : function(dataResult) {
+                    console.log(dataResult.data);
+                    var actStr = '<li class="action">区域：全部</li>';
+                    if(dataResult.data.length>0){
+                        for(var i=0;i<dataResult.data.length;i++){
+                            actStr +='<li>区域：'+dataResult.data[i]+'</li>';
                         }
-                        $("#actB2").html(actStr);
                     }
-                })
+                    console.log(actStr);
+                    $("#quyu").html(actStr);
+                }
+            })
+            //查询   分类列表
+            appcan.ajax({
+                type:"get",
+                url:host+"/getActRegion.json?actType=B&addName="+appcan.locStorage.getVal("ipcity"),
+                dataType:"json",
+                contentType: "application/json",
+                success : function(dataResult) {
+                    console.log(dataResult.data);
+                    var actStr = '<li class="action">区域：全部</li>';
+                    if(dataResult.data.length>0){
+                        for(var i=0;i<dataResult.data.length;i++){
+                            actStr +='<li>区域：'+dataResult.data[i]+'</li>';
+                        }
+                    }
+                    console.log(actStr);
+                    $("#quyu").html(actStr);
+                }
+            })
         });
+        function samecityList (param) {
+            var baseParam2 = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity"),'region':param}
+            var param2 = serializePageJson(1,20,baseParam2);
+            appcan.ajax({
+                type:"post",
+                url:host+"/getActiveList.json",
+                data:param2,
+                dataType:"json",
+                contentType: "application/json",
+                success : function(dataResult) {
+                    var dataList = dataResult.data.dataList;
+                    var actStr = "";
+                    for(var i=0;i<dataList.length;i++){
+                        actStr += '<li class="mui-table-view-cell mui-media">';
+                        actStr += '<a href="info.html?actId='+dataList[i].id+'">';
+                        actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
+                        actStr += '<div class="mui-media-body">'+dataList[i].actName;
+                        actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
+                        actStr += '<i>'+dataList[i].createTime+'</i>';
+                        actStr += '</div></a></li>';
+                    }
+                    $("#actB2").html(actStr);
+                }
+            })
+        }
         </script>
 	</body>
 

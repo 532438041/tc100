@@ -235,10 +235,6 @@
 		</header>
 		<section class="quyu">
 			<select id="quyu" name="quyu">
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
-				<option>区域：开发区 虎门区</option>
 			</select>
 			<span class="bottombottom xiangxia"></span>
 		</section>
@@ -269,7 +265,32 @@
 		</footer>
         <script>
             $(function(){
-                var baseParam1 = {'actType':'E1','addName':appcan.locStorage.getVal("ipcity")}
+                //列表
+                carList("");
+                //查询 分类
+                appcan.ajax({
+                    type:"get",
+                    url:host+"/getActRegion.json?actType=E&addName="+appcan.locStorage.getVal("ipcity"),
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var actStr = '<option value="">区域：全部</option>';
+                        if(dataResult.data.length>0){
+                                actStr +='';
+                            for(var i=0;i<dataResult.data.length;i++){
+                                actStr +='<option value="'+dataResult.data[i]+'">区域：'+dataResult.data[i]+'</option>';
+                            }
+                        }
+                        $("#quyu").html(actStr);
+                    }
+                })
+                //下拉改变
+                $("#quyu").change(function(){
+                    carList($(this).val());
+                });
+            })
+            function carList (param) {
+                var baseParam1 = {'actType':'E1','addName':appcan.locStorage.getVal("ipcity"),'region':param}
                 var param1 = serializePageJson(1,20,baseParam1);
                 appcan.ajax({
                     type:"post",
@@ -287,7 +308,7 @@
                     }
                 })
                 
-                var baseParam2 = {'actType':'E2','addName':appcan.locStorage.getVal("ipcity")}
+                var baseParam2 = {'actType':'E2','addName':appcan.locStorage.getVal("ipcity"),'region':param}
                 var param2 = serializePageJson(1,20,baseParam2);
                 appcan.ajax({
                     type:"post",
@@ -311,7 +332,7 @@
                         $("#actE2").html(actStr);
                     }
                 })
-            })
+            }
         </script>
 	</body>
 </html>
