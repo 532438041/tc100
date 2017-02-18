@@ -258,12 +258,17 @@ public class ActiveController {
 		} else {
 			// 判断该用户是否操作过 不重复记录
 			int canOperate = activeLogService.isLoged(actId, userId, logType);
-			if (canOperate > 0) {
+			if (!("1,6,7").contains(logType) && canOperate > 0) {
 				return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
 			}
 			OperateFee operateFee = operateFeeService.getOpFeeBy(logType);
 			if (logType.equals("1")) {
 				// 1关注
+				// 如果取消的次数跟关注次数不一样 说明当前已关注 不可重新关注
+				int cishu = activeLogService.isLoged(actId, userId, "7");
+				if (canOperate != cishu) {
+					return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
+				}
 				UserFav userFav = new UserFav();
 				userFav.setId(ToolsUtil.getUUID());
 				userFav.setCreateTime(new Date());
@@ -296,9 +301,14 @@ public class ActiveController {
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("6")) {
 				// 6推广
-				
+
 			} else if (logType.equals("7")) {
 				// 7取消关注
+				// 如果取消的次数跟关注次数一样 说明当前已取消 可重新关注 不可重复取消
+				int cishu = activeLogService.isLoged(actId, userId, "1");
+				if (canOperate == cishu) {
+					return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
+				}
 				userFavService.deleteByPrimaryKey(favId);
 			}
 		}

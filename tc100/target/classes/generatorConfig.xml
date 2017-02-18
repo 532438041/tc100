@@ -9,7 +9,7 @@
             <property name="suppressDate" value="true"/>  
             <property name="suppressAllComments" value="true"/>  
         </commentGenerator>  
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/tc100" userId="root" password="111111">  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.111:3306/tc100" userId="root" password="111111">  
         </jdbcConnection>  
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="false"/>  
@@ -39,6 +39,8 @@
          <table tableName="tc_active_fee" domainObjectName="ActiveFee" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
          <table tableName="tc_operate_fee" domainObjectName="OperateFee" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
          <table tableName="tc_sys_param" domainObjectName="SysParam" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    	 <table tableName="tc_feedback" domainObjectName="Feedback" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+         <table tableName="tc_pay_code" domainObjectName="PayCode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     	 -->
     </context>  
     <!-- java -jar D:\Java\liutao\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile E:\workSpace\tc100\tc100\src\main\resources\generatorConfig.xml -overwrite -->

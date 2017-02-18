@@ -103,7 +103,7 @@
 			<if test="msgType != null">
 				msg_type = #{msgType,jdbcType=CHAR},
 			</if>
-			<if test="content != null">
+			<if test="content != null and content != ''">
 				content = #{content,jdbcType=VARCHAR},
 			</if>
 			<if test="state != null">
@@ -150,13 +150,17 @@
 	
 	<select id="getUserMsgList" parameterType="java.util.HashMap" resultMap="BaseResultMap">
 		SELECT <include refid="Base_Column_List" /> FROM `tc_user_msg` msg
-		WHERE msg.`user_id` = #{userId}
-		<if test="msgType!=null and msgType!=''">
-			AND msg.`msg_type` = #{msgType}
-		</if>
-		<if test="state!=null and state!=''">
-			AND msg.`state` = #{state}
-		</if>
+		<where>
+			<if test="userId!=null and userId!=''">
+				msg.`user_id` = #{userId}
+			</if>
+			<if test="msgType!=null and msgType!=''">
+				AND msg.`msg_type` = #{msgType}
+			</if>
+			<if test="state!=null and state!=''">
+				AND msg.`state` = #{state}
+			</if>
+		</where>
 	</select>
 
 </mapper>

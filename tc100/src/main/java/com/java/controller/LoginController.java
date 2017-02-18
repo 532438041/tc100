@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -91,7 +92,11 @@ public class LoginController {
 		ToolsUtil.setCookie(response, "displayName", user.getDisplayName());
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", user.getId());
-		UserCard userCard = userCardService.getCardList(user.getId()).get(0);
+		List<UserCard> list = userCardService.getCardList(user.getId());
+		UserCard userCard = new UserCard();
+		if (list.size() > 0) {
+			userCard = list.get(0);
+		}
 		map.put("userCard", userCard);
 		baseResult.setData(map);
 		return baseResult.success(1, "登录成功！");

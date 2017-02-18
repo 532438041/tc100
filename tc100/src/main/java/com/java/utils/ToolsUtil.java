@@ -1457,4 +1457,20 @@ public class ToolsUtil {
 		return DigestUtils.md5Hex(str);
 	}
 
+	/**
+	 * 随机生成 num位数字字符数组
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static String randomCode(int num) {
+		String chars = "0123456789";
+		StringBuffer rands = new StringBuffer();
+		for (int i = 0; i < num; i++) {
+			int rand = (int) (Math.random() * 10);
+			rands.append(chars.charAt(rand));
+		}
+		return rands.toString();
+	}
+
 }
