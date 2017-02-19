@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.java.dao.impl.FeedbackImpl">
+<mapper namespace="com.java.dao.impl.FeedbackDaoImpl">
 	<resultMap id="BaseResultMap" type="com.java.entity.Feedback">
 		<id column="id" property="id" jdbcType="CHAR" />
 		<result column="user_name" property="userName" jdbcType="CHAR" />
@@ -96,7 +96,7 @@
 		from tc_feedback
 		<where>
 			<if test="userName!=null and userName!=''">
-				user_name = #{userName}
+				user_name LIKE "%"#{userName}"%"
 			</if>
 		</where>
 	</select>

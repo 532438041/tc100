@@ -67,4 +67,10 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 		return activeDao.getActRegion(addName, actType);
 	}
 
+	@Override
+	public PageResult<Active> getActList(PageParam<Active> pageParam) {
+		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
+		return PageUtil.toPagedResult(activeDao.getActList(pageParam.getReqParam()));
+	}
+
 }

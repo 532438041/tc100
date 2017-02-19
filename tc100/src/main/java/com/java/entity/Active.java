@@ -53,6 +53,8 @@ public class Active {
 	private Date updateTime;
 	
 	private String orderBy;
+	
+	private String userName;
 
 	public String getId() {
 		return id == null ? "" : id;
@@ -240,5 +242,13 @@ public class Active {
 
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

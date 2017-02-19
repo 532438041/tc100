@@ -37,4 +37,6 @@ public interface ActiveService extends BaseService<Active> {
 
 	List<String> getActRegion(String addName, String actType);
 
+	PageResult<Active> getActList(PageParam<Active> pageParam);
+
 }

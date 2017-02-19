@@ -301,7 +301,7 @@
 		<include refid="Base_Column_List" />
 		FROM `tc_active` act
 		WHERE act.`act_type` = #{actType}
-		AND act.`state` = '2' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
+		AND act.`state` = #{state} AND NOW() > act.`start_time` AND act.`end_time` > NOW()
 		<if test="userId != null and userId != '' ">
 			AND act.user_id = #{userId}
 		</if>
@@ -320,7 +320,7 @@
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM `tc_active` act
-		WHERE act.`state` = '1' AND act.user_id = #{userId}
+		WHERE act.`state` != '0' AND act.user_id = #{userId}
 		<if test="actType!=null and actType!=''">
 			act.`act_type` = #{actType}
 		</if>
@@ -350,5 +350,15 @@
 		WHERE act.`act_type` LIKE "%"#{actType}"%"
 		AND act.`state` = '2' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
 		AND act.addName = #{addName} GROUP BY act.region
+	</select>
+
+	<select id="getActList" parameterType="com.java.entity.Active" resultType="com.java.entity.Active">
+		SELECT act.`id`, act.`act_name` actName,act.`act_type` actType,act.`state`,us.`user_name` userName
+		FROM `tc_active` act
+		LEFT JOIN `tc_user` us ON act.`user_id` = us.`id`
+		WHERE act.`state` != '0'
+		<if test="userName!=null and userName!=''">
+			AND us.user_name LIKE "%"#{userName}"%"
+		</if>
 	</select>
 </mapper>
