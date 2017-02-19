@@ -1,7 +1,9 @@
 (function($) {
     //用户id
-    appcan.locStorage.setVal("userId", "1");
     var userId = appcan.locStorage.getVal("userId");
+    var userCardId = appcan.locStorage.getVal("userCardId");
+    console.log(userId);
+    console.log(userCardId);
     //获取ip所在的
     appcan.ajax({
         url: 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',
@@ -33,7 +35,6 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
-            console.log(dataResult);
             $("#ipcity").html(remote_ip_info.city);
             if(dataResult!=null && dataResult.data.dataList.length>0){
                 var dataList = dataResult.data.dataList;
