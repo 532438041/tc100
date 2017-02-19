@@ -1,141 +1,153 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.java.dao.impl.PayLogDaoImpl" >
-  <resultMap id="BaseResultMap" type="com.java.entity.PayLog" >
-    <id column="id" property="id" jdbcType="CHAR" />
-    <result column="user_id" property="userId" jdbcType="CHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="act_id" property="actId" jdbcType="CHAR" />
-    <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="create_by" property="createBy" jdbcType="CHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_by" property="updateBy" jdbcType="CHAR" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, user_id, remark, act_id, amount, create_by, create_time, update_by, update_time
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tc_pay_log
-    where id = #{id,jdbcType=CHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from tc_pay_log
-    where id = #{id,jdbcType=CHAR}
-  </delete>
-  <insert id="insert" parameterType="com.java.entity.PayLog" >
-    insert into tc_pay_log (id, user_id, remark, 
-      act_id, amount, create_by, 
-      create_time, update_by, update_time
-      )
-    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{actId,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL}, #{createBy,jdbcType=CHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.java.entity.PayLog" >
-    insert into tc_pay_log
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="actId != null" >
-        act_id,
-      </if>
-      <if test="amount != null" >
-        amount,
-      </if>
-      <if test="createBy != null" >
-        create_by,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateBy != null" >
-        update_by,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=CHAR},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=CHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="actId != null" >
-        #{actId,jdbcType=CHAR},
-      </if>
-      <if test="amount != null" >
-        #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="createBy != null" >
-        #{createBy,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        #{updateBy,jdbcType=CHAR},
-      </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.java.entity.PayLog" >
-    update tc_pay_log
-    <set >
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=CHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="actId != null" >
-        act_id = #{actId,jdbcType=CHAR},
-      </if>
-      <if test="amount != null" >
-        amount = #{amount,jdbcType=DECIMAL},
-      </if>
-      <if test="createBy != null" >
-        create_by = #{createBy,jdbcType=CHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateBy != null" >
-        update_by = #{updateBy,jdbcType=CHAR},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=CHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.java.entity.PayLog" >
-    update tc_pay_log
-    set user_id = #{userId,jdbcType=CHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      act_id = #{actId,jdbcType=CHAR},
-      amount = #{amount,jdbcType=DECIMAL},
-      create_by = #{createBy,jdbcType=CHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=CHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=CHAR}
-  </update>
+<mapper namespace="com.java.dao.impl.PayLogDaoImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.PayLog">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="user_id" property="userId" jdbcType="CHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="act_id" property="actId" jdbcType="CHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="create_by" property="createBy" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_by" property="updateBy" jdbcType="CHAR" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, remark, act_id, amount, create_by, create_time, update_by, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tc_pay_log
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_pay_log
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.PayLog">
+		insert into tc_pay_log (id, user_id, remark,
+		act_id, amount, create_by,
+		create_time, update_by, update_time
+		)
+		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR},
+		#{actId,jdbcType=CHAR}, #{amount,jdbcType=DECIMAL}, #{createBy,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.PayLog">
+		insert into tc_pay_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="actId != null">
+				act_id,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateBy != null">
+				update_by,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="actId != null">
+				#{actId,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.PayLog">
+		update tc_pay_log
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="actId != null">
+				act_id = #{actId,jdbcType=CHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				update_by = #{updateBy,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.PayLog">
+		update tc_pay_log
+		set user_id = #{userId,jdbcType=CHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		act_id = #{actId,jdbcType=CHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		create_by = #{createBy,jdbcType=CHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_by = #{updateBy,jdbcType=CHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="getPayLogList" parameterType="com.java.entity.PayLog" resultType="com.java.entity.PayLog">
+		SELECT u.`user_name` userName, p.`amount`, p.`create_time` createTime
+		FROM tc_pay_log pleft JOIN `tc_user` u ON p.`user_id` = u.`id`
+		<where>
+			<if test="userName!=null and userName!=''">
+				u.`user_name` LIKE "%"#{userName}"%"
+			</if>
+			<if test="createTime!=null and createTime!=''">
+				AND p.`create_time` = #{createTime}
+			</if>
+		</where>
+	</select>
 </mapper>

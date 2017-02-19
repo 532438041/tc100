@@ -31,4 +31,9 @@ public class UserDaoImpl extends BaseDaoImpl<User>implements UserDao {
 		return this.getSqlSession().selectOne(getStateMentName("checkRegister"), user);
 	}
 
+	@Override
+	public String getUserIdByMobile(String mobile) {
+		return this.getSqlSession().selectOne(getStateMentName("getUserIdByMobile"), mobile);
+	}
+
 }

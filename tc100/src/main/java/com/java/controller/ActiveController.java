@@ -244,19 +244,31 @@ public class ActiveController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/operateAct")
-	public BaseResult operateAct(String actId, String fromActId, String userId, String logType, String favId) {
-		if (ToolsUtil.isNotNull(fromActId)) {
+	public BaseResult operateAct(String actId, String fromActId, String userId, String fromUserId, String logType, String favId) {
+		if (ToolsUtil.isNotNull(fromActId) && logType.equals("5")) {
 			// fromActId 不为空时 为5推送操作 新增一条
-
+			Active active = activeService.selectByPrimaryKey(fromActId);
+			active.setId(ToolsUtil.getUUID());
+			active.setCreateTime(new Date());
+			active.setState("1"); // 未发布
+			active.setViewCount(0);
+			activeService.insert(active);
+			actId = active.getId();
+			userId = fromUserId;
 		} else {
 			// 判断该用户是否操作过 不重复记录
 			int canOperate = activeLogService.isLoged(actId, userId, logType);
-			if (canOperate > 0) {
+			if (!("1,6,7").contains(logType) && canOperate > 0) {
 				return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
 			}
 			OperateFee operateFee = operateFeeService.getOpFeeBy(logType);
 			if (logType.equals("1")) {
 				// 1关注
+				// 如果取消的次数跟关注次数不一样 说明当前已关注 不可重新关注
+				int cishu = activeLogService.isLoged(actId, userId, "7");
+				if (canOperate != cishu) {
+					return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
+				}
 				UserFav userFav = new UserFav();
 				userFav.setId(ToolsUtil.getUUID());
 				userFav.setCreateTime(new Date());
@@ -292,6 +304,11 @@ public class ActiveController {
 
 			} else if (logType.equals("7")) {
 				// 7取消关注
+				// 如果取消的次数跟关注次数一样 说明当前已取消 可重新关注 不可重复取消
+				int cishu = activeLogService.isLoged(actId, userId, "1");
+				if (canOperate == cishu) {
+					return new BaseResult().failed(0, "该用户已操作过，请勿重复操作");
+				}
 				userFavService.deleteByPrimaryKey(favId);
 			}
 		}
@@ -312,6 +329,7 @@ public class ActiveController {
 		ActiveLog activeLog = new ActiveLog();
 		activeLog.setId(ToolsUtil.getUUID());
 		activeLog.setActId(actId);
+		activeLog.setFromActId(fromActId);
 		activeLog.setContent(LogTypeEnum.getMsgByType(logType));
 		activeLog.setCreateTime(new Date());
 		activeLog.setLogType(logType);

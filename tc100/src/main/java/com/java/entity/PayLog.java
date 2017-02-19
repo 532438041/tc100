@@ -8,95 +8,105 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import com.java.servlet.JsonDateSerializer;
 
 public class PayLog {
-    private String id;
+	private String id;
 
-    private String userId;
+	private String userId;
 
-    private String remark;
+	private String remark;
 
-    private String actId;
+	private String actId;
 
-    private BigDecimal amount;
+	private BigDecimal amount;
 
-    private String createBy;
+	private String createBy;
 
-    private Date createTime;
+	private Date createTime;
 
-    private String updateBy;
+	private String updateBy;
 
-    private Date updateTime;
+	private Date updateTime;
 
-    public String getId() {
-        return id;
-    }
+	private String userName;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getUserId() {
-        return userId;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	public String getRemark() {
+		return remark;
+	}
 
-    public String getActId() {
-        return actId;
-    }
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
-    public void setActId(String actId) {
-        this.actId = actId;
-    }
+	public String getActId() {
+		return actId;
+	}
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+	public void setActId(String actId) {
+		this.actId = actId;
+	}
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+	public BigDecimal getAmount() {
+		return amount;
+	}
 
-    public String getCreateBy() {
-        return createBy;
-    }
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
+	public String getCreateBy() {
+		return createBy;
+	}
 
-    @JsonSerialize(using=JsonDateSerializer.class)
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public String getUpdateBy() {
-        return updateBy;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
+	public String getUpdateBy() {
+		return updateBy;
+	}
 
-    @JsonSerialize(using=JsonDateSerializer.class)
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+	@JsonSerialize(using = JsonDateSerializer.class)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

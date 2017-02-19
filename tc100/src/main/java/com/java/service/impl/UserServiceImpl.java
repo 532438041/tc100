@@ -39,4 +39,9 @@ public class UserServiceImpl extends BaseServiceImpl<User>implements UserService
 		return userDao.checkRegister(user);
 	}
 
+	@Override
+	public String getUserIdByMobile(String mobile) {
+		return userDao.getUserIdByMobile(mobile);
+	}
+
 }

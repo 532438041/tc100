@@ -23,7 +23,22 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 
 	@Override
 	public PageResult<Active> getActiveList(PageParam<Active> pageParam) {
-		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
+		String orderBy = "";
+		switch (pageParam.getReqParam().getOrderBy()) {
+			case "amount":
+				orderBy = "act.`amount` DESC";
+				break;
+			case "viewCount":
+				orderBy = "act.`view_count` DESC";
+				break;
+			case "dateTime":
+				orderBy = "act.`create_time` DESC";
+				break;
+			default:
+				orderBy = "act.`amount` DESC";
+				break;
+		}
+		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize(), orderBy);
 		return PageUtil.toPagedResult(activeDao.getActiveList(pageParam.getReqParam()));
 	}
 

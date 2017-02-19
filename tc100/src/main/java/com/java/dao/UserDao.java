@@ -15,4 +15,6 @@ public interface UserDao extends BaseDao<User>{
 
 	int checkRegister(User user);
 
+	String getUserIdByMobile(String mobile);
+
 }

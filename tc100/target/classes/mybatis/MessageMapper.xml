@@ -169,27 +169,27 @@
 		FROM tc_message msg
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
-		<where>
-			<if test="userId != null and userId  != ''">
-				msg.user_id = #{userId}
-			</if>
-			<if test="region != null and region != ''">
-				AND msg.region = #{region}
-			</if>
-			<if test="addName != null and addName != ''">
-				AND msg.addName = #{addName}
-			</if>
-		</where>
+		WHERE DATE_ADD(msg.create_time, INTERVAL IFNULL((SELECT p_value FROM `tc_sys_param` WHERE p_key = 'tcsts' LIMIT 1), 2) DAY) > NOW()
+		<if test="userId != null and userId  != ''">
+			AND msg.user_id = #{userId}
+		</if>
+		<if test="region != null and region != ''">
+			AND msg.region = #{region}
+		</if>
+		<if test="addName != null and addName != ''">
+			AND msg.addName = #{addName}
+		</if>
 		GROUP BY msg.`id`
 		ORDER BY msg.create_time DESC
 	</select>
 
 	<select id="getLastMsgTime" parameterType="java.lang.String" resultType="java.lang.String">
-		SELECT MAX(update_time) lastMsgTime FROM `tc_message` WHERE user_id = #{userId};
+		SELECT TIMESTAMPDIFF(SECOND, MAX(update_time), NOW()) lastMsgTime FROM `tc_message` WHERE user_id = #{userId}
 	</select>
 
 	<select id="getMyMsgCount" parameterType="java.lang.String" resultType="Integer">
-		SELECT COUNT(0) msgCount FROM `tc_message` WHERE user_id = #{userId};
+		SELECT COUNT(0) msgCount FROM `tc_message` WHERE user_id = #{userId}
+		AND DATE_ADD(create_time, INTERVAL IFNULL((SELECT p_value FROM `tc_sys_param` WHERE p_key = 'tcsts' LIMIT 1), 2) DAY) > NOW()
 	</select>
 
 	<select id="getMsg" resultType="com.java.dto.MsgDto" parameterType="java.lang.String">
@@ -199,6 +199,13 @@
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
 		WHERE msg.id = #{msgId}
+	</select>
+
+	<select id="getMsgRegion" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT region FROM `tc_message`
+		WHERE addName = #{addName}
+		AND DATE_ADD(create_time, INTERVAL IFNULL((SELECT p_value FROM `tc_sys_param` WHERE p_key = 'tcsts' LIMIT 1), 2) DAY) > NOW()
+		GROUP BY region
 	</select>
 
 </mapper>

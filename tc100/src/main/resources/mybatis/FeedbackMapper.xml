@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.impl.FeedbackImpl">
+	<resultMap id="BaseResultMap" type="com.java.entity.Feedback">
+		<id column="id" property="id" jdbcType="CHAR" />
+		<result column="user_name" property="userName" jdbcType="CHAR" />
+		<result column="method" property="method" jdbcType="CHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_name, method, content, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tc_feedback
+		where id = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from tc_feedback
+		where id = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.java.entity.Feedback">
+		insert into tc_feedback (id, user_name, method,
+		content, create_time)
+		values (#{id,jdbcType=CHAR}, #{userName,jdbcType=CHAR}, #{method,jdbcType=CHAR},
+		#{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.java.entity.Feedback">
+		insert into tc_feedback
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="method != null">
+				method,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=CHAR},
+			</if>
+			<if test="method != null">
+				#{method,jdbcType=CHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Feedback">
+		update tc_feedback
+		<set>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=CHAR},
+			</if>
+			<if test="method != null">
+				method = #{method,jdbcType=CHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.java.entity.Feedback">
+		update tc_feedback
+		set user_name = #{userName,jdbcType=CHAR},
+		method = #{method,jdbcType=CHAR},
+		content = #{content,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=CHAR}
+	</update>
+	<select id="getFbList" resultMap="BaseResultMap" parameterType="com.java.entity.Feedback">
+		select
+		<include refid="Base_Column_List" />
+		from tc_feedback
+		<where>
+			<if test="userName!=null and userName!=''">
+				user_name = #{userName}
+			</if>
+		</where>
+	</select>
+</mapper>

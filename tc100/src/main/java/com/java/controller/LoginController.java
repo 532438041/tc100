@@ -1,6 +1,9 @@
 package com.java.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.java.common.annotation.SysLog;
 import com.java.common.entity.BaseParam;
 import com.java.common.entity.BaseResult;
 import com.java.entity.User;
+import com.java.entity.UserCard;
+import com.java.service.UserCardService;
 import com.java.service.UserService;
 import com.java.utils.ToolsUtil;
 
@@ -23,8 +27,10 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private UserCardService userCardService;
+
 	@RequestMapping(value = "/adminLogin")
-	@SysLog(operationType = "select", operationName = "后台用户登录")
 	public BaseResult AdminLogin(@RequestBody BaseParam<User> baseParam, HttpServletResponse response) {
 		User user = userService.checkLogin(baseParam.getParam().getUserName());
 		BaseResult baseResult = new BaseResult();
@@ -57,7 +63,6 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login")
-	@SysLog(operationType = "select", operationName = "前台用户登录")
 	public BaseResult login(@RequestBody BaseParam<User> baseParam, HttpServletResponse response) {
 		User user = userService.checkLogin(baseParam.getParam().getUserName());
 		BaseResult baseResult = new BaseResult();
@@ -85,19 +90,26 @@ public class LoginController {
 		// 保存登录信息
 		ToolsUtil.setCookie(response, "userId", user.getId());
 		ToolsUtil.setCookie(response, "displayName", user.getDisplayName());
-
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", user.getId());
+		List<UserCard> list = userCardService.getCardList(user.getId());
+		UserCard userCard = new UserCard();
+		if (list.size() > 0) {
+			userCard = list.get(0);
+		}
+		map.put("userCard", userCard);
+		baseResult.setData(map);
 		return baseResult.success(1, "登录成功！");
 	}
 
 	@RequestMapping(value = "/register")
-	@SysLog(operationType = "insert", operationName = "前台用户登录")
 	public BaseResult register(@RequestBody BaseParam<User> baseParam) {
 		BaseResult baseResult = new BaseResult();
 		int status = 0;
 		// 查重校验
 		status = userService.checkRegister(baseParam.getParam());
 		if (status > 0) {
-			return baseResult.failed(2, "该手机号/邮箱已注册！");
+			return baseResult.failed(-1, "该手机号/邮箱已注册！");
 		}
 		baseParam.getParam().setId(ToolsUtil.getUUID());
 		baseParam.getParam().setUserPwd(ToolsUtil.MD5(baseParam.getParam().getId() + baseParam.getParam().getUserPwd()));
@@ -112,7 +124,6 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logout")
-	@SysLog(operationType = "select", operationName = "前台用户退出")
 	public BaseResult logout(@CookieValue("userId") String userId, @CookieValue("displayName") String displayName, HttpServletResponse response) {
 		ToolsUtil.removeCookie(response, "userId");
 		ToolsUtil.removeCookie(response, "displayName");
@@ -120,7 +131,6 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/adminLogout")
-	@SysLog(operationType = "select", operationName = "后台用户退出")
 	public BaseResult adminLogout(@CookieValue("userId") String userId, @CookieValue("displayName") String displayName, HttpServletResponse response) {
 		ToolsUtil.removeCookie(response, "userId");
 		ToolsUtil.removeCookie(response, "displayName");

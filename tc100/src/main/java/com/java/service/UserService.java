@@ -14,5 +14,7 @@ public interface UserService extends BaseService<User>{
 	String getUserRoleName(String userId);
 
 	int checkRegister(User user);
+
+	String getUserIdByMobile(String mobile);
 	
 }

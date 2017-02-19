@@ -12,6 +12,7 @@ import com.java.common.entity.BaseResult;
 import com.java.common.entity.PageParam;
 import com.java.entity.User;
 import com.java.entity.UserCard;
+import com.java.entity.UserMsg;
 import com.java.service.UserCardService;
 import com.java.service.UserFavService;
 import com.java.service.UserMsgService;
@@ -132,6 +133,21 @@ public class UserController {
 	}
 
 	/**
+	 * 改变成已读
+	 * 
+	 * @param @param msgId
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/changeUserMsgState")
+	public BaseResult changeUserMsgState(String msgId) {
+		UserMsg userMsg = new UserMsg();
+		userMsg.setId(msgId);
+		userMsg.setState("2");
+		return new BaseResult().success(userMsgService.updateByPrimaryKey(userMsg));
+	}
+
+	/**
 	 * 获取我的消息详情
 	 * 
 	 * @param @param msgId
@@ -143,6 +159,21 @@ public class UserController {
 		return new BaseResult().success(userMsgService.selectByPrimaryKey(msgId));
 	}
 
+	/**
+	 * 发送消息
+	 * 
+	 * @param @param baseParam
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/")
+	public BaseResult saveUserMsg(@RequestBody BaseParam<UserMsg> baseParam) {
+		baseParam.getParam().setId(ToolsUtil.getUUID());
+		baseParam.getParam().setCreateTime(new Date());
+		baseParam.getParam().setState("1");
+		return new BaseResult().success(userMsgService.insert(baseParam.getParam()));
+	}
+
 	@RequestMapping(value = "/getReceiveAct")
 	public BaseResult getReceiveAct(String userId) {
 		return null;
@@ -151,6 +182,18 @@ public class UserController {
 	@RequestMapping(value = "/getUserList")
 	public BaseResult getUserList(@RequestBody PageParam<User> pageParam) {
 		return new BaseResult().success(userService.getUserList(pageParam));
+	}
+
+	/**
+	 * 根据手机号获取用户id 用于推送取用户
+	 * 
+	 * @param @param mobile
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getUserIdByMobile")
+	public BaseResult getUserIdByMobile(String mobile) {
+		return new BaseResult().success(userService.getUserIdByMobile(mobile));
 	}
 
 }
