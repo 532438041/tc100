@@ -139,8 +139,7 @@
                         success : function(dataResult) {
                             if(dataResult.status==1){
                                 codeTime = 60;
-                                timer(codeTime);
-                                $(".setCode").attr('id','');
+                                settime(codeTime);
                                 var code= dataResult.data;
                                 appcan.locStorage.setVal("code",code);
                                 console.log(appcan.locStorage.getVal("code"));
@@ -154,6 +153,7 @@
                 
                 // 下一步
                 $(".btn").click(function(){
+                    codeTime = 0;
                     appcan.locStorage.getVal("code");
                     if(!!!$(".username").val()){
                         alert("输入手机号码");
@@ -171,23 +171,20 @@
                 })
             })
             // 倒计时
-            function timer(intDiff) {
-               window.setInterval(function () {
-                    if(intDiff>0){
-                        console.log(1);
-                       $(".setCode").html(intDiff+"后再次发送");
-                    }else{
-                        console.log(2);
-                        setTimeout(function(){timer(0)});
-                        codeTime = 0;
-                        $(".setCode").attr("id","setCode");
-                        $(".setCode").html("发送验证码");
-                    }
-                   codeTime = intDiff;
-                   intDiff--;
-               }, 1000);
-               console.log(codeTime);
-           }
+           function settime() { 
+                    console.log(codeTime); 
+                if (codeTime == 0) {
+                    $(".setCode").attr("id","setCode");
+                    $(".setCode").html("免费获取验证码");
+                } else { 
+                    $(".setCode").attr("id","");
+                    $(".setCode").html(codeTime+"后重新发送");
+                    codeTime--; 
+                    setTimeout(function() { 
+                        settime(); 
+                    },1000) 
+                } 
+            } 
         </script>
     </body>
 
