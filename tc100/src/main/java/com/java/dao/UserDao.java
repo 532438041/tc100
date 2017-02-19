@@ -17,4 +17,6 @@ public interface UserDao extends BaseDao<User>{
 
 	String getUserIdByMobile(String mobile);
 
+	int changePwd(String userName, String userPwd);
+
 }

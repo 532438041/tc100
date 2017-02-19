@@ -1,6 +1,8 @@
 package com.java.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +36,14 @@ public class UserDaoImpl extends BaseDaoImpl<User>implements UserDao {
 	@Override
 	public String getUserIdByMobile(String mobile) {
 		return this.getSqlSession().selectOne(getStateMentName("getUserIdByMobile"), mobile);
+	}
+
+	@Override
+	public int changePwd(String userName, String userPwd) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userName", userName);
+		map.put("userPwd", userPwd);
+		return this.getSqlSession().update(getStateMentName("changePwd"), map);
 	}
 
 }

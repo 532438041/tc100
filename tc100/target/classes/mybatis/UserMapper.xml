@@ -280,5 +280,9 @@
 	<select id="getUserIdByMobile" parameterType="java.lang.String" resultType="java.lang.String">
 		select id from tc_user where mobile = #{mobile}
 	</select>
+	
+	<update id="changePwd" parameterType="java.util.HashMap">
+		update tc_user set user_pwd = #{userPwd} where user_name = #{userName}
+	</update>
 
 </mapper>

@@ -44,4 +44,9 @@ public class UserServiceImpl extends BaseServiceImpl<User>implements UserService
 		return userDao.getUserIdByMobile(mobile);
 	}
 
+	@Override
+	public int changePwd(String userName, String userPwd) {
+		return userDao.changePwd(userName, userPwd);
+	}
+
 }

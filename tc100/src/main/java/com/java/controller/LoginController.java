@@ -113,6 +113,7 @@ public class LoginController {
 		}
 		baseParam.getParam().setId(ToolsUtil.getUUID());
 		baseParam.getParam().setUserPwd(ToolsUtil.MD5(baseParam.getParam().getId() + baseParam.getParam().getUserPwd()));
+		baseParam.getParam().setMobile(baseParam.getParam().getUserName());
 		baseParam.getParam().setCreateBy(baseParam.getParam().getId());
 		baseParam.getParam().setCreateTime(new Date());
 		baseParam.getParam().setState("1");
@@ -135,6 +136,27 @@ public class LoginController {
 		ToolsUtil.removeCookie(response, "userId");
 		ToolsUtil.removeCookie(response, "displayName");
 		return new BaseResult().success();
+	}
+
+	@RequestMapping(value = "/checkUser")
+	public BaseResult checkUser(String userName) {
+		User user = userService.checkLogin(userName);
+		BaseResult baseResult = new BaseResult();
+		if (ToolsUtil.isNull(user)) {
+			return baseResult.failed(0, "用户名不存在！");
+		}
+		return baseResult.success(1, "验证成功！");
+	}
+
+	@RequestMapping(value = "/changePwd")
+	public BaseResult changePwd(String userName, String userPwd) {
+		User user = userService.checkLogin(userName);
+		if (ToolsUtil.isNotNull(user)) {
+			userPwd = ToolsUtil.MD5(user.getId() + userPwd);
+			return new BaseResult().success(userService.changePwd(userName, userPwd));
+		} else {
+			return new BaseResult().failed();
+		}
 	}
 
 }
