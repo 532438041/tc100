@@ -119,8 +119,6 @@
         <script>
             var codeTime = 0;
             $(function(){
-                // 下一步按钮点击判断
-                var flag = false;
                 //验证码
                 $("#setCode").click(function(){
                     if(codeTime>0){
@@ -172,10 +170,9 @@
             })
             // 倒计时
            function settime() { 
-                    console.log(codeTime); 
                 if (codeTime == 0) {
                     $(".setCode").attr("id","setCode");
-                    $(".setCode").html("免费获取验证码");
+                    $(".setCode").html("发送验证码");
                 } else { 
                     $(".setCode").attr("id","");
                     $(".setCode").html(codeTime+"后重新发送");
