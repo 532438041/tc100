@@ -1,0 +1,49 @@
+<div class="breadcrumbs">
+	<ul class="breadcrumb mb0">
+		<li>
+	       	<span class="fa fa-th-large" style="color: #428bca;"></span>
+        	<a href="index.html">首页</a> 
+            <span class="fa fa-angle-double-right"></span>
+      	</li>
+      	<li>
+        	<a>系统管理</a>
+            <span class="fa fa-angle-double-right"></span>
+       	</li>
+      	<li class="active">充值记录</li>
+    </ul>
+</div>
+
+<div class="page-main" ng-controller="payLogListController">
+	<form role="form" class="form-inline search-from">
+		<label for="createTime">充值时间：</label>
+		<input id="createTime" name="createTime" ng-model="createTime" type="date" class="form-control">
+		<label for="userName" class="ml10">充值用户名：</label>
+		<input id="userName" name="userName" ng-model="userName" type="text" class="form-control">
+		<input type="button" class="ml10 btn btn-default" value="查询" ng-click="showList()">
+		<input type="button" class="ml10 btn btn-default" value="重置" ng-click="resetSearch()">
+	</form>
+	<div class="mt10 page-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="w20">用户名</th>
+					<th class="w20">充值金额</th>
+					<th class="w60">充值时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tr-nodata" ng-if="payLogList == null || payLogList.length == 0">
+					<td colspan="3">暂无数据！</td>
+				</tr>
+				<tr ng-repeat="payLogData in payLogList">
+					<td>{{payLogData.userName}}</td>
+					<td>{{payLogData.amount}}</td>
+					<td>{{payLogData.createTime}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page-pager">
+			
+		</div>
+	</div>
+</div>

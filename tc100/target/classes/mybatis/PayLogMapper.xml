@@ -140,7 +140,7 @@
 	</update>
 	<select id="getPayLogList" parameterType="com.java.entity.PayLog" resultType="com.java.entity.PayLog">
 		SELECT u.`user_name` userName, p.`amount`, p.`create_time` createTime
-		FROM tc_pay_log pleft JOIN `tc_user` u ON p.`user_id` = u.`id`
+		FROM tc_pay_log p LEFT JOIN `tc_user` u ON p.`user_id` = u.`id`
 		<where>
 			<if test="userName!=null and userName!=''">
 				u.`user_name` LIKE "%"#{userName}"%"

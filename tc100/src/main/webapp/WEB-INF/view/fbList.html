@@ -1,0 +1,47 @@
+<div class="breadcrumbs">
+	<ul class="breadcrumb mb0">
+		<li>
+	       	<span class="fa fa-th-large" style="color: #428bca;"></span>
+        	<a href="index.html">首页</a> 
+            <span class="fa fa-angle-double-right"></span>
+      	</li>
+      	<li>
+        	<a>系统管理</a>
+            <span class="fa fa-angle-double-right"></span>
+       	</li>
+      	<li class="active">问题反馈</li>
+    </ul>
+</div>
+
+<div class="page-main" ng-controller="fbListController">
+	<form role="form" class="form-inline search-from">
+		<label for="userName">反馈用户：</label>
+		<input id="userName" name="userName" ng-model="userName" type="text" class="form-control">
+		<input type="button" class="ml10 btn btn-default" value="查询" ng-click="showList()">
+		<input type="button" class="ml10 btn btn-default" value="重置" ng-click="resetSearch()">
+	</form>
+	<div class="mt10 page-content">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th class="w20">姓名</th>
+					<th class="w20">联系方式</th>
+					<th class="w60">意见</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tr-nodata" ng-if="fbList == null || fbList.length == 0">
+					<td colspan="3">暂无数据！</td>
+				</tr>
+				<tr ng-repeat="fbData in fbList">
+					<td>{{fbData.userName}}</td>
+					<td>{{fbData.method}}</td>
+					<td>{{fbData.content}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="page-pager">
+			
+		</div>
+	</div>
+</div>

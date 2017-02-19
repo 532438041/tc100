@@ -342,4 +342,24 @@ public class ActiveController {
 		return new BaseResult().success(activeService.getActRegion(addName, actType));
 	}
 
+	/**
+	 * 后台模板列表
+	 * 
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getActList")
+	public BaseResult getActList(@RequestBody PageParam<Active> pageParam) {
+		return new BaseResult().success(activeService.getActList(pageParam));
+	}
+
+	@RequestMapping(value = "/delAct")
+	public BaseResult delAct(String actId) {
+		Active active = new Active();
+		active.setId(actId);
+		active.setUpdateTime(new Date());
+		active.setState("0");
+		return new BaseResult().success(activeService.updateByPrimaryKeySelective(active));
+	}
+
 }

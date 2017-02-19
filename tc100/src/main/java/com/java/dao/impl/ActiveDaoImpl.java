@@ -57,4 +57,9 @@ public class ActiveDaoImpl extends BaseDaoImpl<Active>implements ActiveDao {
 		return this.getSqlSession().selectList(getStateMentName("getActRegion"), map);
 	}
 
+	@Override
+	public List<Active> getActList(Active reqParam) {
+		return this.getSqlSession().selectList(getStateMentName("getActList"), reqParam);
+	}
+
 }

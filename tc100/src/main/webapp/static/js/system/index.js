@@ -112,6 +112,46 @@ indexApp.config(function($stateProvider, $urlRouterProvider) {
 				return $ocLazyLoad.load([ "/tc100/static/js/system/operateFeeList.js" ]);
 			}
 		}
+	}).state("actList", {
+		url : "/actList",
+		templateUrl : "actList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/actList.js" ]);
+			}
+		}
+	}).state("userMsgList", {
+		url : "/userMsgList",
+		templateUrl : "userMsgList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/userMsgList.js" ]);
+			}
+		}
+	}).state("payCodeList", {
+		url : "/payCodeList",
+		templateUrl : "payCodeList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/payCodeList.js" ]);
+			}
+		}
+	}).state("fbList", {
+		url : "/fbList",
+		templateUrl : "fbList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/fbList.js" ]);
+			}
+		}
+	}).state("payLogList", {
+		url : "/payLogList",
+		templateUrl : "payLogList.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/js/system/payLogList.js" ]);
+			}
+		}
 	});
 });
 

@@ -166,7 +166,7 @@ public class UserController {
 	 * @param @return
 	 * @return BaseResult
 	 */
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/saveUserMsg")
 	public BaseResult saveUserMsg(@RequestBody BaseParam<UserMsg> baseParam) {
 		baseParam.getParam().setId(ToolsUtil.getUUID());
 		baseParam.getParam().setCreateTime(new Date());
