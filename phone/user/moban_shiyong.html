@@ -108,7 +108,7 @@
                 float: right;
                 margin-top: -0.625em;}
             .fenlei select{ margin: 0; padding: 0.625em; background: none; position: absolute; z-index: 100;}
-            .main .tuijian span{ position: absolute; right: 1em; top: 1em; width: 10%; color: #FF3366;}
+            .main .tuijian span{ position: absolute; right: 1em; top: 1em; width: 13%; color: #FF3366;}
             .main .tuijian input{ width: 50%;}
             .btn{ }
             .btn p{ text-align: right; padding-top: 0.625em;}
@@ -173,16 +173,16 @@
 					</p>
 					<p class="tuijian">
 						<i>推荐码：</i>
-						<input type="text" value="" placeholder="无则 不填" />
-                        <span>检测</span>
+						<input type="text" id="payCode" value="" placeholder="无则 不填" />
+                        <span id="payCodeState">待检测</span>
 					</p>
 				</div>
 			</form>
 		</section>
 		<section class="btn">
 			<p>费用共<i>500</i>元</p>
-			<span class="action"><a id="preview">预览</a></span>
-			<span><a id="nextStep">发布</a></span>
+			<span  id="preview" class="action"><a>预览</a></span>
+			<span id="nextStep" ><a >发布</a></span>
 		</section>
 
 		<footer>
@@ -205,7 +205,30 @@
         var type = getVal("type") || "0";
         var actId = getVal("actId");
         var num = type.substring(1,type.length);
+        var payCodeId = "";
         $(function(){
+            // 推荐码验证
+            $("#payCode").blur(function(){
+               if(!!!$("#payCode").val()){
+                   $("#payCodeState").html("待审核");
+                   return false;
+               }
+               appcan.ajax({
+                   type:"get",     
+                   url:host+"/checkPayCode.json?payCode="+$("#payCode").val(),
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                       if(dataResult.status == 200){
+                           payCodeId = dataResult.data.id;
+                           $("#payCodeState").html("可用");
+                       }else{
+                           $("#payCodeState").html("不可用");
+                       }
+                   }
+               })
+            })
+            
             // 若类型传参错误 则返回上一个页面
             if(type == "0"){
                 appcan.window.close(-1); 
@@ -315,12 +338,30 @@
                     });
                     return false;
                 }
+                if($.trim($("#startTime").val()).length == 0){
+                    appcan.window.alert({
+                        title:'提示',
+                        content:'请选择开始时间',
+                        buttons:'确定'
+                    });
+                    return false;
+                }
+                if($.trim($("#endTime").val()).length == 0){
+                    appcan.window.alert({
+                        title:'提示',
+                        content:'请选择结束时间时间',
+                        buttons:'确定'
+                    });
+                    return false;
+                }
                 
                 var baseParam = {
                     userId : appcan.locStorage.getVal("userId"),
-                    id : actId
+                    id : actId,
+                    payCodeId : payCodeId
                 };
                 var param = $("#fabuForm").serializeJson(baseParam);
+                console.log(param);
                 var result = null;
                 appcan.ajax({
                    type:"post",

@@ -418,6 +418,14 @@
                         });
                         return false;
                     }
+                    if($.trim($(".mainPic").val()).length == 0){
+                        appcan.window.alert({
+                            title:'提示',
+                            content:'上传活动图片',
+                            buttons:'确定'
+                        });
+                        return false;
+                    }
                     if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
                         appcan.window.alert({
                             title:'提示',
