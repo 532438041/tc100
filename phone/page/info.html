@@ -115,7 +115,7 @@
 	<body>
 		<header>
 			<a><span class="leftleft"></span></a>
-			<h1>活动详情</h1>
+			<h1 id="typeName">活动详情</h1>
 			<a class="xiaoxi3">名片</a>
 		</header>
 		
@@ -225,6 +225,27 @@
                     success : function(dataResult) {
                         var data = dataResult.data;
                         var actStr = "";
+                        var actType = data.actType.substring(0,1);
+                        switch(actType){
+                            case "A":
+                                $("#typeName").text("名优详情");
+                                break;
+                            case "B":
+                                $("#typeName").text("同城购详情");
+                                break;
+                            case "C":
+                                $("#typeName").text("超市详情");
+                                break;
+                            case "D":
+                                $("#typeName").text("孕婴详情");
+                                break;
+                            case "E":
+                                $("#typeName").text("车辆详情");
+                                break;
+                            case "F":
+                                $("#typeName").text("房产详情");
+                                break;
+                        }
                         if(data.isInit == "1"){
                             actStr+='<img src="'+hostIp+data.mainPic+'" />';
                         }
