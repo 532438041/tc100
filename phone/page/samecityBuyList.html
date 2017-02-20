@@ -377,7 +377,6 @@
             var baseParam = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity")}
             baseParam = Object.assign(baseParam,baseSearchParam);
             var param = serializePageJson(1,20,baseParam);
-            console.log(param);
             appcan.ajax({
                 type:"post",
                 url:host+"/getActiveList.json",

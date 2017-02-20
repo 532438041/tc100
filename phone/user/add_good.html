@@ -159,7 +159,6 @@ $(document).ready(function(){
            url:host+"/getItem.json?itemId="+itemId,
            dataType:"json",
            success : function(dataResult) {
-               console.log(dataResult);
                var data = dataResult.data;
                $("input[name='itemName']").val(data.itemName);
                $("input[name='listPrice']").val(data.listPrice);

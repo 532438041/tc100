@@ -319,7 +319,6 @@
                     success : function(dataResult) {
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
-                        console.log(dataResult);
                         for(var i=0;i<dataList.length;i++){
                             actStr += '<li class="mui-table-view-cell mui-media">';
                             actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')">';

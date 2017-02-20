@@ -162,7 +162,6 @@ $(document).ready(function(){
            dataType:"json",
            contentType: "application/json",
            success : function(dataResult) {
-               console.log(dataResult);
                if(dataResult.msg=='success'){
                var data = dataResult.data; 
                    $("#picUrl").attr("src",hostIp+data.picUrl);
@@ -182,7 +181,6 @@ $(document).ready(function(){
     $("#addCard").click(function(){
         //名片添加
         var param = $("#upchuan0").serializeJson(baseParam);
-        console.log(param);
         appcan.ajax({
            type:"post",
            async:false,       
