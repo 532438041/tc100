@@ -5,23 +5,22 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="Flying hormone" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta content="telephone=no" name="format-detection">
-        <link rel="stylesheet" href="css/media.css" />
-        <link rel="stylesheet" href="css/mui.min.css" />
-        <link rel="stylesheet" href="css/head_foot.css" />
-        <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-        <script type="text/javascript" src="js/jquery-cookie.js"></script>
-        <script type="text/javascript" src="js/jquery.Query.js"></script>
-        <script type="text/javascript" src="js/mui.min.js"></script>
-        <script type="text/javascript" src="js/appcan.js"></script>
-        <script type="text/javascript" src="js/appcan.control.js"></script>
-        <script type="text/javascript" src="js/common.js" ></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <title>首页</title>
-        <style>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/media.css" />
+        <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
+        <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
+        <script type="text/javascript" src="../js/jquery-cookie.js"></script>
+        <script type="text/javascript" src="../js/mui.min.js"></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/common.js" ></script>
+		<title>加入我们</title>
+		<style>
             * {
                 margin: 0;
                 padding: 0;
@@ -29,14 +28,14 @@
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
             }
+            
             body {
                 width: 100%;
                 overflow-x: hidden;
                 font-family: "微软雅黑";
                 background: #f8f8f8;
                 font-size: 1em;
-                padding-bottom: 3em;
-                line-height: normal;
+                padding-bottom: 3.875em;
             }
             
             h1,
@@ -51,7 +50,13 @@
             
             p {
                 margin: 0;
+                text-indent: 2em;
+                background: #fff;
+                padding: 0.625em;
                 font-size: 1em;
+                line-height: 1.8em;
+                padding-top: 1.25em;
+                color: #333;
             }
             
             
@@ -65,14 +70,14 @@
             
             .lunbo .more {
                 text-align: center;
-                font-size: 1em;
+                font-size: 0.75em;
                 color: #fff;
                 position: absolute;
                 top: 0;
                 right: 0;
                 background: url(img/opa.png) repeat;
-                padding:0.2em 0.5em;
-                z-index: 100;
+                width: 3.125em;
+                height: 1.25em;
             }
             
             .lunbo span.mui-icon {
@@ -85,20 +90,16 @@
             }
             
             .lanmu nav {
-                width: 100%;
+                width: 90%;
                 margin: 0 auto;
-                margin-top: 0.5em;
+                margin-top: 1em;
                 font-size: 1em;
-                height: auto;
-                overflow: hidden;
             }
             
             .lanmu a {
-                color:#000;
                 display: block;
                 float: left;
                 width: 25%;
-                text-align: center;
             }
             
             .lanmu a img {
@@ -122,20 +123,19 @@
                 background: #ff5256;
                 color: #fff;
                 padding: 0.625em;
-                font-size: 1em;
+                font-size: 1.125em;
                 line-height: 1.5em;
             }
             
             .same_city_buy h2 span {
-                
+                float: right;
             }
             
             .same_city_buy>p {
                 background: #f9efc9;
                 text-align: center;
                 position: relative;
-                line-height: 1.5em;
-                padding: 3px;
+                line-height: 1.875em;
             }
             
             .same_city_buy>p a {
@@ -150,7 +150,6 @@
                 top: 0.625em;
                 right: 1em;
                 color: #999;
-                font-size: 1em;
             }
             
             .same_city_buy .mui-table-view .mui-media-object {
@@ -174,13 +173,13 @@
                 background: #5bc4fd;
                 color: #fff;
                 padding: 0.625em;
-                font-size: 1em;
+                font-size: 1.125em;
                 line-height: 1.5em;
                 position: relative;
             }
             
             .same_city_search h2 span {
-                
+                float: right;
             }
             
             .same_city_search>p {
@@ -202,13 +201,11 @@
                 top: 0.625em;
                 right: 1em;
                 color: #999;
-                font-size: 1em;
             }
             
             .same_city_search .mui-table-view .mui-media-object {
                 max-width: 22%;
                 height: auto;
-                border-radius: 0.625em;
             }
             
             .same_city_search .mui-table-view-cell>a:not(.mui-btn) {
@@ -222,12 +219,14 @@
             .same_city_search .search {
                 background: #87d4fe;
                 border: none;
+                height: 2em;
                 position: absolute;
                 width: 60%;
                 padding: 0;
                 margin: 0 auto;
+                margin-top: 0.3125em;
                 display: block;
-                top: 0.6em;
+                top: 0;
                 left: 20%;
             }
             
@@ -237,104 +236,68 @@
                 text-indent: 0.625em;
                 padding: 0;
                 margin: 0;
-                font-size: 1em;
+                height: 1.5em;
+                font-size: 0.75em;
                 width: 100%;
                 height: 100%;
-                line-height: inherit;
             }
             
             .same_city_search .search img {
                 height: 60%;
                 position: absolute;
-                top: 20%;
-                right: 1%;
+                top: 0.3125em;
+                right: 0.3125em;
             }
-            
-            
-            .mui-slider-indicator .mui-indicator{
-                width: 0.5em;
-                height: 0.5em;
-            }
-            .mui-bar-tab{
-                height: 3em;
-                font-size: 1em;
-            }
-            .rightright{
-                margin-top: 0.2em;
+            .quyu{ position: relative;}
+            .quyu select{ background: none; margin-bottom: 0; }
+            .xiangxia{ position: absolute; top: 0.625em; right: 0.625em; z-index: -100; }
+            .tu_2 img{
+                width: 100%;
+                padding: 0.625em 1em;
+                background: #fff;
             }
         </style>
-    </head>
+	</head>
 
-    <body>
-        <header>
-            <a class="dingwei"><img src="img/dingwei.png" /><span id="ipcity"></span></a>
-            <h1>首页</h1>
-            <a class="xiaoxi" href="javascript:;" onclick="openUrl('user/my_message.html','my_message');">0</a>
-        </header>
-        <section class="lunbo">
-            <div class="mui-slider">
-                <div class="mui-slider-group mui-slider-loop" id="slideBoxIndex"></div>
-                <div id="yuandian" class="mui-slider-indicator"></div>
-            </div>
-            <a class="more" onclick="openUrl('page/mingyouList.html','mingyouList');">更多</a>
-        </section>
-        <section class="lanmu">
-            <nav class="">
-                <a class="" onclick="openUrl('page/shopList.html','shopList');">
-                    <img src="img/shopcar.png" />
-                    超市
-                </a>
-                <a class="" onclick="openUrl('page/babyList.html','babyList');">
-                    <img src="img/baby.png" />
-                    孕婴
-                </a>
-                <a class="" onclick="openUrl('page/carList.html','carList');">
-                    <img src="img/car.png" />
-                    车辆
-                </a>
-                <a class="" onclick="openUrl('page/houseList.html','houseList');">
-                    <img src="img/house.png" />
-                    房产
-                </a>
-            </nav>
-        </section>
-        <section class="same_city_buy">
-            <h2>同城购<span class="rightright2" onclick="openUrl('page/samecityBuyList.html','samecityBuyList');"></span></h2>
-            <p>我也想出现在这里？
-                <a onclick="openUrl('user/moban_shengcheng.html?type=B2','moban_shengcheng');">免费发布</a>
-            </p>
-            <div>
-                <ul class="mui-table-view" id="activeB2"></ul>
-            </div>
-        </section>
-        <section class="same_city_search">
-            <h2>同城搜
-                <div class="search">
-                <input value="" placeholder="发布同城需求" type="text" /><img src="img/fabu.png" onclick="openUrl('user/add_message.html','add_message');"/>
-                </div>
-                <span class="rightright2" onclick="openUrl('page/messageList.html','messageList');"></span></h2>
-            <p>
-                <a></a>
-            </p>
-            <div>
-                <ul class="mui-table-view" id="messageList"></ul>
-            </div>
-        </section>
-        <footer>
-            <nav class="mui-bar mui-bar-tab">
-                <a class="action" href="javascript:;" id="tcIndex">
-                    <img src="img/shouye.png" />
+	<body>
+		<header>
+			<a><span class="leftleft"></span></a>
+			<h1>加入我们</h1>
+		</header>
+		<section class="quyu">
+			<p id="htmlStr">无</p>
+		</section>
+		<footer>
+			<nav class="mui-bar mui-bar-tab">
+				<a class="action" href="javascript:;" id="tcIndex">
+                    <img src="../img/shouye.png" />
                     <span class="mui-tab-label">首页</span>
                 </a>
                 <a href="javascript:;" id="myfabu">
-                    <img src="img/fabu2.png" />
+                    <img src="../img/fabu2.png" />
                     <span class="mui-tab-label">发布</span>
                 </a>
                 <a href="javascript:;" id="myInfo">
-                    <img src="img/mine.png" />
+                    <img src="../img/mine.png" />
                     <span class="mui-tab-label">我的</span>
                 </a>
-            </nav>
-        </footer>
-    </body>
+			</nav>
+		</footer>
+        <script>
+            $(function(){
+                appcan.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getSysPByKey.json?pKey=jrwm",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        $("#htmlStr").html(dataResult.data.pValue);
+                    }
+                }) 
+            })
+        </script>
+	</body>
+
 </html>

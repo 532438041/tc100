@@ -265,7 +265,7 @@
 			<h1>奖励惩罚</h1>
 		</header>
 		<section class="quyu">
-			<p>活动内容每被分享一次，该活动的排名资金加5元，累计80元封顶。活动每被评为重复则排名资金减一元，累计20次排名资金小于零元并且轮播图类信息，则活动被强制下架，账号两日内禁止发布免费广告。活动每被评为水贴，排名资金减一元，累计50次排名资金小于零元并且轮播图类信息，则活动被强制下架，帐号五日内禁止发布免费信息。</p>
+			<p id="htmlStr">无</p>
 		</section>
 		
 
@@ -286,6 +286,19 @@
 			</nav>
 		</footer>
         <script>
+            $(function(){
+                appcan.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getSysPByKey.json?pKey=jlcf",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        $("#htmlStr").html(dataResult.data.pValue);
+                    }
+                }) 
+            })
         </script>
 	</body>
 

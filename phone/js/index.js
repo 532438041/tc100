@@ -26,8 +26,20 @@
     }
     
     //首页轮播
+    var topPageSize = 5;
+    appcan.ajax({
+        type:"post",
+        async:false,       
+        url:host+"/getSysPByKey.json?pKey=index_top_num",
+        data:"",
+        dataType:"json",
+        contentType: "application/json",
+        success : function(dataResult) {
+            topPageSize = dataResult.data.pValue;
+        }
+    }) 
     var baseParam1 = {'actType':'A1','addName':appcan.locStorage.getVal("ipcity")}
-    var param1 = serializePageJson(1,5,baseParam1);
+    var param1 = serializePageJson(1,topPageSize,baseParam1);
     appcan.ajax({
         type:"post",
         url:host+"/getActiveList.json",
@@ -63,8 +75,20 @@
         }
     })
     //同城购
+    var tcgPageSize = 5;
+    appcan.ajax({
+        type:"post",
+        async:false,       
+        url:host+"/getSysPByKey.json?pKey=index_tcg_num",
+        data:"",
+        dataType:"json",
+        contentType: "application/json",
+        success : function(dataResult) {
+            tcgPageSize = dataResult.data.pValue;
+        }
+    })
     var baseParam2 = {'actType':'B2','addName':appcan.locStorage.getVal("ipcity")}
-    var param2 = serializePageJson(1,5,baseParam2);
+    var param2 = serializePageJson(1,tcgPageSize,baseParam2);
     appcan.ajax({
         type:"post",
         url:host+"/getActiveList.json",
@@ -87,8 +111,20 @@
         }
     })
     //同城搜
+    var tcsPageSize = 5;
+    appcan.ajax({
+        type:"post",
+        async:false,       
+        url:host+"/getSysPByKey.json?pKey=index_tcs_num",
+        data:"",
+        dataType:"json",
+        contentType: "application/json",
+        success : function(dataResult) {
+            tcsPageSize = dataResult.data.pValue;
+        }
+    })
     var baseParam3 = {'addName':appcan.locStorage.getVal("ipcity")}
-    var param3 = serializePageJson(1,5,baseParam3);
+    var param3 = serializePageJson(1,tcsPageSize,baseParam3);
     appcan.ajax({
         type:"post",
         url:host+"/getMsgList.json",

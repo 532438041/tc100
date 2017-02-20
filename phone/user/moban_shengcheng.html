@@ -227,12 +227,7 @@
 				<h3>说明</h3>
 				<p><span class="rightright"></span></p>
 			</div>
-			<ul>
-				<li><i>发布说明：</i>发布内容举办地必须为本地。主要包括店庆、开业、店面升级，节目促销等优惠活动。</li>
-				<li><i>资费说明：</i>样式1为收费展示(例如首页轮播大图、四大模块大图部分)展示费用每天80元。样式2为免费展示(例如同城购四大模块非大图部分)</li>
-				<li><i>请人代做：</i>每次40元。</li>
-				<li><i>位置代码：</i>生成规则轮播图A同城购B四大模块超市C婴孕D车辆E房产F+样式1为数字1样式2为数字2。(样式1指首导航页是大图的形式，样式2指导航页是左侧店铺图片+右侧店铺名称和简短活动说明)例如轮播图位置代码为A1,A指轮播图位置为轮播图，1指样式1。</li>
-			</ul>
+			<ul id="htmlStr"></ul>
 		</section>
 		<section class="upload">
 		    <form id="actForm">
@@ -307,6 +302,18 @@
             var type = getVal("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
+                // 获取模板生成说明
+                appcan.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getSysPByKey.json?pKey=mbscy",
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        $("#htmlStr").html(dataResult.data.pValue);
+                    }
+                })
                 
                 $(".fir img").height($(".fir img").width()/3);
                 
