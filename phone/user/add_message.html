@@ -138,9 +138,9 @@
         <script>
             var time = 0;
             var cardId = "";
+            var flag = false;
             // JavaScript Document
             $(document).ready(function(){
-                  var flag = false;
                   //获取默认名片夹
                    appcan.ajax({
                        type:"get",     
@@ -213,21 +213,22 @@
             });
             // 时间差倒计时
             function timer(intDiff) {
-               window.setInterval(function () {
-                    var m=0;
-                    var s=0;
-                    if(intDiff>0){
-                       m=Math.floor(intDiff/60%60);
-                       s=Math.floor(intDiff%60);
-                       $(".submit").val("发布"+m+":"+s);
-                       flag = false;
-                    }else{
-                       flag = true;
-                       $(".submit").val("发布");
-                    }
-                   time = intDiff;
+                var m=0;
+                var s=0;
+                if(intDiff>0){
+                   m=Math.floor(intDiff/60%60);
+                   s=Math.floor(intDiff%60);
+                   $(".submit").val("发布"+m+":"+s);
                    intDiff--;
-               }, 1000);
+                   time = intDiff;
+                   setTimeout(function () {
+                       timer(intDiff);
+                   }, 1000);
+                   flag = false;
+                }else{
+                   flag = true;
+                   $(".submit").val("发布");
+                }
            }
         </script>
 	</body>
