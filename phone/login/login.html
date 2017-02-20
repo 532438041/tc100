@@ -100,7 +100,14 @@
             <a onclick="openUrl('login2.html','login2')">登&nbsp;&nbsp;录</a>
             <a onclick="openUrl('register.html','register')">注&nbsp;&nbsp;册</a>
         </section>
-        
+        <script>
+            $(function(){
+                console.log(appcan.locStorage.getVal("userId"));
+                if(!!!appcan.locStorage.getVal("userId")){
+                    openUrl("../index.html","index");
+                }
+            })
+        </script>
     </body>
 
 </html>
