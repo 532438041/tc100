@@ -55,6 +55,8 @@ public class Active {
 	private String orderBy;
 	
 	private String userName;
+	
+	private String payCodeId;
 
 	public String getId() {
 		return id == null ? "" : id;
@@ -250,5 +252,13 @@ public class Active {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getPayCodeId() {
+		return payCodeId;
+	}
+
+	public void setPayCodeId(String payCodeId) {
+		this.payCodeId = payCodeId;
 	}
 }

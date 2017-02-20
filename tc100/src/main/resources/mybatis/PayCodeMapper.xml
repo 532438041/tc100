@@ -94,8 +94,8 @@
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM tc_pay_code WHERE state = '1'
-		<if test="payCode!=null and payCode!=''">
-			AND code = #{payCode}
+		<if test="_parameter!=null and _parameter!=''">
+			AND code = #{_parameter}
 		</if>
 	</select>
 </mapper>

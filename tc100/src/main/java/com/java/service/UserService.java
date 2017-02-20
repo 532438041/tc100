@@ -1,5 +1,7 @@
 package com.java.service;
 
+import java.util.List;
+
 import com.java.base.BaseService;
 import com.java.common.entity.PageParam;
 import com.java.common.entity.PageResult;
@@ -18,5 +20,7 @@ public interface UserService extends BaseService<User>{
 	String getUserIdByMobile(String mobile);
 
 	int changePwd(String userName, String userPwd);
+
+	List<User> getUserList();
 	
 }

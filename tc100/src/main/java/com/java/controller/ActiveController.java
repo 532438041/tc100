@@ -20,12 +20,14 @@ import com.java.entity.ActiveItem;
 import com.java.entity.ActiveLog;
 import com.java.entity.ItemCate;
 import com.java.entity.OperateFee;
+import com.java.entity.PayCode;
 import com.java.entity.UserFav;
 import com.java.service.ActiveItemService;
 import com.java.service.ActiveLogService;
 import com.java.service.ActiveService;
 import com.java.service.ItemCateService;
 import com.java.service.OperateFeeService;
+import com.java.service.PayCodeService;
 import com.java.service.UserFavService;
 import com.java.utils.ToolsUtil;
 
@@ -49,6 +51,9 @@ public class ActiveController {
 
 	@Autowired
 	private OperateFeeService operateFeeService;
+
+	@Autowired
+	private PayCodeService payCodeService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -135,6 +140,13 @@ public class ActiveController {
 	 */
 	@RequestMapping(value = "/publicAct")
 	public BaseResult publicAct(@RequestBody BaseParam<Active> baseParam) {
+		if (ToolsUtil.isNotNull(baseParam.getParam().getPayCodeId())) {
+			PayCode payCode = new PayCode();
+			payCode.setId(baseParam.getParam().getPayCodeId());
+			payCode.setActId(baseParam.getParam().getId());
+			payCode.setState("2");
+			payCodeService.updateByPrimaryKeySelective(payCode);
+		}
 		baseParam.getParam().setUpdateTime(new Date());
 		baseParam.getParam().setState("2"); // 发布
 		return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()), "");
@@ -192,6 +204,11 @@ public class ActiveController {
 		return new BaseResult().success(activeItemService.selectByPrimaryKey(itemId));
 	}
 
+	@RequestMapping(value = "/delItem")
+	public BaseResult delItem(String itemId) {
+		return new BaseResult().success(activeItemService.deleteByPrimaryKey(itemId));
+	}
+
 	/**
 	 * 获取活动下所有商品 按分类分开
 	 * 
@@ -200,15 +217,21 @@ public class ActiveController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/getActItem")
-	public BaseResult getActItem(String actId, String cateId, int limit) {
+	public BaseResult getActItem(String actId, String cateId, String limit) {
 		// 获取分类
 		List<ItemCate> cateList = itemCateService.getItemCateList(actId, cateId);
+		Active active = activeService.selectByPrimaryKey(actId);
 		ArrayList<Map<String, Object>> resultList = new ArrayList<>();
+		Integer temp = 0;
+		if (ToolsUtil.isNotNull(limit)) {
+			temp = Integer.parseInt(limit);
+		}
 		for (ItemCate itemCate : cateList) {
-			List<ActiveItem> itemList = activeItemService.getItemList(itemCate.getId(), limit);
+			List<ActiveItem> itemList = activeItemService.getItemList(itemCate.getId(), temp);
 			Map<String, Object> map = new HashMap<>();
 			map.put("cateId", itemCate.getId());
 			map.put("cateName", itemCate.getCateName());
+			map.put("active", active);
 			map.put("itemList", itemList);
 			resultList.add(map);
 		}

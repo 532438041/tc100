@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -168,10 +169,20 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/saveUserMsg")
 	public BaseResult saveUserMsg(@RequestBody BaseParam<UserMsg> baseParam) {
-		baseParam.getParam().setId(ToolsUtil.getUUID());
 		baseParam.getParam().setCreateTime(new Date());
 		baseParam.getParam().setState("1");
-		return new BaseResult().success(userMsgService.insert(baseParam.getParam()));
+		if (ToolsUtil.isNull(baseParam.getParam().getUserId())) {
+			List<User> list = userService.getUserList();
+			for (User user : list) {
+				baseParam.getParam().setId(ToolsUtil.getUUID());
+				baseParam.getParam().setUserId(user.getId());
+				userMsgService.insert(baseParam.getParam());
+			}
+		} else {
+			baseParam.getParam().setId(ToolsUtil.getUUID());
+			userMsgService.insert(baseParam.getParam());
+		}
+		return new BaseResult().success();
 	}
 
 	@RequestMapping(value = "/getReceiveAct")

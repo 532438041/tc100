@@ -53,6 +53,9 @@ public class PayCodeController {
 
 	@RequestMapping(value = "/checkPayCode")
 	public BaseResult checkPayCode(String payCode) {
+		if(ToolsUtil.isNull(payCode)){
+			return new BaseResult().failed(0, "推荐码为空！");
+		}
 		List<PayCode> list = payCodeService.getPayCodeList(payCode);
 		if (list.size() > 0) {
 			return new BaseResult().success(list.get(0));

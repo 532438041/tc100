@@ -224,7 +224,7 @@
 		<include refid="Base_Column_List" />
 		from tc_active_item
 		where cate_id = #{cateId}
-		<if test="limit > -1">
+		<if test="limit != null and limit > 0">
 			limit 0, #{limit}
 		</if>
 	</select>
