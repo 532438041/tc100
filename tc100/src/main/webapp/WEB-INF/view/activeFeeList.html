@@ -42,7 +42,6 @@
 					<td>{{activeFee.amount}}</td>
 					<td ng-if="activeFee.unit=='day'">天</td>
 					<td ng-if="activeFee.unit=='month'">月</td>
-					<td ng-if="activeFee.unit=='year'">年</td>
 					<td ng-if="activeFee.unit=='free'">试用免费</td>
 					<td class="operate">
 						<a ng-click="seeActiveFeeView(activeFee.id)">查看</a>
@@ -75,7 +74,6 @@
 					<option value="">--请选择--</option>
 			    	<option value="day">天</option>
 			      	<option value="month">月</option>
-			      	<option value="year">年</option>
 			      	<option value="free">免费</option>
 			    </select>				
 			</div>
