@@ -289,14 +289,14 @@
             
             .touxiang img{ height: 70%; margin: 15% 1em; border: 2px solid #fff; border-radius: 50%;}
             header p{ display: inline; line-height: 6.75em; color: #fff; font-size: 1em; position: relative; left: 6.75em;}
-            header p span{     background: url(../img/xiaoxi.png) no-repeat;
+            header .xiaoxiCount{     background: url(../img/xiaoxi.png) no-repeat;
                     background-size: 100%;
                     display: block;
                     width: 2.5em;
                     height: 2.5em;
                     position: absolute;
-                    top: -1.75em;
-                    left: 3.5em;
+                    top: 3.25em;
+                    left: 20em;
                     text-align: center;
                     line-height: 1.5em;
                     font-size: 0.6em;
@@ -307,19 +307,20 @@
 
 	<body>
 		<header class="header2">
-			<a class="touxiang"><img src="../img/touxiang.png" /></a>
-			<p>小溪<span id="xiaoxiCount" onclick="openUrl('my_message.html','my_message');">0</span></p>
+			<a class="touxiang"><img id="touxiang" src="../img/touxiang.png" /></a>
+			<p id="cardName">小溪</p>
+			<span class="xiaoxiCount" id="xiaoxiCount" onclick="openUrl('my_message.html','my_message');">0</span>
 			<a class="xiaoxi"><span class="setting22"></span>设置</a>
 		</header>
 		<section class="sec1">
 			<h3>同城搜</h3>
 			<a onclick="openUrl('my_ask.html','my_ask')">
 				<p><img src="../img/ask.png" />我的提问</p>
-				<p><span id="askCount">6</span><span class="rightright"></span></p>
+				<p><span id="askCount">0</span><span class="rightright"></span></p>
 			</a>
 			<a>
 				<p><img src="../img/ans.png" />我的回答</p>
-				<p>0<span class="rightright"></span></p>
+				<p><span id="reviewCount">0</span><span class="rightright"></span></p>
 			</a>
 		</section>
 		<section class="nav_8">
@@ -431,6 +432,7 @@
                    dataType:"json",
                    contentType: "application/json",
                    success : function(dataResult) {
+                       console.log(dataResult);
                        if(dataResult.status==200){
                            var askCount = dataResult.data!=null?dataResult.data:0;
                            $("#askCount").text(askCount);
@@ -438,6 +440,37 @@
                    }
                })
                //回答数量
+               appcan.ajax({
+                  type:"post",
+                  async:false,       
+                  url:host+"/getReviewCount.json?userId="+userId,
+                  data:"",
+                  dataType:"json",
+                  contentType: "application/json",
+                  success : function(dataResult) {
+                      console.log(dataResult);
+                      if(dataResult.status==200){
+                          var reviewCount = dataResult.data!=null?dataResult.data:0;
+                          $("#reviewCount").text(reviewCount);
+                      }
+                  }
+              })
+               
+               //用户信息
+               appcan.ajax({
+                   type:"post",
+                   async:false,       
+                   url:host+"/getCardList.json?userId="+userId,
+                   data:"",
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                       if(dataResult.data.length>0){
+                           $("#touxiang").attr("src",hostIp+dataResult.data[0].picUrl);
+                           $("#cardName").html(dataResult.data[0].cardName);
+                       }
+                   }
+               })
             })
         </script>
 	</body>

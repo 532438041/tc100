@@ -60,8 +60,9 @@
             .yiyou p a{ color: #999; border: 1px solid #ddd; padding: 0.125em 0.625em; border-radius: 0.25em; margin-right: 0.3125em;}
             .card_list li{ height: 5em; background: #fff; margin-bottom: 0.3125em; position: relative;}
             .card_list img{ width: 3.125em; height: 3.125em; margin-top: 1em; margin-left: 0.625em;}
-            .card_list p{ position: absolute; left: 5.625em; top: 0; line-height: 5em; color: #333; font-size: 1em;}
+            .card_list p{ position: absolute; width:7em; overflow: hidden; left: 5.625em; top: 0; line-height: 5em; color: #333; font-size: 1em;}
             .card_list span{ display: none; position: absolute; top: 1em; right: 0.625em; font-size: 2.5em; color: #0070c5;}
+            .card_list .isuser{ color: #999;right: 3.6em;top: 2.2em;position: absolute;}
         </style>
 	</head>
 
@@ -72,7 +73,7 @@
 		</header>
 		<section class="yiyou">
 			<h3>已有名片</h3>
-			<p><a id="del" href="javascript:;">删除</a><a id="edit" href="javascript:;">编辑</a><a href="add_card.html">添加</a></p>
+			<p><a id="isUser" href="javascript:;">使用</a><a id="del" href="javascript:;">删除</a><a id="edit" href="javascript:;">编辑</a><a href="add_card.html">添加</a></p>
 		</section>
 		<section class="card_list">
 			<ul id="cardList">
@@ -114,6 +115,9 @@
                                 cardStr +='<li data-id="'+dataList[i].id+'">';
                                 cardStr +='<img src="'+hostIp+dataList[i].picUrl+'" />';
                                 cardStr +='<p>'+dataList[i].cardName+'</p>';
+                                if(dataList[i].state=='2'){
+                                    cardStr +='<a class="isuser" href="javascript:;">当前使用</a>';
+                                }
                                 cardStr +='<span class="duidui"></span>';
                                 cardStr +=' </li>';
                             }
@@ -157,6 +161,24 @@
                 $("#edit").click(function(){
                     if(isChangeId!=""){
                         openUrl("add_card.html?cardId="+isChangeId,"addCard");
+                    }
+                })
+                //编辑
+                $("#isUser").click(function(){
+                    if(isChangeId!=""){
+                       appcan.ajax({
+                           type:"post",
+                           async:false,       
+                           url:host+"/useCard.json?cardId="+isChangeId+"&userId="+appcan.locStorage.getVal("userId"),
+                           data:"",
+                           dataType:"json",
+                           contentType: "application/json",
+                           success : function(dataResult) {
+                               if(dataResult.msg=='success'){
+                                   window.location.reload();
+                               }
+                           }
+                       })
                     }
                 })
 			});
