@@ -102,8 +102,8 @@
         </section>
         <script>
             $(function(){
-                if(!!!appcan.locStorage.getVal("userId")){
-                    openUrl("../index.html","index");
+                if(!!appcan.locStorage.getVal("userId")){
+                    window.location.href = "../index.html";
                 }
             })
         </script>

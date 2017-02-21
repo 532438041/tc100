@@ -377,7 +377,11 @@
                            }
                         }else{
                            if(result.status > 0){
-                                openUrl("../index.html","index");
+                               if(!!payCodeId){
+                                    openUrl("../index.html","index");
+                               }else{
+                                   openUrl("../pay.html","pay");
+                               }
                            }
                        }
                    }
