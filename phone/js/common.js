@@ -196,10 +196,12 @@ function initBounce(funcTop, funcBottom){
             funcTop();
             uexWindow.resetBounceView("0");
         }
-        if (type == btm && state == 2) { //底部弹动
-            funcBottom();
-            uexWindow.resetBounceView("1");
-        }
+        /*
+        if (type == btm && state == 2) { //搴曢儴寮瑰姩
+                    funcBottom();
+                    uexWindow.resetBounceView("1");
+                }*/
+        
         
     }
     if (funcTop) {
@@ -207,9 +209,11 @@ function initBounce(funcTop, funcBottom){
         uexWindow.showBounceView(top, "rgba(255,255,255,0)", 1);
         uexWindow.notifyBounceEvent(top, 1);
     }
+    /*
     if (funcBottom) {
-        uexWindow.setBounceParams('1', "{'pullToReloadText':'加载更多','releaseToReloadText':'加载更多','loadingText':'加载中，请稍候'}");
-        uexWindow.showBounceView(btm, "rgba(255,255,255,0)", 1); //设置弹动位置及效果([1:显示内容;0:不显示])
-        uexWindow.notifyBounceEvent(btm, 1); //注册接收弹动事件([0:不接收onBounceStateChange方法回调;1:接收])
-    }
+            uexWindow.setBounceParams('1', "{'pullToReloadText':'鍔犺浇鏇村','releaseToReloadText':'鍔犺浇鏇村','loadingText':'鍔犺浇涓紝璇风◢鍊�}");
+            uexWindow.showBounceView(btm, "rgba(255,255,255,0)", 1); //璁剧疆寮瑰姩浣嶇疆鍙婃晥鏋�[1:鏄剧ず鍐呭;0:涓嶆樉绀篯)
+            uexWindow.notifyBounceEvent(btm, 1); //娉ㄥ唽鎺ユ敹寮瑰姩浜嬩欢([0:涓嶆帴鏀秓nBounceStateChange鏂规硶鍥炶皟;1:鎺ユ敹])
+        }*/
+    
 }
