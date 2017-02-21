@@ -155,4 +155,9 @@
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
 		WHERE msg.msg_id = #{msgId}
 	</select>
+
+	<select id="getReviewCount" resultType="Integer" parameterType="java.lang.String">
+		SELECT count(0) FROM tc_message_review msg
+		WHERE msg.user_id = #{userId}
+	</select>
 </mapper>

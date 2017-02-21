@@ -24,6 +24,11 @@ indexApp.controller("payLogListController", function($scope, $http) {
 		}).success(function(dataResult) {
 			$scope.payLogList = dataResult.data.dataList || [];
 			$scope.total = dataResult.data.total;
+			$scope.cishu = $scope.payLogList.length;
+			$scope.jine = 0;
+			for (var i = 0; i < dataResult.data.dataList.length; i++) {
+				$scope.jine += dataResult.data.dataList[i].amount;
+			};
 			if (isCallback)
 				return false;
 			$('.page-pager').initPagination({

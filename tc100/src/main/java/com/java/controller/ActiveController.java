@@ -1,5 +1,6 @@
 package com.java.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import com.java.entity.ActiveLog;
 import com.java.entity.ItemCate;
 import com.java.entity.OperateFee;
 import com.java.entity.PayCode;
+import com.java.entity.PayLog;
 import com.java.entity.UserFav;
 import com.java.service.ActiveItemService;
 import com.java.service.ActiveLogService;
@@ -28,6 +30,7 @@ import com.java.service.ActiveService;
 import com.java.service.ItemCateService;
 import com.java.service.OperateFeeService;
 import com.java.service.PayCodeService;
+import com.java.service.PayLogService;
 import com.java.service.UserFavService;
 import com.java.utils.ToolsUtil;
 
@@ -54,6 +57,9 @@ public class ActiveController {
 
 	@Autowired
 	private PayCodeService payCodeService;
+
+	@Autowired
+	private PayLogService payLogService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -146,6 +152,16 @@ public class ActiveController {
 			payCode.setActId(baseParam.getParam().getId());
 			payCode.setState("2");
 			payCodeService.updateByPrimaryKeySelective(payCode);
+		} else if (!baseParam.getParam().getAmount().equals(BigDecimal.ZERO)) {
+			// 保存支付记录
+			PayLog payLog = new PayLog();
+			payLog.setActId(baseParam.getParam().getId());
+			payLog.setAmount(baseParam.getParam().getAmount());
+			payLog.setCreateTime(new Date());
+			payLog.setId(ToolsUtil.getUUID());
+			payLog.setRemark("发布缴费");
+			payLog.setUserId(baseParam.getParam().getUserId());
+			payLogService.insert(payLog);
 		}
 		baseParam.getParam().setUpdateTime(new Date());
 		baseParam.getParam().setState("2"); // 发布

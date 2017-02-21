@@ -110,7 +110,6 @@ public class User {
 		this.loginIp = loginIp == null ? null : loginIp.trim();
 	}
 
-	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getLastLoginTime() {
 		return lastLoginTime;
 	}

@@ -17,4 +17,9 @@ public class MessageReviewDaoImpl extends BaseDaoImpl<MessageReview>implements M
 		return this.getSqlSession().selectList(getStateMentName("getMsgReview"), msgId);
 	}
 
+	@Override
+	public int getReviewCount(String userId) {
+		return this.getSqlSession().selectOne(getStateMentName("getReviewCount"), userId);
+	}
+
 }

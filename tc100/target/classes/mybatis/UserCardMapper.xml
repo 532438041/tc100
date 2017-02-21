@@ -193,4 +193,15 @@
 		from tc_user_card
 		WHERE user_id = #{userId} AND state != '0' ORDER BY state DESC, create_time DESC
 	</select>
+	<update id="unUseCard" parameterType="java.lang.String">
+		update tc_user_card
+		set state = 1
+		where user_id = #{userId}
+	</update>
+	<update id="useCard" parameterType="java.lang.String">
+		update tc_user_card
+		set state = 2
+		where id = #{cardId}
+	</update>
+
 </mapper>

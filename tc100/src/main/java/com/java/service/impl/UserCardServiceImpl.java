@@ -21,4 +21,9 @@ public class UserCardServiceImpl extends BaseServiceImpl<UserCard>implements Use
 		return userCardDao.getCardList(userId);
 	}
 
+	@Override
+	public int useCard(String cardId, String userId) {
+		return userCardDao.useCard(cardId, userId);
+	}
+
 }

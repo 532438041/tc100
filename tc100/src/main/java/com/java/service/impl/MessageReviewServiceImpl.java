@@ -22,4 +22,9 @@ public class MessageReviewServiceImpl extends BaseServiceImpl<MessageReview>impl
 		return messageReviewDao.getMsgReview(msgId);
 	}
 
+	@Override
+	public int getReviewCount(String userId) {
+		return messageReviewDao.getReviewCount(userId);
+	}
+
 }

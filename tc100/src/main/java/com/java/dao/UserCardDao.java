@@ -9,4 +9,6 @@ public interface UserCardDao extends BaseDao<UserCard> {
 
 	List<UserCard> getCardList(String userId);
 
+	int useCard(String cardId, String userId);
+
 }

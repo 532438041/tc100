@@ -10,4 +10,6 @@ public interface MessageReviewService extends BaseService<MessageReview>{
 
 	List<MsgReviewDto> getMsgReview(String msgId);
 
+	int getReviewCount(String userId);
+
 }

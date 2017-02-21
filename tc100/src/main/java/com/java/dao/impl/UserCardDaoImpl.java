@@ -16,4 +16,10 @@ public class UserCardDaoImpl extends BaseDaoImpl<UserCard>implements UserCardDao
 		return this.getSqlSession().selectList(getStateMentName("getCardList"), userId);
 	}
 
+	@Override
+	public int useCard(String cardId, String userId) {
+		this.getSqlSession().update(getStateMentName("unUseCard"), userId);
+		return this.getSqlSession().update(getStateMentName("useCard"), cardId);
+	}
+
 }

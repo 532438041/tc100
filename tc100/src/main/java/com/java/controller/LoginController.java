@@ -54,6 +54,9 @@ public class LoginController {
 		}
 
 		// 记录登录状态
+		user.setLastLoginTime(new Date());
+		user.setLoginIp(ToolsUtil.getLocalIP());
+		userService.updateByPrimaryKey(user);
 
 		// 保存登录信息
 		ToolsUtil.setCookie(response, "userId", user.getId());
@@ -86,6 +89,9 @@ public class LoginController {
 		}
 
 		// 记录登录状态
+		user.setLastLoginTime(new Date());
+		user.setLoginIp(ToolsUtil.getLocalIP());
+		userService.updateByPrimaryKey(user);
 
 		// 保存登录信息
 		ToolsUtil.setCookie(response, "userId", user.getId());

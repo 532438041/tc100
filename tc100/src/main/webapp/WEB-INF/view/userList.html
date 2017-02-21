@@ -23,10 +23,12 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th class="w16">用户Id</th>
+					<th class="w15">用户Id</th>
 					<th class="w15">用户名</th>
-					<th class="w21">创建日期</th>
-					<th class="w21">关注帖子</th>
+					<th class="w20">用户昵称</th>
+					<th class="w20">最后登录日期</th>
+					<th class="w15">创建日期</th>
+					<th class="w15">关注帖子</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,6 +38,8 @@
 				<tr ng-repeat="paramData in userList">
 					<td>{{paramData.id}}</td>
 					<td>{{paramData.userName}}</td>
+					<td>{{paramData.cardName || paramData.displayName}}</td>
+					<td>{{paramData.lastLoginTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
 					<td>{{paramData.createTime}}</td>
 					<td>{{paramData.favCount}}</td>
 				</tr>

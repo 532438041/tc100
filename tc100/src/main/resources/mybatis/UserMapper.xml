@@ -43,6 +43,7 @@
 		<result column="update_by" property="updateBy" jdbcType="CHAR" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 		<result column="favCount" property="favCount" jdbcType="INTEGER" />
+		<result column="cardName" property="cardName" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
@@ -255,7 +256,9 @@
 		select * from tc_user where user_name = #{userName}
 	</select>
 	<select id="getUserList" resultMap="UserDtoResultMap" parameterType="com.java.entity.User">
-		SELECT u.*, COUNT(f.`id`) favCount FROM `tc_user` u
+		SELECT u.*, COUNT(f.`id`) favCount, 
+		(SELECT c.`card_name` FROM `tc_user_card` c WHERE c.user_id = u.`id` ORDER BY c.`state` DESC LIMIT 1)
+ 		cardName FROM `tc_user` u
 		LEFT JOIN `tc_user_fav` f ON u.`id` = f.`user_id`
 		<where>
 			<if test="userName!=null and userName!=''">

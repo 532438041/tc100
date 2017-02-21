@@ -79,6 +79,11 @@ public class UserController {
 		}
 	}
 
+	@RequestMapping(value = "/useCard")
+	public BaseResult useCard(String cardId, String userId) {
+		return new BaseResult().success(userCardService.useCard(cardId, userId));
+	}
+
 	/**
 	 * 删除我的名片
 	 * 

@@ -116,6 +116,11 @@ public class MessageController {
 	public BaseResult getMyMsgCount(String userId) {
 		return new BaseResult().success(messageService.getMyMsgCount(userId));
 	}
+	
+	@RequestMapping(value = "/getReviewCount")
+	public BaseResult getReviewCount(String userId) {
+		return new BaseResult().success(messageReviewService.getReviewCount(userId));
+	}
 
 	/**
 	 * 我的同城搜列表 及回复的个数（我的提问 ）
