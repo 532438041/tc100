@@ -239,7 +239,7 @@
     				<p class="bitian"><span>必填</span></p>
     			</div>
     			<ul class="lei_1">
-    				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费原价3000/月，1500月</li>
+    				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费为<span id="sysParam"></span></li>
     			</ul>
     			<div class="pore shouye" id="type1">
     				<h3><img src="../img/star.png" />样式1：首页显示</h3>
@@ -314,6 +314,26 @@
                         $("#htmlStr").html(dataResult.data.pValue);
                     }
                 })
+                
+                // 获取金额
+                appcan.ajax({
+                   type:"get",     
+                   url:host+"/getActFeeBy.json?actType=A1",
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                       var unit = "";
+                       if(!!dataResult.data){
+                           if(dataResult.data.unit == "day"){
+                               $("#sysParam").text(dataResult.data.amount + "元/天");
+                           }else if(dataResult.data.unit == "month"){
+                               $("#sysParam").text(dataResult.data.amount + "元/月");
+                           }else{
+                               $("#sysParam").text("免费试用");  
+                           }
+                       }
+                   }
+               })
                 
                 $(".fir img").height($(".fir img").width()/3);
                 
