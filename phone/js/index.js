@@ -5,13 +5,9 @@
     console.log(userId);
     console.log(userCardId);
     //获取ip所在的
-    appcan.ajax({
-        url: 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',
-        async:false,
-        dataType: "script",
-        success : function() {
-            appcan.locStorage.setVal("ipcity", remote_ip_info.city);
-        }
+    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
+        $("#ipcity").html(remote_ip_info.city);
+        appcan.locStorage.setVal("ipcity", remote_ip_info.city);
     });
     //消息个数
     if(userId !=null && userId !=""){
@@ -47,7 +43,6 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
-            $("#ipcity").html(remote_ip_info.city);
             if(dataResult!=null && dataResult.data.dataList.length>0){
                 var dataList = dataResult.data.dataList;
                 var imgStr = "";
