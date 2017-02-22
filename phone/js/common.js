@@ -121,7 +121,6 @@ function setVal(key,value){
 // 页面跳转取参
 function getVal(key){
     var value = appcan.locStorage.getVal(key);
-    appcan.locStorage.remove(key); // 取了值后 清除掉
     return value;
 }
 
@@ -173,23 +172,22 @@ $(function(){
     
     // 下拉刷新页面
     window.uexOnload = function(type) {
-        uexWindow.setBounce(1);
-        initBounce(mes,mes);
+        initBounce(mes);
     }
     function mes(){
-        window.location.reload();
+        uexWindow.reload();
     }
     
 })
 
-function initBounce(funcTop, funcBottom){
+function initBounce(funcTop){
     uexWindow.setBounce("1");
-    if (!funcTop && !funcBottom) {
+    if (!funcTop) {
         uexWindow.showBounceView("0", "rgba(255,255,255,0)", "0");
-        uexWindow.showBounceView("1", "rgba(255,255,255,0)", "0");
+        /*uexWindow.showBounceView("1", "rgba(255,255,255,0)", "0");*/
         return;
     }
-    var top = 0, btm = 1;
+    var top = 0;
     uexWindow.onBounceStateChange = function(type, state){
     
         if (type == top && state == 2) { //顶部弹动
@@ -198,7 +196,7 @@ function initBounce(funcTop, funcBottom){
         }
         /*
         if (type == btm && state == 2) { //搴曢儴寮瑰姩
-                    funcBottom();
+                    //funcBottom();
                     uexWindow.resetBounceView("1");
                 }*/
         
@@ -215,5 +213,6 @@ function initBounce(funcTop, funcBottom){
             uexWindow.showBounceView(btm, "rgba(255,255,255,0)", 1); //璁剧疆寮瑰姩浣嶇疆鍙婃晥鏋�[1:鏄剧ず鍐呭;0:涓嶆樉绀篯)
             uexWindow.notifyBounceEvent(btm, 1); //娉ㄥ唽鎺ユ敹寮瑰姩浜嬩欢([0:涓嶆帴鏀秓nBounceStateChange鏂规硶鍥炶皟;1:鎺ユ敹])
         }*/
+    
     
 }
