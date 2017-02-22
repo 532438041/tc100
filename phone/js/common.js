@@ -169,50 +169,19 @@ $(function(){
             openUrl('../index.html','index');
         }
     })
-    
-    // 下拉刷新页面
-    window.uexOnload = function(type) {
-        initBounce(mes);
-    }
-    function mes(){
-        uexWindow.reload();
-    }
-    
 })
-
-function initBounce(funcTop){
-    uexWindow.setBounce("1");
-    if (!funcTop) {
-        uexWindow.showBounceView("0", "rgba(255,255,255,0)", "0");
-        /*uexWindow.showBounceView("1", "rgba(255,255,255,0)", "0");*/
-        return;
-    }
-    var top = 0;
-    uexWindow.onBounceStateChange = function(type, state){
-    
-        if (type == top && state == 2) { //顶部弹动
-            funcTop();
-            uexWindow.resetBounceView("0");
-        }
-        /*
-        if (type == btm && state == 2) { //搴曢儴寮瑰姩
-                    //funcBottom();
-                    uexWindow.resetBounceView("1");
-                }*/
-        
-        
-    }
-    if (funcTop) {
-        uexWindow.setBounceParams('0', "{'pullToReloadText':'下拉刷新','releaseToReloadText':'释放刷新','loadingText':'正在刷新，请稍候'}");
-        uexWindow.showBounceView(top, "rgba(255,255,255,0)", 1);
-        uexWindow.notifyBounceEvent(top, 1);
-    }
-    /*
-    if (funcBottom) {
-            uexWindow.setBounceParams('1', "{'pullToReloadText':'鍔犺浇鏇村','releaseToReloadText':'鍔犺浇鏇村','loadingText':'鍔犺浇涓紝璇风◢鍊�}");
-            uexWindow.showBounceView(btm, "rgba(255,255,255,0)", 1); //璁剧疆寮瑰姩浣嶇疆鍙婃晥鏋�[1:鏄剧ず鍐呭;0:涓嶆樉绀篯)
-            uexWindow.notifyBounceEvent(btm, 1); //娉ㄥ唽鎺ユ敹寮瑰姩浜嬩欢([0:涓嶆帴鏀秓nBounceStateChange鏂规硶鍥炶皟;1:鎺ユ敹])
-        }*/
-    
-    
-}
+// 上下拉动刷新页面
+appcan.ready(function(){
+    appcan.window.setBounce({
+        bounceType:0,
+        startPullCall:function(type){
+        },
+        downEndCall:function(type){
+            window.location.reload();
+        },
+        upEndCall:function(type){
+            appcan.window.resetBounceView(type);
+        },
+        color:"#fff"
+    })
+})
