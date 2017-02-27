@@ -52,7 +52,7 @@ header {
                 right: 0.75em;
                 height: 1.8em;
                 width: 2em;
-                background: url(../img/xiaoxi.png) no-repeat;
+                background: url(../img/xiaoxi5.png) no-repeat;
                 background-size: 100% 100%;
             }
             .xiaoxi2 {
@@ -188,6 +188,7 @@ header {
                 margin: 0 auto;
                 margin-top: 0.3125em;
                 margin-bottom: 0.1em;
+                margin-bottom: -0.3em;
             }
             
             footer nav span {
@@ -303,4 +304,5 @@ header {
                 float: left;
                 margin-top: -0.3em;
             }
+            ul,li,ol{ list-style: none;}
             

@@ -9,17 +9,19 @@
         $("#ipcity").html(remote_ip_info.city);
         appcan.locStorage.setVal("ipcity", remote_ip_info.city);
     });
-    //消息个数
+    //消息个数 显示成... 不显示个数
+    /*
     if(userId !=null && userId !=""){
-        appcan.ajax({
-            type:"get",  
-            url:host+"/getMsgCount.json?userId="+userId+"&state=1",
-            dataType:"json",
-            success:function(dataResult) {
-                $(".xiaoxi").html(dataResult.data);
-            }
-        })
-    }
+            appcan.ajax({
+                type:"get",  
+                url:host+"/getMsgCount.json?userId="+userId+"&state=1",
+                dataType:"json",
+                success:function(dataResult) {
+                    $(".xiaoxi").html(dataResult.data);
+                }
+            })
+        }*/
+    
     
     //首页轮播
     var topPageSize = 5;
