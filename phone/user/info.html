@@ -432,7 +432,6 @@
                    dataType:"json",
                    contentType: "application/json",
                    success : function(dataResult) {
-                       console.log(dataResult);
                        if(dataResult.status==200){
                            var askCount = dataResult.data!=null?dataResult.data:0;
                            $("#askCount").text(askCount);
@@ -448,7 +447,6 @@
                   dataType:"json",
                   contentType: "application/json",
                   success : function(dataResult) {
-                      console.log(dataResult);
                       if(dataResult.status==200){
                           var reviewCount = dataResult.data!=null?dataResult.data:0;
                           $("#reviewCount").text(reviewCount);

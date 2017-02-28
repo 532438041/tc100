@@ -136,6 +136,11 @@ function getIpPlace(){
     });
 }
 $(function(){
+    var url = document.URL;
+    if(url.indexOf("user/") != -1 && !!!appcan.locStorage.getVal("userId")){
+        window.location.href="../login/login.html";
+    }
+    
     /**
      * 放回上一级 
      */
