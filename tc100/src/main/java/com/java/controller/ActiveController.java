@@ -23,7 +23,9 @@ import com.java.entity.ItemCate;
 import com.java.entity.OperateFee;
 import com.java.entity.PayCode;
 import com.java.entity.PayLog;
+import com.java.entity.UserCard;
 import com.java.entity.UserFav;
+import com.java.entity.UserMsg;
 import com.java.service.ActiveItemService;
 import com.java.service.ActiveLogService;
 import com.java.service.ActiveService;
@@ -31,7 +33,9 @@ import com.java.service.ItemCateService;
 import com.java.service.OperateFeeService;
 import com.java.service.PayCodeService;
 import com.java.service.PayLogService;
+import com.java.service.UserCardService;
 import com.java.service.UserFavService;
+import com.java.service.UserMsgService;
 import com.java.utils.ToolsUtil;
 
 @RestController
@@ -61,10 +65,17 @@ public class ActiveController {
 	@Autowired
 	private PayLogService payLogService;
 
+	@Autowired
+	private UserMsgService userMsgService;
+
+	@Autowired
+	private UserCardService userCardService;
+
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
 	 * 
-	 * @param @param pageParam
+	 * @param @param
+	 *            pageParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -79,8 +90,10 @@ public class ActiveController {
 	/**
 	 * 获取个数 传参actType=A1 若多个 则用actType C1,C2,D1,D2 state 若不传值 为查询未发布和发布的
 	 * 
-	 * @param @param userId
-	 * @param @param actType
+	 * @param @param
+	 *            userId
+	 * @param @param
+	 *            actType
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -103,7 +116,8 @@ public class ActiveController {
 	/**
 	 * 获取同城购详情
 	 * 
-	 * @param @param actId
+	 * @param @param
+	 *            actId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -115,7 +129,8 @@ public class ActiveController {
 	/**
 	 * 添加活动
 	 * 
-	 * @param @param baseParam
+	 * @param @param
+	 *            baseParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -140,7 +155,8 @@ public class ActiveController {
 	/**
 	 * 活动内容补充 活动发布
 	 * 
-	 * @param @param baseParam
+	 * @param @param
+	 *            baseParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -171,7 +187,8 @@ public class ActiveController {
 	/**
 	 * 保存商品分类信息 返回分类id
 	 * 
-	 * @param @param baseParam
+	 * @param @param
+	 *            baseParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -191,7 +208,8 @@ public class ActiveController {
 	/**
 	 * 保存活动商品
 	 * 
-	 * @param @param baseParam
+	 * @param @param
+	 *            baseParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -210,8 +228,10 @@ public class ActiveController {
 	/**
 	 * 获取单个商品信息
 	 * 
-	 * @param @param itemId
-	 * @param @param actId
+	 * @param @param
+	 *            itemId
+	 * @param @param
+	 *            actId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -228,7 +248,8 @@ public class ActiveController {
 	/**
 	 * 获取活动下所有商品 按分类分开
 	 * 
-	 * @param @param actId
+	 * @param @param
+	 *            actId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -257,8 +278,10 @@ public class ActiveController {
 	/**
 	 * 点击详情 记录浏览记录
 	 * 
-	 * @param @param actId
-	 * @param @param userId
+	 * @param @param
+	 *            actId
+	 * @param @param
+	 *            userId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -294,6 +317,22 @@ public class ActiveController {
 			activeService.insert(active);
 			actId = active.getId();
 			userId = fromUserId;
+
+			List<UserCard> list = userCardService.getCardList(fromUserId);
+			String cardName = "";
+			if (list.size() > 0) {
+				cardName = list.get(0).getCardName();
+			}
+			UserMsg userMsg = new UserMsg();
+			userMsg.setContent("用户" + cardName + "向你推荐了一个模板");
+			userMsg.setCreateTime(new Date());
+			userMsg.setCreateBy(actId);
+			userMsg.setId(ToolsUtil.getUUID());
+			userMsg.setMsgType("2");
+			userMsg.setState("1");
+			userMsg.setUserId(userId);
+			userMsgService.insert(userMsg);
+
 		} else {
 			// 判断该用户是否操作过 不重复记录
 			int canOperate = activeLogService.isLoged(actId, userId, logType);
@@ -359,9 +398,12 @@ public class ActiveController {
 	/**
 	 * 添加act操作日志
 	 * 
-	 * @param @param actId
-	 * @param @param userId
-	 * @param @param logType
+	 * @param @param
+	 *            actId
+	 * @param @param
+	 *            userId
+	 * @param @param
+	 *            logType
 	 * @return void
 	 */
 	private void addActLog(String actId, String fromActId, String userId, String logType) {
