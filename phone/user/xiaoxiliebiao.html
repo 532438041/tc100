@@ -68,13 +68,7 @@
             <h1 id="title">消息列表</h1>
         </header>
         <section class="xiaoxiliebiao">
-            <ul>
-                <li><p>活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息</p></li>
-                <li><p>活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息</p></li>
-                <li><p>活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息</p></li>
-                <li><p>活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息</p></li>
-                <li><p>活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息</p></li>
-                <li><p>活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息活动消息</p></li>
+            <ul id="msgList">
             </ul>
         </section>
         <footer>
@@ -93,7 +87,26 @@
                 </a>
             </nav>
         </footer>
-        
+        <script>
+            $(function(){
+                var msgType = getVal("msgType");
+                appcan.ajax({
+                    type:"post",
+                    url:host+"/getUserMsgList.json?userId="+appcan.locStorage.getVal("userId")+"&msgType="+msgType+"&state=1",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult){
+                        var msgStr = '';
+                        if(dataResult.data.length>0){
+                            for(var i=0;i<dataResult.data.length;i++){
+                               msgStr += '<li><p>'+dataResult.data[i].content+'</li></p>';
+                            }
+                        }
+                        $("#msgList").html(msgStr);
+                    }
+                })
+            })
+        </script>
     </body>
 
 </html>

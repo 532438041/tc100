@@ -28,7 +28,7 @@ public class UserMsgDaoImpl extends BaseDaoImpl<UserMsg>implements UserMsgDao {
 		map.put("userId", userId);
 		map.put("msgType", msgType);
 		map.put("state", state);
-		return this.getSqlSession().selectOne(getStateMentName("getUserMsgList"), map);
+		return this.getSqlSession().selectList(getStateMentName("getUserMsgList"), map);
 	}
 
 }
