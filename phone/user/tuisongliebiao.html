@@ -74,37 +74,7 @@
 			<h1>推送列表</h1>
 		</header>
 		<section>
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
-						<img class="mui-media-object mui-pull-left" src="../img/tuiguang2.png">
-						<div class="mui-media-body">
-							推广消息
-							<p class="mui-ellipsis">用户小溪向你推荐了一个模板</p>
-						</div>
-					</a>
-					<p class="moban_btn"><a>预览</a><a>使用</a></p>
-				</li>
-				<li class="mui-table-view-cell mui-media">
-                    <a href="javascript:;">
-                        <img class="mui-media-object mui-pull-left" src="../img/tuiguang2.png">
-                        <div class="mui-media-body">
-                                                                            推广消息
-                            <p class="mui-ellipsis">用户小溪向你推荐了一个模板</p>
-                        </div>
-                    </a>
-                    <p class="moban_btn"><a>预览</a><a>使用</a></p>
-                </li>
-                <li class="mui-table-view-cell mui-media">
-                    <a href="javascript:;">
-                        <img class="mui-media-object mui-pull-left" src="../img/tuiguang2.png">
-                        <div class="mui-media-body">
-                                                                            推广消息
-                            <p class="mui-ellipsis">用户小溪向你推荐了一个模板</p>
-                        </div>
-                    </a>
-                    <p class="moban_btn"><a>预览</a><a>使用</a></p>
-                </li>
+			<ul class="mui-table-view" id="msgList">
 			</ul>
 		</section>
 
@@ -124,9 +94,48 @@
                 </a>
             </nav>
         </footer>
-<script>
-
-</script>
+        <script>
+            $(function(){
+                var msgType = getVal("msgType");
+                appcan.ajax({
+                    type:"post",
+                    url:host+"/getUserMsgList.json?userId="+appcan.locStorage.getVal("userId")+"&msgType=2",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult){
+                        var msgStr = '';
+                        if(dataResult.data.length>0){
+                            for(var i=0;i<dataResult.data.length;i++){
+                                /*
+                                if(dataResult.data[i].state==1){
+                                                                    appcan.ajax({
+                                                                        type:"post",
+                                                                        url:host+"/changeUserMsgState.json?msgId="+dataResult.data[i].id,
+                                                                        dataType:"json",
+                                                                        contentType: "application/json",
+                                                                        success : function(dataResult){
+                                                                        }
+                                                                     })
+                                                                    
+                                                                }*/
+                                
+                                 msgStr += '<li class="mui-table-view-cell mui-media">';
+                                 msgStr += '<a href="javascript:;">';
+                                 msgStr += '<img class="mui-media-object mui-pull-left" src="../img/tuiguang2.png">';
+                                 msgStr += '<div class="mui-media-body">';
+                                 msgStr += '推广消息';
+                                 msgStr += '<p class="mui-ellipsis">'+dataResult.data[i].content+'</p>';
+                                 msgStr += '</div>';
+                                 msgStr += '</a>';
+                                 msgStr += '<p class="moban_btn"><a onclick="openUrl(\'../page/info.html?actId='+dataResult.data[i].createBy+'\',\'info\')">预览</a><a onclick="openUrl(\'moban_shiyong.html?actId='+dataResult.data[i].createBy+'\',\'moban_shiyong\')">使用</a></p>';
+                                 msgStr += '</li>';
+                            }
+                        }
+                        $("#msgList").html(msgStr);
+                    }
+                })
+            })
+        </script>
 	</body>
 
 </html>
