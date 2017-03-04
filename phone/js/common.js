@@ -11,7 +11,7 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://localhost";
+var hostIp = "http://47.89.28.238:81";
 var host = "http://localhost:8001/tc100";
 
 /**
@@ -138,7 +138,8 @@ function getIpPlace(){
 $(function(){
     var url = document.URL;
     if(url.indexOf("user/") != -1 && !!!appcan.locStorage.getVal("userId")){
-        window.location.href="../login/login.html";
+		appcan.locStorage.setVal("userId", "1");
+        //window.location.href="../login/login.html";
     }
     
     /**
@@ -174,8 +175,15 @@ $(function(){
             openUrl('../index.html','index');
         }
     })
+    
+    // 点名片 跳转到对应发布者名片详情页面
+    $(".xiaoxi2").click(function(){
+        var cardId = $(this).attr("cardId");
+        openUrl('../user/cardxiangqing.html?cardId='+cardId,'cardxiangqing');
+    })
 })
-// 上下拉动刷新页面
+/*
+// 涓婁笅鎷夊姩鍒锋柊椤甸潰
 appcan.ready(function(){
     appcan.window.setBounce({
         bounceType:0,
@@ -189,4 +197,5 @@ appcan.ready(function(){
         },
         color:"#fff"
     })
-})
+})*/
+

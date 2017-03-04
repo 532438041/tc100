@@ -247,12 +247,15 @@
             .quyu{ position: relative; margin-top: 0.625em; background: #fff; height: 3.125em; position: relative; }
             .quyu>div{ width: 25%; display: block; float: left;   height: 2.5em;}
             .quyu>div:last-child{ width: 30%;}
-            .quyu ul{ width: 400%; display: none; position: absolute; left: 0; background: #fff;  z-index: 20;   padding-left: 0;padding-right: 0; font-size: 0.6rem; text-align: center; border: 1px solid #ccc;}
+            .quyu ul{ width: 400%; display: none; position: absolute; left: 0; background: #fff;  z-index: 20; padding:0; font-size: 0.8em; text-align: center; border: 1px solid #ccc;}
             .quyu>div span{ color: #ccc; font-size: 1.2rem; }
-            .quyu li{ text-indent: 1.25em;  width: auto; height: 3.125em; line-height: 3.125em; text-align: left;}
+            .quyu li{ text-indent: 1em;  width: auto; height: 3em; line-height: 3em; text-align: left;}
+            .quyu ul{ padding: 1em}
+            .quyu li{  width: auto; float: left; padding:0 0.8em; margin:0; margin-right:1em; border-radius: 5px;background: #fff; color: #ff3366; border: 1px solid #ff3366; text-align: center;text-indent: 0; height: 1.8em; font-size:1em; line-height: 1.8em;}
+            .quyu .active{ background: #ff3366; border-radius:0.1em; color: #fff; }
+            .quyu .action{ background: #ff3366; border-radius:0.1em; color: #fff; }
             .quyu h4{ border-left: 1px solid #ccc; font-size: 1rem; height: 1.875em; line-height: 1.875em; display: inline-block; margin: 0.625em 0; text-align: center; width: 100%; color: #666;}
-            .quyu li.action{ background: #ade1f5; color: #fff;}
-            
+            option{ font-size: 1em;}
             .xiangxia{ position: absolute; top: 0.3125em; right: 0.625em; z-index: 0; }
             .tu_2 img{
                 width: 100%;
@@ -260,7 +263,7 @@
                 background: #fff;
             }
             .same_city_search div a img{ width: 100%; background: #fff; padding: 0.625em; margin-top: 0.625em;}
-            .bottombottom{ margin-top: 0.55em;}
+            .bottombottom{ margin-top: 0.75em;}
             .toptop{ margin-top: 0.55em;}
         </style>
 	</head>
@@ -272,25 +275,25 @@
 			<a class="xiaoxi3" href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','mobansc')">发布</a>
 		</header>
 		<section class="quyu">
-			<div>
-				<h4 style="border: none;">区域<span class="bottombottom"></span></h4>
-				<ul name="quyu" id="quyu">
-				</ul>
-			</div>
-			<div>
-				<h4>分类<span class="bottombottom"></span></h4>
-				<ul name="quyu" id="cate">
-				</ul>
-			</div>
-			<div>
-				<h4>智能排序<span class="bottombottom"></span></h4>
-				<ul name="quyu" id="sort">  
-                    <li class="action" data-id="amount">排序：实力优先</li>
-                    <li data-id="viewCount">排序：浏览优先</li>
-                    <li data-id="dateTime">排序：当前进行</li>
+            <div>
+                <h4 style="border: none;">区域<span class="bottombottom"></span></h4>
+                <ul name="quyu" id="quyu">
                 </ul>
-			</div>
-		</section>
+            </div>
+            <div>
+                <h4>分类<span class="bottombottom"></span></h4>
+                <ul name="cate" id="cate">
+                </ul>
+            </div>
+            <div>
+                <h4>智能排序<span class="bottombottom"></span></h4>
+                <ul name="sort" id="sort">  
+                    <li class="active" data-id="amount">实力优先</li>
+                    <li data-id="viewCount">浏览优先</li>
+                    <li data-id="dateTime">当前进行</li>
+                </ul>
+            </div>
+        </section>
 		<section class="same_city_search">
 			<div id="actA1"></div>
 		</section>
@@ -314,36 +317,36 @@
         <script>
         $(document).ready(function(){
         	$(".quyu h4").click(function(){
-        		
-        		if($(this).next("ul").css("display") == "block"){
-        			$(this).next("ul").hide();
-        		}else{
-        			$(".quyu h4").next("ul").hide();
-        			$(this).next("ul").show();
-        		}
-        		$(".quyu li").click(function(){
-        			$(this).parent().hide();
-        			$(this).parent().find("li").removeClass("action");
-        			$(this).addClass("action");
-        			mingyouList();
-        		})
-        	});
-        	//列表
-            mingyouList();
+                if($(this).next("ul").css("display") == "block"){
+                    $(this).next("ul").hide();
+                }else{
+                    $(".quyu h4").next("ul").hide();
+                    $(this).next("ul").show();
+                };
+            });
             //查询   区域列表
             appcan.ajax({
                 type:"get",
-                url:host+"/getActRegion.json?actType=A1&addName="+appcan.locStorage.getVal("ipcity"),
+                url:host+"/getAreaByName.json?cityName="+appcan.locStorage.getVal("ipcity"),
                 dataType:"json",
                 contentType: "application/json",
                 success : function(dataResult) {
-                    var actStr = '<li class="action" data-id="">区域：全部</li>';
+                    var actStr = '';
                     if(dataResult.data.length>0){
                         for(var i=0;i<dataResult.data.length;i++){
-                            actStr +='<li data-id="'+dataResult.data[i]+'">区域：'+dataResult.data[i]+'</li>';
+                            actStr +='<li class="active" data-id="'+dataResult.data[i].cityname+'">'+dataResult.data[i].cityname+'</li>';
                         }
                     }
                     $("#quyu").html(actStr);
+                    
+                    $("#quyu li").click(function(){
+                        if($(this).hasClass("active")){
+                           $(this).removeClass("active");
+                        }else{
+                           $(this).addClass("active");
+                        }
+                        mingyouList();
+                    });
                 }
             })
             //查询   分类列表
@@ -357,17 +360,37 @@
                 contentType: "application/json",
                 success : function(dataResult) {
                     var dataList = dataResult.data.dataList;
-                    var actStr = '<li class="action" data-id="">区域：全部</li>';
+                    var actStr = '';
                     if(dataList.length > 0){
                         for(var i=0;i<dataList.length;i++){
-                            actStr +='<li data-id='+dataList[i].id+'>区域：'+dataList[i].cateName+'</li>';
+                            actStr +='<li class="active" data-id='+dataList[i].id+'>'+dataList[i].cateName+'</li>';
                         }
                     }
                     $("#cate").html(actStr);
+                    
+                    $("#cate li").click(function(){
+                        if($(this).hasClass("active")){
+                           $(this).removeClass("active");
+                        }else{
+                           $(this).addClass("active");
+                        }
+                        mingyouList();
+                    });
                 }
             })
+            
+            $("#sort li").click(function(){
+                $(this).parent().hide();
+                $(this).parent().find("li").removeClass("active");
+                $(this).addClass("active");
+                mingyouList();
+            })
+            
+            //列表
+            mingyouList();
         	
         });
+        
         function mingyouList () {
             var baseSearchParam = getSearchType();
             var baseParam = {'actType':'A1','addName':appcan.locStorage.getVal("ipcity")}
@@ -392,14 +415,14 @@
         function getSearchType () {
             var baseSearchParam = {'region':'','cateId':'','orderBy':''}
             var searchType = "";
-            $(".quyu li[class=action]").each(function(){
-                if($(this).parent().attr("id")=='quyu'){
-                    baseSearchParam.region = $(this).attr("data-id");
+            $(".quyu li").each(function(){
+                if($(this).parent().attr("id")=='quyu' && $(this).hasClass("active")){
+                    baseSearchParam.region = (baseSearchParam.region.length == 0?baseSearchParam.region:(baseSearchParam.region+","))+$(this).attr("data-id");
                 }
-                if($(this).parent().attr("id")=='cate'){
-                    baseSearchParam.cateId = $(this).attr("data-id");
+                if($(this).parent().attr("id")=='cate' && $(this).hasClass("active")){
+                    baseSearchParam.cateId = (baseSearchParam.cateId.length == 0?baseSearchParam.cateId:(baseSearchParam.cateId+","))+$(this).attr("data-id");
                 }
-                if($(this).parent().attr("id")=='sort'){
+                if($(this).parent().attr("id")=='sort' && $(this).hasClass("active")){
                     baseSearchParam.orderBy = $(this).attr("data-id");
                 }
             })

@@ -116,7 +116,7 @@
 		<header>
 			<a><span class="leftleft"></span></a>
 			<h1 id="typeName">活动详情</h1>
-			<a class="xiaoxi3">名片</a>
+			<a class="xiaoxi2" cardId=''>名片</a>
 		</header>
 		
 		<section class="xiangqing" id="info">
@@ -128,6 +128,7 @@
 					<ul>
 						<li id="guanzhu"><img src="../img/eyes.png" />关注</li>
 						<li id="fenxiang"><img src="../img/share.png" />分享</li>
+						<li id="chongfu" style="display: none;"><img src="../img/repeat.png" />重复</li>
 						<li id="shuitie"><img src="../img/shuitie.png" />水贴</li>
 					</ul>
 				</a>
@@ -152,7 +153,7 @@
 		       
 		       var actId = getVal("actId");
 		       if(actId!=""){
-		       //关注
+		          //关注
                 $("#guanzhu").click(function(){
                     appcan.ajax({
                         type:"post",
@@ -224,6 +225,7 @@
                     contentType: "application/json",
                     success : function(dataResult) {
                         var data = dataResult.data;
+                        $(".xiaoxi2").attr("cardId", data.cardId);
                         var actStr = "";
                         var actType = data.actType.substring(0,1);
                         switch(actType){
@@ -231,6 +233,8 @@
                                 $("#typeName").text("名优详情");
                                 break;
                             case "B":
+                                $("#chongfu").show();
+                                $("#chongfu").parent("ul").attr("style", "top: -12em;");
                                 $("#typeName").text("同城购详情");
                                 break;
                             case "C":

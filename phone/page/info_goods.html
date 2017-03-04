@@ -262,7 +262,7 @@
 		<header>
 			<a><span class="leftleft"></span></a>
 			<h1 id="typeName">活动详情</h1>
-			<a class="xiaoxi2">名片</a>
+			<a class="xiaoxi2" cardId=''>名片</a>
 		</header>
 		<div id="infoGoods"></div>
 		<script>
@@ -270,7 +270,7 @@
             $(function(){
                 appcan.ajax({
                     type:"post",
-                    url:host+"/getActItem.json?actId="+actId+"&limit=3",
+                    url:host+"/getActItem.json?actId="+actId+"&limit=5",
                     data:'',
                     dataType:"json",
                     contentType: "application/json",
@@ -278,6 +278,7 @@
                         var dataList = dataResult.data;
                         var itemStr = "";
                         if(dataList.length>0){
+                            $(".xiaoxi2").attr("cardId", dataList[0].active.cardId)
                             for(var i=0;i<dataList.length;i++){
                                 var active = dataList[i].active;
                                 var actType = active.actType.substring(0,1);

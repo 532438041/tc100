@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="Flying hormone" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/media.css" />
+        <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
+        <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/mui.min.js"></script>
+		<title>设置</title>
+		<style>
+		      ul{ padding: 0; margin: 0}
+		    section{ background: #fff; height: auto; overflow: hidden; margin-bottom: 1em; position: relative;}
+		    .info img{ height:4em; float: left; margin: 1em;}
+		    .info p{ line-height:1.5em }
+		    .info p a{ color: #878787; padding-left: 2em; background: url(../img/fenbi.jpg) no-repeat 1em center; background-size: 1em auto;}
+		    .info>a{ border: 1px solid #ccc; padding: 0.5em; position: absolute; right: 1em; top: 2.5em; font-size: 0.8em; color: #878787; border-radius: 0.2em}
+		    .main{ padding: 0}
+		    .main li{ border-bottom: 0.2em solid #efeff4; padding: 0.5em}
+		    .main li a{ color: #878787; }
+		    #tuichu{ background: none;}
+		    #tuichu button{ font-size: 1.2em; background: #ff3366; color: #fff; width: 90%; margin-left: 5%; padding: 0.2em 1em; border-radius: 0.2em;}
+		    
+		    .mui-popup.mui-popup-in{ width: 80%;}
+		    .mui-popup-title{ font-size:1.2em;}
+		    .mui-popup-title+.mui-popup-text{ font-size: 1em;}
+		    .mui-popup-input input{ font-size:1em; height: 2em; line-height: 2em;}
+		    .mui-popup-button{ font-size: 1em;height: 2em; line-height: 2em;}
+		    .mui-popup-buttons{ height: 2em;}
+		    .mui-popup-inner{ padding: 1em;}
+		</style>
+	</head>
+	<body>
+        <header>
+            <a><span class="leftleft"></span></a>
+            <h1>设置</h1>
+        </header>
+        
+        <section class="info">
+            <img src="../img/touxiang.jpg"/>
+            <p style="margin-top: 2em">昵称：小溪<a id="change_name">编辑</a></p>
+            <p>电话：18565619238</p>
+            <a>上传头像</a>
+        </section>
+        
+        <section class="main">
+            <ul>
+                <li><a id="change_password">修改密码</a></li>
+                <li><a href="about.html">关于同城100</a></li>
+                <li><a href="banbengengxin.html">版本更新</a></li>
+            </ul>
+        </section>
+        <section id="tuichu">
+            <button>退出登录</button>
+        </section>
+        
+        <footer>
+            <nav class="mui-bar mui-bar-tab">
+                <a href="javascript:;" id="tcIndex">
+                    <img src="../img/shouye2.png" />
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="javascript:;" id="myfabu">
+                    <img src="../img/fabu2.png" />
+                    <span class="mui-tab-label">发布</span>
+                </a>
+                <a class="action" href="javascript:;" id="myInfo">
+                    <img src="../img/mine2.png" />
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </nav>
+        </footer>
+        <script>
+            $(document).ready(function(){
+                $("#change_name").click(function(){
+                    mui.prompt('','请输入昵称','修改昵称',['确认','取消'],
+                        function(e) {
+                            if(e.index == 0){
+                                alert('确认？');
+                            }else{
+                                alert('取消？');
+                            }
+                        }
+                    ,'div');
+                });
+                $("#change_password").click(function(){
+                    mui.prompt('','清输出密码','修改密码',['确认','取消'],
+                        function(e) {
+                            if(e.index == 0){
+                                alert('确认？');
+                            }else{
+                                alert('取消？');
+                            }
+                        }
+                    ,'div');
+                    document.querySelector('.mui-popup-input input').type='password';
+                });
+            });
+        </script>
+    </body>
+
+</html>

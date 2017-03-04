@@ -257,7 +257,7 @@
 		<header>
 			<a><span class="leftleft"></span></a>
 			<h1>活动商品列表</h1>
-			<a class="xiaoxi2">名片</a>
+			<a class="xiaoxi2" cardId=''>名片</a>
 		</header>
 		<section class="shucailei" id="goodsList">
 		</section>
@@ -275,6 +275,7 @@
                         var dataList = dataResult.data;
                         var itemStr = "";
                         if(dataList.length>0){
+                            $(".xiaoxi2").attr("cardId", dataList[0].active.cardId);
                             for(var i=0;i<dataList.length;i++){
                                 var itemList = dataList[i].itemList;
                                 itemStr +='<h2>'+dataList[i].cateName+'</h2>';

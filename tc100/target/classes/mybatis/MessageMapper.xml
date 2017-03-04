@@ -174,7 +174,7 @@
 			AND msg.user_id = #{userId}
 		</if>
 		<if test="region != null and region != ''">
-			AND msg.region = #{region}
+			AND FIND_IN_SET(msg.region, #{region})
 		</if>
 		<if test="addName != null and addName != ''">
 			AND msg.addName = #{addName}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="Flying hormone" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/media.css" />
+        <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
+        <link rel="stylesheet" href="../css/mui.ditu.css" />
+        <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
+        <script type="text/javascript" src="../js/jquery-cookie.js"></script>
+        <script type="text/javascript" src="../js/mui.min.js"></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/common.js" ></script>
+        <title>选择城市</title>
+        
+    </head>
+
+    <body>
+        <header>
+            <a><span class="leftleft"></span></a>
+            <h1>选择城市</h1>
+        </header>
+        
+        <div class="mui-content">
+            <div id="list" class="mui-indexed-list">
+                <div class="mui-indexed-list-alert"></div>
+                <div class="mui-indexed-list-inner">
+                    <div class="mui-indexed-list-empty-alert">没有数据</div>
+                    <ul class="mui-table-view">
+                                            
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <footer>
+            <nav class="mui-bar mui-bar-tab">
+                <a href="javascript:;" id="tcIndex">
+                    <img src="../img/shouye2.png" />
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="javascript:;" id="myfabu">
+                    <img src="../img/fabu2.png" />
+                    <span class="mui-tab-label">发布</span>
+                </a>
+                <a class="action" href="javascript:;" id="myInfo">
+                    <img src="../img/mine2.png" />
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </nav>
+        </footer>
+        <script src="../js/mui.min.js"></script>
+        <script src="../js/mui.ditu.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            appcan.ajax({
+                type:"get",
+                url:host+"/getAreaByPid.json",
+                dataType:"json",
+                success : function(dataResult) {
+                    var pList = dataResult.data;
+                    var str = '';
+                    for (var i=0; i < pList.length; i++) {
+                        str += '<li class="mui-table-view-cell mui-indexed-list-item plist" data-val="'+pList[i].codeid+'">'+pList[i].cityname+'</li>';
+                    };
+                    $(".mui-table-view").html(str);
+                    
+                    $(".plist").click(function(){
+                        appcan.ajax({
+                            type:"get",
+                            url:host+"/getAreaByPid.json?pid="+$(this).attr("data-val"),
+                            dataType:"json",
+                            success : function(dataResult) {
+                                var cityList = dataResult.data;
+                                var str = '';
+                                for (var i=0; i < cityList.length; i++) {
+                                    str += '<li class="mui-table-view-cell mui-indexed-list-item clist" data-val="'+cityList[i].cityname+'">'+cityList[i].cityname+'</li>';
+                                };
+                                $(".mui-table-view").html(str);
+                                
+                                $(".clist").click(function(){
+                                    appcan.locStorage.setVal("ipcity", $(this).attr("data-val"));
+                                    openUrl('../index.html','index');
+                                })
+                            }
+                        });
+                    })
+                }
+            })
+        })
+        </script>
+    </body>
+
+</html>

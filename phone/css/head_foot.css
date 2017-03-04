@@ -187,13 +187,12 @@ header {
                 display: block;
                 margin: 0 auto;
                 margin-top: 0.3125em;
-                margin-bottom: 0.1em;
-                margin-bottom: -0.3em;
+                margin-bottom: 0em;
             }
             
             footer nav span {
                 color: #020202;
-                font-size: 0.6em;
+                font-size: 0.8em;
             }
             
             footer nav .action span {

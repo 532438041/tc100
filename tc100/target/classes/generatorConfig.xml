@@ -3,25 +3,25 @@
   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
 <generatorConfiguration>  
-    <classPathEntry  location="D:\Java\liutao\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>  
+    <classPathEntry  location="D:\java\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>  
     <context id="DB2Tables"  targetRuntime="MyBatis3">  
         <commentGenerator>  
             <property name="suppressDate" value="true"/>  
             <property name="suppressAllComments" value="true"/>  
         </commentGenerator>  
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.111:3306/tc100" userId="root" password="111111">  
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/tc100" userId="root" password="root">  
         </jdbcConnection>  
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="false"/>  
         </javaTypeResolver>  
-        <javaModelGenerator targetPackage="com.java.entity" targetProject="E:\workSpace\tc100\tc100\src\main\java">  
+        <javaModelGenerator targetPackage="com.java.entity" targetProject="E:\workspace\同城100\tc100\tc100\src\main\java">  
             <property name="enableSubPackages" value="false"/>  
             <property name="trimStrings" value="false"/>  
         </javaModelGenerator>  
-        <sqlMapGenerator targetPackage="mybatis" targetProject="E:\workSpace\tc100\tc100\src\main\resources">  
+        <sqlMapGenerator targetPackage="mybatis" targetProject="E:\workSpace\同城100\tc100\tc100\src\main\resources">  
             <property name="enableSubPackages" value="false"/>  
         </sqlMapGenerator>  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.java.dao" targetProject="E:\workSpace\tc100\tc100\src\main\java">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.java.dao" targetProject="E:\workSpace\同城100\tc100\tc100\src\main\java">  
             <property name="enableSubPackages" value="false"/>  
         </javaClientGenerator>
         <!-- <table tableName="tc_active" domainObjectName="Active" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
@@ -42,6 +42,7 @@
     	 <table tableName="tc_feedback" domainObjectName="Feedback" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
          <table tableName="tc_pay_code" domainObjectName="PayCode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     	 -->
+    	 <table tableName="tc_area" domainObjectName="Area" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>  
-    <!-- java -jar D:\Java\liutao\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile E:\workSpace\tc100\tc100\src\main\resources\generatorConfig.xml -overwrite -->
+    <!-- java -jar D:\java\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile E:\workSpace\同城100\tc100\tc100\src\main\resources\generatorConfig.xml -overwrite -->
 </generatorConfiguration>  

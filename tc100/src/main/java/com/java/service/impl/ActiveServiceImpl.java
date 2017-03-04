@@ -35,7 +35,7 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 				orderBy = "act.`create_time` DESC";
 				break;
 			default:
-				orderBy = "act.`amount` DESC";
+				orderBy = " act.`act_type`, act.`amount` DESC";
 				break;
 		}
 		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize(), orderBy);

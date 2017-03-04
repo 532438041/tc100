@@ -306,10 +306,10 @@
 			AND act.user_id = #{userId}
 		</if>
 		<if test="cateId != null and cateId != ''">
-			AND act.cate_id = #{cateId}
+			AND FIND_IN_SET(act.cate_id, #{cateId})
 		</if>
 		<if test="region != null and region != ''">
-			AND act.region = #{region}
+			AND FIND_IN_SET(act.region, #{region})
 		</if>
 		<if test="addName != null and addName != ''">
 			AND act.addName = #{addName}

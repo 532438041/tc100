@@ -216,10 +216,13 @@
                 top: 0.3125em;
                 right: 0.3125em;
             }
-            .quyu{ position: relative;}
-            .quyu select{ background: none; margin-bottom: 0; font-size: 0.8em; line-height: 1.5em; }
-            option{ font-size: 0.6em;}
-            .xiangxia{ position: absolute; top: 0.625em; right: 0.625em; z-index: -100; }
+            .quyu{ position: relative; height: auto; overflow: hidden; font-size: 1em; line-height: 3em}
+            #quyu{ height: auto; overflow: hidden;}
+            #quyu>a{ font-size: 1em; display: block; border-bottom: 0.1em solid #ccc;  text-indent: 0.5em; color: #787878}
+            .quyu .quyu_zi{ }
+            .quyu_zi a{ padding: 0.1em 0.5em; border-radius: 5px;background: #fff; color: #ff3366; border: 1px solid #ff3366;}
+            .quyu_zi .active{background: #ff3366; border-radius:0.1em; color: #fff; }
+            .xiangxia{ position: absolute; top: 1em; right: 0.625em; z-index: -100; }
             .tu_2 img{
                 width: 100%;
                 padding: 0.625em 1em;
@@ -235,9 +238,13 @@
 			<a class="xiaoxi3"  href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a>
 		</header>
 		<section class="quyu">
-			<select id="quyu" name="quyu">
-			</select>
-			<span class="bottombottom xiangxia"></span>
+            <div id="quyu">
+                <a class="xianyin"></a>
+                <span class="bottombottom xiangxia xianyin"></span>
+                <div class="quyu_zi" style="display: block">
+                    
+                </div>
+            </div>
 		</section>
 		<section class="tu_2" id="actC1">
 		</section>
@@ -265,29 +272,74 @@
 			</nav>
 		</footer>
         <script>
+            
             $(function(){
                 //列表
                 shopList("");
                 //查询 分类
                 appcan.ajax({
                     type:"get",
-                    url:host+"/getActRegion.json?actType=C&addName="+appcan.locStorage.getVal("ipcity"),
+                    url:host+"/getAreaByName.json?cityName="+appcan.locStorage.getVal("ipcity"),
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        var actStr = '<option value="">区域：全部</option>';
-                        if(dataResult.data.length>0){
-                            for(var i=0;i<dataResult.data.length;i++){
-                                actStr +='<option value="'+dataResult.data[i]+'">区域：'+dataResult.data[i]+'</option>';
-                            }
+                        var actStr = '';
+                        // 获取区域数据
+                        for(var i=0;i<dataResult.data.length;i++){
+                            actStr +='<a class="active">'+dataResult.data[i].cityname+'</a>';
                         }
-                        $("#quyu").html(actStr);
+                        $(".quyu_zi").html(actStr);
+                        
+                        // 绑定已选
+                        var ccc = "";
+                        for(var i=($(".quyu_zi .active").length); i>0; i--){
+                           ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
+                           $("#quyu>a").text("区域："+ccc);
+                        };
+                        
+                        // 选择事件
+                        $(".xianyin").click(function(){
+                           if($(".quyu_zi").css("display") == "none"){
+                               $(".quyu_zi").show();
+                           }else{
+                               $(".quyu_zi").hide();
+                           };
+                        });
+                        $(".quyu_zi a").click(function(){
+                           if($(this).hasClass("active")){
+                               $(this).removeClass("active");
+                               $("#quyu>a").text(" ");
+                               console.log($(".quyu_zi .active").length);
+                               var ccc = "";
+                               for(var i=($(".quyu_zi .active").length); i>0; i--){
+                                   ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
+                                   $("#quyu>a").text("区域："+ccc);
+                               };
+                               if($(".quyu_zi .active").length ==0){
+                                   $("#quyu>a").text("请选择区域");
+                                   shopList("");
+                               }else{
+                                   shopList(ccc);
+                               };
+                           }else{
+                               $(this).addClass("active");
+                               $("#quyu>a").text(" ");
+                               var ccc = "";
+                               console.log($(".quyu_zi .active").length);
+                               for(var i=$(".quyu_zi .active").length; i>0; i--){
+                                   ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
+                                   $("#quyu>a").text("区域："+ccc);
+                               };
+                               if($(".quyu_zi .active").length ==0){
+                                   $("#quyu>a").text("请选择区域");
+                                   shopList("");
+                               }else{
+                                   shopList(ccc);
+                               };
+                           }
+                        });
                     }
                 })
-                //下拉改变
-                $("#quyu").change(function(){
-                    shopList($(this).val());
-                });
             })
             function shopList (param) {
                 var baseParam1 = {'actType':'C1','addName':appcan.locStorage.getVal("ipcity"),'region':param}

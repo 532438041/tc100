@@ -5,22 +5,32 @@
     console.log(userId);
     console.log(userCardId);
     //获取ip所在的
-    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
-        $("#ipcity").html(remote_ip_info.city);
-        appcan.locStorage.setVal("ipcity", remote_ip_info.city);
-    });
+    
+    //地位地址存到缓存 若缓存数据为空 则现取 否则取缓存数据
+    var ipcity = appcan.locStorage.getVal("ipcity");
+    if(!!ipcity){
+        $("#ipcity").html(ipcity);
+    }else{
+        $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
+            $("#ipcity").html(remote_ip_info.city);
+            appcan.locStorage.setVal("ipcity", remote_ip_info.city);
+        });
+    }
+    
     //消息个数 显示成... 不显示个数
     
+    /*
     if(userId !=null && userId !=""){
-        appcan.ajax({
-            type:"get",  
-            url:host+"/getMsgCount.json?userId="+userId+"&state=1",
-            dataType:"json",
-            success:function(dataResult) {
-                $(".xiaoxi").html(dataResult.data);
-            }
-        })
-    }
+            appcan.ajax({
+                type:"get",  
+                url:host+"/getMsgCount.json?userId="+userId+"&state=1",
+                dataType:"json",
+                success:function(dataResult) {
+                    $(".xiaoxi").html(dataResult.data);
+                }
+            })
+        }*/
+    
     
     
     //首页轮播
@@ -53,9 +63,9 @@
                 for(var i=0;i<dataList.length;i++){
                     imgStr += '<div class="mui-slider-item"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
                     if(i==0){
-                    imgBtnStr +='<div class="mui-indicator mui-active"></div>';
+                        imgBtnStr +='<div class="mui-indicator mui-active"></div>';
                     }else{
-                    imgBtnStr +='<div class="mui-indicator"></div>';
+                        imgBtnStr +='<div class="mui-indicator"></div>';
                     }
                 }
                 imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[0].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[0].mainPic+'" /></a></div>';
