@@ -13,12 +13,19 @@
         <link rel="stylesheet" href="../css/mui.min.css" />
         <link rel="stylesheet" href="../css/head_foot.css" />
         <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
+        <script type="text/javascript" src="../js/jquery-cookie.js"></script>
         <script type="text/javascript" src="../js/mui.min.js"></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/common.js" ></script>
+        <link rel="stylesheet" href="../js/webuploader/webuploader.css" />
+        <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
 		<title>设置</title>
 		<style>
 		      ul{ padding: 0; margin: 0}
 		    section{ background: #fff; height: auto; overflow: hidden; margin-bottom: 1em; position: relative;}
-		    .info img{ height:4em; float: left; margin: 1em;}
+		    .info img{ height:4em; width: 4em; float: left; margin: 1em;border-radius: 2em;}
 		    .info p{ line-height:1.5em }
 		    .info p a{ color: #878787; padding-left: 2em; background: url(../img/fenbi.jpg) no-repeat 1em center; background-size: 1em auto;}
 		    .info>a{ border: 1px solid #ccc; padding: 0.5em; position: absolute; right: 1em; top: 2.5em; font-size: 0.8em; color: #878787; border-radius: 0.2em}
@@ -35,6 +42,10 @@
 		    .mui-popup-button{ font-size: 1em;height: 2em; line-height: 2em;}
 		    .mui-popup-buttons{ height: 2em;}
 		    .mui-popup-inner{ padding: 1em;}
+		    .webuploader-pick{
+                 border: 1px solid #ccc; padding: 0.5em; position: absolute; right: 1em; top: -5em; font-size: 0.8em; color: #878787; border-radius: 0.2em;
+                 background: #fff;
+            }
 		</style>
 	</head>
 	<body>
@@ -44,17 +55,17 @@
         </header>
         
         <section class="info">
-            <img src="../img/touxiang.jpg"/>
-            <p style="margin-top: 2em">昵称：小溪<a id="change_name">编辑</a></p>
-            <p>电话：18565619238</p>
-            <a>上传头像</a>
+            <img id="picUrl" src="../img/touxiang.jpg"/>
+            <p style="margin-top: 2em">昵称：<span id="displayName"></span><a id="change_name">编辑</a></p>
+            <p id="mobile">电话：</p>
+            <div id="filePicker">上传头像</div>
         </section>
         
         <section class="main">
             <ul>
                 <li><a id="change_password">修改密码</a></li>
-                <li><a href="about.html">关于同城100</a></li>
-                <li><a href="banbengengxin.html">版本更新</a></li>
+                <li><a onclick="openUrl('guanyu.html','guanyu');">关于同城100</a></li>
+                <li><a href="###">版本更新</a></li>
             </ul>
         </section>
         <section id="tuichu">
@@ -79,28 +90,111 @@
         </footer>
         <script>
             $(document).ready(function(){
+                var userId = appcan.locStorage.getVal("userId");
+                var userName = "";
+                //用户信息
+                appcan.ajax({
+                   type:"get",
+                   url:host+"/getUser.json?userId="+userId,
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                       $("#displayName").text(dataResult.data.displayName || "");
+                       $("#mobile").text("电话："+(dataResult.data.mobile || ""));
+                       userName = dataResult.data.userName;
+                       $("#picUrl").attr("src",hostIp+dataResult.data.picUrl);
+                   }
+                })
+                
+                // 初始化Web Uploader
+                var uploader = WebUploader.create({
+                    // 选完文件后，是否自动上传。
+                    auto: true,
+                    // swf文件路径
+                    swf: '../js/webuploader/Uploader.swf',
+                    // 文件接收服务端。
+                    server: host+"/image/uploadImg.json?userId="+appcan.locStorage.getVal("userId"),
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: '#filePicker',
+                    // 只允许选择图片文件。
+                    accept: {
+                        title: 'Images',
+                        extensions: 'gif,jpg,jpeg,bmp,png',
+                        mimeTypes: 'image/*'
+                    }
+                });
+                
+                // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                uploader.on('uploadSuccess', function(file, dataResult) {
+                    //用户信息
+                    // 保存用户头像
+                    var picUrl = dataResult.data.imgUrl;
+                    if(picUrl.length > 0){
+                        $("#picUrl").attr("src",hostIp+picUrl);
+                        appcan.ajax({
+                           type:"post",
+                           url:host+"/changePicUrl.json?userName="+userName+"&picUrl="+picUrl,
+                           dataType:"json",
+                           contentType: "application/json",
+                           success : function(dataResult) {
+                               
+                           }
+                        })
+                    }
+                });
+                
                 $("#change_name").click(function(){
                     mui.prompt('','请输入昵称','修改昵称',['确认','取消'],
                         function(e) {
                             if(e.index == 0){
-                                alert('确认？');
-                            }else{
-                                alert('取消？');
+                                // 修改昵称
+                                var displayName = $(".mui-popup-input input").val();
+                                if(displayName.length > 0){
+                                    appcan.ajax({
+                                       type:"post",
+                                       url:host+"/changeDisplayName.json?userName="+userName+"&displayName="+displayName,
+                                       dataType:"json",
+                                       contentType: "application/json",
+                                       success : function(dataResult) {
+                                           openUrl('setting.html','setting');
+                                       }
+                                    })
+                                }else{
+                                    alert("请输入昵称")
+                                }
                             }
                         }
                     ,'div');
                 });
                 $("#change_password").click(function(){
-                    mui.prompt('','清输出密码','修改密码',['确认','取消'],
+                    mui.prompt('','请输入密码','修改密码',['确认','取消'],
                         function(e) {
                             if(e.index == 0){
-                                alert('确认？');
-                            }else{
-                                alert('取消？');
+                                var userPwd = $(".mui-popup-input input").val();
+                                // 修改密码
+                                if(userPwd.length > 0){
+                                    appcan.ajax({
+                                       type:"post",
+                                       url:host+"/changePwd.json?userName="+userName+"&userPwd="+userPwd,
+                                       dataType:"json",
+                                       contentType: "application/json",
+                                       success : function(dataResult) {
+                                           
+                                       }
+                                    })
+                                }else{
+                                    alert("请输入密码")
+                                }
                             }
                         }
                     ,'div');
                     document.querySelector('.mui-popup-input input').type='password';
+                });
+                
+                $("#tuichu button").click(function(){
+                    appcan.locStorage.remove("userId");
+                    openUrl('../login/login.html','login');
                 });
             });
         </script>

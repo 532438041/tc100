@@ -11,7 +11,7 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://47.89.28.238:81";
+var hostIp = "http://localhost";
 var host = "http://localhost:8001/tc100";
 
 /**
@@ -163,9 +163,9 @@ $(function(){
     })
     $("#myfabu").click(function(){
         if(window.location.href.indexOf("index") != -1){
-            openUrl('user/moban_shengcheng.html?type=A1','moban_shengcheng');
+            openUrl('user/fabuxuanze.html','fabuxuanze');
         }else{
-            openUrl('../user/moban_shengcheng.html?type=A1','moban_shengcheng');
+            openUrl('../user/fabuxuanze.html','fabuxuanze');
         }
     })
     $("#tcIndex").click(function(){

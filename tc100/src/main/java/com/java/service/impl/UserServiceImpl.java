@@ -56,4 +56,14 @@ public class UserServiceImpl extends BaseServiceImpl<User>implements UserService
 		return userDao.getUserList(null);
 	}
 
+	@Override
+	public int changeDisplayName(String userName, String displayName) {
+		return userDao.changeDisplayName(userName, displayName);
+	}
+
+	@Override
+	public int changePicUrl(String userName, String picUrl) {
+		return userDao.changePicUrl(userName, picUrl);
+	}
+
 }

@@ -9,6 +9,7 @@
 		<result column="user_type" property="userType" jdbcType="CHAR" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
 		<result column="mobile" property="mobile" jdbcType="CHAR" />
+		<result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
 		<result column="login_error_count" property="loginErrorCount" jdbcType="INTEGER" />
 		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
 		<result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
@@ -20,7 +21,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, user_name, user_pwd, display_name, user_type, email,
-		mobile,
+		mobile,pic_url,
 		login_error_count,
 		login_ip, last_login_time, state, create_by,
 		create_time, update_by,
@@ -34,6 +35,7 @@
 		<result column="user_type" property="userType" jdbcType="CHAR" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
 		<result column="mobile" property="mobile" jdbcType="CHAR" />
+		<result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
 		<result column="login_error_count" property="loginErrorCount" jdbcType="INTEGER" />
 		<result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
 		<result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
@@ -286,6 +288,14 @@
 	
 	<update id="changePwd" parameterType="java.util.HashMap">
 		update tc_user set user_pwd = #{userPwd} where user_name = #{userName}
+	</update>
+	
+	<update id="changeDisplayName" parameterType="java.util.HashMap">
+		update tc_user set display_name = #{displayName} where user_name = #{userName}
+	</update>
+	
+	<update id="changePicUrl" parameterType="java.util.HashMap">
+		update tc_user set pic_url = #{picUrl} where user_name = #{userName}
 	</update>
 
 </mapper>

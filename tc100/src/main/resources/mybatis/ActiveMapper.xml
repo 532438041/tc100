@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.java.entity.Active">
 		<id column="id" property="id" jdbcType="CHAR" />
 		<result column="act_name" property="actName" jdbcType="VARCHAR" />
+		<result column="shopName" property="shopName" jdbcType="VARCHAR" />
 		<result column="user_id" property="userId" jdbcType="CHAR" />
 		<result column="card_id" property="cardId" jdbcType="CHAR" />
 		<result column="cate_id" property="cateId" jdbcType="CHAR" />
@@ -26,7 +27,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, act_name, user_id, card_id, cate_id, act_type, main_pic, summary, is_init, detail_summary, detail_content,
+		id, act_name, shopName, user_id, card_id, cate_id, act_type, main_pic, summary, is_init, detail_summary, detail_content,
 		state, start_time, end_time, view_count, amount, region, addName, create_by, create_time, update_by,
 		update_time
 	</sql>
@@ -41,14 +42,14 @@
 		where id = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.Active">
-		insert into tc_active (id, act_name, user_id, card_id,
+		insert into tc_active (id, act_name,shopName, user_id, card_id,
 		cate_id, act_type, main_pic,
 		summary, is_init, detail_summary, detail_content,
 		state, start_time, end_time,
 		view_count, amount, region, addName, create_by,
 		create_time, update_by, update_time
 		)
-		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR},
+		values (#{id,jdbcType=CHAR}, #{actName,jdbcType=VARCHAR},#{shopName,jdbcType=VARCHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR},
 		#{cateId,jdbcType=CHAR}, #{actType,jdbcType=CHAR}, #{mainPic,jdbcType=VARCHAR},
 		#{summary,jdbcType=VARCHAR},
 		#{isInit,jdbcType=VARCHAR},
@@ -68,6 +69,9 @@
 			</if>
 			<if test="actName != null">
 				act_name,
+			</if>
+			<if test="shopName != null">
+				shopName,
 			</if>
 			<if test="userId != null">
 				user_id,
@@ -137,6 +141,9 @@
 			<if test="actName != null">
 				#{actName,jdbcType=VARCHAR},
 			</if>
+			<if test="shopName != null">
+				#{shopName,jdbcType=VARCHAR},
+			</if>
 			<if test="userId != null">
 				#{userId,jdbcType=CHAR},
 			</if>
@@ -205,6 +212,9 @@
 			<if test="actName != null and actName != ''">
 				act_name = #{actName,jdbcType=VARCHAR},
 			</if>
+			<if test="shopName != null and shopName != ''">
+				shopName = #{shopName,jdbcType=VARCHAR},
+			</if>
 			<if test="userId != null and userId != ''">
 				user_id = #{userId,jdbcType=CHAR},
 			</if>
@@ -271,6 +281,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.java.entity.Active">
 		update tc_active
 		set act_name = #{actName,jdbcType=VARCHAR},
+		shopName = #{shopName,jdbcType=VARCHAR},
 		user_id = #{userId,jdbcType=CHAR},
 		card_id = #{cardId,jdbcType=CHAR},
 		cate_id = #{cateId,jdbcType=CHAR},
@@ -353,7 +364,7 @@
 	</select>
 
 	<select id="getActList" parameterType="com.java.entity.Active" resultType="com.java.entity.Active">
-		SELECT act.`id`, act.`act_name` actName,act.`act_type` actType,act.`state`,us.`user_name` userName
+		SELECT act.`id`, act.`act_name` actName,act.`shopName` shopName,act.`act_type` actType,act.`state`,us.`user_name` userName
 		FROM `tc_active` act
 		LEFT JOIN `tc_user` us ON act.`user_id` = us.`id`
 		WHERE act.`state` != '0'

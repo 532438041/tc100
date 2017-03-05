@@ -19,7 +19,7 @@
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
-		<title>房产列表</title>
+		<title>关于同城100</title>
 		<style>
             * {
                 margin: 0;
@@ -50,6 +50,38 @@
             
             p {
                 margin: 0;
+                text-indent: 2em;
+                background: #fff;
+                padding: 0.625em;
+                font-size: 1em;
+                line-height: 1.8em;
+                padding-top: 1.25em;
+                color: #333;
+            }
+            
+            
+            .lunbo {
+                position: relative;
+            }
+            
+            .lunbo img {
+                width: 100%;
+            }
+            
+            .lunbo .more {
+                text-align: center;
+                font-size: 0.75em;
+                color: #fff;
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: url(img/opa.png) repeat;
+                width: 3.125em;
+                height: 1.25em;
+            }
+            
+            .lunbo span.mui-icon {
+                font-size: 0.75em;
             }
             
             .lanmu {
@@ -216,27 +248,9 @@
                 top: 0.3125em;
                 right: 0.3125em;
             }
-            .quyu{ position: relative; height: auto; overflow: hidden; font-size: 1em; line-height: 3em}
-            #quyu{ height: auto; overflow: hidden;}
-            #quyu>a{ font-size: 1em; display: block; border-bottom: 0.1em solid #ccc; padding: 0 2em 0 0.5em; color: #787878;
-                height: 3em;
-                width: 100%;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-            .quyu .quyu_zi{ }
-            .quyu_zi a{ padding: 0.1em 0.5em; margin-right: 0.5em; margin-top: 0.5em; border-radius: 5px;background: #fff; color: #ff3366; border: 1px solid #ff3366;;
-                display: inline-block;
-                height: 1.6em;
-                line-height: 1.4em; 
-            }
-            .quyu_zi .active{background: #ff3366; border-radius:0.1em; color: #fff; 
-                display: inline-block;
-                height: 1.6em;
-                line-height: 1.4em; 
-            }
-            .xiangxia{ position: absolute; top: 1em; right: 0.625em; z-index: -100; }
+            .quyu{ position: relative;}
+            .quyu select{ background: none; margin-bottom: 0; }
+            .xiangxia{ position: absolute; top: 0.625em; right: 0.625em; z-index: -100; }
             .tu_2 img{
                 width: 100%;
                 padding: 0.625em 1em;
@@ -248,27 +262,11 @@
 	<body>
 		<header>
 			<a><span class="leftleft"></span></a>
-			<h1>房产列表</h1>
-			<a class="xiaoxi3"  href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=F','fabumoshi')">发布</a>
+			<h1>关于同城100</h1>
 		</header>
 		<section class="quyu">
-			<div id="quyu">
-                <a class="xianyin"></a>
-                <span class="bottombottom xiangxia xianyin"></span>
-                <div class="quyu_zi" style="display: none;padding: 0 0.5em;line-height: 2em;">
-                    
-                </div>
-            </div>
+			<p id="htmlStr">无</p>
 		</section>
-		<section class="tu_2" id="actF1">
- 		</section>
-		<section class="same_city_search">
-			<div>
-				<ul class="mui-table-view" id="actF2">
-				</ul>
-			</div>
-		</section>
-
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
 				<a class="action" href="javascript:;" id="tcIndex">
@@ -287,117 +285,18 @@
 		</footer>
         <script>
             $(function(){
-                //列表
-                houseList("");
-                //查询 分类
                 appcan.ajax({
-                    type:"get",
-                    url:host+"/getAreaByName.json?cityName="+appcan.locStorage.getVal("ipcity"),
+                    type:"post",
+                    async:false,       
+                    url:host+"/getSysPByKey.json?pKey=gy",
+                    data:"",
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        var actStr = '';
-                        // 获取区域数据
-                        for(var i=0;i<dataResult.data.length;i++){
-                            actStr +='<a class="active">'+dataResult.data[i].cityname+'</a>';
-                        }
-                        $(".quyu_zi").html(actStr);
-                        
-                        // 绑定已选
-                        var ccc = "";
-                        for(var i=($(".quyu_zi .active").length); i>0; i--){
-                           ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
-                           $("#quyu>a").text("区域："+ccc);
-                        };
-                        
-                        // 选择事件
-                        $(".xianyin").click(function(){
-                           if($(".quyu_zi").css("display") == "none"){
-                               $(".quyu_zi").show();
-                           }else{
-                               $(".quyu_zi").hide();
-                           };
-                        });
-                        $(".quyu_zi a").click(function(){
-                           if($(this).hasClass("active")){
-                               $(this).removeClass("active");
-                               $("#quyu>a").text(" ");
-                               console.log($(".quyu_zi .active").length);
-                               var ccc = "";
-                               for(var i=($(".quyu_zi .active").length); i>0; i--){
-                                   ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
-                                   $("#quyu>a").text("区域："+ccc);
-                               };
-                               if($(".quyu_zi .active").length ==0){
-                                   $("#quyu>a").text("请选择区域");
-                                   houseList("");
-                               }else{
-                                   houseList(ccc);
-                               };
-                           }else{
-                               $(this).addClass("active");
-                               $("#quyu>a").text(" ");
-                               var ccc = "";
-                               console.log($(".quyu_zi .active").length);
-                               for(var i=$(".quyu_zi .active").length; i>0; i--){
-                                   ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
-                                   $("#quyu>a").text("区域："+ccc);
-                               };
-                               if($(".quyu_zi .active").length ==0){
-                                   $("#quyu>a").text("请选择区域");
-                                   houseList("");
-                               }else{
-                                   houseList(ccc);
-                               };
-                           }
-                        });
+                        $("#htmlStr").html(dataResult.data.pValue);
                     }
-                })
-                
+                }) 
             })
-            function houseList (param) {
-                var baseParam1 = {'actType':'F1','addName':appcan.locStorage.getVal("ipcity"),'region':param}
-                var param1 = serializePageJson(1,20,baseParam1);
-                appcan.ajax({
-                    type:"post",
-                    url:host+"/getActiveList.json",
-                    data:param1,
-                    dataType:"json",
-                    contentType: "application/json",
-                    success : function(dataResult) {
-                        var dataList = dataResult.data.dataList;
-                        var actStr = "";
-                        for(var i=0;i<dataList.length;i++){
-                            actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')"><img src="'+hostIp+dataList[i].mainPic+'" /></a>';
-                        }
-                        $("#actF1").html(actStr);
-                    }
-                })
-                
-                var baseParam2 = {'actType':'F2','addName':appcan.locStorage.getVal("ipcity"),'region':param}
-                var param2 = serializePageJson(1,20,baseParam2);
-                appcan.ajax({
-                    type:"post",
-                    url:host+"/getActiveList.json",
-                    data:param2,
-                    dataType:"json",
-                    contentType: "application/json",
-                    success : function(dataResult) {
-                        var dataList = dataResult.data.dataList;
-                        var actStr = "";
-                        for(var i=0;i<dataList.length;i++){
-                            actStr += '<li class="mui-table-view-cell mui-media">';
-                            actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')">';
-                            actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
-                            actStr += '<div class="mui-media-body">'+dataList[i].actName;
-                            actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
-                            actStr += '<i>'+dataList[i].createTime+'</i>';
-                            actStr += '</div></a></li>';
-                        }
-                        $("#actF2").html(actStr);
-                    }
-                })
-            }
         </script>
 	</body>
 

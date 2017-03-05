@@ -441,43 +441,8 @@
                        }
                    })
                 }else{
-                    var partner = "2088521594227441";
-                    var seller = "15855840237@163.com";
-                    var rsaPrivate = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCz5imAZtqo4Vph0W/BM2rM5H5UlYe95fuo9wiRbS4LYp5tPCxwgB8LJmhFPrrGbfWYb8KW062PCPZq+RW5aDh84UsQLi1oA+WEMr3/xbFVYAT8IloZ4QKk+jSjE2L9ycEOthzZugXfaX9Ssj7U9+0XICctgT9x99uomJcq+QfXUP112AKKWkvjfZnECXktbIkQTJgqsN3vVs01nJ5q81QgBye/rsiWjMAmAMx5kfxICfTrZ3ePynxt4g5GB8YRCMIx/F4GpvAwk8Rm8oAvkONuwD8fmhSxU7JaLABxPm52HhPUoxW188BP9j3MIF1kUCyV2APiEkQ8ZkyjDvJ73ymZAgMBAAECggEATz1rPF6Ro9+XUwzQX9ZJDbT7nEA9CT07C2K8iGoB5QvsYoslu+wDQIMLXKzT0kFu81UO7iaRBTbaa6YJlqA8eW03BgqA/5bvyrobDIVEpilkKLbs3wdIheibtNT+PnFWsycuMA0LNywd5AwVNvN5oD0OZLHQg1+8hleoBkqo1ILfgyz8LotUhkEEcUsh/zbPlFLVJ7J8DegoWPipaK0MpEHkSb0gd8gVAWWp64EgZauNbnNk2Y2JRM2Utl+gZp88P5C45AL3Vpi2X93/hyxgjynfgpCQ1WZbAKZsdVDnmYDXqIR0ZXCqz2FKqssRQF/gFuM+n1mLWg6CZ+7PZLdrnQKBgQDm1b4WTnfVp902/ZgY1+9BxlGWg9IptXfi9V7195yetckUhVRmWMagx4o4Ln1bWscx1GgnPLkhDoDrmi/YqIcctuOZ5+Mh2mtkv5RezhgZL6mHE87otyQntbO6eDQ85mFKUQBcQ7ytZQ7GCapgzzc0ULicXd+14b9M1JBzUXQuhwKBgQDHguA9j12ouT2WV2FtuNDIqG7Cc7HFT8zSUHqCNSaBwTMr0qll6eAU8c2pqg8oZChwr5qV3q1nhOJ3LWNSFlzskhDXuvHtPMkBMV0EswQswBCaTEz5EuQYggfU7C145ypqRliasSTLUJq9Pd1zxJO6nrc5cwt3qe1LN+Z7qHbO3wKBgFvWiiwhx/ePM6nfNxYbQytuFaPGimTht/LqIH/Hpd5XAMtTSIL3qv7opIs5o9Imyb1/fnit5hHKzWvvCj4uvqKj+OWQpoMffT62IfeeE2Rh3BbLwLRBuPa7iegUTuQz3F1O4M/Ue0qZPEl6KvkdOB9uRiSgDJM2X3/Xyii3LXwdAoGAe1W6zhOMsLsjCYenIS85UnJdVjQzV2jHk9RQh6HX1irbOWIXenskHY6Ftzb7+9o+7bqA89kelXoejdIvLhXJCC4b32EgIaqMEAK2ICuSjx+Eo/47L1awTz5DHSuLyMwO+nfWWnrb5hxELGzMM774HEv1tLwcALO5j+BUyWkRWT0CgYEA2GDEk9WzjZB8iWQe3LRYiv7SUwHdkwoj3XwZioOfYFWvwql5DlMUB+44DzXdoHhXX1dh4zapLBVUZ84vAKZ4aLEBFGNkG4TvErXUxrFs7jk/pgoux/xewv22g86UVIfQK8QsQWc6lWBr/h2F5fEWsQqPE0Fb2lE7O7xGQt4D8pM=";
-                    var rsaPublic = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs+YpgGbaqOFaYdFvwTNqzOR+VJWHveX7qPcIkW0uC2KebTwscIAfCyZoRT66xm31mG/CltOtjwj2avkVuWg4fOFLEC4taAPlhDK9/8WxVWAE/CJaGeECpPo0oxNi/cnBDrYc2boF32l/UrI+1PftFyAnLYE/cffbqJiXKvkH11D9ddgCilpL432ZxAl5LWyJEEyYKrDd71bNNZyeavNUIAcnv67IlozAJgDMeZH8SAn062d3j8p8beIORgfGEQjCMfxeBqbwMJPEZvKAL5DjbsA/H5oUsVOyWiwAcT5udh4T1KMVtfPAT/Y9zCBdZFAsldgD4hJEPGZMow7ye98pmQIDAQAB";
-                    var notifyUrl = "tc100";
-                    uexAliPay.setPayInfo(partner, seller, rsaPrivate, rsaPublic, notifyUrl);
-                    
-                    var subject = "tc100活动发布"+actId;
-                    var body = "tc100活动发布，版位收费";
-                    var fee = $("#amount").text();
-                    var num = actId; //测试需修改单号,避免已经支付的问题
-                    uexAliPay.pay(num, subject, body, fee, function(error,data){
-                        if(!error){
-                            appcan.ajax({
-                               type:"post",
-                               async:false,       
-                               url:host+"/publicAct.json",
-                               data:param,
-                               dataType:"json",
-                               contentType: "application/json",
-                               success : function(dataResult) {
-                                    result = dataResult;
-                                    if(obj == "preview"){
-                                       if(result.status > 0){
-                                            openUrl("../page/info.html?actId="+actId,"page_info");
-                                       }
-                                    }else{
-                                       if(result.status > 0){
-                                            openUrl("../index.html","index");
-                                       }
-                                   }
-                               }
-                           })
-                        }else{
-                            alert(data);
-                        }
-                    });                      
+                    appcan.locStorage.getVal("param",param);
+                    openUrl("../user/zhifu.html","zhifu");
                 }
             }
         })

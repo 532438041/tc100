@@ -21,6 +21,8 @@ public class User {
 	private String email;
 
 	private String mobile;
+	
+	private String picUrl;
 
 	private Integer loginErrorCount;
 
@@ -158,5 +160,13 @@ public class User {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 }

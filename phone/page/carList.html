@@ -218,10 +218,24 @@
             }
             .quyu{ position: relative; height: auto; overflow: hidden; font-size: 1em; line-height: 3em}
             #quyu{ height: auto; overflow: hidden;}
-            #quyu>a{ font-size: 1em; display: block; border-bottom: 0.1em solid #ccc;  text-indent: 0.5em; color: #787878}
+            #quyu>a{ font-size: 1em; display: block; border-bottom: 0.1em solid #ccc; padding: 0 2em 0 0.5em; color: #787878;
+                height: 3em;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
             .quyu .quyu_zi{ }
-            .quyu_zi a{ padding: 0.1em 0.5em; border-radius: 5px;background: #fff; color: #ff3366; border: 1px solid #ff3366;}
-            .quyu_zi .active{background: #ff3366; border-radius:0.1em; color: #fff; }
+            .quyu_zi a{ padding: 0.1em 0.5em; margin-right: 0.5em; margin-top: 0.5em; border-radius: 5px;background: #fff; color: #ff3366; border: 1px solid #ff3366;
+                display: inline-block;
+                height: 1.6em;
+                line-height: 1.4em; 
+            }
+            .quyu_zi .active{background: #ff3366; border-radius:0.1em; color: #fff; 
+                display: inline-block;
+                height: 1.6em;
+                line-height: 1.4em; 
+            }
             .xiangxia{ position: absolute; top: 1em; right: 0.625em; z-index: -100; }
             .tu_2 img{
                 width: 100%;
@@ -240,7 +254,7 @@
 			<div id="quyu">
                 <a class="xianyin"></a>
                 <span class="bottombottom xiangxia xianyin"></span>
-                <div class="quyu_zi" style="display: block">
+                <div class="quyu_zi" style="display: none;padding: 0 0.5em;line-height: 2em;">
                     
                 </div>
             </div>

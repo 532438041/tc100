@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="Flying hormone" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/media.css" />
+        <link rel="stylesheet" href="../css/mui.min.css" />
+        <link rel="stylesheet" href="../css/head_foot.css" />
+        <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../js/jquery.Query.js" ></script>
+        <script type="text/javascript" src="../js/jquery-cookie.js"></script>
+        <script type="text/javascript" src="../js/mui.min.js"></script>
+        <script type="text/javascript" src="../js/appcan.js"></script>
+        <script type="text/javascript" src="../js/appcan.control.js"></script>
+        <script type="text/javascript" src="../js/common.js" ></script>
+        <title>发布选择</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            
+            body {
+                width: 100%;
+                overflow-x: hidden;
+                font-family: "微软雅黑";
+                background: #f8f8f8;
+                font-size: 1em;
+                padding-bottom: 3.875em;
+            }
+            
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: normal;
+                margin: 0;
+            }
+            
+            p {
+                margin: 0;
+                text-indent: 1.25em;
+                background: #fff;
+                padding: 0.625em 0;
+                font-size: 1em;
+                line-height: 1em;
+                padding-top: 1.25em;
+                color: #333;
+            }
+            
+            input{ background: none; border: 1px solid;}
+            input[type=text]{ border-color: #ccc;height: 3em;font-size: 1em;}
+            input[type=file]{ border-color: #ccc; display: none;}
+            input[type=button]{ border-color: #ccc; display: none;}
+            input[type="button"]{ background: none;}
+            p,span{ font-size: 0.8em; color: #999;}
+            
+            .lanmu {
+                height: auto;
+                overflow: hidden;
+            }
+            
+            .lanmu nav {
+                width: 100%;
+                margin: 0 auto;
+                margin-top: 0.5em;
+                font-size: 1em;
+                height: auto;
+                overflow: hidden;
+            }
+            
+            .lanmu a {
+                color:#000;
+                display: block;
+                float: left;
+                width: 25%;
+                text-align: center;
+            }
+            
+            .lanmu a img {
+                width: 70%;
+                display: block;
+                margin: 0 auto;
+            }
+            
+            .lanmu span {
+                display: block;
+                text-align: center;
+                color: #333;
+                margin: 0.3125em 0;
+            }
+            .lanmu2{ line-height: 3em; font-size: 1em; padding: 2em 5%;}
+            .lanmu2 span{ font-size: 1.5em; float: right; line-height: 2em}
+            .lanmu2 li{ height: 3em; border-bottom: 1px solid #ccc;}
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <a><span class="leftleft"></span></a>
+            <h1 id="title">发布选择</h1>
+        </header>
+        <div style=" line-height: 3em; font-size: 1em; background: #dfdfdf; color:#565656; text-indent: 5%;">请选择您要发布的类别</div>
+        <section class="lanmu">
+            <nav class="">
+                <a class="" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">
+                    <img src="../img/shopcar.png" />
+                                                        超市
+                </a>
+                <a class="" onclick="openUrl('../user/fabumoshi.html?type=D','fabumoshi')">
+                    <img src="../img/baby.png" />
+                                                    孕婴
+                </a>
+                <a class="" onclick="openUrl('../user/fabumoshi.html?type=E','fabumoshi')">
+                    <img src="../img/car.png" />
+                                                       车辆
+                </a>
+                <a class="" onclick="openUrl('../user/fabumoshi.html?type=F','fabumoshi')">
+                    <img src="../img/house.png" />
+                    房产
+                </a>
+            </nav>
+        </section>
+        <section class="lanmu2">
+            <ul>
+                <li onclick="openUrl('../user/moban_shengcheng.html?type=A1','mobansc')">名优活动<span class="mui-icon mui-icon-arrowright"></span></li>
+                <li onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">同城购<span class="mui-icon mui-icon-arrowright"></span></li>
+                <li onclick="openUrl('../user/add_message.html','add_message');">同城搜<span class="mui-icon mui-icon-arrowright"></span></li>
+            </ul>
+        </section>
+        
+
+        <footer>
+            <nav class="mui-bar mui-bar-tab">
+                <a href="javascript:;" id="tcIndex">
+                    <img src="../img/shouye2.png" />
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a class="action" href="javascript:;" id="myfabu">
+                    <img src="../img/fabu2b.png" />
+                    <span class="mui-tab-label">发布</span>
+                </a>
+                <a class="action" href="javascript:;" id="myInfo">
+                    <img src="../img/mine2.png" />
+                    <span class="mui-tab-label">我的</span>
+                </a>
+            </nav>
+        </footer>
+    </body>
+
+</html>

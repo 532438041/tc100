@@ -38,7 +38,8 @@ public class UserController {
 	/**
 	 * 获取我的名片列表
 	 * 
-	 * @param @param userId
+	 * @param @param
+	 *            userId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -50,7 +51,8 @@ public class UserController {
 	/**
 	 * 获取我的名片
 	 * 
-	 * @param @param cardId
+	 * @param @param
+	 *            cardId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -62,7 +64,8 @@ public class UserController {
 	/**
 	 * 保存我的名片
 	 * 
-	 * @param @param baseParam
+	 * @param @param
+	 *            baseParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -87,7 +90,8 @@ public class UserController {
 	/**
 	 * 删除我的名片
 	 * 
-	 * @param @param cardId
+	 * @param @param
+	 *            cardId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -113,7 +117,8 @@ public class UserController {
 	/**
 	 * 获取用户的消息个数 msgType 0系统消息 1活动消息 2推广消息 state 1未读 2已读 值为空是 为获取全部
 	 * 
-	 * @param @param userId
+	 * @param @param
+	 *            userId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -129,7 +134,8 @@ public class UserController {
 	/**
 	 * 获取用户的消息列表 msgType 0系统消息 1活动消息 2推广消息 state 1未读 2已读 值为空是 为获取全部
 	 * 
-	 * @param @param userId
+	 * @param @param
+	 *            userId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -141,7 +147,8 @@ public class UserController {
 	/**
 	 * 改变成已读
 	 * 
-	 * @param @param msgId
+	 * @param @param
+	 *            msgId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -156,7 +163,8 @@ public class UserController {
 	/**
 	 * 获取我的消息详情
 	 * 
-	 * @param @param msgId
+	 * @param @param
+	 *            msgId
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -168,7 +176,8 @@ public class UserController {
 	/**
 	 * 发送消息
 	 * 
-	 * @param @param baseParam
+	 * @param @param
+	 *            baseParam
 	 * @param @return
 	 * @return BaseResult
 	 */
@@ -200,10 +209,36 @@ public class UserController {
 		return new BaseResult().success(userService.getUserList(pageParam));
 	}
 
+	@RequestMapping(value = "/getUser")
+	public BaseResult getUser(String userId) {
+		return new BaseResult().success(userService.selectByPrimaryKey(userId));
+	}
+
+	@RequestMapping(value = "/changeDisplayName")
+	public BaseResult changeDisplayName(String userName, String displayName) {
+		User user = userService.checkLogin(userName);
+		if (ToolsUtil.isNotNull(user)) {
+			return new BaseResult().success(userService.changeDisplayName(userName, displayName));
+		} else {
+			return new BaseResult().failed();
+		}
+	}
+
+	@RequestMapping(value = "/changePicUrl")
+	public BaseResult changePicUrl(String userName, String picUrl) {
+		User user = userService.checkLogin(userName);
+		if (ToolsUtil.isNotNull(user)) {
+			return new BaseResult().success(userService.changePicUrl(userName, picUrl));
+		} else {
+			return new BaseResult().failed();
+		}
+	}
+
 	/**
 	 * 根据手机号获取用户id 用于推送取用户
 	 * 
-	 * @param @param mobile
+	 * @param @param
+	 *            mobile
 	 * @param @return
 	 * @return BaseResult
 	 */

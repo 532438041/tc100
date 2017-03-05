@@ -11,6 +11,8 @@ public class Active {
 	private String id;
 
 	private String actName;
+	
+	private String shopName;
 
 	private String userId;
 
@@ -260,5 +262,13 @@ public class Active {
 
 	public void setPayCodeId(String payCodeId) {
 		this.payCodeId = payCodeId;
+	}
+
+	public String getShopName() {
+		return shopName;
+	}
+
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 }

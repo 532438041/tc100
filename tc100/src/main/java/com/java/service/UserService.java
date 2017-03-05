@@ -22,5 +22,9 @@ public interface UserService extends BaseService<User>{
 	int changePwd(String userName, String userPwd);
 
 	List<User> getUserList();
+
+	int changeDisplayName(String userName, String displayName);
+
+	int changePicUrl(String userName, String picUrl);
 	
 }

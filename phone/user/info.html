@@ -307,10 +307,10 @@
 
 	<body>
 		<header class="header2">
-			<a class="touxiang"><img id="touxiang" style="width:5em" src="../img/touxiang.png" /></a>
-			<p id="cardName">小溪</p>
+			<a class="touxiang"><img id="touxiang" style="width:5em" src="" /></a>
+			<p id="cardName"></p>
 			<span class="xiaoxiCount" id="xiaoxiCount" onclick="openUrl('my_message.html','my_message');">0</span>
-			<a class="xiaoxi" href="setting.html"><span class="setting22"></span>设置</a>
+			<a class="xiaoxi" onclick="openUrl('setting.html','setting');"><span class="setting22"></span>设置</a>
 		</header>
 		<section class="sec1">
 			<h3>同城搜</h3>
@@ -456,17 +456,13 @@
                
                //用户信息
                appcan.ajax({
-                   type:"post",
-                   async:false,       
-                   url:host+"/getCardList.json?userId="+userId,
-                   data:"",
+                   type:"get",
+                   url:host+"/getUser.json?userId="+userId,
                    dataType:"json",
                    contentType: "application/json",
                    success : function(dataResult) {
-                       if(dataResult.data.length>0){
-                           $("#touxiang").attr("src",hostIp+dataResult.data[0].picUrl);
-                           $("#cardName").html(dataResult.data[0].cardName);
-                       }
+                       $("#cardName").html(dataResult.data.displayName || "");
+                       $("#touxiang").attr("src",hostIp+dataResult.data.picUrl);
                    }
                })
             })

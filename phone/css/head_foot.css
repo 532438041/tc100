@@ -159,7 +159,7 @@ header {
                 background: none;
             }
             header.header2 .xiaoxi{
-                top: 0;
+                top: 1em;
                 font-size: 0.8em;
             }
             header.header2 .xiaoxi .mui-icon{

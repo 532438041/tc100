@@ -9,17 +9,18 @@
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="region" property="region" jdbcType="VARCHAR" />
 		<result column="addName" property="addName" jdbcType="VARCHAR" />
+		<result column="msg_pic" property="msgPic" jdbcType="VARCHAR" />
 		<result column="create_by" property="createBy" jdbcType="CHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 		<result column="update_by" property="updateBy" jdbcType="CHAR" />
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, user_id, card_id, title, remark, region, addName, create_by, create_time, update_by, update_time
+		id, user_id, card_id, title, remark, region, addName,msg_pic, create_by, create_time, update_by, update_time
 	</sql>
 	<select id="selectByPrimaryKey" resultType="com.java.dto.MsgDto" parameterType="java.lang.String">
 		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName,
-		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
 		FROM tc_message msg
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
@@ -31,11 +32,11 @@
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.Message">
 		insert into tc_message (id, user_id, card_id, title,
-		remark, region, addName, create_by,
+		remark, region, addName, msg_pic, create_by,
 		create_time, update_by, update_time
 		)
 		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{cardId,jdbcType=CHAR}, #{title,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{addName,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR},
+		#{remark,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{addName,jdbcType=VARCHAR}, #{msgPic,jdbcType=VARCHAR}, #{createBy,jdbcType=CHAR},
 		#{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR}, #{updateTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
@@ -133,6 +134,9 @@
 			<if test="addName != null and addName != ''">
 				addName = #{addName,jdbcType=VARCHAR},
 			</if>
+			<if test="msgPic != null and msgPic != ''">
+				msg_pic = #{msgPic,jdbcType=VARCHAR},
+			</if>
 			<if test="createBy != null">
 				create_by = #{createBy,jdbcType=CHAR},
 			</if>
@@ -156,6 +160,7 @@
 		remark = #{remark,jdbcType=VARCHAR},
 		region = #{region,jdbcType=VARCHAR},
 		addName = #{addName,jdbcType=VARCHAR},
+		msg_pic = #{msgPic,jdbcType=VARCHAR},
 		create_by = #{createBy,jdbcType=CHAR},
 		create_time = #{createTime,jdbcType=TIMESTAMP},
 		update_by = #{updateBy,jdbcType=CHAR},
@@ -165,7 +170,7 @@
 
 	<select id="getMsgList" parameterType="com.java.entity.Message" resultType="com.java.dto.MsgDto">
 		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName,
-		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
 		FROM tc_message msg
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
@@ -194,7 +199,7 @@
 
 	<select id="getMsg" resultType="com.java.dto.MsgDto" parameterType="java.lang.String">
 		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName,
-		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
 		FROM tc_message msg
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`

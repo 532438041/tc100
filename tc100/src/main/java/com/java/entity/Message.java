@@ -20,6 +20,8 @@ public class Message {
 	private String region;
 
 	private String addName;
+	
+	private String msgPic;
 
 	private String createBy;
 
@@ -117,5 +119,13 @@ public class Message {
 
 	public void setAddName(String addName) {
 		this.addName = addName;
+	}
+
+	public String getMsgPic() {
+		return msgPic;
+	}
+
+	public void setMsgPic(String msgPic) {
+		this.msgPic = msgPic;
 	}
 }

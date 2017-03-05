@@ -325,7 +325,7 @@
             var type = getVal("type");
             function fabu(param){
                 if(type!=""){
-                    type = type+param;
+                    type = type.substr(0, 1)+param;
                     openUrl('moban_shengcheng.html?type='+type,'moban_shengcheng');
                 }
             }

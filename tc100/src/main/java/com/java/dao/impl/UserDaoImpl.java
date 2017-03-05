@@ -46,4 +46,20 @@ public class UserDaoImpl extends BaseDaoImpl<User>implements UserDao {
 		return this.getSqlSession().update(getStateMentName("changePwd"), map);
 	}
 
+	@Override
+	public int changeDisplayName(String userName, String displayName) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userName", userName);
+		map.put("displayName", displayName);
+		return this.getSqlSession().update(getStateMentName("changeDisplayName"), map);
+	}
+
+	@Override
+	public int changePicUrl(String userName, String picUrl) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userName", userName);
+		map.put("picUrl", picUrl);
+		return this.getSqlSession().update(getStateMentName("changePicUrl"), map);
+	}
+
 }
