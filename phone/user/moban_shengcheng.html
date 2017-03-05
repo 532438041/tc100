@@ -156,7 +156,7 @@
                     margin: 0;
                 }
             }
-            textarea{ height: 7.5em; margin: 0 4%; width: 92%; font-size: 1em; line-height: 1.2em;}
+            textarea{ height: 6.5em; margin: 0 4%; width: 92%; font-size: 1em; line-height: 1.2em;}
             .upload h3{ font-style: normal; font-weight: normal; width: 100%; color: #666;}
             .upload h3 input[type=text]{ width: auto; display: inline; height: 1.875em; margin-left: 0.625em;     font-size: 1em;
     margin-bottom: 0;
@@ -170,8 +170,8 @@
             .shouye>div div img{ width: 100%; height: auto;}
             .shouye>div div p{ float: none; line-height: 1.25em; color: #666; }
             .shouye>div div a{ line-height:1.5em; display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
-            .shouye .fir{ width: 60%;}
-            .shouye .sec{ width: 40%; position: relative; height: 100%;}
+            .shouye .fir{ width: 33%; min-height: 6em;}
+            .shouye .sec{ width: 67%; position: relative; height: 100%;}
             .xiangqing>div div{  float: left; clear: none; color: #666; padding-left: 0.5em;}
             .name{ padding-bottom: 1.25em;}
             .name a{ font-size: 1em; line-height: 1.2em; padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 0.3125em;}
@@ -213,6 +213,12 @@
             .rightright{
                 margin-top: 1em;
             }
+            .shouye h3{ }
+            .sec div{ margin-bottom: 1em; width：90%; font-size: 0.8em; line-height: 2em; height: 2em; background: #ff3366; border-radius: 0.2em; color: #fff; text-align:center;}
+            .sec input[type=text]{width：90%;font-size: 0.8em; padding: 0.5em; margin: 0; height: 2em; line-height: 2em; }
+            .thi div{ margin-bottom: 1em; width:80%; margin-left:10%; font-size: 0.8em; line-height: 2em; height: 2em; background: #ff3366; border-radius: 0.2em; color: #fff; text-align:center;}
+            .shouye222 .fir{ width: 100%; padding: 0 5%;};
+            .fir img{ width: 100%;}
         </style>
 	</head>
 
@@ -241,15 +247,28 @@
     			<ul class="lei_1">
     				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费为<span id="sysParam"></span></li>
     			</ul>
+    			<div class="pore shouye222">
+                    <h3><img src="../img/star.png" />样式1：首页显示</h3>
+                    <p class="bitian"><span>必填</span></p>
+                    <div>
+                        <div class="fir">
+                            <img style="width:100%;" id="mainPic" src="../img/lizi2.png" />
+                        </div>
+                        <div class="thi">
+                            <div>上传(建议尺寸：750*300)</div>
+                        </div>
+                    </div>
+                </div>
     			<div class="pore shouye" id="type1">
-    				<h3><img src="../img/star.png" />样式1：首页显示</h3>
+    				<h3><img src="../img/star.png" />样式2：首页显示</h3>
     				<p class="bitian"><span>必填</span></p>
     				<div>
-    					<div id="yulan" class="fir"><img id="mainPic" src="../img/img_8.png" /></div>
+    					<div id="yulan" class="fir"><img id="mainPic" src="../img/lizi1.png" /></div>
     					<div class="sec">
-    						<p>首页详情页页头图片300*100</p>
-    						<div id="filePicker">上传</div>
+    						<div id="filePicker">上传(建议尺寸：300*210)</div>
+    						<input type="text" value="" placeholder="请输入店铺名称" />
     					</div>
+    					<textarea placeholder="活动简介内容输入"></textarea>
     				</div>
     			</div>
     			<div class="pore shouye" id="type2">

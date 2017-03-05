@@ -69,7 +69,7 @@
             p,span{ font-size: 0.8em; color: #999;}
             .top input{ }
             .top{ height: 5.3em;  overflow: hidden; position: relative; background: #fff; border-bottom: 1px solid #dedede;}
-            .top p{ padding-top: 0; text-indent: 0; line-height: 1.5em; border-bottom: 1px solid #ccc; margin-top: 0.625em; padding: 0 1em; font-size: 0.6em; color: #cd4400;}
+            .top p{ padding-top: 0; text-indent: 0; line-height: 2em; border-bottom: 1px solid #ccc; margin-top: 0.625em; padding: 0 1em; font-size: 0.8em; color: #cd4400;}
             .top span{  float: right; text-indent: 1.25em; line-height: 3.875em; margin-right: 1.25em;}
             .top a{ display: inline; text-align: center;  color: #ff3366; font-size: 1em; }
             .top>div{ height: 4.375em; width: 4.375em; border-radius: 50%; position: absolute; top: 0.625em; right: 0.625em;  overflow: hidden;}
@@ -124,6 +124,9 @@
                 .top{ height: 6.5em;}
             }
             .main input.time{background: #ccc;}
+            p.indexquyu{ line-height: 1.5em;text-indent: 0; }
+            .indexquyu a{ margin-bottom:1em; margin-right:1em; color:#878787; font-size: 0.8em; display: inline-block; border: 1px solid #ccc; text-indent: 0; padding: 0.1em 0.75em; border-radius:0.3em;}
+            .indexquyu a.active{ color: #fff; background: #ff3366; border-color: #ff3366;}
         </style>
 	</head>
 
@@ -162,6 +165,12 @@
 						<input class="time" type="date" value="" placeholder="" name="endTime" id="endTime"/>
 						<span>注：最长发布不得超过10天，四大模块为1个月</span>
 					</p>
+					<p>提供服务的区域：当前城市：深圳市</p>
+					<p class="indexquyu">
+					   <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+					   <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+                    </p>
 					<p class="fenlei">
 						<i>分类：</i>
 						<select name="cateId">
@@ -199,6 +208,17 @@
                 </a>
 			</nav>
 		</footer>
+	<script>
+	    $(document).ready(function(){
+	        $(".indexquyu a").click(function(){
+	           if($(this).hasClass("active")){
+	               $(this).removeClass("active");   
+	           }else{
+	               $(this).addClass("active");
+	           };
+	        });
+	    });
+	</script>
     <script>
         var type = getVal("type") || "0";
         var actId = getVal("actId");
