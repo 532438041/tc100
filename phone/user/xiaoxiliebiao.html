@@ -99,20 +99,7 @@
                         var msgStr = '';
                         if(dataResult.data.length>0){
                             for(var i=0;i<dataResult.data.length;i++){
-                                /*
-                                if(dataResult.data[i].state==1){
-                                                                    appcan.ajax({
-                                                                        type:"post",
-                                                                        url:host+"/changeUserMsgState.json?msgId="+dataResult.data[i].id,
-                                                                        dataType:"json",
-                                                                        contentType: "application/json",
-                                                                        success : function(dataResult){
-                                                                        }
-                                                                     })
-                                                                    
-                                                                }*/
-                                
-                                 msgStr += '<li><p>'+dataResult.data[i].content+'</li></p>';
+                                msgStr += '<li><a onclick="openUrl(\'xiaoxixq.html?msgId='+dataResult.data[i].id+'\',\'xiaoxixq\')"><p>'+dataResult.data[i].content+'</li></a></p>';
                             }
                         }
                         $("#msgList").html(msgStr);
