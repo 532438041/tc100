@@ -349,17 +349,15 @@
                             if(dataList.length>0){
                                 for(var i=0;i<dataList.length;i++){
                                     msgReviewStr +='<li class="mui-table-view-cell mui-media">';
-                                    msgReviewStr +='<a href="javascript:;">';
                                     msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
                                     msgReviewStr +='<div class="mui-media-body">';
                                     msgReviewStr +=dataList[i].cardName;
                                     msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
-                                    msgReviewStr +='<i>查看名片</i>';
+                                    msgReviewStr +='<i class="cardInfo" data-id='+dataList[i].cardId+'>查看名片</i>';
                                     msgReviewStr +='<div>';
                                     msgReviewStr +='<img src="'+dataList[i].msgPic+'"  />';
                                     msgReviewStr +='</div>';
                                     msgReviewStr +='</div>';
-                                    msgReviewStr +='</a>';
                                     msgReviewStr +='</li>';
                                 }
                             }
@@ -367,6 +365,12 @@
                         }
                     });
                 }
+                
+                $(".cardInfo").click(function(){
+                    var cardId = $(this).attr("data-id");
+                    alert(cardId);
+                    openUrl('cardxiangqing.html?cardId='+cardId,'cardxiangqing');
+                })
             })
         </script>
 	</body>

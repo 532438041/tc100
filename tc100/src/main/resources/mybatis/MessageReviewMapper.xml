@@ -151,7 +151,7 @@
 	</update>
 
 	<select id="getMsgReview" resultType="com.java.dto.MsgReviewDto" parameterType="java.lang.String">
-		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName, msg.`remark`, msg.`msg_pic` msgPic,msg.`create_time` createTime FROM tc_message_review msg
+		SELECT msg.`user_id` userId, card.`pic_url` picUrl,msg.`card_id` cardId, card.`card_name` cardName, msg.`remark`, msg.`msg_pic` msgPic,msg.`create_time` createTime FROM tc_message_review msg
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
 		WHERE msg.msg_id = #{msgId}
 	</select>
