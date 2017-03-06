@@ -133,6 +133,18 @@ public class MessageController {
 	public BaseResult getMyMsgList(String userId) {
 		return new BaseResult().success(messageService.getMsgList(userId));
 	}
+	
+	/**
+	 * 我的同城搜回复列表 我的回复
+	 * 
+	 * @param @param userId
+	 * @param @return
+	 * @return BaseResult
+	 */
+	@RequestMapping(value = "/getMyReviewList")
+	public BaseResult getMyReviewList(String userId) {
+		return new BaseResult().success(messageService.getMyReviewList(userId));
+	}
 
 	@RequestMapping(value = "/getMsgRegion")
 	public BaseResult getMsgRegion(String addName) {

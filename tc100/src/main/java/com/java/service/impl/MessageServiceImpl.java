@@ -54,4 +54,9 @@ public class MessageServiceImpl extends BaseServiceImpl<Message>implements Messa
 		return messageDao.getMsgRegion(addName);
 	}
 
+	@Override
+	public List<MsgDto> getMyReviewList(String userId) {
+		return messageDao.getMyReviewList(userId);
+	}
+
 }

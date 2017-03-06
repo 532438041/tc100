@@ -187,6 +187,20 @@
 		GROUP BY msg.`id`
 		ORDER BY msg.create_time DESC
 	</select>
+	
+	<select id="getMyReviewList" parameterType="java.lang.String" resultType="com.java.dto.MsgDto">
+		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName,
+		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		FROM tc_message msg
+		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
+		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`
+		WHERE 1=1
+		<if test="_parameter != null and _parameter  != ''">
+			AND review.user_id = #{_parameter}
+		</if>
+		GROUP BY msg.`id`
+		ORDER BY msg.create_time DESC
+	</select>
 
 	<select id="getLastMsgTime" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT TIMESTAMPDIFF(SECOND, MAX(update_time), NOW()) lastMsgTime FROM `tc_message` WHERE user_id = #{userId}

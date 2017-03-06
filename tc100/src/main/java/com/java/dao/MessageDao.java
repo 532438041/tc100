@@ -17,5 +17,7 @@ public interface MessageDao extends BaseDao<Message>{
 	MsgDto getMsg(String msgId);
 
 	List<String> getMsgRegion(String addName);
+
+	List<MsgDto> getMyReviewList(String userId);
     
 }

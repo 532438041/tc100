@@ -22,4 +22,6 @@ public interface MessageService extends BaseService<Message> {
 
 	List<String> getMsgRegion(String addName);
 
+	List<MsgDto> getMyReviewList(String userId);
+
 }

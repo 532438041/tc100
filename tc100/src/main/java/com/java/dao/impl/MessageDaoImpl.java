@@ -10,7 +10,7 @@ import com.java.dto.MsgDto;
 import com.java.entity.Message;
 
 @Repository
-public class MessageDaoImpl extends BaseDaoImpl<Message>implements MessageDao {
+public class MessageDaoImpl extends BaseDaoImpl<Message> implements MessageDao {
 
 	@Override
 	public List<MsgDto> getMsgList(Message reqParam) {
@@ -35,6 +35,11 @@ public class MessageDaoImpl extends BaseDaoImpl<Message>implements MessageDao {
 	@Override
 	public List<String> getMsgRegion(String addName) {
 		return this.getSqlSession().selectList(getStateMentName("getMsgRegion"), addName);
+	}
+
+	@Override
+	public List<MsgDto> getMyReviewList(String userId) {
+		return this.getSqlSession().selectList(getStateMentName("getMyReviewList"), userId);
 	}
 
 }
