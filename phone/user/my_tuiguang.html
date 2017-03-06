@@ -85,6 +85,8 @@
                 section.sec_3 div.tu_tu i{ padding: 0;}
                 section.sec_3 div.tu_tu span{ margin: 0;}
             }
+            .toptop,.bottombottom{ margin-top: 1.25em;}
+            .shouqi1,.shouqi2,.shouqi3,.shouqi4{ display: block;}
         </style>
 	</head>
 
@@ -94,31 +96,31 @@
 			<h1>我的推广</h1>
 		</header>
 		<section class="shuoming">
-			<div>
+			<div class="zhankai">
 				<h3>推广说明</h3>
 				<p><span class="toptop2"></span></p>
 			</div>
-			<ul>
+			<ul class="shouqi">
 				<li>推广仅能对已发布促销进行推广。推广可以提高所发布内容的排名，并且可以抵消部分负面评价</li>
 			</ul>
 		</section>
 		<section class="shuoming">
-			<div>
+			<div class="zhankai">
 				<h3>首页轮播图<i id="Acount">正在发布数：0</i></h3>
 				<p>
 					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','fabumoshi')">发布</a><span class="toptop2"></span></p>
 			</div>
-			<ul>
+			<ul class="shouqi">
 				<li>没有促销发布，请首先发布促销</li>
 			</ul>
 		</section>
 		<section class="sec_3">
-			<div>
+			<div class="zhankai">
 				<h3>超孕车房模块<i id="CDEFCount">正在发布数：0</i></h3>
 				<p>
 					<a href="javascript:;">发布</a><span class="toptop2"></span></p>
 			</div>
-			<ul>
+			<ul class="shouqi">
 				<li>
 					<h4>超市<i id="Ccount">正在发布数：0</i></h4>
 					<p>
@@ -148,16 +150,16 @@
 					</p>
 				</li>
 			</ul>
-			<div class="tu_tu">
+			<div class="tu_tu shouqi">
 				<img src="../img/img_8.png" />
 				<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
 			</div>
 		</section>
 		<section>
-			<div>
+			<div class="zhankai">
 				<h3>同城购模块<i id="Bcount">正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="bottombottom2"></span></p>
+					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="toptop2"></span></p>
 			</div>
 		</section>
 
@@ -179,6 +181,17 @@
 		</footer>
 		<script>
 			$(document).ready(function() {
+			    $("section .zhankai").click(function(){
+			        if($(this).parent().find(".shouqi").css("display") == "none"){
+			            $(this).parent().find(".shouqi").show();
+			            $(this).find("span").removeClass("bottombottom");
+			            $(this).find("span").addClass("toptop");
+			        }else{
+			            $(this).parent().find(".shouqi").hide();
+			            $(this).find("span").removeClass("toptop");
+			            $(this).find("span").addClass("bottombottom");
+			        }
+			    });
 				$(".quyu h4").click(function() {
 
 					if($(this).next("ul").css("display") == "block") {
