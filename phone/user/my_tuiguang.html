@@ -86,7 +86,11 @@
                 section.sec_3 div.tu_tu span{ margin: 0;}
             }
             .toptop,.bottombottom{ margin-top: 1.25em;}
-            .shouqi1,.shouqi2,.shouqi3,.shouqi4{ display: block;}
+            .shouqi{ display: none;}
+            .mui-media{ position:relative; width: 85%; left: 15%; padding-left: 0; margin-left: -0.625em;}
+            section p.mui-ellipsis{ float: none;}
+            .mui-media-body,section p.mui-ellipsis{ text-indent: 1em;}
+            .mui-media-body i{ position: absolute; top: 0; right: 0; border: 1px solid #ff3366; color: #ff3366; border-radius: 0.3em; text-indent: 0; padding: 0 0.5em;}
         </style>
 	</head>
 
@@ -98,7 +102,7 @@
 		<section class="shuoming">
 			<div class="zhankai">
 				<h3>推广说明</h3>
-				<p><span class="toptop2"></span></p>
+				<p><span class="bottombottom"></span></p>
 			</div>
 			<ul class="shouqi">
 				<li>推广仅能对已发布促销进行推广。推广可以提高所发布内容的排名，并且可以抵消部分负面评价</li>
@@ -108,7 +112,7 @@
 			<div class="zhankai">
 				<h3>首页轮播图<i id="Acount">正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','fabumoshi')">发布</a><span class="toptop2"></span></p>
+					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','fabumoshi')">发布</a><span class="bottombottom"></span></p>
 			</div>
 			<ul class="shouqi">
 				<li>没有促销发布，请首先发布促销</li>
@@ -118,7 +122,7 @@
 			<div class="zhankai">
 				<h3>超孕车房模块<i id="CDEFCount">正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;">发布</a><span class="toptop2"></span></p>
+					<a href="javascript:;">发布</a><span class="bottombottom"></span></p>
 			</div>
 			<ul class="shouqi">
 				<li>
@@ -128,6 +132,10 @@
 						<span class="toptop2"></span>
 					</p>
 				</li>
+                <div class="tu_tu shouqi">
+                    <img src="../img/img_8.png" />
+                    <p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+                </div>
 				<li>
 					<h4>孕婴<i id="Dcount">正在发布数：0</i></h4>
 					<p>
@@ -135,6 +143,10 @@
 						<span class="toptop2"></span>
 					</p>
 				</li>
+                <div class="tu_tu shouqi">
+                    <img src="../img/img_8.png" />
+                    <p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+                </div>
 				<li>
 					<h4>车辆<i id="Ecount">正在发布数：0</i></h4>
 					<p>
@@ -142,6 +154,14 @@
 						<span class="toptop2"></span>
 					</p>
 				</li>
+				<div class="tu_tu shouqi">
+                    <img src="../img/img_8.png" />
+                    <p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+                </div>
+                <div class="tu_tu shouqi">
+                    <img src="../img/img_8.png" />
+                    <p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+                </div>
 				<li>
 					<h4>房车<i id="Fcount">正在发布数：0</i></h4>
 					<p>
@@ -149,17 +169,26 @@
 						<span class="toptop2"></span>
 					</p>
 				</li>
+				<div class="tu_tu shouqi">
+                    <img src="../img/img_8.png" />
+                    <p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+                </div>
+                <div class="shouqi mui-table-view-cell mui-media">
+                    <a href="javascript:;">
+                        <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
+                        <div class="mui-media-body">天天向上
+                            <p class="mui-ellipsis">家里的马桶坏了，请人上门维修。</p>
+                            <i>推广</i>
+                        </div>
+                    </a>
+                </div>
 			</ul>
-			<div class="tu_tu shouqi">
-				<img src="../img/img_8.png" />
-				<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
-			</div>
 		</section>
 		<section>
 			<div class="zhankai">
 				<h3>同城购模块<i id="Bcount">正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="toptop2"></span></p>
+					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="bottombottom"></span></p>
 			</div>
 		</section>
 
@@ -185,10 +214,10 @@
 			        if($(this).parent().find(".shouqi").css("display") == "none"){
 			            $(this).parent().find(".shouqi").show();
 			            $(this).find("span").removeClass("bottombottom");
-			            $(this).find("span").addClass("toptop");
+			            $(this).find("span").addClass("toptop2");
 			        }else{
 			            $(this).parent().find(".shouqi").hide();
-			            $(this).find("span").removeClass("toptop");
+			            $(this).find("span").removeClass("toptop2");
 			            $(this).find("span").addClass("bottombottom");
 			        }
 			    });

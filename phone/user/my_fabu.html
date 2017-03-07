@@ -72,6 +72,19 @@
             section li a{ color: #ccc; border: 1px solid #ccc; padding: 0 0.225em; border-radius: 0.3125em;}
             section .mui-icon{ font-size: 1.5em;}
             .toptop,.bottombottom{ margin-top: 1.25em;}
+            .shouqi{ display: none;}
+            .mui-media{ position:relative; width: 85%; left: 15%; padding-left: 0; margin-left: -0.625em;}
+            section p.mui-ellipsis{ float: none;}
+            .mui-media-body,section p.mui-ellipsis{ text-indent: 1em;}
+            .mui-media-body i{ position: absolute; top: 0; right: 0; border: 1px solid #ff3366; color: #ff3366; border-radius: 0.3em; text-indent: 0; padding: 0 0.5em;}
+            
+            
+            section div.tu_tu{ width: 85%; overflow: hidden; position: relative; left: 15%; margin-left: -0.625em;}
+            section div.tu_tu img{ width: 100%;}
+            section div.tu_tu p{ font-size: 0.6em; float: left; height: auto; overflow: hidden;}
+            section div.tu_tu span{ font-size: 1em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0.3em 1em; border-radius: 0.3125em;}
+            section div.tu_tu i{ font-size:1em; border: 1px solid #ccc; padding: 0.6em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
+           
         </style>
 	</head>
 
@@ -85,14 +98,14 @@
 			<div class="zhankai">
 				<h3>首页轮播图<i id="Acount">正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','fabumoshi')">发布</a><span class="toptop"></span></p>
+					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=A1','fabumoshi')">发布</a><span class="bottombottom"></span></p>
 			</div>
 		</section>
 		<section>
 			<div class="zhankai">
 				<h3>超孕车房模块<i id="CDEFCount">正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a><span class="toptop quyu"></span></p>
+					<a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a><span class="bottombottom quyu"></span></p>
 			</div>
 			<ul class="quyu shouqi">
 				<li>
@@ -121,13 +134,26 @@
 						<a>编辑</a>
 					</p>
 				</li>
+				<div class="tu_tu shouqi">
+                    <img src="../img/img_8.png" />
+                    <p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span>推广</span></p>
+                </div>
+                <div class="shouqi mui-table-view-cell mui-media">
+                    <a href="javascript:;">
+                        <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
+                        <div class="mui-media-body">天天向上
+                            <p class="mui-ellipsis">家里的马桶坏了，请人上门维修。</p>
+                            <i>推广</i>
+                        </div>
+                    </a>
+                </div>
 			</ul>
 		</section>
 		<section class="zhankai">
 			<div>
 				<h3>同城购模块<i id='Bcount'>正在发布数：0</i></h3>
 				<p>
-					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="toptop"></span></p>
+					<a href="javascript:;" onclick="openUrl('../user/moban_shengcheng.html?type=B2','mobansc');">发布</a><span class="bottombottom"></span></p>
 			</div>
 		</section>
 
