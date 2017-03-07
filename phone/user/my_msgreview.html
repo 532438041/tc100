@@ -19,7 +19,7 @@
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
-		<title>同城搜详情</title>
+		<title>我的回答</title>
 		<style>
             * {
                 margin: 0;
@@ -129,7 +129,7 @@
                 background: #f9efc9;
                 text-align: center;
                 position: relative;
-                line-height: 1.125em;
+                line-height: 1.875em;
             }
             
             .same_city_buy>p a {
@@ -153,7 +153,6 @@
             
             .same_city_buy .mui-table-view-cell>a:not(.mui-btn) {
                 white-space: normal;
-				line-height: 1.2em;
             }
             
             .same_city_buy .mui-ellipsis {
@@ -181,7 +180,7 @@
                 background: #f9efc9;
                 text-align: center;
                 position: relative;
-                line-height: 1.125em;
+                line-height: 1.875em;
             }
             
             .same_city_search>p a {
@@ -251,114 +250,69 @@
                 padding: 0.625em 1em;
                 background: #fff;
             }
-            .mui-table-view-cell>a:not(.mui-btn){ width: 65%; float: left; line-height: 1.2em;}
+            .mui-table-view-cell>a:not(.mui-btn){ width: 70%; float: left; line-height: 1.5em;}
             
-            .mui-table-view-cell>p{ width: 35%; float: right; text-align: right; line-height: 2.5em;}
+            .mui-table-view-cell>p{ width: 30%; float: right; text-align: right; line-height: 2.5em;}
             .mui-icon{ font-size: 1em;}
-            .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%; width: 3em; height: 3em; max-width: 3em; line-height: inherit;}
-            
-            .xiangxi{ padding: 0.8em; }
-            .xiangxi p{ padding-bottom: 1em;}
-            .xiangxi p:first-child{ text-indent: 1.25em; font-size: 0.6rem;}
-            .xiangxi p:last-child{ font-size: 0.6rem; text-align: right; margin-right: 1.25em; color: #ccc;}
-            footer a{ margin: 0 0.625em;}
-            footer .mui-bar-tab{ height: 2.5em;}
-            footer .mui-bar .mui-icon{ font-size: 2em; margin: 5px;float: left; }
-            input[type="text"]{ 
-				width: 60%;
-                margin-bottom: 0;
-                padding: 0;
-                height: auto;
-               	line-height: 2em;
-                font-size: 1em;
-                margin-top: 0.15em;}
-            input[type="submit"]{ 
-                    float: right;    
-                    margin-top: 0.4em;
-                    margin-right: 0.625em;
-                    font-size: 1em; 
-                    border: 1px solid #ff3366;
-                    background-color: #ff3366;
-            }
-            @media screen and (max-width: 340px) {
-                footer a, input[type="submit"], input[type="text"]{ margin: 0;}
-                input[type="submit"]{ margin-top: 0.625em;}
-            }
-            @media screen and (max-width: 380px) {
-                input[type="text"]{ width: 50%;}
-            }
-			.rightright{
-                margin-top: 0.75em;
-            }
-            .imghezi{
-                width: 100%;
+            .mui-table-view .mui-media-object.mui-pull-left{ border-radius: 50%;
+				 width: 3em;
                 height: 3em;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                overflow-x: scroll;
-            }
-            .imghezi img{ height: 3em; margin-right: 0.5em;}
+                line-height: inherit;
+                max-width: inherit;}            
         </style>
 	</head>
 
 	<body>
 		<header>
 			<a><span class="leftleft"></span></a>
-			<h1>同城搜详情</h1>
+			<h1>我的回答</h1>
 		</header>
 		<section>
-			<ul class="mui-table-view" id="msgInfo">
+			<ul class="mui-table-view" id="myMsgList">
 			</ul>
 		</section>
+
 		<footer>
-			<div class="mui-bar mui-bar-tab">
-			    <a class="jiajia"></a>
-			    <input type="text" value="" />
-			    <input type="submit" value="回复" />
-			    <div class="imghezi">
-			        <div style="display: flex;">
-                        <img style="" src="../img/img_8.png" />
-                        <img style="" src="../img/img_8.png" />
-                        <img style="" src="../img/img_8.png" />
-                        <img style="" src="../img/img_8.png" />
-                        <img style="" src="../img/img_8.png" />
-                        <img style="" src="../img/img_8.png" />
-                    </div>
-                </div>
-			</div>
+			<nav class="mui-bar mui-bar-tab">
+				<a href="javascript:;" id="tcIndex">
+                    <img src="../img/shouye2.png" />
+                    <span class="mui-tab-label">首页</span>
+                </a>
+                <a href="javascript:;" id="myfabu">
+                    <img src="../img/fabu2.png" />
+                    <span class="mui-tab-label">发布</span>
+                </a>
+                <a class="action" href="javascript:;" id="myInfo">
+                    <img src="../img/mine2.png" />
+                    <span class="mui-tab-label">我的</span>
+                </a>
+			</nav>
 		</footer>
         <script>
-            var msgId = getVal("msgId");
             $(function(){
                 appcan.ajax({
                     type:"post",
-                    url:host+"/getMsg.json?msgId="+msgId,
-                    data:'',
+                    async:false,       
+                    url:host+"/getMyReviewList.json?userId="+appcan.locStorage.getVal("userId"),
+                    data:"",
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        var data = dataResult.data;
+                        var dataList = dataResult.data;
                         var msgStr = "";
-                        if(data!=null){
-                            msgStr +='<li class="mui-table-view-cell mui-media">';
-                            msgStr +='<a href="javascript:;" onclick="openUrl(\'../user/my_askart.html?msgId='+data.id+'\',\'my_askart\')">';
-                            msgStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+data.picUrl+'">';
-                            msgStr +='<div class="mui-media-body">';
-                            msgStr +=data.cardName;
-                            msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
-                            msgStr +='</div>';
-                            msgStr +='</a>';
-                            msgStr +='<p><a>已有'+data.reviewCount+'个回答<span class="rightright" style="margin-top: 0.8em; margin-left: 0.2em;"></span></a></p>';
-                            msgStr +='</li>';
-                            msgStr +='<div class="xiangxi">';
-                            msgStr +='<p>'+data.remark+'</p>';
-                            msgStr +='<p>需求地址：'+data.region+'  '+data.createTime+'</p>';
-                            msgStr +='</div>';
+                        if(dataList.length>0){
+                            for(var i=0;i<dataList.length;i++){
+                                msgStr +='<li class="mui-table-view-cell mui-media">';
+                                msgStr +='<a href="javascript:;" onclick="openUrl(\'my_askart.html?msgId='+dataList[i].id+'\',\'my_askart\')">';
+                                msgStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
+                                msgStr +='<div class="mui-media-body">'+dataList[i].cardName;
+                                msgStr +='<p class="mui-ellipsis">'+dataList[i].title+'</p></div></a>';
+                                msgStr +='<p><a>'+dataList[i].reviewCount+'个回答<span class="rightright" style="margin-top: 0.8em; margin-left: 0.2em;"></span></a></p></li>';
+                            }
                         }
-                        $("#msgInfo").html(msgStr);
+                        $("#myMsgList").html(msgStr);
                     }
-                })
+                }) 
             })
         </script>
 	</body>

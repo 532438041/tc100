@@ -58,8 +58,8 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 	}
 
 	@Override
-	public int getActCount(String userId, String actType, String state) {
-		return activeDao.getActCount(userId, actType, state);
+	public List<Active> getActFBList(String userId, String actType, String state) {
+		return activeDao.getActFBList(userId, actType, state);
 	}
 
 	@Override

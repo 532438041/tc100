@@ -92,7 +92,22 @@
                 .main textarea{ width: 50%;}
                 .top{ height: 8.75em;}
             }
-        </style>
+            p.indexquyu{ line-height: 1.5em;text-indent: 0; }
+            .indexquyu a{ margin-bottom:1em; margin-right:1em; color:#878787; font-size: 0.8em; display: inline-block; border: 1px solid #ccc; text-indent: 0; padding: 0.1em 0.75em; border-radius:0.3em;}
+            .indexquyu a.active{ color: #fff; background: #ff3366; border-color: #ff3366;}
+            .main-text{height: 6em; font-size: 1em; line-height: 1em; position: relative; margin-bottom: 3em; padding: 1em}
+            .main-text p{ padding: 0;}
+            .main-text textarea{line-height:1.5em; width: 100%; height: 5em; font-size: 1em; margin-top: 0.5em;}
+            .main-text span{position: absolute; top: 1em; right: 1em; line-height: 1.8em; border: 1px solid #ccc; border-radius: 0.2em; padding: 0.1em 0.5em }
+            .imghezi{
+                width: 100%;
+                height: 3em;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                overflow-x: scroll;
+            }
+            .imghezi img{ height: 3em; margin-right: 0.5em;}</style>
 	</head>
 
 	<body>
@@ -110,9 +125,27 @@
 					<h3>基本信息<a>选择已有名片</a></h3>
 					<p><img src="../img/touxiang.png" /><i>店铺名：</i><input type="text" id="cardName" value="" readonly="readonly"/></p>
 					<p><i>主题：</i><input type="text" id="title" name="title" value="" /></p>
-					<p><i>提供服务的区域：</i><input type="text" name="region" id="region" value="" /></p>
-					<p><i>内容：</i><input type="text" id="remark" name="remark" value="" /></p>
-					<p style="border: none;"><i>经营范围：</i><textarea type="text" id="cardRegion" value="" readonly="readonly"/></textarea></p>
+					<p>提供服务的区域：当前城市：深圳市</p>
+                    <p class="indexquyu">
+                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+                    </p>
+                    <div class="main-text">
+                        <p>内容</p>
+                        <div class="imghezi">
+                            <div style="display: flex;">
+                                <img style="" src="../img/img_8.png" />
+                                <img style="" src="../img/img_8.png" />
+                                <img style="" src="../img/img_8.png" />
+                                <img style="" src="../img/img_8.png" />
+                                <img style="" src="../img/img_8.png" />
+                                <img style="" src="../img/img_8.png" />
+                            </div>
+                        </div>
+                        <textarea placeholder="请输入内容"></textarea>
+                        <span>上传图片</span>
+                    </div>
 					<input class="submit" type="button" id="addMsg" value="发布" />
 				</div>
 			</form>
@@ -135,6 +168,17 @@
                 </a>
 			</nav>
 		</footer>
+		<script>
+        $(document).ready(function(){
+            $(".indexquyu a").click(function(){
+               if($(this).hasClass("active")){
+                   $(this).removeClass("active");   
+               }else{
+                   $(this).addClass("active");
+               };
+            });
+        });
+    </script>
         <script>
             var time = 0;
             var cardId = "";

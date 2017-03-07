@@ -317,7 +317,7 @@
                                 var actType = dataList[i].actType;
                                 var num = actType.substring(1,actType.length);
                                 if(num==1){
-                                    gz1 += '<a href="javascript:;"><img src="'+dataList[i].mainPic+'" />';
+                                    gz1 += '<a href="javascript:;"><img src="'+hostIp+dataList[i].mainPic+'" />';
                                     gz1 += '<div class="opa" onclick="cancel(\''+dataList[i].id+'\',\''+dataList[i].favId+'\');"><img src="../img/quxiao.png" />取消关注</div></a>';
                                 }else{
                                     gz2 += '<li class="mui-table-view-cell mui-media">';

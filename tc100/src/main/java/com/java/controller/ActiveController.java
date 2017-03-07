@@ -97,9 +97,9 @@ public class ActiveController {
 	 * @param @return
 	 * @return BaseResult
 	 */
-	@RequestMapping(value = "/getActCount")
-	public BaseResult getActCount(String userId, String actType, String state) {
-		return new BaseResult().success(activeService.getActCount(userId, actType, state));
+	@RequestMapping(value = "/getActFBList")
+	public BaseResult getActFBList(String userId, String actType, String state) {
+		return new BaseResult().success(activeService.getActFBList(userId, actType, state));
 	}
 
 	/**

@@ -346,8 +346,10 @@
 		UPDATE `tc_active` SET `amount` = IFNULL(`amount`, 0) + #{amount} WHERE `id` = #{actId}
 	</update>
 
-	<select id="getActCount" parameterType="java.util.HashMap" resultType="Integer">
-		SELECT COUNT(0) FROM `tc_active` WHERE user_id = #{userId} AND FIND_IN_SET(act_type, #{actType})
+	<select id="getActFBList" parameterType="java.util.HashMap" resultType="com.java.entity.Active">
+		SELECT
+		id, cate_id cateId, act_type actType, main_pic mainPic, is_init isInit, state, `act_name` actName, summary
+		FROM `tc_active` WHERE user_id = #{userId} AND FIND_IN_SET(act_type, #{actType})
 		<if test="state!=null and state!=''">
 			AND state = #{state}
 		</if>
