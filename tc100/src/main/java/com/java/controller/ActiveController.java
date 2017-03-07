@@ -2,7 +2,9 @@ package com.java.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,7 @@ import com.java.entity.ItemCate;
 import com.java.entity.OperateFee;
 import com.java.entity.PayCode;
 import com.java.entity.PayLog;
+import com.java.entity.User;
 import com.java.entity.UserCard;
 import com.java.entity.UserFav;
 import com.java.entity.UserMsg;
@@ -36,6 +39,7 @@ import com.java.service.PayLogService;
 import com.java.service.UserCardService;
 import com.java.service.UserFavService;
 import com.java.service.UserMsgService;
+import com.java.service.UserService;
 import com.java.utils.ToolsUtil;
 
 @RestController
@@ -70,6 +74,9 @@ public class ActiveController {
 
 	@Autowired
 	private UserCardService userCardService;
+
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -376,6 +383,21 @@ public class ActiveController {
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("4")) {
 				// 4水贴
+				int isLoged = activeLogService.isLoged(actId, null, "4");
+				if (isLoged == 19) {
+					// 水贴20次 三天禁止发布
+					Active active = activeService.selectByPrimaryKey(actId);
+					User user = userService.selectByPrimaryKey(active.getUserId());
+					user.setId(active.getUserId());
+					user.setState("3");
+					Date date = new Date();// 取时间
+					Calendar calendar = new GregorianCalendar();
+					calendar.setTime(date);
+					calendar.add(Calendar.DATE, 3);// 把日期往后增加三天天.整数往后推,负数往前移动
+					date = calendar.getTime(); // 这个时间就是日期往后推一天的结果
+					user.setUpdateTime(date);
+					userService.updateByPrimaryKeySelective(user);
+				}
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("6")) {
 				// 6推广
@@ -441,6 +463,11 @@ public class ActiveController {
 		active.setUpdateTime(new Date());
 		active.setState("0");
 		return new BaseResult().success(activeService.updateByPrimaryKeySelective(active));
+	}
+
+	@RequestMapping("/upAct")
+	public BaseResult upAct(Active active) {
+		return null;
 	}
 
 }
