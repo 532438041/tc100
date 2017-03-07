@@ -11,7 +11,7 @@ import com.java.dao.UserDao;
 import com.java.entity.User;
 
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User>implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
 	@Override
 	public User checkLogin(String userName) {
@@ -60,6 +60,14 @@ public class UserDaoImpl extends BaseDaoImpl<User>implements UserDao {
 		map.put("userName", userName);
 		map.put("picUrl", picUrl);
 		return this.getSqlSession().update(getStateMentName("changePicUrl"), map);
+	}
+
+	@Override
+	public int changeUesrState(String userId, String state) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("state", state);
+		return this.getSqlSession().update(getStateMentName("changeUesrState"), map);
 	}
 
 }

@@ -355,7 +355,10 @@
                                     msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
                                     msgReviewStr +='<i class="cardInfo" data-id='+dataList[i].cardId+'>查看名片</i>';
                                     msgReviewStr +='<div>';
-                                    msgReviewStr +='<img src="'+dataList[i].msgPic+'"  />';
+                                    var msgPics = dataList[i].msgPic.split(",");
+                                    for (var j=0; j < msgPics.length; j++) {
+                                      msgReviewStr +='<img src="'+hostIp+msgPics[j]+'"  />';
+                                    };
                                     msgReviewStr +='</div>';
                                     msgReviewStr +='</div>';
                                     msgReviewStr +='</li>';

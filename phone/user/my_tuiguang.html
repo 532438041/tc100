@@ -73,7 +73,8 @@
             .shuoming li{ padding: 0.625em 1em; line-height: 1.25em; height: auto; overflow: hidden; color: #666; font-size: 0.8em;}
             section .mui-icon{margin-right: 10px; font-size: 1.5em}
             section div.tu_tu{ width: 85%; overflow: hidden; position: relative; left: 15%; margin-left: -0.625em;}
-            section div.tu_tu img{ width: 100%;}
+            section div.tu_tu img{ width: 90%;}
+            .mui-media img{ width: 30%;}
             section div.tu_tu p{ font-size: 0.6em; float: left; height: auto; overflow: hidden;}
             section div.tu_tu span{ font-size: 0.8em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0.3em 1em; border-radius: 0.3125em;}
             section div.tu_tu i{ font-size:1em; border: 1px solid #ccc; padding: 0.6em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
@@ -90,7 +91,7 @@
             .mui-media{ position:relative; width: 85%; left: 15%; padding-left: 0; margin-left: -0.625em;}
             section p.mui-ellipsis{ float: none;}
             .mui-media-body,section p.mui-ellipsis{ text-indent: 1em;}
-            .mui-media-body i{ position: absolute; top: 0; right: 0; border: 1px solid #ff3366; color: #ff3366; border-radius: 0.3em; text-indent: 0; padding: 0 0.5em;}
+            .mui-media-body i{ position: absolute; top: 0; right: 0; line-height:1.5em; border: 1px solid #ff3366; color: #ff3366; border-radius: 0.3em; text-indent: 0; padding: 0 0.5em;}
         </style>
 	</head>
 
@@ -236,7 +237,11 @@
                             for(var i=0;i<count;i++){
                                 strHtml+='<li><div class="tu_tu shouqi">';
                                 strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                strHtml+='<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                if(dataResult.data[i].rowNo>5){
+                                   strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位，仅需'+dataResult.data[i].amount+'元即可排名第5位</i><span class="tgFun" data-amount="'+dataResult.data[i].amount+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                }else{
+                                   strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                }
                                 strHtml+='</div></li>';
                             }
                             $(".Acount").html(strHtml);
@@ -260,11 +265,15 @@
                                 if(dataResult.data[i].actType=='B1'){
                                     strHtml+='<li><div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    if(dataResult.data[i].rowNo>5){
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位，仅需'+dataResult.data[i].amount+'元即可排名第5位</i><span class="tgFun" data-amount="'+dataResult.data[i].amount+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    }else{
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                    }
                                     strHtml+='</div></li>';
                                 }
                                 if(dataResult.data[i].actType=='B2'){
-                                    strHtml+='<li><div class="shouqi mui-media">';
+                                    strHtml+='<li><div class="shouqi mui-table-view-cell mui-media">';
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
@@ -295,11 +304,15 @@
                                 if(dataResult.data[i].actType=='C1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    if(dataResult.data[i].rowNo>5){
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位，仅需'+dataResult.data[i].amount+'元即可排名第5位</i><span class="tgFun" data-amount="'+dataResult.data[i].amount+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    }else{
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='C2'){
-                                    strHtml+='<div class="shouqi mui-media">';
+                                    strHtml+='<div class="shouqi mui-table-view-cell mui-media">';
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
@@ -329,11 +342,15 @@
                                 if(dataResult.data[i].actType=='D1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    if(dataResult.data[i].rowNo>5){
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位，仅需'+dataResult.data[i].amount+'元即可排名第5位</i><span class="tgFun" data-amount="'+dataResult.data[i].amount+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    }else{
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='D2'){
-                                    strHtml+='<div class="shouqi mui-media">';
+                                    strHtml+='<div class="shouqi mui-table-view-cell mui-media">';
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
@@ -364,11 +381,15 @@
                                 if(dataResult.data[i].actType=='E1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    if(dataResult.data[i].rowNo>5){
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位，仅需'+dataResult.data[i].amount+'元即可排名第5位</i><span class="tgFun" data-amount="'+dataResult.data[i].amount+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    }else{
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='E2'){
-                                    strHtml+='<div class="shouqi mui-media">';
+                                    strHtml+='<div class="shouqi mui-table-view-cell mui-media">';
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
@@ -398,11 +419,15 @@
                                 if(dataResult.data[i].actType=='F1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><i>今天前前排列第10位，仅需55元即可排名第5位</i><span data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    if(dataResult.data[i].rowNo>5){
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位，仅需'+dataResult.data[i].amount+'元即可排名第5位</i><span class="tgFun" data-amount="'+dataResult.data[i].amount+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                    }else{
+                                       strHtml+='<p><i>今天前前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='F2'){
-                                    strHtml+='<div class="shouqi mui-media">';
+                                    strHtml+='<div class="shouqi mui-table-view-cell mui-media">';
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
@@ -430,6 +455,14 @@
                         }
                     }
                 }) 
+                
+                $(".tgFun").click(function(){
+                    var p = {};
+                    p.id = $(this).attr("data-id");
+                    p.amount = $(this).attr("data-amount");
+                    appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                    openUrl("../user/zhifu.html","zhifu");
+                });
 			});
 		</script>
 	</body>

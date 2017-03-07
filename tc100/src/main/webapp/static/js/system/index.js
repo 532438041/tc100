@@ -117,7 +117,7 @@ indexApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "actList.html",
 		resolve : {
 			load : function($ocLazyLoad) {
-				return $ocLazyLoad.load([ "/tc100/static/js/system/actList.js" ]);
+				return $ocLazyLoad.load([ "/tc100/static/js/system/actList.js", "/tc100/static/js/My97DatePicker/WdatePicker.js" ]);
 			}
 		}
 	}).state("userMsgList", {

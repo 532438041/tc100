@@ -39,4 +39,6 @@ public interface ActiveService extends BaseService<Active> {
 
 	PageResult<Active> getActList(PageParam<Active> pageParam);
 
+	int upAct(Active active);
+
 }

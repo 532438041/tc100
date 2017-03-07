@@ -466,8 +466,8 @@ public class ActiveController {
 	}
 
 	@RequestMapping("/upAct")
-	public BaseResult upAct(Active active) {
-		return null;
+	public BaseResult upAct(@RequestBody BaseParam<Active> baseParam) {
+		return new BaseResult().success(activeService.upAct(baseParam.getParam()));
 	}
 
 }

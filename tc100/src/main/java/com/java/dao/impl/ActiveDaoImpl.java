@@ -12,7 +12,7 @@ import com.java.dao.ActiveDao;
 import com.java.entity.Active;
 
 @Repository
-public class ActiveDaoImpl extends BaseDaoImpl<Active>implements ActiveDao {
+public class ActiveDaoImpl extends BaseDaoImpl<Active> implements ActiveDao {
 
 	@Override
 	public List<Active> getActiveList(Active reqParam) {
@@ -60,6 +60,11 @@ public class ActiveDaoImpl extends BaseDaoImpl<Active>implements ActiveDao {
 	@Override
 	public List<Active> getActList(Active reqParam) {
 		return this.getSqlSession().selectList(getStateMentName("getActList"), reqParam);
+	}
+
+	@Override
+	public int upAct(Active active) {
+		return this.getSqlSession().update(getStateMentName("upAct"), active);
 	}
 
 }

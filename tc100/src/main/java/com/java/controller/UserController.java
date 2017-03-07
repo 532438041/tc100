@@ -1,7 +1,5 @@
 package com.java.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -252,8 +250,7 @@ public class UserController {
 	@RequestMapping(value = "/canPublic")
 	public BaseResult canPublic(String userId) throws Exception {
 		User user = userService.selectByPrimaryKey(userId);
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		if (user.getState().equals("3") && (df.parse(user.getUpdateTime().toString()).getTime() > new Date().getTime())) {
+		if (user.getState().equals("3") && new Date().compareTo(user.getUpdateTime()) < 0) {
 			// 禁止发布
 			return new BaseResult().success(0, "禁止发布");
 		} else {
@@ -264,6 +261,11 @@ public class UserController {
 			userService.updateByPrimaryKeySelective(user);
 			return new BaseResult().success(1, "正常发布");
 		}
+	}
+
+	@RequestMapping(value = "/changeUesrState")
+	public BaseResult changeUesrState(String userId, String state) {
+		return new BaseResult().success(userService.changeUesrState(userId, state));
 	}
 
 }

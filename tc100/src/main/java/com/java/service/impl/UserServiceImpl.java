@@ -15,7 +15,7 @@ import com.java.service.UserService;
 import com.java.utils.PageUtil;
 
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User>implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 
 	@Autowired
 	private UserDao userDao;
@@ -64,6 +64,11 @@ public class UserServiceImpl extends BaseServiceImpl<User>implements UserService
 	@Override
 	public int changePicUrl(String userName, String picUrl) {
 		return userDao.changePicUrl(userName, picUrl);
+	}
+
+	@Override
+	public int changeUesrState(String userId, String state) {
+		return userDao.changeUesrState(userId, state);
 	}
 
 }

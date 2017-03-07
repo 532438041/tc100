@@ -43,6 +43,7 @@
 					<td>{{actData.actType}}</td>
 					<td>{{actData.state | state : actData.state}}</td>
 					<td class="operate">
+						<a ng-click="editView(actData.id)">编辑</a>
 						<a ng-click="delObj(actData.id)">删除</a>
 					</td>
 				</tr>
@@ -52,4 +53,19 @@
 			
 		</div>
 	</div>
+	<form id="actForm" role="form" class="form-horizontal hidden">
+		<input type="hidden" id="id" name="id">
+		<div class="form-group">
+			<label for="startTime" class="col-sm-3 control-label">开始时间</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="startTime" name="startTime" onclick="WdatePicker()">
+			</div>
+        </div>
+        <div class="form-group">
+			<label for="endTime" class="col-sm-3 control-label">结束时间</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="endTime" name="endTime" onclick="WdatePicker()">
+			</div>
+        </div>
+	</form>
 </div>

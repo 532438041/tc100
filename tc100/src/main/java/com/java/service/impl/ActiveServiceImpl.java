@@ -16,7 +16,7 @@ import com.java.service.ActiveService;
 import com.java.utils.PageUtil;
 
 @Service
-public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveService {
+public class ActiveServiceImpl extends BaseServiceImpl<Active> implements ActiveService {
 
 	@Autowired
 	private ActiveDao activeDao;
@@ -71,6 +71,11 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active>implements ActiveS
 	public PageResult<Active> getActList(PageParam<Active> pageParam) {
 		PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
 		return PageUtil.toPagedResult(activeDao.getActList(pageParam.getReqParam()));
+	}
+
+	@Override
+	public int upAct(Active active) {
+		return activeDao.upAct(active);
 	}
 
 }

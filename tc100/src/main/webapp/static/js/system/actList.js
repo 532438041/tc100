@@ -65,4 +65,55 @@ indexApp.controller("actListController", function($scope, $http, $filter) {
 	$scope.resetSearch = function() {
 		$scope.s_userName = "";
 	};
+	
+	var modal = new Modal({
+		title : "编辑",
+		content : $('#actForm'),
+		onOk : function() {
+			var param = $("#actForm").serializeJson();
+			console.log(param);
+			if ($("#startTime").val().length>0 && $("#endTime").val().length>0) {
+				$http({
+					method : "post",
+					data : param,
+					url : "/tc100/upAct.json"
+				}).success(function(dataResult) {
+					if (dataResult.status == 0) {
+						alert(dataResult.msg);
+						return false;
+					} else {
+						alert("操作成功")
+						$scope.showList();
+					}
+				});
+			}else {
+				alert("请输入值");
+				return false;
+			}
+		},
+		onModalHide : function() {
+			// 初始化Modal
+			$("#startTime").val("");
+			$("#endTime").val("");
+		}
+	});
+	
+	$scope.editView = function(id) {
+		modal.setTitle("编辑");
+		$scope.getActById(id);
+		modal.open();
+	};
+	
+	$scope.getActById = function(id) {
+		$http({
+			method : "get",
+			url : "/tc100/getActive.json?actId=" + id
+		}).success(function(dataResult) {
+			var data = dataResult.data;
+			$("#id").val(id);
+			$("#startTime").val(data.startTime);
+			$("#endTime").val(data.endTime);
+		});
+	};
+	
 });

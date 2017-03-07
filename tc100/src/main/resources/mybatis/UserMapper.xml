@@ -258,9 +258,9 @@
 		select * from tc_user where user_name = #{userName}
 	</select>
 	<select id="getUserList" resultMap="UserDtoResultMap" parameterType="com.java.entity.User">
-		SELECT u.*, COUNT(f.`id`) favCount, 
+		SELECT u.*, COUNT(f.`id`) favCount,
 		(SELECT c.`card_name` FROM `tc_user_card` c WHERE c.user_id = u.`id` ORDER BY c.`state` DESC LIMIT 1)
- 		cardName FROM `tc_user` u
+		cardName FROM `tc_user` u
 		LEFT JOIN `tc_user_fav` f ON u.`id` = f.`user_id`
 		<where>
 			<if test="userName!=null and userName!=''">
@@ -285,17 +285,21 @@
 	<select id="getUserIdByMobile" parameterType="java.lang.String" resultType="java.lang.String">
 		select id from tc_user where mobile = #{mobile}
 	</select>
-	
+
 	<update id="changePwd" parameterType="java.util.HashMap">
 		update tc_user set user_pwd = #{userPwd} where user_name = #{userName}
 	</update>
-	
+
 	<update id="changeDisplayName" parameterType="java.util.HashMap">
 		update tc_user set display_name = #{displayName} where user_name = #{userName}
 	</update>
-	
+
 	<update id="changePicUrl" parameterType="java.util.HashMap">
 		update tc_user set pic_url = #{picUrl} where user_name = #{userName}
+	</update>
+
+	<update id="changeUesrState" parameterType="java.util.HashMap">
+		update tc_user set state = #{state} where id = #{userId}
 	</update>
 
 </mapper>

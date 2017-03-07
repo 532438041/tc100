@@ -241,40 +241,33 @@
     			<div class="pore">
     				<h3>输入位置代码<input id="code" type="text" value="" placeholder="输入位置代码" readonly="readonly" style="width: 12em;" /></h3>
     				<p class="bitian"><span>必填</span></p>
-    				<h3>所在市区域<input id="region" type="text" value="" placeholder="输入所在市区域" style="width: 12em;"/></h3>
-    				<p class="bitian"><span>必填</span></p>
     			</div>
     			<ul class="lei_1">
     				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费为<span id="sysParam"></span></li>
     			</ul>
-    			<div class="pore shouye222">
+    			<div class="pore shouye222" id="type1">
                     <h3><img src="../img/star.png" />样式1：首页显示</h3>
                     <p class="bitian"><span>必填</span></p>
                     <div>
                         <div class="fir">
-                            <img style="width:100%;" id="mainPic" src="../img/lizi2.png" />
+                            <img style="width:100%;" id="mainPic1" src="../img/lizi2.png" />
                         </div>
                         <div class="thi">
-                            <div>上传(建议尺寸：750*300)</div>
+                            <div class="filePicker">上传(建议尺寸：750*300)</div>
                         </div>
                     </div>
                 </div>
-    			<div class="pore shouye" id="type1">
-    				<h3><img src="../img/star.png" />样式2：首页显示</h3>
-    				<p class="bitian"><span>必填</span></p>
-    				<div>
-    					<div id="yulan" class="fir"><img id="mainPic" src="../img/lizi1.png" /></div>
-    					<div class="sec">
-    						<div id="filePicker">上传(建议尺寸：300*210)</div>
-    						<input type="text" value="" placeholder="请输入店铺名称" />
-    					</div>
-    					<textarea placeholder="活动简介内容输入"></textarea>
-    				</div>
-    			</div>
     			<div class="pore shouye" id="type2">
     				<h3><img src="../img/star.png" />样式2：首页显示</h3>
     				<p class="bitian"><span>必填</span></p>
-    				<textarea placeholder="活动简介内容输入" name="summary" id="summary"></textarea>
+    				<div>
+    					<div id="yulan" class="fir"><img id="mainPic2" src="../img/lizi1.png" /></div>
+    					<div class="sec">
+    						<div class="filePicker">上传(建议尺寸：300*210)</div>
+    						<input type="text" value="" placeholder="请输入店铺名称" name="shopName" id="shopName"/>
+    					</div>
+    					<textarea placeholder="活动简介内容输入" name="summary" id="summary"></textarea>
+    				</div>
     			</div>
     			
     			<div class="xiangqing">
@@ -321,6 +314,20 @@
             var type = getVal("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
+                // 判断用户是否可以发布
+                appcan.ajax({
+                    type:"post",
+                    url:host+"/canPublic.json?userId="+appcan.locStorage.getVal("userId"),
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        if(dataResult.status == 0){
+                            alert("该用户禁止发布，请联系管理员");
+                            window.location.href = "../index.html";
+                        }
+                    }
+                })
+                
                 // 获取模板生成说明
                 appcan.ajax({
                     type:"post",
@@ -366,7 +373,7 @@
                     server: host+"/image/uploadImg.json?userId="+appcan.locStorage.getVal("userId"),
                     // 选择文件的按钮。可选。
                     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-                    pick: '#filePicker',
+                    pick: '.filePicker',
                     // 只允许选择图片文件。
                     accept: {
                         title: 'Images',
@@ -377,7 +384,11 @@
                 
                 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
                 uploader.on('uploadSuccess', function(file, dataResult) {
-                    $("#mainPic").attr("src", hostIp+dataResult.data.imgUrl);
+                    if($("#type1").is(":visible")){
+                        $("#mainPic1").attr("src", hostIp+dataResult.data.imgUrl);
+                    }else{
+                        $("#mainPic2").attr("src", hostIp+dataResult.data.imgUrl);
+                    }
                     $(".mainPic").val(dataResult.data.imgUrl);
                 });
                 
@@ -395,9 +406,11 @@
                         $("#typeName").text("同城购活动");
                         break;
                     case "C1":
+                        $(".xiangqing").hide();
                         $("#typeName").text("超市模块");
                         break;
                     case "D1":
+                        $(".xiangqing").hide();
                         $("#typeName").text("孕婴模块");
                         break;
                     case "E1":
@@ -407,9 +420,11 @@
                         $("#typeName").text("房产模块");
                         break;
                     case "C2":
+                        $(".xiangqing").hide();
                         $("#typeName").text("超市模块");
                         break;
                     case "D2":
+                        $(".xiangqing").hide();
                         $("#typeName").text("婴育模块");
                         break;
                     case "E2":
@@ -425,7 +440,11 @@
                 $("#typeNum").text(num);
                 $("#code").val(type);
                 if(num == 1){
+                    $("#type1").show();
                     $("#type2").hide();
+                }else{
+                    $("#type1").hide();
+                    $("#type2").show();
                 }
                 
                 // 预览
@@ -449,14 +468,6 @@
                         });
                         return false;
                     }
-                    if($.trim($("#region").val()).length == 0){
-                        appcan.window.alert({
-                            title:'提示',
-                            content:'所在市区域不能为空',
-                            buttons:'确定'
-                        });
-                        return false;
-                    }
                     if($.trim($(".mainPic").val()).length == 0){
                         appcan.window.alert({
                             title:'提示',
@@ -473,7 +484,7 @@
                         });
                         return false;
                     }
-                    if($.trim($("#detailSummary").val()).length == 0){
+                    if($(".xiangqing").is(':visible') && $.trim($("#detailSummary").val()).length == 0){
                         appcan.window.alert({
                             title:'提示',
                             content:'活动简介不能为空',
@@ -485,7 +496,6 @@
                     var baseParam = {
                         userId : appcan.locStorage.getVal("userId"),
                         actType: type,
-                        region: $("#region").val(),
                         addName: appcan.locStorage.getVal("ipcity")
                     };
                     var param = $("#actForm").serializeJson(baseParam);
@@ -517,34 +527,6 @@
                    })
                 }
             })
-            
-            // 上传图片
-            function uploadImg(){
-                var data = {
-                    min:1,
-                    max:1,
-                    quality:0.8,
-                    detailedInfo:true
-                }
-                uexImage.openPicker(data,function(error,info){
-                    //上传图片
-                    var baseParam = {
-                        userId : appcan.locStorage.getVal("userId"),
-                        file : info.detailedImageInfo
-                    };
-                    var param = JSON.stringify(baseParam);
-                    appcan.ajax({
-                       type:"post",      
-                       url:host+"/image/uploadImg.json",
-                       data:param,
-                       dataType:"json",
-                       contentType: "application/json",
-                       success : function(dataResult) {
-                            $("mainPic").attr("src", dataResult.imgUrl);
-                       }
-                   })
-                });
-            }
         </script>
 	</body>
 

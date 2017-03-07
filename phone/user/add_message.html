@@ -19,7 +19,8 @@
         <script type="text/javascript" src="../js/appcan.js"></script>
         <script type="text/javascript" src="../js/appcan.control.js"></script>
         <script type="text/javascript" src="../js/common.js" ></script>
-		<!--<script type="text/javascript" src="js/upload_yulan.js" ></script>-->
+		<link rel="stylesheet" href="../js/webuploader/webuploader.css" />
+        <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
 		<title>同城搜添加</title>
 		<style>
             * {
@@ -107,7 +108,20 @@
                 overflow: hidden;
                 overflow-x: scroll;
             }
-            .imghezi img{ height: 3em; margin-right: 0.5em;}</style>
+            .imghezi img{ height: 3em; margin-right: 0.5em;}
+            .webuploader-pick{
+                position: absolute;
+                top: -2em;
+                right: 0em;
+                line-height: 1.8em;
+                border: 1px solid #ccc;
+                border-radius: 0.2em;
+                padding: 0em 0.5em;
+                font-size: 0.8em;
+                color: #999;
+                background-color: #fff;
+            }
+        </style>
 	</head>
 
 	<body>
@@ -125,26 +139,23 @@
 					<h3>基本信息<a>选择已有名片</a></h3>
 					<p><img src="../img/touxiang.png" /><i>店铺名：</i><input type="text" id="cardName" value="" readonly="readonly"/></p>
 					<p><i>主题：</i><input type="text" id="title" name="title" value="" /></p>
-					<p>提供服务的区域：当前城市：深圳市</p>
+					<p>提供服务的区域：当前城市：<span id="region"></span></p>
                     <p class="indexquyu">
-                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
-                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
-                       <a class="active">区域2</a><a>区域1</a><a>区域3</a><a>区域4</a>
+                       
                     </p>
                     <div class="main-text">
                         <p>内容</p>
+                        <div id="filePicker">上传图片</div>
                         <div class="imghezi">
-                            <div style="display: flex;">
-                                <img style="" src="../img/img_8.png" />
-                                <img style="" src="../img/img_8.png" />
-                                <img style="" src="../img/img_8.png" />
-                                <img style="" src="../img/img_8.png" />
-                                <img style="" src="../img/img_8.png" />
-                                <img style="" src="../img/img_8.png" />
+                            <div id="msg_pic" style="display: flex;">
+                                <img style="" src="" data-src=""/>
+                                <img style="" src="" data-src=""/>
+                                <img style="" src="" data-src=""/>
+                                <img style="" src="" data-src=""/>
+                                <img style="" src="" data-src=""/>
                             </div>
                         </div>
                         <textarea placeholder="请输入内容"></textarea>
-                        <span>上传图片</span>
                     </div>
 					<input class="submit" type="button" id="addMsg" value="发布" />
 				</div>
@@ -169,16 +180,70 @@
 			</nav>
 		</footer>
 		<script>
-        $(document).ready(function(){
-            $(".indexquyu a").click(function(){
-               if($(this).hasClass("active")){
-                   $(this).removeClass("active");   
-               }else{
-                   $(this).addClass("active");
-               };
+            $(document).ready(function(){
+                //查询 分类
+                appcan.ajax({
+                    type:"get",
+                    url:host+"/getAreaByName.json?cityName="+appcan.locStorage.getVal("ipcity"),
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var actStr = '';
+                        // 获取区域数据
+                        for(var i=0;i<dataResult.data.length;i++){
+                            actStr +='<a>'+dataResult.data[i].cityname+'</a>';
+                        }
+                        $(".indexquyu").html(actStr);
+                        
+                        $(".indexquyu a").click(function(){
+                           if($(this).hasClass("active")){
+                               $(this).removeClass("active");   
+                           }else{
+                               $(this).addClass("active");
+                           };
+                           var ccc = "";
+                           for(var i=($(".indexquyu .active").length); i>0; i--){
+                               ccc = $(".indexquyu .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
+                               $("#region").text(ccc);
+                           };
+                        });
+                    }
+                })
+                
+                // 初始化Web Uploader
+                var uploader = WebUploader.create({
+                    // 选完文件后，是否自动上传。
+                    auto: true,
+                    // swf文件路径
+                    swf: '../js/webuploader/Uploader.swf',
+                    // 文件接收服务端。
+                    server: host+"/image/uploadImg.json?userId="+appcan.locStorage.getVal("userId"),
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: '#filePicker',
+                    duplicate : true,
+                    // 只允许选择图片文件。
+                    accept: {
+                        title: 'Images',
+                        extensions: 'gif,jpg,jpeg,bmp,png',
+                        mimeTypes: 'image/*'
+                    }
+                });
+                
+                var i = 0;
+                // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                uploader.on('uploadSuccess', function(file, dataResult) {
+                    if(i>4){
+                        alert("最大上传五个");
+                        return false;
+                    }
+                    $("#msg_pic img").eq(i).attr("src", hostIp+dataResult.data.imgUrl);
+                    $("#msg_pic img").eq(i).attr("data-src", dataResult.data.imgUrl);
+                    i++;
+                });
+                
             });
-        });
-    </script>
+        </script>
         <script>
             var time = 0;
             var cardId = "";
@@ -229,12 +294,19 @@
                             if(!!!$("#title").val()){
                                 alert("主题不能为空！");
                                 return false;
-                            }else if(!!!$("#region").val()){
+                            }else if(!!!$("#region").text()){
                                 alert("区域内容不能为空");
                                 return false;
                             }
+                            var msgPics = "";
+                            for (var i=0; i < $("#msg_pic img").length; i++) {
+                                if($("#msg_pic img").eq(i).attr("data-src").length>0){
+                                    msgPics += ((msgPics.length>0 ? "," : "") + $("#msg_pic img").eq(i).attr("data-src"));
+                                }
+                            };
                             var msg = "添加成功！";
-                            var baseParam = {'cardId':cardId,"userId":appcan.locStorage.getVal("userId"),"addName":appcan.locStorage.getVal("ipcity")}
+                            var baseParam = {'cardId':cardId,"userId":appcan.locStorage.getVal("userId"),
+                            "addName":appcan.locStorage.getVal("ipcity"),"region":$("#region").text(),"msgPic":msgPics}
                             var param = $("#upchuan0").serializeJson(baseParam);
                             appcan.ajax({
                                type:"post",

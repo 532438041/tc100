@@ -45,6 +45,8 @@ public class Active {
 	private String region;
 
 	private String addName;
+	
+	private String rowNo;
 
 	private String createBy;
 
@@ -270,5 +272,13 @@ public class Active {
 
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+
+	public String getRowNo() {
+		return rowNo;
+	}
+
+	public void setRowNo(String rowNo) {
+		this.rowNo = rowNo;
 	}
 }

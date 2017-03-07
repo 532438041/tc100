@@ -80,7 +80,8 @@
             
             .shouqi li{ padding: 0.625em 1em; line-height: 1.25em; height: auto; overflow: hidden; color: #666; font-size: 0.8em;}
             section div.tu_tu{ width: 85%; overflow: hidden; position: relative; left: 15%; margin-left: -0.625em;     padding-top: 0.5em;padding-bottom: 0.5em;}
-            section div.tu_tu img{ width: 100%;}
+            section div.tu_tu img{ width: 85%;}
+            .mui-media img{ width: 25%;}
             section div.tu_tu p{ font-size: 0.6em; float: left; height: auto; overflow: hidden;    position: absolute;top: 0;right: 0;}
             section div.tu_tu span{ background:#fff;font-size: 1em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0.3em 1em; border-radius: 0.3125em;}
             section div.tu_tu i{ font-size:1em; border: 1px solid #ccc; padding: 0.6em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
@@ -139,8 +140,8 @@
                         <div class="shouqi mui-table-view-cell mui-media">
                             <a href="javascript:;">
                                 <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-                                <div class="mui-media-body">天天向上
-                                    <p class="mui-ellipsis">家里的马桶坏了，请人上门维修。</p>
+                                <div class="mui-media-body">
+                                    <p class="mui-ellipsis"></p>
                                     <i>编辑</i>
                                 </div>
                             </a>
@@ -163,8 +164,8 @@
                         <div class="shouqi mui-table-view-cell mui-media">
                             <a href="javascript:;">
                                 <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-                                <div class="mui-media-body">天天向上
-                                    <p class="mui-ellipsis">家里的马桶坏了，请人上门维修。</p>
+                                <div class="mui-media-body">
+                                    <p class="mui-ellipsis"></p>
                                     <i>编辑</i>
                                 </div>
                             </a>
@@ -187,8 +188,8 @@
                         <div class="shouqi mui-table-view-cell mui-media">
                             <a href="javascript:;">
                                 <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-                                <div class="mui-media-body">天天向上
-                                    <p class="mui-ellipsis">家里的马桶坏了，请人上门维修。</p>
+                                <div class="mui-media-body">
+                                    <p class="mui-ellipsis"></p>
                                     <i>编辑</i>
                                 </div>
                             </a>
@@ -262,7 +263,7 @@
                             for(var i=0;i<count;i++){
                                 strHtml+='<li><div class="tu_tu shouqi">';
                                 strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                strHtml+='<p><span data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
+                                strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
                                 strHtml+='</div></li>';
                             }
                             $(".Acount").html(strHtml);
@@ -286,7 +287,7 @@
                                 if(dataResult.data[i].actType=='B1'){
                                     strHtml+='<li><div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><span data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
+                                    strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
                                     strHtml+='</div></li>';
                                 }
                                 if(dataResult.data[i].actType=='B2'){
@@ -294,7 +295,7 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
+                                    strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                     strHtml+='</div></li>';
@@ -457,7 +458,8 @@
                 })
                 $(".editInfo").click(function(){
                     var actId = $(this).attr("data-id");
-                    openUrl("moban_shengcheng.html?actId="+actId,"moban_shengcheng");
+                    var type = $(this).attr("data-type");
+                    openUrl("moban_shiyong.html?actId="+actId+"&type="+type,"moban_shiyong");
                 }) 
 			});
 		</script>

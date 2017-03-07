@@ -23,4 +23,6 @@ public interface UserDao extends BaseDao<User>{
 
 	int changePicUrl(String userName, String picUrl);
 
+	int changeUesrState(String userId, String state);
+
 }

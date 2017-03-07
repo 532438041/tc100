@@ -26,9 +26,10 @@
 					<th class="w15">用户Id</th>
 					<th class="w15">用户名</th>
 					<th class="w20">用户昵称</th>
-					<th class="w20">最后登录日期</th>
+					<th class="w10">最后登录日期</th>
 					<th class="w15">创建日期</th>
 					<th class="w15">关注帖子</th>
+					<th class="w10">操作</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,6 +43,9 @@
 					<td>{{paramData.lastLoginTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
 					<td>{{paramData.createTime}}</td>
 					<td>{{paramData.favCount}}</td>
+					<td class="operate">
+						<a ng-click="changeUesrState(paramData.id)">解除禁止</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

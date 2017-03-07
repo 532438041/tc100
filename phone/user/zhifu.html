@@ -78,8 +78,9 @@
         <script>
             $(document).ready(function(){
                 var param = appcan.locStorage.getVal("param");
-                var actId = param.id;
-                var amount = param.amount;
+                var p = $.parseJSON(param);  
+                var actId = p.param.id;
+                var amount = p.param.amount;
                 $("#amount").html(amount);
                 $(".querenzhifu").click(function(){
                     var partner = "2088521594227441";
