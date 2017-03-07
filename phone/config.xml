@@ -7,14 +7,14 @@
     <license href=""/>
     <content encoding="utf-8" src="index.html"/>
     <updateurl/>
-    <logserverip/>
+    <logserverip>192.168.0.111</logserverip>
     <showmyspace>false</showmyspace>
     <obfuscation>true</obfuscation>
     <bgcolor>#fefefe</bgcolor>
     <orientation>15</orientation>
     <error src=""/>
     <removeloading/>
-    <debug/>
+    <debug>false</debug>
     <partobfuscation/>
     <webapp>false</webapp>
 </widget>

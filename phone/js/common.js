@@ -11,8 +11,8 @@
  * 全局参数
  */
 // 全局域名
-var hostIp = "http://localhost";
-var host = "http://localhost:8001/tc100";
+var hostIp = "http://47.89.28.238:81";
+var host = "http://47.89.28.238:8001/tc100";
 
 /**
  * 全局正则
@@ -138,8 +138,7 @@ function getIpPlace(){
 $(function(){
     var url = document.URL;
     if(url.indexOf("user/") != -1 && !!!appcan.locStorage.getVal("userId")){
-		appcan.locStorage.setVal("userId", "1");
-        //window.location.href="../login/login.html";
+		window.location.href="../login/login.html";
     }
     
     /**
@@ -182,20 +181,5 @@ $(function(){
         openUrl('../user/cardxiangqing.html?cardId='+cardId,'cardxiangqing');
     })
 })
-/*
-// 涓婁笅鎷夊姩鍒锋柊椤甸潰
-appcan.ready(function(){
-    appcan.window.setBounce({
-        bounceType:0,
-        startPullCall:function(type){
-        },
-        downEndCall:function(type){
-            window.location.reload();
-        },
-        upEndCall:function(type){
-            appcan.window.resetBounceView(type);
-        },
-        color:"#fff"
-    })
-})*/
+
 
