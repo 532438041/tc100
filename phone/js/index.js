@@ -2,14 +2,14 @@
     //用户id
     var userId = appcan.locStorage.getVal("userId");
     var userCardId = appcan.locStorage.getVal("userCardId");
-    console.log(userId);
-    console.log(userCardId);
     //获取ip所在的
     
     //地位地址存到缓存 若缓存数据为空 则现取 否则取缓存数据
     var ipcity = appcan.locStorage.getVal("ipcity");
     if(!!ipcity){
-        $("#ipcity").html(ipcity);
+        setTimeout(function(){
+             $("#ipcity").html(ipcity);
+        }, 500);
     }else{
         $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
             $("#ipcity").html(remote_ip_info.city);
