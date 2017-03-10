@@ -93,6 +93,14 @@ function serializePageJson(pageNum, pageSize, baseParam) {
  * @param {Object} urlStr
  */
 function openUrl(urlStr,urlName){
+    if(urlStr.indexOf("user/") != -1 && !!!appcan.locStorage.getVal("userId")){
+        if(window.location.href.indexOf("index") != -1){
+            openUrl("login/login.html","login");
+        }else{
+            openUrl("../login/login.html","login");
+        }
+        return false;
+    }
     // 将参数截取 放入到locStorage
     if (urlStr.indexOf("?") != -1) {   
       var str = urlStr.substr(urlStr.indexOf("?")+1);
@@ -138,9 +146,9 @@ function getIpPlace(){
 $(function(){
     var url = document.URL;
     if(url.indexOf("user/") != -1 && !!!appcan.locStorage.getVal("userId")){
-		window.location.href="../login/login.html";
+		openUrl("../login/login.html","login");
+        return false;
     }
-    
     /**
      * 放回上一级 
      */
