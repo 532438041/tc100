@@ -64,7 +64,7 @@
             }
             
             input{ background: none; border: 1px solid;}
-            input[type=text]{ border-color: #ccc;}
+            input[type=text],input[type=number]{ border-color: #ccc;}
             input[type="button"]{ background: none;}
             p,span{ font-size: 0.8em; color: #999;}
             .top input{ }
@@ -118,7 +118,7 @@
             .btn span.action a{ color: #ff3366; background: #fff; }
             
             @media screen and (max-width: 400px) {
-                .main i{ font-size: 0.6em; width: 40%;}
+                .main i{ font-size: 0.8em; width: 40%;}
                 .main input{ width: 50%;}
                 .main textarea{ width: 50%;}
                 .top{ height: 6.5em;}
@@ -145,7 +145,7 @@
 					<h3>编辑名片<a>选择其他名片</a></h3>
 					<p><i>名称或店铺名：</i><input type="text" value="" id="cardName" placeholder="请输入店铺名称" /></p>
 					<p><i>详细地址：</i><input type="text" value="" id="address" placeholder="请输入详细地址" /></p>
-					<p><i>联系电话：</i><input type="text" value="" id="telphone" placeholder="请输入联系电话" /></p>
+					<p><i>联系电话：</i><input type="number" value="" id="telphone" placeholder="请输入联系电话" /></p>
 					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" id="region"/></textarea></p>
 				</div>
 			</form>
@@ -185,7 +185,7 @@
 			</form>
 		</section>
 		<section class="btn">
-			<p>费用共<i id="amount">500</i>元</p>
+			<p>费用共<i id="amount">0</i>元</p>
 			<span  id="preview" class="action"><a>预览</a></span>
 			<span id="nextStep" ><a >发布</a></span>
 		</section>
@@ -224,8 +224,9 @@
                     
                     $(".indexquyu a").click(function(){
                        if($(this).hasClass("active")){
-                           $(this).removeClass("active");   
+                           $(this).removeClass("active");
                        }else{
+                           $(".indexquyu a").removeClass("active");
                            $(this).addClass("active");
                        };
                        var ccc = "";
@@ -467,8 +468,8 @@
                 };
                 var param = $("#fabuForm").serializeJson(baseParam);
                 var result = null;
-                // 有推荐码 直接发布
-                if(!!payCodeId){
+                // 有推荐码 或者价格是0 直接发布
+                if(!!payCodeId || $("#amount").text() == "0"){
                     appcan.ajax({
                        type:"post",
                        async:false,       

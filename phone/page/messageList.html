@@ -322,7 +322,7 @@
                     var actStr = '';
                     // 获取区域数据
                     for(var i=0;i<dataResult.data.length;i++){
-                        actStr +='<a class="active">'+dataResult.data[i].cityname+'</a>';
+                        actStr +='<a>'+dataResult.data[i].cityname+'</a>';
                     }
                     $(".quyu_zi").html(actStr);
                     
@@ -358,6 +358,7 @@
                                messageList(ccc);
                            };
                        }else{
+                           $(".quyu_zi a").removeClass("active");
                            $(this).addClass("active");
                            $("#quyu>a").text(" ");
                            var ccc = "";

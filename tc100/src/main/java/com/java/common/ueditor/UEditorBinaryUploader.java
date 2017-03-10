@@ -62,7 +62,7 @@ public class UEditorBinaryUploader {
 			}
 
 			String physicalPath = PathFormat.parse(savePath, originFileName);
-			String prefixPath = physicalPath.replace((String) conf.get("replacePrefix"), "");
+			String prefixPath = physicalPath.replace((String) conf.get("replacePrefix"), "tc");
 
 			InputStream is = file.getInputStream();
 			State storageState = StorageManager.saveFileByInputStream(is, physicalPath, maxSize);

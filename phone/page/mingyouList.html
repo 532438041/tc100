@@ -334,7 +334,7 @@
                     var actStr = '';
                     if(dataResult.data.length>0){
                         for(var i=0;i<dataResult.data.length;i++){
-                            actStr +='<li class="active" data-id="'+dataResult.data[i].cityname+'">'+dataResult.data[i].cityname+'</li>';
+                            actStr +='<li data-id="'+dataResult.data[i].cityname+'">'+dataResult.data[i].cityname+'</li>';
                         }
                     }
                     $("#quyu").html(actStr);
@@ -343,6 +343,7 @@
                         if($(this).hasClass("active")){
                            $(this).removeClass("active");
                         }else{
+                           $("#quyu li").removeClass("active");
                            $(this).addClass("active");
                         }
                         mingyouList();

@@ -53,15 +53,15 @@
             p {
                 margin: 0;
                 background: #fff;
-                padding: 0.625em;
-                font-size: 0.6em;
+                padding: 1em;
+                font-size: 0.8em;
                 line-height: 1em;
                 padding-top: 1.25em;
                 color: #333;
             }
             
             input{ background: none; border: 1px solid;}
-            input[type=text]{ border-color: #ccc;}
+            input[type=text]{ border-color: #ccc; font-size: 1em}
             input[type="button"]{ background: none;}
             p,span{ font-size: 0.8em; color: #999;}
             .top input{ }
@@ -73,11 +73,11 @@
             
             
             .main{ background: #fff;}
-            .main p{ border-bottom: 1px solid #ccc; text-indent: 0; padding-top: 0.625em; padding-right: 0; width: 50%; float: left;}
+            .main p{ border-bottom: 1px solid #ccc; text-indent: 0; padding-top: 1em; padding-right: 0; width: 50%; float: left;}
             .main input{ display: inline; width: 60%; margin-bottom: 0; padding: 0;}
             .main i{  font-style: normal;  float: left; text-align: right; line-height: 1.875em;}
-            .main input[type="text"]{ height: 3.875em; margin-right: 0.25em;}
-            .main textarea{ width: 75%; margin-bottom: 0;}
+            .main input[type="text"]{ height: 2em; margin-right: 0.25em;}
+            .main textarea{ width: 75%; margin-bottom: 0; font-size: 1em; padding: 0.5em; height:5em; line-height: 1.5em;}
             .main input[type=button]{ height:3em; font-size:0.8em; color:#fff; background: #ff3366; border: none; width: 40%; position: relative; left: 50%; margin-bottom: 1em; }
             #upload0{ display: none;}
             p.w100{ width: 100%;}
@@ -114,7 +114,7 @@
 					<div id="yulan"><img id="itemPic" src="../img/img_4.png" /></div>
 				</div>
 				<div class="main">
-					<p class="w100"><i>品名：</i><input type="text" value="" id="itemName" name="itemName"/></p>
+					<p class="w100"><i>名称：</i><input type="text" value="" id="itemName" name="itemName"/></p>
 					<p><i>原价：</i><input type="text" value="" id="listPrice" name="listPrice"/>斤</p>
 					<p><i>V：</i><input type="text" value="" id="listUnit" name="listUnit"/></p>
 					<p><i>特价：</i><input type="text" value="" id="spePrice" name="spePrice"/>斤</p>
@@ -185,6 +185,24 @@ $(document).ready(function(){
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: '#filePicker',
+        duplicate : true,
+        compress :{
+            width: 750,
+            height: 300,
+            // 图片质量，只有type为`image/jpeg`的时候才有效。
+            quality: 90,
+            // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+            allowMagnify: false,
+            // 是否允许裁剪。
+            crop: false,
+            // 是否保留头部meta信息。
+            preserveHeaders: true,
+            // 如果发现压缩后文件大小比原来还大，则使用原来图片
+            // 此属性可能会影响图片自动纠正功能
+            noCompressIfLarger: false,
+            // 单位字节，如果图片大小小于此值，不会采用压缩。
+            compressSize: 0
+        },
         // 只允许选择图片文件。
         accept: {
             title: 'Images',
@@ -198,6 +216,11 @@ $(document).ready(function(){
         $("#itemPic").attr("src", hostIp+dataResult.data.imgUrl);
         $(".itemPic").val(dataResult.data.imgUrl);
     });
+    uploader.on('uploadError', function(file, reason){
+        if(reason=="F_EXCEED_SIZE"){
+            alert("文件大小不能超过2M");
+        }
+    })
 });
 
 function saveItem(){

@@ -30,7 +30,7 @@
 		    .info p a{ color: #878787; padding-left: 2em; background: url(../img/fenbi.jpg) no-repeat 1em center; background-size: 1em auto;}
 		    .info>a{ border: 1px solid #ccc; padding: 0.5em; position: absolute; right: 1em; top: 2.5em; font-size: 0.8em; color: #878787; border-radius: 0.2em}
 		    .main{ padding: 0}
-		    .main li{ border-bottom: 0.2em solid #efeff4; padding: 0.5em}
+		    .main li{ border-bottom: 0.2em solid #efeff4; padding: 1em; font-size: 1.2em;}
 		    .main li a{ color: #878787; }
 		    #tuichu{ background: none;}
 		    #tuichu button{ font-size: 1.2em; background: #ff3366; color: #fff; width: 90%; margin-left: 5%; padding: 0.2em 1em; border-radius: 0.2em;}
@@ -56,7 +56,7 @@
         
         <section class="info">
             <img id="picUrl" src="../img/touxiang.jpg"/>
-            <p style="margin-top: 2em">昵称：<span id="displayName"></span><a id="change_name">编辑</a></p>
+            <p style="margin-top: 1em">昵称：<span id="displayName"></span><a id="change_name">编辑</a></p>
             <p id="mobile">电话：</p>
             <div id="filePicker">上传头像</div>
         </section>
@@ -117,6 +117,24 @@
                     // 选择文件的按钮。可选。
                     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
                     pick: '#filePicker',
+                    duplicate : true,
+                    compress :{
+                        width: 750,
+                        height: 300,
+                        // 图片质量，只有type为`image/jpeg`的时候才有效。
+                        quality: 90,
+                        // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                        allowMagnify: false,
+                        // 是否允许裁剪。
+                        crop: false,
+                        // 是否保留头部meta信息。
+                        preserveHeaders: true,
+                        // 如果发现压缩后文件大小比原来还大，则使用原来图片
+                        // 此属性可能会影响图片自动纠正功能
+                        noCompressIfLarger: false,
+                        // 单位字节，如果图片大小小于此值，不会采用压缩。
+                        compressSize: 0
+                    },
                     // 只允许选择图片文件。
                     accept: {
                         title: 'Images',
@@ -143,6 +161,12 @@
                         })
                     }
                 });
+                
+                uploader.on('uploadError', function(file, reason){
+                    if(reason=="F_EXCEED_SIZE"){
+                        alert("文件大小不能超过2M");
+                    }
+                })
                 
                 $("#change_name").click(function(){
                     mui.prompt('','请输入昵称','修改昵称',['确认','取消'],

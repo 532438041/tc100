@@ -90,8 +90,8 @@
                     var notifyUrl = "tc100";
                     uexAliPay.setPayInfo(partner, seller, rsaPrivate, rsaPublic, notifyUrl);
                     
-                    var subject = "tc100活动发布"+actId;
-                    var body = "tc100活动发布，版位收费";
+                    var subject = "同城100发布费用";
+                    var body = "同城100发布费用";
                     var fee = amount;
                     var num = actId; //测试需修改单号,避免已经支付的问题
                     uexAliPay.pay(num, subject, body, fee, function(error,data){

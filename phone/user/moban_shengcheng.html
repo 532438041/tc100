@@ -21,6 +21,11 @@
         <script type="text/javascript" src="../js/common.js" ></script>
         <link rel="stylesheet" href="../js/webuploader/webuploader.css" />
         <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
+        <script type="text/javascript" charset="utf-8" src="../js/ueditor/ueditor.config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="../js/ueditor/ueditor.all.min.js"> </script>
+        <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+        <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+        <script type="text/javascript" charset="utf-8" src="../js/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<title>模版生成</title>
 		<style>
             * {
@@ -103,7 +108,7 @@
             section i ,.lei_1 li{
                 font-style: normal;
                 font-weight: normal;
-                font-size: 0.6em;
+                font-size: 0.8em;
                 color: #cd4400;
             }
             
@@ -156,7 +161,7 @@
                     margin: 0;
                 }
             }
-            textarea{ height: 6.5em; margin: 0 4%; width: 92%; font-size: 1em; line-height: 1.2em;}
+            textarea{ height: 6.5em; margin: 0 4%; width: 92%; font-size: 0.8em; line-height: 1.2em; padding: 1em;}
             .upload h3{ font-style: normal; font-weight: normal; width: 100%; color: #666;}
             .upload h3 input[type=text]{ width: auto; display: inline; height: 1.875em; margin-left: 0.625em;     font-size: 1em;
     margin-bottom: 0;
@@ -164,7 +169,7 @@
             .pore{ position: relative;}
             .bitian{ position: absolute; right: 0.625em; top: 0;}
             .lei_1{ padding-top: 0.625em; background: #f8f8f8;}
-            .lei_1 li{ text-align: right; margin-right: 1em; line-height: 1.25em; height: 1.875em;}
+            .lei_1 li{ text-align: center; margin-right: 1em; line-height: 1.25em; height: 1.875em; font-size: 0.8em;}
             .shouye img{ height: 0.625em;}
             .shouye>div .fir,.shouye>div .sec{float: left; clear: none; padding: 0 0.5em;}
             .shouye>div div img{ width: 100%; height: auto;}
@@ -219,6 +224,10 @@
             .thi div{ margin-bottom: 1em; width:80%; margin-left:10%; font-size: 0.8em; line-height: 2em; height: 2em; background: #ff3366; border-radius: 0.2em; color: #fff; text-align:center;}
             .shouye222 .fir{ width: 100%; padding: 0 5%;};
             .fir img{ width: 100%;}
+            .border_b{ border-bottom: 1px solid #ccc;}
+            #htmlStr{ display:none; padding: 1em; width: 100%; font-size: 0.8em;}
+            
+            .fixed{ position: fixed; bottom: 0; width: 100%; background: #fff;}
         </style>
 	</head>
 
@@ -229,7 +238,7 @@
 			<a class="xiaoxi6" href="javascript:;" onclick="openUrl('daizuo.html','daizuo')">请人代做</a>
 		</header>
 		<section class="shuoming">
-			<div>
+			<div class="border_b">
 				<h3>说明</h3>
 				<p><span class="rightright"></span></p>
 			</div>
@@ -238,7 +247,7 @@
 		<section class="upload">
 		    <form id="actForm">
 		        <input type="hidden" name="mainPic" class="mainPic" value="" />
-    			<div class="pore">
+    			<div class="pore" style="display: none;">
     				<h3>输入位置代码<input id="code" type="text" value="" placeholder="输入位置代码" readonly="readonly" style="width: 12em;" /></h3>
     				<p class="bitian"><span>必填</span></p>
     			</div>
@@ -284,16 +293,16 @@
     				</div>
     				<div>
     					<textarea placeholder="活动简介内容添加" name="detailSummary" id="detailSummary"></textarea>
-    					<textarea placeholder="附文本编辑器" name="detailContent" id="detailContent"></textarea>
+    					<script id="editor" name="detailContent" type="text/plain" style="margin: 0.5em 4%; height: 10em; width: 95%"></script>
     				</div>
     			</div>
     			<div class="name">
-    				<h3>命名此模板<input type="text" value="" placeholder="A1" name="actName"/></h3>
-    				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4">推送此模版</a>
+    				<h3>命名此模板<input type="text" value="" placeholder="A1" name="actName" id="actName"/></h3>
+    				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4 tuisong">推送此模版</a>
     			</div>
     			<div class="submit">
-    				<input value="" type="text" placeholder="输入接收对方账户名" />
-    				<input value="推送" type="submit"  />
+    				<input id="duifang" value="" type="text" placeholder="输入接收对方账户名" />
+    				<input value="推送" type="button" id="tsFun" />
     			</div>
 			</form>
 		</section>
@@ -303,6 +312,38 @@
 		       $("label").click(function(){
 		          $(this).next("input").click(); 
 		       });
+		       $(".shuoming").click(function(){
+		          
+		       });
+		       $(".border_b").click(function(){
+		           
+		           if($("#htmlStr").css("display") == "none"){
+		               $("#htmlStr").show();
+		               $(this).find("span").romoveClass("rightright");
+		               $(this).find("span").addClass("toptop");
+		           }else{
+		               $("#htmlStr").hide();
+		               $(this).find("span").romoveClass("toptop");
+                       $(this).find("span").addClass("rightright");
+		           }
+		       });
+		       $(".tuisong").click(function(){
+		           $('#duifang').focus();
+		       })
+		       
+		       $('#duifang').on("focus",function(){
+		           $(this).parents(".submit").addClass("fixed");
+               }); 
+               $('#duifang').on("blur",function(){
+                   $(this).parents(".submit").removeClass("fixed");
+               }); 
+               $('#actName').on("focus",function(){
+                   $(this).parents(".name h3").addClass("fixed");
+               }); 
+               $('#actName').on("blur",function(){
+                   $(this).parents(".name h3").removeClass("fixed");
+               }); 
+               
 		   });
 		</script>
         <script>
@@ -314,6 +355,8 @@
             var type = getVal("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
+                var ue = UE.getEditor('editor');
+                
                 // 判断用户是否可以发布
                 appcan.ajax({
                     type:"post",
@@ -323,7 +366,7 @@
                     success : function(dataResult) {
                         if(dataResult.status == 0){
                             alert("该用户禁止发布，请联系管理员");
-                            window.location.href = "../index.html";
+                            openUrl("../index.html","index");
                         }
                     }
                 })
@@ -374,6 +417,24 @@
                     // 选择文件的按钮。可选。
                     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
                     pick: '.filePicker',
+                    duplicate : true,
+                    compress :{
+                        width: 750,
+                        height: 300,
+                        // 图片质量，只有type为`image/jpeg`的时候才有效。
+                        quality: 90,
+                        // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                        allowMagnify: false,
+                        // 是否允许裁剪。
+                        crop: false,
+                        // 是否保留头部meta信息。
+                        preserveHeaders: true,
+                        // 如果发现压缩后文件大小比原来还大，则使用原来图片
+                        // 此属性可能会影响图片自动纠正功能
+                        noCompressIfLarger: false,
+                        // 单位字节，如果图片大小小于此值，不会采用压缩。
+                        compressSize: 0
+                    },
                     // 只允许选择图片文件。
                     accept: {
                         title: 'Images',
@@ -391,6 +452,12 @@
                     }
                     $(".mainPic").val(dataResult.data.imgUrl);
                 });
+                
+                uploader.on('uploadError', function(file, reason){
+                    if(reason=="F_EXCEED_SIZE"){
+                        alert("文件大小不能超过2M");
+                    }
+                })
                 
                 // 若类型传参错误 则返回上一个页面
                 if(type == "0"){
@@ -476,6 +543,10 @@
                         });
                         return false;
                     }
+                    if($("#type2").is(':visible') && $.trim($("#shopName").val()).length == 0){
+                        alert("店铺名称不能为空")
+                        return false;
+                    }
                     if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
                         appcan.window.alert({
                             title:'提示',
@@ -526,6 +597,94 @@
                        }
                    })
                 }
+                
+                // 推送
+                $("#tsFun").click(function(){
+                   if($("#duifang").val().length == 0){
+                       alert("输入接收对方账户名");
+                   }else{
+                       appcan.ajax({
+                            type:"post",
+                            url:host+"/checkUser.json?userName="+$("#duifang").val(),
+                            dataType:"json",
+                            contentType: "application/json",
+                            success : function(dataResult1) {
+                                if(dataResult1.status == 0){
+                                    alert(dataResult1.msg);
+                                }else{
+                                    // 数据校验
+                                    if($.trim($("#code").val()).length == 0){
+                                        appcan.window.alert({
+                                            title:'提示',
+                                            content:'位置代码不能为空',
+                                            buttons:'确定'
+                                        });
+                                        return false;
+                                    }
+                                    if($.trim($(".mainPic").val()).length == 0){
+                                        appcan.window.alert({
+                                            title:'提示',
+                                            content:'上传活动图片',
+                                            buttons:'确定'
+                                        });
+                                        return false;
+                                    }
+                                    if($("#type2").is(':visible') && $.trim($("#shopName").val()).length == 0){
+                                        alert("店铺名称不能为空")
+                                        return false;
+                                    }
+                                    if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
+                                        appcan.window.alert({
+                                            title:'提示',
+                                            content:'活动简介不能为空',
+                                            buttons:'确定'
+                                        });
+                                        return false;
+                                    }
+                                    if($(".xiangqing").is(':visible') && $.trim($("#detailSummary").val()).length == 0){
+                                        appcan.window.alert({
+                                            title:'提示',
+                                            content:'活动简介不能为空',
+                                            buttons:'确定'
+                                        });
+                                        return false;
+                                    }
+                                    
+                                    var baseParam = {
+                                        userId : appcan.locStorage.getVal("userId"),
+                                        actType: type,
+                                        addName: appcan.locStorage.getVal("ipcity")
+                                    };
+                                    var param = $("#actForm").serializeJson(baseParam);
+                                    var result = null;
+                                    appcan.ajax({
+                                       type:"post",
+                                       async:false,       
+                                       url:host+"/saveAct.json",
+                                       data:param,
+                                       dataType:"json",
+                                       contentType: "application/json",
+                                       success : function(dataResult) {
+                                            result = dataResult;
+                                            appcan.ajax({
+                                                type:"post",
+                                                url:host+"/operateAct.json?fromActId="+dataResult.data
+                                                +"&userId="+dataResult1.data.id+"&fromUserId="+appcan.locStorage.getVal("userId")
+                                                +"&logType=5",
+                                                dataType:"json",
+                                                contentType: "application/json",
+                                                success : function(dataResult) {
+                                                    openUrl("../index.html","index");
+                                                }
+                                            })
+                                       }
+                                   })
+                                }
+                            }
+                        })
+                   }
+               })
+               
             })
         </script>
 	</body>

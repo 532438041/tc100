@@ -151,6 +151,7 @@ public class LoginController {
 		if (ToolsUtil.isNull(user)) {
 			return baseResult.failed(0, "用户名不存在！");
 		}
+		baseResult.setData(user);
 		return baseResult.success(1, "验证成功！");
 	}
 
