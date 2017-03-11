@@ -340,6 +340,7 @@
                     $("#quyu").html(actStr);
                     
                     $("#quyu li").click(function(){
+                        $(this).parent().hide();
                         if($(this).hasClass("active")){
                            $(this).removeClass("active");
                         }else{
@@ -364,15 +365,17 @@
                     var actStr = '';
                     if(dataList.length > 0){
                         for(var i=0;i<dataList.length;i++){
-                            actStr +='<li class="active" data-id='+dataList[i].id+'>'+dataList[i].cateName+'</li>';
+                            actStr +='<li data-id='+dataList[i].id+'>'+dataList[i].cateName+'</li>';
                         }
                     }
                     $("#cate").html(actStr);
                     
                     $("#cate li").click(function(){
+                        $(this).parent().hide();
                         if($(this).hasClass("active")){
                            $(this).removeClass("active");
                         }else{
+                           $("#cate li").removeClass("active");
                            $(this).addClass("active");
                         }
                         mingyouList();
@@ -393,9 +396,8 @@
         });
         
         function mingyouList () {
-            var baseSearchParam = getSearchType();
             var baseParam = {'actType':'A1','addName':appcan.locStorage.getVal("ipcity")}
-            baseParam = Object.assign(baseParam,baseSearchParam);
+            baseParam = getSearchType(baseParam);
             var param = serializePageJson(1,20,baseParam);
             appcan.ajax({
                 type:"post",
@@ -413,21 +415,19 @@
                 }
             })
         }
-        function getSearchType () {
-            var baseSearchParam = {'region':'','cateId':'','orderBy':''}
-            var searchType = "";
+        function getSearchType (baseParam) {
             $(".quyu li").each(function(){
                 if($(this).parent().attr("id")=='quyu' && $(this).hasClass("active")){
-                    baseSearchParam.region = (baseSearchParam.region.length == 0?baseSearchParam.region:(baseSearchParam.region+","))+$(this).attr("data-id");
+                    baseParam.region = $(this).attr("data-id");
                 }
                 if($(this).parent().attr("id")=='cate' && $(this).hasClass("active")){
-                    baseSearchParam.cateId = (baseSearchParam.cateId.length == 0?baseSearchParam.cateId:(baseSearchParam.cateId+","))+$(this).attr("data-id");
+                    baseParam.cateId = $(this).attr("data-id");
                 }
                 if($(this).parent().attr("id")=='sort' && $(this).hasClass("active")){
-                    baseSearchParam.orderBy = $(this).attr("data-id");
+                    baseParam.orderBy = $(this).attr("data-id");
                 }
             })
-            return baseSearchParam;
+            return baseParam;
         }
         </script>
 	</body>

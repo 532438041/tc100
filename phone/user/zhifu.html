@@ -105,6 +105,7 @@
                                contentType: "application/json",
                                success : function(dataResult) {
                                     result = dataResult;
+                                    alert("操作成功");
                                     if(obj == "preview"){
                                        if(result.status > 0){
                                             openUrl("../page/info.html?actId="+actId,"page_info");

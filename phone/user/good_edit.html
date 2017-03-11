@@ -330,7 +330,6 @@
 		</header>
 		<section class="buff">
 			<a class="active">正在发布</a>
-			<a>已下架</a>
 		</section>
 		
 		<section class="shucailei" id="addView">
@@ -389,7 +388,7 @@
                        +itemList[j].speUnit+'g</i>原价：<s>'
                        +itemList[j].listPrice+'元/'
                        +itemList[j].listUnit+'g</s></p><p>时间：'
-                       +itemList[j].startTime+'-'
+                       +itemList[j].startTime+' 至 '
                        +itemList[j].endTime+'</p><p class="mui-ellipsis">说明：'
                        +itemList[j].remark+'</p></div><p class="del_bianji"><a onclick="delGood(\''+itemList[j].id+'\');">删除</a><a onclick="getGood(\''+itemList[j].id+'\',\''+data[i].cateId+'\');">编辑</a></p></div></li>';
                      };

@@ -115,7 +115,7 @@ public class LoginController {
 		// 查重校验
 		status = userService.checkRegister(baseParam.getParam());
 		if (status > 0) {
-			return baseResult.failed(-1, "该手机号/邮箱已注册！");
+			return baseResult.failed(-1, "该用户已注册！");
 		}
 		baseParam.getParam().setId(ToolsUtil.getUUID());
 		baseParam.getParam().setUserPwd(ToolsUtil.MD5(baseParam.getParam().getId() + baseParam.getParam().getUserPwd()));

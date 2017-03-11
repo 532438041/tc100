@@ -322,7 +322,7 @@
                                 if(dataResult.data[i].actType=='C1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><span data-id="'+dataResult.data[i].id+'">编辑</span></p>';
+                                    strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods">编辑商品</span>&nbsp;<span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='C2'){
@@ -330,7 +330,7 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">编辑</i>';
+                                    strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods" style="margin-right: 3.5em;">编辑商品</i>&nbsp;<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
@@ -356,7 +356,7 @@
                                 if(dataResult.data[i].actType=='D1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><span data-id="'+dataResult.data[i].id+'">编辑</span></p>';
+                                    strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods">编辑商品</span>&nbsp;<span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='D2'){
@@ -364,7 +364,7 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">编辑</i>';
+                                    strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods" style="margin-right: 3.5em;">编辑商品</i>&nbsp;<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
@@ -390,7 +390,7 @@
                                 if(dataResult.data[i].actType=='E1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><span data-id="'+dataResult.data[i].id+'">编辑</span></p>';
+                                    strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='E2'){
@@ -398,7 +398,7 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">编辑</i>';
+                                    strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
@@ -424,7 +424,7 @@
                                 if(dataResult.data[i].actType=='F1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    strHtml+='<p><span data-id="'+dataResult.data[i].id+'">编辑</span></p>';
+                                    strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='F2'){
@@ -432,7 +432,7 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">编辑</i>';
+                                    strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
@@ -459,7 +459,13 @@
                 $(".editInfo").click(function(){
                     var actId = $(this).attr("data-id");
                     var type = $(this).attr("data-type");
-                    openUrl("moban_shiyong.html?actId="+actId+"&type="+type,"moban_shiyong");
+                    openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                })
+                
+                $(".editGoods").click(function(){
+                    var actId = $(this).attr("data-id");
+                    var type = $(this).attr("data-type");
+                    openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
                 }) 
 			});
 		</script>

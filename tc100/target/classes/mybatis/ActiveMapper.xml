@@ -245,10 +245,10 @@
 			<if test="state != null and state != ''">
 				state = #{state,jdbcType=CHAR},
 			</if>
-			<if test="startTime != null and startTime != ''">
+			<if test="startTime != null">
 				start_time = #{startTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="endTime != null and endTime != ''">
+			<if test="endTime != null">
 				end_time = #{endTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="viewCount != null and viewCount != ''">
@@ -266,13 +266,13 @@
 			<if test="createBy != null and createBy != ''">
 				create_by = #{createBy,jdbcType=CHAR},
 			</if>
-			<if test="createTime != null and createTime != ''">
+			<if test="createTime != null">
 				create_time = #{createTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="updateBy != null and updateBy != ''">
 				update_by = #{updateBy,jdbcType=CHAR},
 			</if>
-			<if test="updateTime != null and updateTime != ''">
+			<if test="updateTime != null ">
 				update_time = #{updateTime,jdbcType=TIMESTAMP},
 			</if>
 		</set>

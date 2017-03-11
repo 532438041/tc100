@@ -14,7 +14,7 @@
     <orientation>15</orientation>
     <error src=""/>
     <removeloading/>
-    <debug>false</debug>
+    <debug>true</debug>
     <partobfuscation/>
     <webapp>false</webapp>
 </widget>

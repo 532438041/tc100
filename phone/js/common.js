@@ -170,9 +170,9 @@ $(function(){
     })
     $("#myfabu").click(function(){
         if(window.location.href.indexOf("index") != -1){
-            openUrl('user/fabuxuanze.html','fabuxuanze');
+            openUrl('page/fabuxuanze.html','fabuxuanze');
         }else{
-            openUrl('../user/fabuxuanze.html','fabuxuanze');
+            openUrl('../page/fabuxuanze.html','fabuxuanze');
         }
     })
     $("#tcIndex").click(function(){

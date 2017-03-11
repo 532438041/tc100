@@ -144,7 +144,7 @@
                             if(dataResult.status==1){
                                 openUrl("regi_succ.html","regi_succ");
                             }else{
-                                alert("注册失败");   
+                                alert(dataResult.msg);   
                                 openUrl("register.html","register");
                             }
                         }

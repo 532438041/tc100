@@ -163,9 +163,9 @@
 					<p>
 						<i>截止时间：</i>
 						<input class="time" type="date" value="" placeholder="" name="endTime" id="endTime"/>
-						<span>注：最长发布不得超过10天，四大模块为1个月</span>
+						<span>注：最长发布不得超过10天，四大模块为6个月</span>
 					</p>
-					<p>提供服务的区域：当前城市：<span id="actregion"></span></p>
+					<p>提供服务的区域：<span id="actregion"></span></p>
                     <p class="indexquyu">
                        
                     </p>
@@ -295,6 +295,25 @@
                })
             })
             
+            if(!!getVal("actId")){
+                // 编辑页面获取数据
+                appcan.ajax({
+                    type:"post",
+                    url:host+"/getActive.json?actId="+getVal("actId"),
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        if(!!dataResult.data){
+                            var data = dataResult.data;
+                            $("#startTime").val(data.startTime);
+                            $("#endTime").val(data.endTime);
+                            $("#actregion").text(data.region)
+                            $("#cateId").val(data.cateId);
+                        }
+                    }
+                })
+            }
+            
             // 若类型传参错误 则返回上一个页面
             if(type == "0"){
                 appcan.window.close(-1); 
@@ -413,8 +432,8 @@
                         }
                         $("#amount").text(price*days);
                     }else if(unit == "月"){
-                        if(days > 30){
-                            alert("最长发布不得超过1个月！");
+                        if(days > 180){
+                            alert("最长发布不得超过6个月！");
                             $("#endTime").val("");
                             return false;
                         }
@@ -479,6 +498,7 @@
                        contentType: "application/json",
                        success : function(dataResult) {
                             result = dataResult;
+                            alert("操作成功");
                             if(obj == "preview"){
                                if(result.status > 0){
                                     openUrl("../page/info.html?actId="+actId,"page_info");

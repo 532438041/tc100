@@ -297,7 +297,7 @@
     				</div>
     			</div>
     			<div class="name">
-    				<h3>命名此模板<input type="text" value="" placeholder="A1" name="actName" id="actName"/></h3>
+    				<h3>命名此模板<input type="text" value="" name="actName" id="actName"/></h3>
     				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4 tuisong">推送此模版</a>
     			</div>
     			<div class="submit">
@@ -459,6 +459,38 @@
                     }
                 })
                 
+                if(!!getVal("actId")){
+                    // 编辑页面获取数据
+                    appcan.ajax({
+                        type:"post",
+                        url:host+"/getActive.json?actId="+getVal("actId"),
+                        dataType:"json",
+                        async:false,    
+                        contentType: "application/json",
+                        success : function(dataResult) {
+                            if(!!dataResult.data){
+                                var data = dataResult.data;
+                                type = data.actType;
+                                $("#code").val(data.actType);
+                                $(".mainPic").val(data.mainPic);
+                                $("#mainPic1").attr("src", hostIp+data.mainPic);
+                                $("#mainPic2").attr("src", hostIp+data.mainPic);
+                                $("#shopName").val(data.shopName);
+                                $("#summary").val(data.summary);
+                                $("input:radio[value='"+data.isInit+"']").attr('checked','true');
+                                $("#detailSummary").val(data.detailSummary);
+                                $("#actName").val(data.actName);
+                                //判断ueditor 编辑器是否创建成功
+                                ue.addListener("ready", function () {
+                                    // editor准备好之后才可以使用
+                                    ue.setContent(data.detailContent);
+                                });
+                                num = type.substring(1,type.length);
+                            }
+                        }
+                    })
+                }
+                
                 // 若类型传参错误 则返回上一个页面
                 if(type == "0"){
                     appcan.window.close(-1); 
@@ -565,6 +597,7 @@
                     }
                     
                     var baseParam = {
+                        id : getVal("actId"),
                         userId : appcan.locStorage.getVal("userId"),
                         actType: type,
                         addName: appcan.locStorage.getVal("ipcity")
@@ -587,11 +620,12 @@
                             }else{
                                if(result.status > 0){
                                     // 只有超市 婴育
-                                    if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
-                                        openUrl("good_edit.html?type="+type+"&actId="+result.data,"good_edit");
-                                    }else{
-                                        openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
-                                    }
+                                    openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
+                                    //if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
+                                        //openUrl("good_edit.html?type="+type+"&actId="+result.data,"good_edit");
+                                    //}else{
+                                        //openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
+                                    //}
                                }
                            }
                        }
@@ -674,6 +708,7 @@
                                                 dataType:"json",
                                                 contentType: "application/json",
                                                 success : function(dataResult) {
+                                                    alert("操作成功")
                                                     openUrl("../index.html","index");
                                                 }
                                             })
