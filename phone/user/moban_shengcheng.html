@@ -225,9 +225,8 @@
             .shouye222 .fir{ width: 100%; padding: 0 5%;};
             .fir img{ width: 100%;}
             .border_b{ border-bottom: 1px solid #ccc;}
-            #htmlStr{ display:none; padding: 1em; width: 100%; font-size: 0.8em;}
+            #htmlStr{ display:none; padding: 1em; width: 100%; font-size: 0.8em; height: auto; overflow: hidden}
             
-            .fixed{ position: fixed; bottom: 0; width: 100%; background: #fff;}
         </style>
 	</head>
 
@@ -330,19 +329,6 @@
 		       $(".tuisong").click(function(){
 		           $('#duifang').focus();
 		       })
-		       
-		       $('#duifang').on("focus",function(){
-		           $(this).parents(".submit").addClass("fixed");
-               }); 
-               $('#duifang').on("blur",function(){
-                   $(this).parents(".submit").removeClass("fixed");
-               }); 
-               $('#actName').on("focus",function(){
-                   $(this).parents(".name h3").addClass("fixed");
-               }); 
-               $('#actName').on("blur",function(){
-                   $(this).parents(".name h3").removeClass("fixed");
-               }); 
                
 		   });
 		</script>
