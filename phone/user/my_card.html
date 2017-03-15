@@ -125,6 +125,15 @@
                         $("#cardList").html(cardStr);
                         
                         $(".card_list li").click(function(){
+                            var returnUrl = getVal("returnUrl");
+                            if(!!returnUrl){
+                                setVal("returnUrl", "");
+                                if(returnUrl == "msg"){
+                                    openUrl('add_message.html?cardId='+$(this).attr("data-id"), 'add_message');
+                                }else{
+                                    openUrl('moban_shiyong.html?cardId='+$(this).attr("data-id"), 'moban_shiyong');
+                                }
+                            }
                             if( $(this).find("span").css("display") == "block"){
                                 $(".card_list li span").hide();
                                 $(this).find("span").hide();

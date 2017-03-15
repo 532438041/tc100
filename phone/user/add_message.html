@@ -85,7 +85,7 @@
             #upload0{ display: none;}
             .main h3{ line-height: 3.125em; height: 2.5em; text-indent: 1em; font-size: 1.2em; color: #666; border-bottom: 1px solid #ccc;}
             .main h3 a{ font-size: 0.8em; color: #ccc; float: right; margin-right: 1em; border: 1px solid #ccc; height: 1.875em; line-height: 1.875em; text-align: center; text-indent: 0; padding: 0 0.375em; border-radius: 0.3125em; margin-top: 0.625em;}
-            .main p img{ height: 2.5em; position: absolute; left: 1.25em;}
+            .main p img{ height: 3em; width: 3em; position: absolute; left: 1.25em;}
             
             @media screen and (max-width: 400px) {
                 .main i{ font-size: 0.8em; width: 40%;}
@@ -136,8 +136,8 @@
 					<p>本板块为买房发布区域，你可以发布你要买(租)的信息。有卖方(服务提供方)回答。每个账号两次信息发布时间间隔为一小时。</p>
 				</div>
 				<div class="main">
-					<h3>基本信息<a>选择已有名片</a></h3>
-					<p><img src="../img/touxiang.png" /><i>店铺名：</i><input type="text" id="cardName" value="" readonly="readonly"/></p>
+					<h3>基本信息<a onclick="openUrl('my_card.html?returnUrl=msg', 'my_card');">选择已有名片</a></h3>
+					<p><img id="touxiang" src="../img/touxiang.png" /><i>店铺名：</i><input type="text" id="cardName" value="" readonly="readonly"/></p>
 					<p><i>主题：</i><input type="text" id="title" name="title" value="" /></p>
 					<p>提供服务的区域：当前城市：<span id="region"></span></p>
                     <p class="indexquyu">
@@ -274,7 +274,23 @@
             var flag = false;
             // JavaScript Document
             $(document).ready(function(){
-                  //获取默认名片夹
+                var cardId = getVal("cardId");
+                if(!!cardId){
+                    //获取修改对象
+                    appcan.ajax({
+                       type:"post",
+                       url:host+"/getCard.json?cardId="+cardId,
+                       dataType:"json",
+                       contentType: "application/json",
+                       success : function(dataResult) {
+                           var data = dataResult.data; 
+                           cardId = data.id;
+                            $("#cardName").val(data.cardName);
+                            $("#cardRegion").val(data.region);
+                            $("#touxiang").attr("src", hostIp + data.picUrl);
+                       }
+                   })
+                }else{//获取默认名片夹
                    appcan.ajax({
                        type:"get",     
                        url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
@@ -286,9 +302,11 @@
                                 cardId = data[0].id;
                                 $("#cardName").val(data[0].cardName);
                                 $("#cardRegion").val(data[0].region);
+                                $("#touxiang").attr("src", hostIp + data[0].picUrl);
                             }
                        }
                    })
+                }
                    //最后一发布信息时间
                   appcan.ajax({
                        type:"post",

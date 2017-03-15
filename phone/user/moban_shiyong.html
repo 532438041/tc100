@@ -139,13 +139,13 @@
 			<form>
 				<div class="top">
 					<p>当前发布位置为<i id="typeName" style="color: #cd4400"></i>，样式类型为<i id="typeNum" style="color: #cd4400"></i>，资费为<i id="sysParam"></i></p>
-					<h3><a onclick="openUrl('add_card.html', 'add_card');">完善名片</a></h3>
+					<h3><a>完善名片</a></h3>
 				</div>
 				<div class="main">
-					<h3>编辑名片<a>选择其他名片</a></h3>
-					<p><i>名称或店铺名：</i><input type="text" value="" id="cardName" placeholder="请输入店铺名称" /></p>
-					<p><i>详细地址：</i><input type="text" value="" id="address" placeholder="请输入详细地址" /></p>
-					<p><i>联系电话：</i><input type="number" value="" id="telphone" placeholder="请输入联系电话" /></p>
+					<h3>编辑名片<a onclick="openUrl('my_card.html?returnUrl=moban', 'my_card');">选择其他名片</a></h3>
+					<p><i>名称或店铺名：</i><input type="text" value="" id="cardName" placeholder="请输入店铺名称" readonly="readonly"/></p>
+					<p><i>详细地址：</i><input type="text" value="" id="address" placeholder="请输入详细地址"  readonly="readonly"/></p>
+					<p><i>联系电话：</i><input type="number" value="" id="telphone" placeholder="请输入联系电话"  readonly="readonly"/></p>
 					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" id="region"/></textarea></p>
 				</div>
 			</form>
@@ -363,23 +363,42 @@
                 $("#type1").hide();
             }
             
-            // 获取默认名片
-            appcan.ajax({
-               type:"get",     
-               url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
-               dataType:"json",
-               contentType: "application/json",
-               success : function(dataResult) {
-                   var data = dataResult.data;
-                    if(data.length > 0){
-                        $("#cardId").val(data[0].id);
-                        $("#cardName").val(data[0].cardName);
-                        $("#address").val(data[0].address);
-                        $("#telphone").val(data[0].telphone);
-                        $("#region").val(data[0].region);
-                    }
-               }
-           })
+            var cardId = getVal("cardId");
+            if(!!cardId){
+                //获取修改对象
+                appcan.ajax({
+                   type:"post",
+                   url:host+"/getCard.json?cardId="+cardId,
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                       var data = dataResult.data; 
+                       $("#cardId").val(data.id);
+                        $("#cardName").val(data.cardName);
+                        $("#address").val(data.address);
+                        $("#telphone").val(data.telphone);
+                        $("#region").val(data.region);
+                   }
+               })
+            }else{
+                // 获取默认名片
+                appcan.ajax({
+                   type:"get",     
+                   url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
+                   dataType:"json",
+                   contentType: "application/json",
+                   success : function(dataResult) {
+                       var data = dataResult.data;
+                        if(data.length > 0){
+                            $("#cardId").val(data[0].id);
+                            $("#cardName").val(data[0].cardName);
+                            $("#address").val(data[0].address);
+                            $("#telphone").val(data[0].telphone);
+                            $("#region").val(data[0].region);
+                        }
+                   }
+               })
+            }
             
             // 获取分类
             var baseParam = {
