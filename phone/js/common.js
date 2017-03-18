@@ -107,7 +107,11 @@ function openUrl(urlStr,urlName){
       var strs = str.split("&");
       for(var i = 0; i < strs.length; i ++) {   
           var temp = strs[i].split("=");
-          setVal(temp[0],temp[1]);
+          if(!!temp[1]){
+              setVal(temp[0],temp[1]);
+          }else{
+              appcan.locStorage.remove(temp[0]);
+          }
       } 
       urlStr = urlStr+"&t=" + new Date().getTime();  
     }else{
