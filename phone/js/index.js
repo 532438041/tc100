@@ -108,11 +108,10 @@
             var dataList = dataResult.data.dataList;
             var actStr = "";
             for(var i=0;i<dataList.length;i++){
-                actStr += '<li class="mui-table-view-cell mui-media">';
-                actStr += '<a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
-                actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
-                actStr += '<div class="mui-media-body">'+dataList[i].actName;
-                actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
+                actStr += '<li><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
+                actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'"></div>';
+                actStr += '<div><h3>'+(dataList[i].actName||'&nbsp;')+'</h3>';
+                actStr += '<p>'+dataList[i].summary+'...</p>';
                 actStr += '<i>'+dataList[i].createTime+'</i>';
                 actStr += '</div></a></li>';
             }
@@ -146,11 +145,10 @@
             var dataList = dataResult.data.dataList;
             var magStr = "";
             for(var i=0;i<dataList.length;i++){
-                magStr+='<li class="mui-table-view-cell mui-media">';
-                magStr+='<a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
-                magStr+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
-                magStr+='<div class="mui-media-body">'+dataList[i].title;
-                magStr+='<p class="mui-ellipsis">'+dataList[i].remark+'......</p>';
+                magStr+='<li><a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
+                magStr+='<div><img src="'+hostIp+dataList[i].picUrl+'"></div>';
+                magStr+='<div><h3>'+dataList[i].title+'</h3>';
+                magStr+='<p>'+dataList[i].remark+'......</p>';
                 magStr+='<i>'+dataList[i].createTime+'</i>';
                 magStr+='</div></a></li>';
             }

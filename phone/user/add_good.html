@@ -23,53 +23,17 @@
         <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
 		<title>添加商品</title>
 		<style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-            }
-            
-            body {
-                width: 100%;
-                overflow-x: hidden;
-                font-family: "微软雅黑";
-                background: #f8f8f8;
-                font-size: 1em;
-                padding-bottom: 3.875em;
-            }
-            
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            p {
-                margin: 0;
-                background: #fff;
-                padding: 1em;
-                font-size: 0.8em;
-                line-height: 1em;
-                padding-top: 1.25em;
-                color: #333;
-            }
-            
+	        .quyu{ padding: 0.5em 4%; background: #fff;}
             input{ background: none; border: 1px solid;}
             input[type=text]{ border-color: #ccc; font-size: 1em}
             input[type="button"]{ background: none;}
             p,span{ font-size: 0.8em; color: #999;}
             .top input{ }
             .top{ height: 7.5em;  overflow: hidden; position: relative; background: #fff; border-bottom: 1px solid #dedede;}
-            .top span{ display: block; height: 3.875em; line-height: 3.875em; text-indent: 1.25em;}
+            .top span{ display: block; height: 3em; line-height: 3em; }
             .top a{  text-align: center;  color: #ff3366; padding: 0 1.5em; margin-left: 1.25em; border: 1px solid #ff3366; }
-            .top #yulan{ height: 6.25em;   position: absolute; top: 0.625em; right: 0.625em;  overflow: hidden;}
-            .top #yulan img{  height: 100%;}
+            .top #yulan{ width:6.5em; height: 4.8em;   position: absolute; top: 0.625em; right: 0.625em;  overflow: hidden;}
+            .top #yulan img{  height: 100%; width:100%; object-fit: cover;}
             
             
             .main{ background: #fff;}
@@ -95,7 +59,7 @@
                 margin-left: 20px;
                 border: 1px solid #ff3366;
             }
-            
+            #filePicker{ border: 1px solid #ff3366; color: #ff3366; padding: 0.1em 1em; width: 5em; text-align: center; border-radius: 0.2em; margin-bottom: 0.5em;}
         </style>
 	</head>
 

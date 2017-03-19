@@ -63,7 +63,7 @@ public class UploadServiceImpl implements UploadService {
 				file.transferTo(f);
 				f.createNewFile();
 
-				zipWidthHeightImageFile(new File(destFile.getAbsoluteFile() + File.separator + fileNameNew), new File(destFile.getAbsoluteFile() + File.separator + fileNameNew), 750, 300, 0.7f);
+				zipImageFile(new File(destFile.getAbsoluteFile() + File.separator + fileNameNew), new File(destFile.getAbsoluteFile() + File.separator + fileNameNew), 750, 300, 1f);
 
 				map.put("imgName", file.getOriginalFilename());
 				map.put("imgUrl", url);

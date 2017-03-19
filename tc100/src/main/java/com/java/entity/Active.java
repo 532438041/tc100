@@ -13,6 +13,10 @@ public class Active {
 	private String actName;
 	
 	private String shopName;
+	
+	private String offlineTime;
+	
+	private String offlinePlace;
 
 	private String userId;
 
@@ -280,5 +284,21 @@ public class Active {
 
 	public void setRowNo(String rowNo) {
 		this.rowNo = rowNo;
+	}
+
+	public String getOfflineTime() {
+		return offlineTime;
+	}
+
+	public void setOfflineTime(String offlineTime) {
+		this.offlineTime = offlineTime;
+	}
+
+	public String getOfflinePlace() {
+		return offlinePlace;
+	}
+
+	public void setOfflinePlace(String offlinePlace) {
+		this.offlinePlace = offlinePlace;
 	}
 }

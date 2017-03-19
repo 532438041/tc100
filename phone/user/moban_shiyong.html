@@ -21,43 +21,6 @@
         <script type="text/javascript" src="../js/common.js" ></script>
 		<title>模版使用</title>
 		<style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-            }
-            
-            body {
-                width: 100%;
-                overflow-x: hidden;
-                font-family: "微软雅黑";
-                background: #f8f8f8;
-                font-size: 1em;
-                padding-bottom: 3.875em;
-            }
-            
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            p {
-                margin: 0;
-                text-indent: 2em;
-                background: #fff;
-                padding: 0.625em;
-                font-size: 1em;
-                line-height: 1.8em;
-                padding-top: 1.25em;
-                color: #333;
-            }
             
             i{
                 font-style: normal; color: #ff3366;
@@ -165,6 +128,12 @@
 						<input class="time" type="date" value="" placeholder="" name="endTime" id="endTime"/>
 						<span>注：最长发布不得超过10天，四大模块为6个月</span>
 					</p>
+					<h3>线下活动</h3>
+                    <p><i>线下活动时间：</i><input type="text" value="" placeholder="" name="offlineTime" id="offlineTime" /></p>
+                    <p>
+                        <i>线下活动地点：</i>
+                        <input type="text" value="" placeholder="" name="offlinePlace" id="offlinePlace"/>
+                    </p>
 					<p>提供服务的区域：<span id="actregion"></span></p>
                     <p class="indexquyu">
                        
@@ -307,7 +276,7 @@
                             var data = dataResult.data;
                             $("#startTime").val(data.startTime);
                             $("#endTime").val(data.endTime);
-                            $("#actregion").text(data.region)
+                            $("#actregion").text(data.region || '')
                             $("#cateId").val(data.cateId);
                         }
                     }

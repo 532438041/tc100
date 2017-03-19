@@ -21,49 +21,8 @@
         <script type="text/javascript" src="../js/common.js" ></script>
         <link rel="stylesheet" href="../js/webuploader/webuploader.css" />
         <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
-        <script type="text/javascript" charset="utf-8" src="../js/ueditor/ueditor.config.js"></script>
-        <script type="text/javascript" charset="utf-8" src="../js/ueditor/ueditor.all.min.js"> </script>
-        <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-        <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-        <script type="text/javascript" charset="utf-8" src="../js/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<title>模版生成</title>
 		<style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-            }
-            
-            body {
-                width: 100%;
-                overflow-x: hidden;
-                font-family: "微软雅黑";
-                background: #f8f8f8;
-                font-size: 1em;
-                /*padding-bottom: 3.875em;*/
-            }
-            
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            p {
-                margin: 0;
-            }
-            
-            ul,
-            li,
-            ol {
-                list-style: none;
-            }
             
             section {
                 background: #fff;
@@ -80,16 +39,16 @@
             section h3 {
                 font-size: 0.8em;
                 font-weight: bold;
-                height: 3.125em;
-                line-height: 3.125em;
+                height: 3em;
+                line-height: 3em;
                 float: left;
                 text-indent: 1em;
             }
             
             section p {
                 float: right;
-                height: 3.125em;
-                line-height: 3.125em;
+                height: 3em;
+                line-height: 3em;
             }
             
             section p span {
@@ -161,7 +120,7 @@
                     margin: 0;
                 }
             }
-            textarea{ height: 6.5em; margin: 0 4%; width: 92%; font-size: 0.8em; line-height: 1.2em; padding: 1em;}
+            textarea{ height: 6.5em; margin: 0 4%; margin-top:1em; width: 92%; font-size: 0.8em; line-height: 1.2em; padding: 1em;}
             .upload h3{ font-style: normal; font-weight: normal; width: 100%; color: #666;}
             .upload h3 input[type=text]{ width: auto; display: inline; height: 1.875em; margin-left: 0.625em;     font-size: 1em;
     margin-bottom: 0;
@@ -176,7 +135,7 @@
             .shouye>div div p{ float: none; line-height: 1.25em; color: #666; }
             .shouye>div div a{ line-height:1.5em; display: block; width: 100%; text-align: center ; background: #ff3366; color: #fff;}
             .shouye .fir{ width: 33%; min-height: 6em;}
-            .shouye .sec{ width: 67%; position: relative; height: 100%;}
+            .shouye .sec{ width: 64%; position: relative; height: 100%;}
             .xiangqing>div div{  float: left; clear: none; color: #666; padding-left: 0.5em;}
             .name{ padding-bottom: 1.25em;}
             .name a{ font-size: 1em; line-height: 1.2em; padding: 2px 0; display: block; float: left; background: #fff; color: #ff3366; border: 1px solid #FF3366; margin:0 3%; text-align: center; border-radius: 0.3125em;}
@@ -197,7 +156,6 @@
                 font-size: 0.8em;
             }
 			.danxuan{
-                margin-bottom: 1em;
             }
             .danxuan label{
                 font-size: 0.8em;
@@ -226,7 +184,12 @@
             .fir img{ width: 100%;}
             .border_b{ border-bottom: 1px solid #ccc;}
             #htmlStr{ display:none; padding: 1em; width: 100%; font-size: 0.8em; height: auto; overflow: hidden}
-            
+            #yulan{ height: 4.5em; width: 6em; overflow: hidden; float: left; margin-left: 4%;}
+            #yulan img{ height: 100%; width: 100%; object-fit: cover;}
+            #wenzhang{ width:92%; margin:1em 4%; height: auto; overflow: hidden; padding: 1em 4%; min-height: 6em; border:1px solid #ccc;}
+            #wenzhang img{ display: block; width: 100%;}
+            #wenzhang textarea{ width:100%; min-height: 1.5em; height: 1.5em; margin: 0; padding: 0; border: none; outline: none;}
+            #wenzhang_tu .webuploader-pick{float: right; margin-right: 4%; color: #ff366;width: auto;background: #fff;padding: 0 0;}
         </style>
 	</head>
 
@@ -257,7 +220,7 @@
                     <h3><img src="../img/star.png" />样式1：首页显示</h3>
                     <p class="bitian"><span>必填</span></p>
                     <div>
-                        <div class="fir">
+                        <div class="fir bigtu">
                             <img style="width:100%;" id="mainPic1" src="../img/lizi2.png" />
                         </div>
                         <div class="thi">
@@ -269,7 +232,7 @@
     				<h3><img src="../img/star.png" />样式2：首页显示</h3>
     				<p class="bitian"><span>必填</span></p>
     				<div>
-    					<div id="yulan" class="fir"><img id="mainPic2" src="../img/lizi1.png" /></div>
+    					<div id="yulan"><img id="mainPic2" src="../img/lizi1.png" /></div>
     					<div class="sec">
     						<div class="filePicker">上传(建议尺寸：300*210)</div>
     						<input type="text" value="" placeholder="请输入店铺名称" name="shopName" id="shopName"/>
@@ -290,9 +253,11 @@
     						<input name="isInit" value="0" type="radio">
     					</div>
     				</div>
-    				<div>
-    					<textarea placeholder="活动简介内容添加" name="detailSummary" id="detailSummary"></textarea>
-    					<script id="editor" name="detailContent" type="text/plain" style="margin: 0.5em 4%; height: 10em; width: 95%"></script>
+    				<input type="hidden" value="" name="detailSummary" id="detailSummary" />
+    				<div id="wenzhang_tu" class="filePicker1">上传图片</div>
+    				<div id="wenzhang">
+    				    <img src="" style="display: none;" />
+    					<textarea placeholder="活动简介内容添加" name="detailContent" onpropertychange='this.style.posHeight=this.scrollHeight' id="textarea" onfocus='textarea.style.posHeight=this.scrollHeight' id="detailContent"></textarea>
     				</div>
     			</div>
     			<div class="name">
@@ -329,7 +294,9 @@
 		       $(".tuisong").click(function(){
 		           $('#duifang').focus();
 		       })
-               
+		       $("#wenzhang textarea").on("keyup keydown", function(){
+		           $(this).height(this.scrollHeight);
+		       });
 		   });
 		</script>
         <script>
@@ -341,8 +308,6 @@
             var type = getVal("type") || "0";
             var num = type.substring(1,type.length);
             $(function(){
-                var ue = UE.getEditor('editor');
-                
                 // 判断用户是否可以发布
                 appcan.ajax({
                     type:"post",
@@ -445,6 +410,50 @@
                     }
                 })
                 
+                // 初始化Web Uploader
+                var uploader1 = WebUploader.create({
+                    // 选完文件后，是否自动上传。
+                    auto: true,
+                    // swf文件路径
+                    swf: '../js/webuploader/Uploader.swf',
+                    // 文件接收服务端。
+                    server: host+"/image/uploadImg.json?userId="+appcan.locStorage.getVal("userId"),
+                    // 选择文件的按钮。可选。
+                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                    pick: '.filePicker1',
+                    duplicate : true,
+                    compress :{
+                        width: 750,
+                        height: 300,
+                        // 图片质量，只有type为`image/jpeg`的时候才有效。
+                        quality: 90,
+                        // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                        allowMagnify: false,
+                        // 是否允许裁剪。
+                        crop: false,
+                        // 是否保留头部meta信息。
+                        preserveHeaders: true,
+                        // 如果发现压缩后文件大小比原来还大，则使用原来图片
+                        // 此属性可能会影响图片自动纠正功能
+                        noCompressIfLarger: false,
+                        // 单位字节，如果图片大小小于此值，不会采用压缩。
+                        compressSize: 0
+                    },
+                    // 只允许选择图片文件。
+                    accept: {
+                        title: 'Images',
+                        extensions: 'gif,jpg,jpeg,bmp,png',
+                        mimeTypes: 'image/*'
+                    }
+                });
+                
+                // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                uploader1.on('uploadSuccess', function(file, dataResult) {
+                    $("#wenzhang img").attr("src", hostIp+dataResult.data.imgUrl);
+                    $("#wenzhang img").show();
+                    $("#detailSummary").val(dataResult.data.imgUrl);
+                });
+                
                 if(!!getVal("actId")){
                     // 编辑页面获取数据
                     appcan.ajax({
@@ -465,12 +474,10 @@
                                 $("#summary").val(data.summary);
                                 $("input:radio[value='"+data.isInit+"']").attr('checked','true');
                                 $("#detailSummary").val(data.detailSummary);
+                                $("#detailContent").val(data.detailContent);
+                                $("#wenzhang img").attr("src", hostIp+data.detailSummary);
+                                $("#wenzhang img").show();
                                 $("#actName").val(data.actName);
-                                //判断ueditor 编辑器是否创建成功
-                                ue.addListener("ready", function () {
-                                    // editor准备好之后才可以使用
-                                    ue.setContent(data.detailContent);
-                                });
                                 num = type.substring(1,type.length);
                             }
                         }
@@ -573,14 +580,6 @@
                         });
                         return false;
                     }
-                    if($(".xiangqing").is(':visible') && $.trim($("#detailSummary").val()).length == 0){
-                        appcan.window.alert({
-                            title:'提示',
-                            content:'活动简介不能为空',
-                            buttons:'确定'
-                        });
-                        return false;
-                    }
                     
                     var baseParam = {
                         id : getVal("actId"),
@@ -654,14 +653,6 @@
                                         return false;
                                     }
                                     if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
-                                        appcan.window.alert({
-                                            title:'提示',
-                                            content:'活动简介不能为空',
-                                            buttons:'确定'
-                                        });
-                                        return false;
-                                    }
-                                    if($(".xiangqing").is(':visible') && $.trim($("#detailSummary").val()).length == 0){
                                         appcan.window.alert({
                                             title:'提示',
                                             content:'活动简介不能为空',

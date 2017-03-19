@@ -21,42 +21,13 @@
         <script type="text/javascript" src="../js/common.js" ></script>
 		<title>活动详情</title>
 		<style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-            }
-            
-            body {
-                width: 100%;
-                overflow-x: hidden;
-                font-family: "微软雅黑";
-                background: #f8f8f8;
-                font-size: 1em;
-            }
-            
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                font-weight: normal;
-                margin: 0;
-            }
-            
-            p {
-                margin: 0;
-            }
             
             .xiangqing img{ width: 100%;}
             li,ol,ul{ list-style: none;}
             .xiangqing{ position: relative; }
             .xiangqing img{ width: 100%;}
-            .xiangqing div{ position: absolute; top: 50%; background: #000; width: 80%; left: 10%; text-align: center; padding: 1.25em; padding-bottom: 2.5em;}
-            .xiangqing li{  line-height: 1em;   word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%; overflow: auto; color: #fff;}
+            .xiangqing div{padding: 0.3em;}
+            .xiangqing li{  word-wrap: break-word; white-space: pre-wrap; word-break: break-all; width: 100%;}
             .xiangqing h3{ color: #fff; margin-bottom: 0.625em; line-height: 1em;}
             .xiangqing h4{ color: #fff; font-size: 0.8rem; margin-top: 0.3125em;}
             
@@ -253,12 +224,10 @@
                         if(data.isInit == "1"){
                             actStr+='<img src="'+hostIp+data.mainPic+'" />';
                         }
-                        actStr+='<div><h3>'+data.actName+'</h3>';
-                        actStr+='<ul>';
-                        actStr+='<li>'+data.detailSummary+'</li>';
+                        actStr+='<img src="'+hostIp+data.detailSummary+'" />';
+                        actStr+='<div><ul>';
                         actStr+='<li>'+data.detailContent+'</li>';
                         actStr+='</ul>';
-                        //actStr+='<h4>活动时间：'+(data.startTime||'')+' 至 '+(data.endTime||'')+'</h4>';
                         actStr+='</div>';
                         $("#info").html(actStr);
                         $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);

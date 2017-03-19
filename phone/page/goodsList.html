@@ -21,154 +21,20 @@
         <script type="text/javascript" src="../js/common.js" ></script>
 		<title>项目名称</title>
 		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				-webkit-box-sizing: border-box;
-			}
-			
-			body {
-				width: 100%;
-				overflow-x: hidden;
-				font-family: "微软雅黑";
-				background: #f8f8f8;
-				font-size: 1em;
-				padding-bottom: 3.75em;
-				line-height: 1.5em;
-			}
-			
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				font-weight: normal;
-				margin: 0;
-			}
-			
-			p {
-				margin: 0;
-			}
-			
-			.lunbo {
-				position: relative;
-			}
-			
-			.lunbo img {
-				width: 100%;
-			}
-			
-			.lunbo .more {
-				text-align: center;
-				font-size: 0.75em;
-				color: #fff;
-				position: absolute;
-				top: 0;
-				right: 0;
-				background: url(img/opa.png) repeat;
-				width: 3.125em;
-				height: 1.25em;
-			}
-			
-			.lunbo span.mui-icon {
-				font-size: 0.75em;
-			}
-			
-			.lanmu {
-				height: auto;
-				overflow: hidden;
-			}
-			
-			.lanmu nav {
-				width: 90%;
-				margin: 0 auto;
-				margin-top: 1em;
-				font-size: 1em;
-			}
-			
-			.lanmu a {
-				display: block;
-				float: left;
-				width: 25%;
-			}
-			
-			.lanmu a img {
-				width: 70%;
-				display: block;
-				margin: 0 auto;
-			}
-			
-			.lanmu span {
-				display: block;
-				text-align: center;
-				color: #333;
-				margin: 0.3125em 0;
-			}
-			
-			.same_city_buy {
-				margin-top: 0.625em;
-			}
-			
-			.same_city_buy h2 {
-				background: #ff5256;
-				color: #fff;
-				padding: 0.625em;
-				font-size: 1em;
-				line-height: 1.5em;
-			}
-			
-			.same_city_buy h2 span {
-				float: right;
-			}
-			
-			.same_city_buy>p {
-				background: #f9efc9;
-				text-align: center;
-				position: relative;
-				line-height: 1.875em;
-			}
-			
-			.same_city_buy>p a {
-				position: absolute;
-				right: 0.3125em;
-				color: #ff5256;
-			}
-			
-			.same_city_buy i {
-				font-style: normal;
-				position: absolute;
-				top: 0.625em;
-				right: 1em;
-				color: #999;
-			}
-			
-			.same_city_buy .mui-table-view .mui-media-object {
-				max-width: 22%;
-				height: auto;
-			}
-			
-			.same_city_buy .mui-table-view-cell>a:not(.mui-btn) {
-				white-space: normal;
-			}
-			
-			.same_city_buy .mui-ellipsis {
-				white-space: normal;
-			}
 			
 			.shucailei {
 				margin-top: 0.625em;
+				background: #fff;
 			}
 			
 			.shucailei h2 {
 				background: #fff;
 				color: #666;
-				padding: 0.625em;
-				font-size: 1.125em;
-				line-height: 1.5em;
+				padding: 0.5em 4%;
+				font-size: 1em;
+				line-height: 1.2em;
 				position: relative;
+				border-bottom: 1px solid #ccc;
 			}
 			
 			.shucailei h2 span {
@@ -195,61 +61,8 @@
 				display: block;
 			}
 			
-			.shucailei .mui-table-view .mui-media-object {
-				max-width: 25%;
-				height: auto;
-			}
 			
-			.shucailei .mui-table-view-cell>a:not(.mui-btn) {
-				white-space: normal;
-			}
 			
-			.shucailei .mui-ellipsis {
-				white-space: normal;
-			}
-			
-			.shucailei .search {
-				background: #87d4fe;
-				border: none;
-				height: 2em;
-				position: absolute;
-				width: 60%;
-				padding: 0;
-				margin: 0 auto;
-				margin-top: 0.3125em;
-				display: block;
-				top: 0;
-				left: 20%;
-			}
-			
-			.shucailei .search input[type=text] {
-				background: none;
-				border: none;
-				text-indent: 0.625em;
-				padding: 0;
-				margin: 0;
-				height: 1.5em;
-				font-size: 0.75em;
-				width: 100%;
-				height: 100%;
-			}
-			
-			.shucailei .search img {
-				height: 60%;
-				position: absolute;
-				top: 0.3125em;
-				right: 0.3125em;
-			}
-			.shucailei li{
-				padding: 1.25em;
-			}
-			.mui-media-body{
-				padding-right: 1.875em;
-			}
-			
-			.mui-table-view-cell>a:not(.mui-btn){
-				padding: 0;
-			}
 		</style>
 	</head>
 
@@ -279,16 +92,18 @@
                             for(var i=0;i<dataList.length;i++){
                                 var itemList = dataList[i].itemList;
                                 itemStr +='<h2>'+dataList[i].cateName+'</h2>';
-                                itemStr +='<div><ul class="mui-table-view">'
+                                itemStr +='<div><ul class="list_c">'
                                 for(var j=0;j<itemList.length;j++){
-                                    itemStr +='<li class="mui-table-view-cell mui-media">';
+                                    itemStr +='<li>';
                                     itemStr +='<a href="javascript:;">';
-                                    itemStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+itemList[j].itemPic+'">';
-                                    itemStr +='<div class="mui-media-body">';
-                                    itemStr +='品名：'+itemList[j].itemName;
+                                    itemStr +='<div>';
+                                    itemStr +='<img src="'+hostIp+itemList[j].itemPic+'">';
+                                    itemStr +='</div>';
+                                    itemStr +='<div>';
+                                    itemStr +='<h3>品名：'+itemList[j].itemName+'</h3>';
                                     itemStr +='<p><i>特价：'+itemList[j].spePrice+'元/'+itemList[j].speUnit+'g</i>原价：<s>'+itemList[j].listPrice+'元/'+itemList[j].listUnit+'g</s></p>';
                                     itemStr +='<p>时间：'+itemList[j].startTime+' 至 '+itemList[j].endTime+'</p>';
-                                    itemStr +='<p class="mui-ellipsis">说明：'+itemList[j].remark+'</p>';
+                                    itemStr +='<p>说明：'+itemList[j].remark+'</p>';
                                     itemStr +='</div>';
                                     itemStr +='</a>';
                                     itemStr +='</li>';
