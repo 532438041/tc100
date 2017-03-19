@@ -110,7 +110,7 @@
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
                 actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'"></div>';
-                actStr += '<div><h3>'+(dataList[i].actName||'&nbsp;')+'</h3>';
+                actStr += '<div><h3>'+(dataList[i].shopName||'&nbsp;')+'</h3>';
                 actStr += '<p>'+dataList[i].summary+'...</p>';
                 actStr += '<i>'+dataList[i].createTime+'</i>';
                 actStr += '</div></a></li>';

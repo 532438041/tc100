@@ -189,11 +189,11 @@
                     var actStr = "";
                     for(var i=0;i<dataList.length;i++){
                         actStr += '<li>';
-                        actStr += '<a href="info.html?actId='+dataList[i].id+'">';
+                        actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'info\');">';
                         actStr += '<div>';
                         actStr += '<img src="'+hostIp+dataList[i].mainPic+'">';
                         actStr += '</div>';
-                        actStr += '<div>'+dataList[i].actName;
+                        actStr += '<div>'+(dataList[i].shopName||'');
                         actStr += '<p>'+dataList[i].summary+'...</p>';
                         actStr += '<i>'+dataList[i].createTime+'</i>';
                         actStr += '</div></a></li>';

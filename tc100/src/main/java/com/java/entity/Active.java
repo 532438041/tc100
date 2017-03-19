@@ -14,7 +14,9 @@ public class Active {
 	
 	private String shopName;
 	
-	private String offlineTime;
+	private Date offlineTime;
+	
+	private Date offlineEndTime;
 	
 	private String offlinePlace;
 
@@ -286,11 +288,11 @@ public class Active {
 		this.rowNo = rowNo;
 	}
 
-	public String getOfflineTime() {
+	public Date getOfflineTime() {
 		return offlineTime;
 	}
 
-	public void setOfflineTime(String offlineTime) {
+	public void setOfflineTime(Date offlineTime) {
 		this.offlineTime = offlineTime;
 	}
 
@@ -300,5 +302,13 @@ public class Active {
 
 	public void setOfflinePlace(String offlinePlace) {
 		this.offlinePlace = offlinePlace;
+	}
+
+	public Date getOfflineEndTime() {
+		return offlineEndTime;
+	}
+
+	public void setOfflineEndTime(Date offlineEndTime) {
+		this.offlineEndTime = offlineEndTime;
 	}
 }

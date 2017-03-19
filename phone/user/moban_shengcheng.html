@@ -253,11 +253,9 @@
     						<input name="isInit" value="0" type="radio">
     					</div>
     				</div>
-    				<input type="hidden" value="" name="detailSummary" id="detailSummary" />
     				<div id="wenzhang_tu" class="filePicker1">上传图片</div>
     				<div id="wenzhang">
-    				    <img src="" style="display: none;" />
-    					<textarea placeholder="活动简介内容添加" name="detailContent" onpropertychange='this.style.posHeight=this.scrollHeight' id="textarea" onfocus='textarea.style.posHeight=this.scrollHeight' id="detailContent"></textarea>
+    					<textarea placeholder="活动简介内容添加" onpropertychange='this.style.posHeight=this.scrollHeight' onfocus='this.style.posHeight=this.scrollHeight'></textarea>
     				</div>
     			</div>
     			<div class="name">
@@ -449,9 +447,15 @@
                 
                 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
                 uploader1.on('uploadSuccess', function(file, dataResult) {
-                    $("#wenzhang img").attr("src", hostIp+dataResult.data.imgUrl);
-                    $("#wenzhang img").show();
-                    $("#detailSummary").val(dataResult.data.imgUrl);
+                    var str = '<img src="'+hostIp+dataResult.data.imgUrl+'"/>';
+                    str += '<textarea placeholder="活动简介内容添加" onpropertychange="this.style.posHeight=this.scrollHeight" onfocus="this.style.posHeight=this.scrollHeight"></textarea>';
+                    $("#wenzhang").append(str);
+                    $("#wenzhang textarea").blur(function(){
+                        $(this).html($(this).val());
+                    })
+                    $("#wenzhang textarea").change(function(){
+                        $(this).css("height", $(this)[0].scrollHeight);
+                    })
                 });
                 
                 if(!!getVal("actId")){
@@ -473,10 +477,7 @@
                                 $("#shopName").val(data.shopName);
                                 $("#summary").val(data.summary);
                                 $("input:radio[value='"+data.isInit+"']").attr('checked','true');
-                                $("#detailSummary").val(data.detailSummary);
-                                $("#detailContent").val(data.detailContent);
-                                $("#wenzhang img").attr("src", hostIp+data.detailSummary);
-                                $("#wenzhang img").show();
+                                $("#wenzhang").html(data.detailContent);
                                 $("#actName").val(data.actName);
                                 num = type.substring(1,type.length);
                             }
@@ -581,11 +582,13 @@
                         return false;
                     }
                     
+                    var detailContent = $("#wenzhang").html();
                     var baseParam = {
                         id : getVal("actId"),
                         userId : appcan.locStorage.getVal("userId"),
                         actType: type,
-                        addName: appcan.locStorage.getVal("ipcity")
+                        addName: appcan.locStorage.getVal("ipcity"),
+                        detailContent: detailContent
                     };
                     var param = $("#actForm").serializeJson(baseParam);
                     var result = null;
@@ -660,11 +663,12 @@
                                         });
                                         return false;
                                     }
-                                    
+                                    var detailContent = $("#wenzhang").html();
                                     var baseParam = {
                                         userId : appcan.locStorage.getVal("userId"),
                                         actType: type,
-                                        addName: appcan.locStorage.getVal("ipcity")
+                                        addName: appcan.locStorage.getVal("ipcity"),
+                                        detailContent: detailContent
                                     };
                                     var param = $("#actForm").serializeJson(baseParam);
                                     var result = null;

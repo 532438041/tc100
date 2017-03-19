@@ -80,6 +80,8 @@
             footer li{ line-height: 3em; height: 3em; background: url(img/opa_bai.png) repeat; text-indent: 0;}
             footer li img{ width: 1.5em; margin: 0.5em; margin-top: 0.1875em; vertical-align: middle;}
             footer a{color: #666; display: inline-block; height: 3em; line-height: 3em;}
+            #info textarea{ margin: 0; padding: 0; border: none; outline: none; background-color: #f8f8f8;    line-height: 1.3em;
+    font-size: 0.85em;}
         </style>
 	</head>
 
@@ -224,11 +226,7 @@
                         if(data.isInit == "1"){
                             actStr+='<img src="'+hostIp+data.mainPic+'" />';
                         }
-                        actStr+='<img src="'+hostIp+data.detailSummary+'" />';
-                        actStr+='<div><ul>';
-                        actStr+='<li>'+data.detailContent+'</li>';
-                        actStr+='</ul>';
-                        actStr+='</div>';
+                        actStr+=data.detailContent;
                         $("#info").html(actStr);
                         $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
                     }

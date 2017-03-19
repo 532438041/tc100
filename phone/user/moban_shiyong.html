@@ -129,7 +129,8 @@
 						<span>注：最长发布不得超过10天，四大模块为6个月</span>
 					</p>
 					<h3>线下活动</h3>
-                    <p><i>线下活动时间：</i><input type="text" value="" placeholder="" name="offlineTime" id="offlineTime" /></p>
+					<p><i>开始时间：</i><input class="time" type="date" value="" placeholder="" name="offlineTime" id="offlineTime" /></p>
+					<p><i>截止时间：</i><input class="time" type="date" value="" placeholder="" name="offlineEndTime" id="offlineEndTime" /></p>
                     <p>
                         <i>线下活动地点：</i>
                         <input type="text" value="" placeholder="" name="offlinePlace" id="offlinePlace"/>
@@ -276,6 +277,9 @@
                             var data = dataResult.data;
                             $("#startTime").val(data.startTime);
                             $("#endTime").val(data.endTime);
+                            $("#offlineTime").val(data.offlineTime);
+                            $("#offlineEndTime").val(data.offlineEndTime);
+                            $("#offlinePlace").val(data.offlinePlace);
                             $("#actregion").text(data.region || '')
                             $("#cateId").val(data.cateId);
                         }
@@ -452,7 +456,7 @@
                 if($.trim($("#endTime").val()).length == 0){
                     appcan.window.alert({
                         title:'提示',
-                        content:'请选择结束时间时间',
+                        content:'请选择结束时间',
                         buttons:'确定'
                     });
                     return false;
