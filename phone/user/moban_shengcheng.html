@@ -189,7 +189,7 @@
             #wenzhang{ width:92%; margin:1em 4%; height: auto; overflow: hidden; padding: 1em 4%; min-height: 6em; border:1px solid #ccc;}
             #wenzhang img{ display: block; width: 100%;}
             #wenzhang textarea{ width:100%; min-height: 1.5em; height: 1.5em; margin: 0; padding: 0; border: none; outline: none;}
-            #wenzhang_tu .webuploader-pick{float: right; margin-right: 4%; color: #ff366;width: auto;background: #fff;padding: 0 0;}
+            #wenzhang_tu .webuploader-pick{ font-size: 0.8em;float: right; margin-right: 4%; color: #fff;width: auto;background: #ff3366;padding: 0 5%;border-radius: 0.2em;}
         </style>
 	</head>
 
@@ -214,10 +214,10 @@
     				<p class="bitian"><span>必填</span></p>
     			</div>
     			<ul class="lei_1">
-    				<li>当前发布位置为<span id="typeName"></span>，样式类型为<span id="typeNum"></span>，资费为<span id="sysParam"></span></li>
+    				<li>当前发布位置为<span id="typeName"></span>，资费为<span id="sysParam"></span></li>
     			</ul>
     			<div class="pore shouye222" id="type1">
-                    <h3><img src="../img/star.png" />样式1：首页显示</h3>
+                    <h3><img src="../img/star.png" />首页显示</h3>
                     <p class="bitian"><span>必填</span></p>
                     <div>
                         <div class="fir bigtu">
@@ -229,7 +229,7 @@
                     </div>
                 </div>
     			<div class="pore shouye" id="type2">
-    				<h3><img src="../img/star.png" />样式2：首页显示</h3>
+    				<h3><img src="../img/star.png" />首页显示</h3>
     				<p class="bitian"><span>必填</span></p>
     				<div>
     					<div id="yulan"><img id="mainPic2" src="../img/lizi1.png" /></div>
@@ -242,15 +242,15 @@
     			</div>
     			
     			<div class="xiangqing">
-    				<h3>样式1样式2通用详情页</h3>
+    				<h3>详情页设置</h3>
     				<div>
     					<div class="danxuan">
-    						<label>自动加载样式1首页图片</label>
-    						<input name="isInit" value="1" type="radio" checked="">
+    						<label>自动加载首页图片</label>
+    						<input name="isInit" value="1" type="radio">
     					</div>
     					<div class="danxuan">
     						<label>不加载</label>
-    						<input name="isInit" value="0" type="radio">
+    						<input name="isInit" value="0" type="radio" checked="checked">
     					</div>
     				</div>
     				<div id="wenzhang_tu" class="filePicker1">上传图片</div>
@@ -530,7 +530,7 @@
                 
                 //类型为1 隐藏类型2
                 //位置代码
-                $("#typeNum").text(num);
+                //$("#typeNum").text(num);
                 $("#code").val(type);
                 if(num == 1){
                     $("#type1").show();
@@ -554,19 +554,11 @@
                 function saveAct(obj){
                     // 数据校验
                     if($.trim($("#code").val()).length == 0){
-                        appcan.window.alert({
-                            title:'提示',
-                            content:'位置代码不能为空',
-                            buttons:'确定'
-                        });
+                        alert("位置代码不能为空");
                         return false;
                     }
                     if($.trim($(".mainPic").val()).length == 0){
-                        appcan.window.alert({
-                            title:'提示',
-                            content:'上传活动图片',
-                            buttons:'确定'
-                        });
+                        alert("上传活动图片");
                         return false;
                     }
                     if($("#type2").is(':visible') && $.trim($("#shopName").val()).length == 0){
@@ -574,11 +566,7 @@
                         return false;
                     }
                     if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
-                        appcan.window.alert({
-                            title:'提示',
-                            content:'活动简介不能为空',
-                            buttons:'确定'
-                        });
+                        alert("活动简介不能为空");
                         return false;
                     }
                     
@@ -636,19 +624,11 @@
                                 }else{
                                     // 数据校验
                                     if($.trim($("#code").val()).length == 0){
-                                        appcan.window.alert({
-                                            title:'提示',
-                                            content:'位置代码不能为空',
-                                            buttons:'确定'
-                                        });
+                                        alert("位置代码不能为空")
                                         return false;
                                     }
                                     if($.trim($(".mainPic").val()).length == 0){
-                                        appcan.window.alert({
-                                            title:'提示',
-                                            content:'上传活动图片',
-                                            buttons:'确定'
-                                        });
+                                        alert("上传活动图片")
                                         return false;
                                     }
                                     if($("#type2").is(':visible') && $.trim($("#shopName").val()).length == 0){
@@ -656,11 +636,7 @@
                                         return false;
                                     }
                                     if($("#type2").is(':visible') && $.trim($("#summary").val()).length == 0){
-                                        appcan.window.alert({
-                                            title:'提示',
-                                            content:'活动简介不能为空',
-                                            buttons:'确定'
-                                        });
+                                        alert("活动简介不能为空")
                                         return false;
                                     }
                                     var detailContent = $("#wenzhang").html();

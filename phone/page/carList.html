@@ -118,7 +118,9 @@
                            ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
                            $("#quyu>a").text("区域："+ccc);
                         };
-                        
+                        if($(".quyu_zi .active").length ==0){
+                            $("#quyu>a").text("请选择区域");
+                        }
                         // 选择事件
                         $(".xianyin").click(function(){
                            if($(".quyu_zi").css("display") == "none"){
@@ -163,7 +165,8 @@
                         });
                     }
                 })
-            })
+            });
+            
             function carList (param) {
                 var baseParam1 = {'actType':'E1','addName':appcan.locStorage.getVal("ipcity"),'region':param}
                 var param1 = serializePageJson(1,20,baseParam1);
@@ -197,9 +200,9 @@
                         for(var i=0;i<dataList.length;i++){
                             actStr += '<li>';
                             actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')">';
-                            actStr += '<div>;
+                            actStr += '<div>';
                             actStr += '<img src="'+hostIp+dataList[i].mainPic+'">';
-                            actStr += '</div>;
+                            actStr += '</div>';
                             actStr += '<div>'+dataList[i].actName;
                             actStr += '<p>'+dataList[i].summary+'...</p>';
                             actStr += '<i>'+dataList[i].createTime+'</i>';

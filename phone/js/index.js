@@ -9,7 +9,7 @@
     if(!!ipcity){
         setTimeout(function(){
              $("#ipcity").html(ipcity);
-        }, 500);
+        }, 1000);
     }else{
         $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
             $("#ipcity").html(remote_ip_info.city);
@@ -17,19 +17,17 @@
         });
     }
     
-    //消息个数 显示成... 不显示个数
-    
-    /*
+    //消息个数
     if(userId !=null && userId !=""){
-            appcan.ajax({
-                type:"get",  
-                url:host+"/getMsgCount.json?userId="+userId+"&state=1",
-                dataType:"json",
-                success:function(dataResult) {
-                    $(".xiaoxi").html(dataResult.data);
-                }
-            })
-        }*/
+        appcan.ajax({
+            type:"get",  
+            url:host+"/getMsgCount.json?userId="+userId+"&state=1",
+            dataType:"json",
+            success:function(dataResult) {
+                $("#xiaoxishu").html(dataResult.data);
+            }
+        })
+    }
     
     
     
@@ -110,7 +108,7 @@
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
                 actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'"></div>';
-                actStr += '<div><h3>'+(dataList[i].shopName||'&nbsp;')+'</h3>';
+                actStr += '<div><h3>'+(dataList[i].actName||'&nbsp;')+'</h3>';
                 actStr += '<p>'+dataList[i].summary+'...</p>';
                 actStr += '<i>'+dataList[i].createTime+'</i>';
                 actStr += '</div></a></li>';
@@ -147,8 +145,8 @@
             for(var i=0;i<dataList.length;i++){
                 magStr+='<li><a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
                 magStr+='<div><img src="'+hostIp+dataList[i].picUrl+'"></div>';
-                magStr+='<div><h3>'+dataList[i].title+'</h3>';
-                magStr+='<p>'+dataList[i].remark+'......</p>';
+                magStr+='<div><h3>'+dataList[i].cardName+'</h3>';
+                magStr+='<p>'+dataList[i].title+'......</p>';
                 magStr+='<i>'+dataList[i].createTime+'</i>';
                 magStr+='</div></a></li>';
             }

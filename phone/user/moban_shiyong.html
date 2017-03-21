@@ -72,7 +72,7 @@
                 margin-top: -0.625em;}
             .fenlei select{ margin: 0; padding: 0.625em; background: none; position: absolute; z-index: 100;}
             .main .tuijian span{ position: absolute; right: 1em; top: 1em; width: 13%; color: #FF3366;}
-            .main .tuijian input{ width: 50%;}
+            .main .tuijian input{ width: 30%;}
             .btn{ }
             .btn p{ text-align: right; padding-top: 0.625em;}
             .btn span{    line-height: 2em; display: inline-block; width: 40%; border: 1px solid #FF3366; background: #ff3366; text-align: center;  border-radius: 0.3125em;}
@@ -101,7 +101,7 @@
 		<section class="quyu">
 			<form>
 				<div class="top">
-					<p>当前发布位置为<i id="typeName" style="color: #cd4400"></i>，样式类型为<i id="typeNum" style="color: #cd4400"></i>，资费为<i id="sysParam"></i></p>
+					<p>当前发布位置为<i id="typeName" style="color: #cd4400"></i>，资费为<i id="sysParam"></i></p>
 					<h3><a>完善名片</a></h3>
 				</div>
 				<div class="main">
@@ -109,7 +109,7 @@
 					<p><i>名称或店铺名：</i><input type="text" value="" id="cardName" placeholder="请输入店铺名称" readonly="readonly"/></p>
 					<p><i>详细地址：</i><input type="text" value="" id="address" placeholder="请输入详细地址"  readonly="readonly"/></p>
 					<p><i>联系电话：</i><input type="number" value="" id="telphone" placeholder="请输入联系电话"  readonly="readonly"/></p>
-					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" id="region"/></textarea></p>
+					<p style="border: none;"><i>经营范围：</i><textarea type="text" value="" id="region" readonly="readonly"/></textarea></p>
 				</div>
 			</form>
 		</section>
@@ -131,11 +131,11 @@
 					<h3>线下活动</h3>
 					<p><i>开始时间：</i><input class="time" type="date" value="" placeholder="" name="offlineTime" id="offlineTime" /></p>
 					<p><i>截止时间：</i><input class="time" type="date" value="" placeholder="" name="offlineEndTime" id="offlineEndTime" /></p>
-                    <p>
+                    <p style="display: none;">
                         <i>线下活动地点：</i>
                         <input type="text" value="" placeholder="" name="offlinePlace" id="offlinePlace"/>
                     </p>
-					<p>提供服务的区域：<span id="actregion"></span></p>
+					<p>线下活动所在区域：<span id="actregion"></span></p>
                     <p class="indexquyu">
                        
                     </p>
@@ -328,7 +328,7 @@
             
             //类型为1 隐藏类型2
             //位置代码
-            $("#typeNum").text(num);
+            //$("#typeNum").text(num);
             $("#code").val(type);
             if(num == 1){
                 $("#type2").hide();

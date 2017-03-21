@@ -148,6 +148,26 @@ function getIpPlace(){
     });
 }
 $(function(){
+    
+    var c1c = 0;  
+    window.uexOnload = function(type){  
+        uexWindow.setReportKey(0,1);  
+        uexWindow.onKeyPressed = function(){  
+            if(window.location.href.indexOf("index") != -1){
+                if (c1c > 0) {  
+                    uexWidgetOne.exit();  
+                }else {  
+                    uexWindow.toast(0, 5, '再按一次退出应用', 1000);   
+                    c1c=1; setTimeout(function(){ c1c=0; }, 2000);  
+                } 
+            }else if(window.location.href.indexOf("user/info.html") != -1 || window.location.href.indexOf("moban_shengcheng") != -1 || window.location.href.indexOf("fabuxuanze") != -1){
+                openUrl('../index.html','index');
+            }else{
+                appcan.window.close(-1);
+            }
+        };  
+    } 
+
     var url = document.URL;
     if(url.indexOf("user/") != -1 && !!!appcan.locStorage.getVal("userId")){
 		openUrl("../login/login.html","login");

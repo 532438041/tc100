@@ -25,6 +25,19 @@
             .rightright{
                 margin-top: 0.2em;
             }
+            #xiaoxishu{
+                color: #fff;
+                background: #5bc4fd;
+                border-radius: 50%;
+                position: absolute;
+                width: 1.2em;
+                height: 1.2em;
+                right: -0.5em;
+                top: -0.3em;
+                font-size: 1em;
+                text-align: center;
+                line-height: 1.2em;
+            }
         </style>
     </head>
 
@@ -32,7 +45,7 @@
         <header>
             <a class="dingwei" href="javascript:;" onclick="openUrl('page/ditu.html','ditu');"><img src="img/dingwei.png" /><span id="ipcity"></span></a>
             <h1>首页</h1>
-            <a class="xiaoxi" href="javascript:;" onclick="openUrl('user/my_message.html','my_message');"></a>
+            <a class="xiaoxi" href="javascript:;" onclick="openUrl('user/my_message.html','my_message');"><span id="xiaoxishu">0</span></a>
         </header>
         <section class="lunbo">
             <div class="mui-slider">
@@ -108,7 +121,7 @@
         </footer>
         <script>
             $(document).ready(function(){
-               $(".lunbo").height($(".lunbo").width()*0.4);
+               $(".lunbo").height($(".lunbo").width()*0.5);
             });
         </script>
     </body>

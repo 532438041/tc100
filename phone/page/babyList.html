@@ -117,7 +117,9 @@
                            ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
                            $("#quyu>a").text("区域："+ccc);
                         };
-                        
+                        if($(".quyu_zi .active").length ==0){
+                            $("#quyu>a").text("请选择区域");
+                        }
                         // 选择事件
                         $(".xianyin").click(function(){
                            if($(".quyu_zi").css("display") == "none"){

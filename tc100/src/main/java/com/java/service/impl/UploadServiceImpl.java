@@ -20,6 +20,7 @@ import com.java.service.UploadService;
 import com.java.utils.ToolsUtil;
 
 import cn.jiguang.commom.utils.StringUtils;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Service
 public class UploadServiceImpl implements UploadService {
@@ -49,6 +50,7 @@ public class UploadServiceImpl implements UploadService {
 				if (length == -1) {
 					return null;
 				}
+				// 判断目录是否存在
 				File destFile = new File(path);
 				if (!destFile.exists()) {
 					destFile.mkdirs();
@@ -56,14 +58,24 @@ public class UploadServiceImpl implements UploadService {
 				String fileIdNew = ToolsUtil.getUUID();
 				String fileNameNew = fileIdNew + "." + suffix;
 				url += "/" + fileNameNew;
-				File f = new File(destFile.getAbsoluteFile() + File.separator + fileNameNew);
+				String filePath = destFile.getAbsoluteFile() + File.separator + fileNameNew;
+				
+				File f = new File(filePath);
 				if (f.exists()) {
 					continue;
 				}
 				file.transferTo(f);
 				f.createNewFile();
-
-				zipImageFile(new File(destFile.getAbsoluteFile() + File.separator + fileNameNew), new File(destFile.getAbsoluteFile() + File.separator + fileNameNew), 750, 300, 1f);
+				
+				// 压缩
+				long size = file.getSize();
+		        double scale = 1.0d ;
+		        if(size >= 1*1000*1024){
+		            if(size > 0){
+		                scale = (1*1000*1024f) / size;
+		            }
+		        }
+		        Thumbnails.of(filePath).scale(scale).outputQuality(scale).outputFormat(suffix).toFile(filePath);
 
 				map.put("imgName", file.getOriginalFilename());
 				map.put("imgUrl", url);
