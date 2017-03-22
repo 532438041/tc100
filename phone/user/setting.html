@@ -65,7 +65,7 @@
             <ul>
                 <li><a id="change_password">修改密码</a></li>
                 <li><a onclick="openUrl('guanyu.html','guanyu');">关于同城100</a></li>
-                <li><a href="###">版本更新</a></li>
+                <li><a id="update">版本更新</a></li>
             </ul>
         </section>
         <section id="tuichu">
@@ -219,6 +219,10 @@
                 $("#tuichu button").click(function(){
                     appcan.locStorage.remove("userId");
                     openUrl('../login/login.html','login');
+                });
+                
+                $("#update").click(function(){
+                    alert("当前已是最新版本");
                 });
             });
         </script>

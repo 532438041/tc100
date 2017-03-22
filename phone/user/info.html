@@ -63,7 +63,7 @@
 	<body>
 		<header class="header2">
 			<a class="touxiang"><img id="touxiang" style="width:5em;height:5em;" src="" /></a>
-			<p id="cardName">用户昵称<span class="xiaoxiCount" id="xiaoxiCount" onclick="openUrl('my_message.html','my_message');">0</span></p>
+			<p><span id="cardName">用户昵称</span><span class="xiaoxiCount" id="xiaoxiCount" onclick="openUrl('my_message.html','my_message');">0</span></p>
 			<a class="xiaoxi" onclick="openUrl('setting.html','setting');"><span class="setting22"></span>设置</a>
 		</header>
 		<section class="sec1">
@@ -106,7 +106,7 @@
 			        </div>
 			        <div class="mui-col-sm-3">
 			            <li class="mui-table-view-cell">
-			                <a>
+			                <a href="javascript:;" onclick="openUrl('fankui.html','fankui')">
 			                	<img src="../img/fankui.png" />
 			                	<p>问题反馈</p>
 			                </a>
@@ -173,7 +173,11 @@
                         url:host+"/getMsgCount.json?userId="+userId+"&state=1",
                         dataType:"json",
                         success:function(dataResult) {
-                            $("#xiaoxiCount").html(dataResult.data);
+                            if(dataResult.data==0){
+                                 $("#xiaoxiCount").hide();
+                            }else{
+                                $("#xiaoxiCount").html(dataResult.data).show(); 
+                            }               
                         }
                     })
                 }
@@ -215,7 +219,7 @@
                    dataType:"json",
                    contentType: "application/json",
                    success : function(dataResult) {
-                       $("#cardName").html(dataResult.data.displayName || "");
+                       $("#cardName").text(dataResult.data.displayName || "");
                        $("#touxiang").attr("src",hostIp+dataResult.data.picUrl);
                    }
                })

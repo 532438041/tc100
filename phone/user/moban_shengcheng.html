@@ -260,7 +260,7 @@
     			</div>
     			<div class="name">
     				<h3>命名此模板<input type="text" value="" name="actName" id="actName"/></h3>
-    				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4 tuisong">推送此模版</a>
+    				<a class="w3" id="preview">预览</a><a class="w3 active" id="nextStep">下一步</a><a class="w4 tuisong">保存此模板</a>
     			</div>
     			<div class="submit">
     				<input id="duifang" value="" type="text" placeholder="输入接收对方账户名" />
@@ -289,9 +289,6 @@
                        $(this).find("span").addClass("rightright");
 		           }
 		       });
-		       $(".tuisong").click(function(){
-		           $('#duifang').focus();
-		       })
 		       $("#wenzhang textarea").on("keyup keydown", function(){
 		           $(this).height(this.scrollHeight);
 		       });
@@ -550,6 +547,10 @@
                     saveAct("nextStep");
                 })
                 
+                $(".tuisong").click(function(){
+                   saveAct("save");
+                })
+                
                 // 异步保存当前页面信息
                 function saveAct(obj){
                     // 数据校验
@@ -593,7 +594,9 @@
                                if(result.status > 0){
                                     openUrl("../page/info.html?actId="+result.data,"actInfo");
                                }
-                            }else{
+                            }else if(obj == "save"){
+                                alert("操作成功");
+                            }else {
                                if(result.status > 0){
                                     // 只有超市 婴育
                                     openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");

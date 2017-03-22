@@ -106,6 +106,9 @@
                         actStr +='<a>'+dataResult.data[i].cityname+'</a>';
                     }
                     $(".quyu_zi").html(actStr);
+                    if($(".quyu_zi .active").length ==0){
+                        $("#quyu>a").text("请选择区域");
+                    }
                     
                     // 绑定已选
                     var ccc = "";

@@ -24,7 +24,11 @@
             url:host+"/getMsgCount.json?userId="+userId+"&state=1",
             dataType:"json",
             success:function(dataResult) {
-                $("#xiaoxishu").html(dataResult.data);
+                if (dataResult.data==0) {
+                   $("#xiaoxishu").hide();  
+                }else{
+                  $("#xiaoxishu").html(dataResult.data).show();   
+                }  
             }
         })
     }

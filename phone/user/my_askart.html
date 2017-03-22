@@ -37,6 +37,19 @@
             .mui-table-view .mui-media-body{
                 line-height: 1em;
             }
+            .mui-table-view .mui-media-object {
+                line-height: 3em;
+                max-width: 3em;
+                width: 3em;
+                height: 3em;
+                border-radius: 0.625em;
+            }
+            .mui-table-view .mui-media-object.mui-pull-left {
+                margin-right: 0.5em;
+            }
+            .same_city_search .mui-table-view .mui-media-object {
+                margin-right: 0.5em;
+            }
         </style>
 	</head>
 
@@ -129,7 +142,7 @@
                                     msgReviewStr +='<div>';
                                     var msgPics = dataList[i].msgPic.split(",");
                                     for (var j=0; j < msgPics.length; j++) {
-                                      msgReviewStr +='<img src="'+hostIp+msgPics[j]+'"  />';
+                                      msgReviewStr +='<img src="'+hostIp+msgPics[j]+'"/> ';
                                     };
                                     msgReviewStr +='</div>';
                                     msgReviewStr +='</div>';

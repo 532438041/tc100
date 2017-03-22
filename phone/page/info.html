@@ -229,7 +229,11 @@
                         actStr+=data.detailContent;
                         $("#info").html(actStr);
                         $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
-                        $("#info textarea").attr("placeholder", "").attr("readonly", "readonly");
+                        $.each($("#info textarea"), function(){
+                            if($(this).text().length==0){
+                                $(this).remove();
+                            }
+                        });
                     }
                 })
                 //浏览记录

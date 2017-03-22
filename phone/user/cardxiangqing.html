@@ -111,7 +111,7 @@
                     success : function(dataResult) {
                         var data = dataResult.data;
                         if(!!data){
-                            $("#picUrl").attr("src", data.picUrl);
+                            $("#picUrl").attr("src", hostIp+data.picUrl);
                             $("#cardName").val(data.cardName);
                             $("#address").val(data.address);
                             $("#telphone").val(data.telphone);

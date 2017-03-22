@@ -219,16 +219,30 @@
                         }
                     };
                     var msg = "添加成功！";
-                    var baseParam = {'msgId':msgId,"userId":appcan.locStorage.getVal("userId"), "remark":$("#msg").val(),"msgPic":msgPics};
-                    var param = {param:baseParam};
-                    appcan.ajax({
-                       type:"post",
-                       url:host+"/addMsgReview.json",
-                       data:JSON.stringify(param),
+                    //获取默认名片夹
+                   appcan.ajax({
+                       type:"get",     
+                       url:host+"/getCardList.json?userId="+appcan.locStorage.getVal("userId"),
                        dataType:"json",
                        contentType: "application/json",
                        success : function(dataResult) {
-                            openUrl("info_msg.html?msgId="+msgId,"info_msg");
+                           var data = dataResult.data;
+                           var cardId = "";
+                            if(data.length > 0){
+                                cardId = data[0].id;
+                            }
+                            var baseParam = {'msgId':msgId,"userId":appcan.locStorage.getVal("userId"),"cardId":cardId, "remark":$("#msg").val(),"msgPic":msgPics};
+                            var param = {param:baseParam};
+                            appcan.ajax({
+                               type:"post",
+                               url:host+"/addMsgReview.json",
+                               data:JSON.stringify(param),
+                               dataType:"json",
+                               contentType: "application/json",
+                               success : function(dataResult) {
+                                    openUrl("info_msg.html?msgId="+msgId,"info_msg");
+                               }
+                           })
                        }
                    })
                 })
