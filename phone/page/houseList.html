@@ -65,7 +65,7 @@
  		</section>
 		<section class="same_city_search">
 			<div>
-				<ul class="mui-table-view" id="actF2">
+				<ul class="list_a" id="actF2">
 				</ul>
 			</div>
 		</section>
@@ -142,7 +142,6 @@
                                $(this).addClass("active");
                                $("#quyu>a").text(" ");
                                var ccc = "";
-                               console.log($(".quyu_zi .active").length);
                                for(var i=$(".quyu_zi .active").length; i>0; i--){
                                    ccc = $(".quyu_zi .active").eq(i-1).text() + (ccc.length == 0 ? "" : ("," + ccc));
                                    $("#quyu>a").text("区域："+ccc);
@@ -153,7 +152,9 @@
                                }else{
                                    houseList(ccc);
                                };
+                               
                            }
+                           $(".quyu_zi").hide();
                         });
                     }
                 })
