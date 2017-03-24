@@ -173,7 +173,7 @@
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
-                            actStr += '<div class=\"bigtu\"><a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
+                            actStr += '<div class=\"bigtu\"><a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div>';
                         }
                         $("#actF1").html(actStr);
                     }
@@ -193,7 +193,7 @@
                         for(var i=0;i<dataList.length;i++){
                             actStr += '<li class="mui-table-view-cell mui-media">';
                             actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')">';
-                            actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'">';
+                            actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'">';
                             actStr += '<div class="mui-media-body">'+dataList[i].actName;
                             actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
                             actStr += '<i>'+dataList[i].createTime+'</i>';

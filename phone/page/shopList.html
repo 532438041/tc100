@@ -178,7 +178,7 @@
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
-                            actStr += '<div class="bigtu"><a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
+                            actStr += '<div class="bigtu"><a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div>';
                         }
                         $("#actC1").html(actStr);
                     }
@@ -200,7 +200,7 @@
                                 actStr += '<li>';
                                 actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')">';
                                 actStr += '<div>';
-                                actStr += '<img src="'+hostIp+dataList[i].mainPic+'">';
+                                actStr += '<img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'">';
                                 actStr += '</div>';
                                 actStr += '<div>'+dataList[i].actName;
                                 actStr += '<p>'+dataList[i].summary+'...</p>';

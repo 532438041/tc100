@@ -62,16 +62,16 @@
                     var dataList = dataResult.data.dataList;
                     var imgStr = "";
                     var imgBtnStr = "";
-                    imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[dataList.length-1].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[dataList.length-1].mainPic+'" /></a></div>';
+                    imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[dataList.length-1].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[dataList.length-1].mainPic+'" onerror="javascript:src=\'img/lizi2.png\'"/></a></div>';
                     for(var i=0;i<dataList.length;i++){
-                        imgStr += '<div class="mui-slider-item"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
+                        imgStr += '<div class="mui-slider-item"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'img/lizi2.png\'"/></a></div>';
                         if(i==0){
                             imgBtnStr +='<div class="mui-indicator mui-active"></div>';
                         }else{
                             imgBtnStr +='<div class="mui-indicator"></div>';
                         }
                     }
-                    imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[0].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[0].mainPic+'" /></a></div>';
+                    imgStr += '<div class="mui-slider-item mui-slider-item-duplicate"><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[0].id+'\',\'actinfo\');"><img src="'+hostIp+dataList[0].mainPic+'" onerror="javascript:src=\'img/lizi2.png\'"/></a></div>';
                     $("#slideBoxIndex").html(imgStr);
                     $("#yuandian").html(imgBtnStr);
                     var lunbo = mui('.mui-slider');
@@ -111,7 +111,7 @@
             var actStr = "";
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
-                actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'"></div>';
+                actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'img/lizi1.png\'"></div>';
                 actStr += '<div><h3>'+(dataList[i].actName||'&nbsp;')+'</h3>';
                 actStr += '<p>'+dataList[i].summary+'...</p>';
                 actStr += '<i>'+dataList[i].createTime+'</i>';
@@ -148,7 +148,7 @@
             var magStr = "";
             for(var i=0;i<dataList.length;i++){
                 magStr+='<li><a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
-                magStr+='<div><img src="'+hostIp+dataList[i].picUrl+'"></div>';
+                magStr+='<div><img src="'+hostIp+dataList[i].picUrl+'" onerror="javascript:src=\'img/lizi1.png\'"></div>';
                 magStr+='<div><h3>'+dataList[i].cardName+'</h3>';
                 magStr+='<p>'+dataList[i].title+'......</p>';
                 magStr+='<i>'+dataList[i].createTime+'</i>';

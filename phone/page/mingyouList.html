@@ -187,7 +187,7 @@
                     var dataList = dataResult.data.dataList;
                     var actStr = "";
                     for(var i=0;i<dataList.length;i++){
-                        actStr += '<div class="bigtu"><a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'info\');"><img src="'+hostIp+dataList[i].mainPic+'" /></a></div>';
+                        actStr += '<div class="bigtu"><a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'info\');"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div>';
                     }
                     $("#actA1").html(actStr);
                 }

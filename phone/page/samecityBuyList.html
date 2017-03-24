@@ -191,7 +191,7 @@
                         actStr += '<li>';
                         actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'info\');">';
                         actStr += '<div>';
-                        actStr += '<img src="'+hostIp+dataList[i].mainPic+'">';
+                        actStr += '<img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'">';
                         actStr += '</div>';
                         actStr += '<div>'+(dataList[i].shopName||'');
                         actStr += '<p>'+dataList[i].summary+'...</p>';
