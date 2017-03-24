@@ -258,6 +258,7 @@
                        if(dataResult.status == 200){
                            payCodeId = dataResult.data.id;
                            $("#payCodeState").html("可用");
+                           $("#amount").text("0");
                        }else{
                            $("#payCodeState").html("不可用");
                        }
@@ -470,12 +471,18 @@
                     return false;
                 }
                 
+                // 活动状态
+                var state = 2;
+                if(obj == "preview"){
+                    state = 1;
+                }
                 var baseParam = {
                     userId : appcan.locStorage.getVal("userId"),
                     id : actId,
                     amount : $("#amount").text(),
                     region : $("#actregion").text(),
-                    payCodeId : payCodeId
+                    payCodeId : payCodeId,
+                    state : state
                 };
                 var param = $("#fabuForm").serializeJson(baseParam);
                 var result = null;

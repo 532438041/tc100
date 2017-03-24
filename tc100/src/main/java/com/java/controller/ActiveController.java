@@ -173,7 +173,7 @@ public class ActiveController {
 			PayCode payCode = new PayCode();
 			payCode.setId(baseParam.getParam().getPayCodeId());
 			payCode.setActId(baseParam.getParam().getId());
-			payCode.setState("2");
+			payCode.setState(baseParam.getParam().getState());
 			payCodeService.updateByPrimaryKeySelective(payCode);
 		} else if (!baseParam.getParam().getAmount().equals(BigDecimal.ZERO)) {
 			// 保存支付记录
