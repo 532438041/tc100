@@ -217,6 +217,7 @@
         var payCodeId = "";
         var unit = "";
         var price = 0;
+        var totalPrice = 0;//推广总共花费
         
         // 获取金额
         appcan.ajax({
@@ -237,6 +238,7 @@
                    }else{
                        $("#sysParam").text("免费试用");  
                    }
+                   totalPrice = dataResult.data.amount||0;
                    $("#amount").text(dataResult.data.amount||0);
                }
            }
@@ -245,6 +247,7 @@
         $(function(){
             // 推荐码验证
             $("#payCode").blur(function(){
+               $("#amount").text(totalPrice);
                if(!!!$("#payCode").val()){
                    $("#payCodeState").html("待审核");
                    return false;
