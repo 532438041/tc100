@@ -32,7 +32,7 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active> implements Active
 				orderBy = "act.`view_count` DESC";
 				break;
 			case "dateTime":
-				orderBy = "act.`create_time` DESC";
+				orderBy = "act.`offlineEndTime` DESC";
 				break;
 			default:
 				orderBy = " act.`act_type`, act.`amount` DESC";
