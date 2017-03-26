@@ -210,7 +210,7 @@ $(function(){
     // 点名片 跳转到对应发布者名片详情页面
     $(".xiaoxi2").click(function(){
         var cardId = $(this).attr("cardId");
-        openUrl('../user/cardxiangqing.html?cardId='+cardId,'cardxiangqing');
+        openUrl('../page/cardxiangqing.html?cardId='+cardId,'cardxiangqing');
     })
 })
 

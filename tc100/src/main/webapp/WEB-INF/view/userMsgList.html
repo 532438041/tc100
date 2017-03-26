@@ -16,11 +16,10 @@
 <div class="page-main" ng-controller="userMsgListController">
 	<form role="form" class="form-inline search-from">
 		<label for="content" style="vertical-align:top;">消息类型：</label>
-		<select class="form-control" id="msgType" name="msgType" ng-model="msgType">
-	    	<option value="0">系统消息</option>
+		<select class="form-control" id="msgType" name="msgType">
+	    	<option value="0" selected="selected">系统消息</option>
 	      	<option value="1">活动消息</option>
 	    </select>
-		<input type="hidden" value="0" name="msgType">
 		<textarea rows="5" cols="50"  id="content" name="content" class="form-control"></textarea>
 		<input type="button" class="ml10 btn btn-default" style="vertical-align:bottom" value="推送" ng-click="saveUserMsg()">
 	</form>

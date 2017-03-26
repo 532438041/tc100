@@ -70,7 +70,7 @@
             section a{ height:1.4em; line-height:1.2em; font-size:0.8em; border: 1px solid #ff3366; padding: 0 0.3125em; border-radius: 0.3125em; float: right; margin-top: 1.1em; margin-right: 0.3125em;}
             section h3{ float: left; font-size: 0.8em; line-height: 3.75em; text-indent: 1em;}
             section div{ position: relative; height: 3em; border-bottom: 1px solid #929292; overflow: hidden; background: #fff;}
-            section  span.mui-icon{ display: none; position: absolute; top: 0.625em; right: 0.625em; color: #0173bd;}
+            section  span.mui-icon{ display: none; position: absolute; top: 0.625em; right: 0.625em; color: #0173bd;font-size: 1.5em;}
             .shengcheng i{ margin-right: 0.3125em;}
         </style>
 	</head>
@@ -83,17 +83,18 @@
 		<section class="jieshou"  id="myReceive">
 			<div>
 				<h3>已接受的模版</h3>
-				<a>模版使用</a>
-				<a>预览</a>
+				<a class="editInfo">模版使用</a>
+                <a class="yulan">预览</a>
+                <a class="shanchu1">删除</a>
 			</div>
 		</section>
 		
 		<section class="shengcheng" id="myMoban">
 			<div>
 				<h3>我生成的模版</h3>
-				<a href="moban_shiyong.html">模版使用</a>
-				<a>推送</a>
-				<a>预览</a>
+				<a class="editInfo">模版使用</a>
+				<a class="yulan">预览</a>
+				<a class="shanchu2">删除</a>
 			</div>
 		</section>
 		<footer>
@@ -113,20 +114,60 @@
 			</nav>
 		</footer>
 <script>
+    var actId = "";
+    var type = "";
+    var msgId = "";
 	$(document).ready(function(){
-		$("section div").click(function(){
-			if($(this).find("span").css("display") == "block"){
-				$(this).find("span").hide();
-			}else{
-				$("section div span").hide();
-				$(this).find("span").show();
-			}
-		});
+	    $(".shanchu1").click(function(){
+            if(!!!msgId){
+                alert("请选择");
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url:host+"/delUserMsg.json?msgId="+msgId,
+                dataType:"json",
+                success : function(dataResult) {
+                    window.location.reload();
+                }
+            })
+        })
+        $(".shanchu2").click(function(){
+            if(!!!actId){
+                alert("请选择");
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url:host+"/delAct.json?actId="+actId,
+                dataType:"json",
+                success : function(dataResult) {
+                    window.location.reload();
+                }
+            })
+        })
+        
+	    $(".editInfo").click(function(){
+            if(!!!actId){
+                alert("请选择");
+                return false;
+            }
+            openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+        })
+        
+        $(".yulan").click(function(){
+            if(!!!actId){
+                alert("请选择");
+                return false;
+            }
+            openUrl("../page/info.html?actId="+actId,"actInfo");
+        })
+        
 		//推荐的模板
         $.ajax({
             type:"post",
             async:false,       
-            url:host+"/getReceiveAct.json?userId="+appcan.locStorage.getVal("userId"),
+            url:host+"/getUserMsgList.json?userId="+appcan.locStorage.getVal("userId")+"&msgType=2",
             data:"",
             dataType:"json",
             contentType: "application/json",
@@ -135,13 +176,27 @@
                 var mymobanstr = ""; 
                 if(dataList.length>0){
                     for(var i=0;i<dataList.length;i++){
-                        mymobanstr +='<div>';
-                        mymobanstr +='<p>用户<i>小溪</i>于2016.9.29向你推送了一个模板</p>';
+                        mymobanstr +='<div data-id="'+(dataList[i].createBy || '')+'" data-msgId="'+(dataList[i].id || '')+'">';
+                        mymobanstr +='<p>'+dataList[i].content+'</p>';
                         mymobanstr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
                         mymobanstr +='</div>';
                     }
                 }
                 $("#myReceive").append(mymobanstr);
+                $("section div").click(function(){
+                    if($(this).find("span").css("display") == "block"){
+                        $(this).find("span").hide();
+                        actId = "";
+                        type = "";
+                        msgId = "";
+                    }else{
+                        $("section div span").hide();
+                        $(this).find("span").attr("display","block");
+                        actId = $(this).attr("data-id");
+                        type = "";
+                        msgId =$(this).attr("data-msgId");
+                    }
+                });
             }
         })
 		//我生成的模板
@@ -157,12 +212,24 @@
                 if(dataList.length>0){
                     var mymobanstr = ""; 
                     for(var i=0;i<dataList.length;i++){
-                        mymobanstr +='<div>';
+                        mymobanstr +='<div data-type="'+dataList[i].actType+'" data-id="'+dataList[i].id+'">';
                         mymobanstr +='<p><i>'+dataList[i].actName+'</i>   '+dataList[i].createTime+'  设计</p>';
                         mymobanstr +='<span class="mui-icon mui-icon-checkmarkempty"></span>';
                         mymobanstr +='</div>';
                     }
                     $("#myMoban").append(mymobanstr);
+                    $("section div").click(function(){
+                        if($(this).find("span").css("display") == "block"){
+                            $(this).find("span").hide();
+                            actId = "";
+                            type = "";
+                        }else{
+                            $("section div span").hide();
+                            $(this).find("span").show();
+                            actId = $(this).attr("data-id");
+                            type = $(this).attr("data-type");
+                        }
+                    });
                 }
             }
         })

@@ -49,7 +49,11 @@
             section div.tu_tu p{ font-size: 0.8em; float: left; height: auto; overflow: hidden;    position: absolute;top: 0;right: 0;}
             section div.tu_tu span{ background:#fff;font-size: 1em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0.3em 1em; border-radius: 0.3125em;}
             section div.tu_tu i{ font-size:1em; border: 1px solid #ccc; padding: 0.6em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
-           
+           .just_word{
+               padding: 0 0.6em;
+               border-radius: 0.3125em;
+               border: 1px solid #fff;
+           }
         </style>
 	</head>
 
@@ -211,6 +215,15 @@
                         $(this).addClass("bottombottom");
                     }
                 });
+                
+                $(".sec_3 ul li .actType h4").click(function() {
+                    if($(this).parents("li").find(".actList").css("display") == "none"){
+                        $(this).parents("li").find(".actList").show();
+                    }else{
+                        $(this).parents("li").find(".actList").hide();
+                    }
+                });
+                
 				//轮播发布数
 				$.ajax({
                     type:"post",
@@ -231,6 +244,17 @@
                                 strHtml+='</div></li>';
                             }
                             $(".Acount").html(strHtml);
+                            $(".editInfo").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                            })
+                            
+                            $(".editGoods").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
+                            }) 
                         }
                     }
                 })
@@ -266,6 +290,17 @@
                                 }
                             }
                             $(".Bcount").html(strHtml);
+                            $(".editInfo").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                            })
+                            
+                            $(".editGoods").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
+                            }) 
                         }
                     }
                 })
@@ -300,6 +335,17 @@
                                 }
                             }
                             $(".Ccount").html(strHtml);
+                            $(".editInfo").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                            })
+                            
+                            $(".editGoods").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
+                            }) 
                         }
                     }
                 })
@@ -334,6 +380,17 @@
                                 }
                             }
                             $(".Dcount").html(strHtml);
+                            $(".editInfo").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                            })
+                            
+                            $(".editGoods").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
+                            }) 
                         }
                     }
                 })
@@ -368,6 +425,17 @@
                                 }
                             }
                             $(".Ecount").html(strHtml);
+                            $(".editInfo").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                            })
+                            
+                            $(".editGoods").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
+                            }) 
                         }
                     }
                 })
@@ -402,6 +470,17 @@
                                 }
                             }
                             $(".Fcount").html(strHtml);
+                            $(".editInfo").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
+                            })
+                            
+                            $(".editGoods").click(function(){
+                                var actId = $(this).attr("data-id");
+                                var type = $(this).attr("data-type");
+                                openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
+                            }) 
                         }
                     }
                 })  
@@ -420,17 +499,6 @@
                         }
                     }
                 })
-                $(".editInfo").click(function(){
-                    var actId = $(this).attr("data-id");
-                    var type = $(this).attr("data-type");
-                    openUrl("moban_shengcheng.html?actId="+actId+"&type="+type,"moban_shengcheng");
-                })
-                
-                $(".editGoods").click(function(){
-                    var actId = $(this).attr("data-id");
-                    var type = $(this).attr("data-type");
-                    openUrl("good_edit.html?type="+type+"&actId="+actId,"good_edit");
-                }) 
 			});
 		</script>
 	</body>

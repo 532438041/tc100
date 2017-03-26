@@ -173,6 +173,17 @@
                         alert("文件大小不能超过2M");
                     }
                 })
+                // 文件上传过程中创建进度条实时显示。
+                uploader.on( 'uploadProgress', function( file, percentage ) {
+                    var percent = (percentage * 100).toFixed(2);
+                    if(percent!=100){
+                        $(".webuploader-pick").html("正在上传，进度"+percent+"%");
+                        $("#filePicker input[name='file']").attr("disabled","disabled");
+                    }else{
+                        $(".webuploader-pick").html("上传头像");
+                        $("#filePicker input[name='file']").removeAttr("disabled");
+                    }
+                });
                 
                 appcan.ajax({
                     type:"post",
@@ -185,7 +196,7 @@
                         var msgStr = "";
                         if(data!=null){
                             msgStr +='<li>';
-                            msgStr +='<a href="javascript:;" onclick="openUrl(\'../user/my_askart.html?msgId='+data.id+'\',\'my_askart\')">';
+                            msgStr +='<a href="javascript:;" onclick="openUrl(\'../page/my_askart.html?msgId='+data.id+'\',\'my_askart\')">';
                             msgStr +='<div>';
                             msgStr +='<img src="'+hostIp+data.picUrl+'">';
                             msgStr +='</div>';
@@ -207,6 +218,10 @@
                 
                 //添加信息
                 $("#addMsg").click(function(){
+                    if(!!!appcan.locStorage.getVal("userId")){
+                        alert("请登录");
+                        return false;
+                    }
                     if(!!!$("#msg").val()){
                         alert("回复内容不能为空！");
                         return false;

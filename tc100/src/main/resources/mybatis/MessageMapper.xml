@@ -171,7 +171,7 @@
 	<select id="getMsgList" parameterType="com.java.dto.MsgDto" resultType="com.java.dto.MsgDto">
 		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName,
 		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount,
-		<![CDATA[ IF(TIMESTAMPDIFF(MINUTE,msg.`create_time`,NOW())<=10, '1分钟前', IF(TIMESTAMPDIFF(MINUTE,msg.`create_time`,NOW())<=30, '10分钟前',IF(TIMESTAMPDIFF(MINUTE,msg.`create_time`,NOW())<=60, '半小时前',IF(TIMESTAMPDIFF(MINUTE,msg.`create_time`,NOW())<=120, '1小时前',msg.`create_time`))))  tiemStr ]]> 
+		TIMESTAMPDIFF(MINUTE,msg.`create_time`,NOW()) timeStr ,msg.`create_time`
 		FROM tc_message msg
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`

@@ -154,10 +154,14 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/changeUserMsgState")
 	public BaseResult changeUserMsgState(String msgId) {
-		UserMsg userMsg = new UserMsg();
-		userMsg.setId(msgId);
+		UserMsg userMsg = userMsgService.selectByPrimaryKey(msgId);
 		userMsg.setState("2");
 		return new BaseResult().success(userMsgService.updateByPrimaryKey(userMsg));
+	}
+	
+	@RequestMapping(value = "/delUserMsg")
+	public BaseResult delUserMsg(String msgId) {
+		return new BaseResult().success(userMsgService.deleteByPrimaryKey(msgId));
 	}
 
 	/**

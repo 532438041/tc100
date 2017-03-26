@@ -72,9 +72,8 @@
 		<section class="tu_2" id="actE1">
 		</section>
 		<section class="same_city_search">
-			<div>
-				<ul class="list_a" id="actE2">
-				</ul>
+			<div id="actE2">
+				
 			</div>
 		</section>
 
@@ -213,6 +212,9 @@
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
+                            if(i==0){
+                                actStr+='<ul class="list_a">';
+                            }
                             actStr += '<li>';
                             actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')">';
                             actStr += '<div>';
@@ -222,6 +224,9 @@
                             actStr += '<p>'+dataList[i].summary+'...</p>';
                             actStr += '<i>'+dataList[i].createTime+'</i>';
                             actStr += '</div></a></li>';
+                            if(i==dataList.length-1){
+                                actStr+='</ul>';
+                            }
                         }
                         $("#actE2").html(actStr);
                     }

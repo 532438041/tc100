@@ -168,9 +168,10 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 
-	<select id="getMsgList" parameterType="com.java.entity.Message" resultType="com.java.dto.MsgDto">
+	<select id="getMsgList" parameterType="com.java.dto.MsgDto" resultType="com.java.dto.MsgDto">
 		SELECT msg.`user_id` userId, card.`pic_url` picUrl, card.`card_name` cardName,
-		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount
+		msg.`id`, msg.`title`, msg.`region`, msg.`addName`, msg.`msg_pic`, msg.`remark`, msg.`create_time` createTime, COUNT(review.`id`) reviewCount,
+		TIMESTAMPDIFF(MINUTE,msg.`create_time`,NOW()) timeStr ,msg.`create_time`
 		FROM tc_message msg
 		LEFT JOIN `tc_message_review` review ON msg.`id` = review.`msg_id`
 		LEFT JOIN `tc_user_card` card ON msg.`card_id` = card.`id`

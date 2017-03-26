@@ -152,7 +152,15 @@
                 magStr+='<div><img src="'+hostIp+dataList[i].picUrl+'" onerror="javascript:src=\'img/lizi1.png\'"></div>';
                 magStr+='<div><h3>'+dataList[i].cardName+'</h3>';
                 magStr+='<p>'+dataList[i].title+'......</p>';
-                magStr+='<i>'+dataList[i].createTime+'</i>';
+                if(dataList[i].timeStr>0 && dataList[i].timeStr<24*60){
+                    if(dataList[i].timeStr<60){
+                        magStr+='<i>'+dataList[i].timeStr+'分钟前发布</i>';
+                    }else{
+                        magStr+='<i>'+parseInt(dataList[i].timeStr/60)+'小时前发布</i>';
+                    }
+                }else{
+                    magStr+='<i>'+dataList[i].createTime+'</i>';
+                }
                 magStr+='</div></a></li>';
             }
             $("#messageList").html(magStr);

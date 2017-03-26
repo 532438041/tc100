@@ -64,9 +64,8 @@
 		<section class="tu_2" id="actF1">
  		</section>
 		<section class="same_city_search">
-			<div>
-				<ul class="list_a" id="actF2">
-				</ul>
+			<div id="actF2">
+				
 			</div>
 		</section>
 
@@ -205,6 +204,9 @@
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
+                            if(i==0){
+                                actStr+='<ul class="list_a">';
+                            }
                             actStr += '<li class="mui-table-view-cell mui-media">';
                             actStr += '<a onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'actInfo\')">';
                             actStr += '<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'">';
@@ -212,6 +214,9 @@
                             actStr += '<p class="mui-ellipsis">'+dataList[i].summary+'...</p>';
                             actStr += '<i>'+dataList[i].createTime+'</i>';
                             actStr += '</div></a></li>';
+                            if(i==dataList.length-1){
+                                actStr+='</ul>';
+                            }
                         }
                         $("#actF2").html(actStr);
                     }

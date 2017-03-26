@@ -72,8 +72,8 @@
 		</section>
 		<section class="tu_2" id="actD1"></section>
 		<section class="same_city_search">
-			<div>
-				<ul class="list_a" id="actD2"></ul>
+			<div id="actD2">
+				
 			</div>
 		</section>
 
@@ -209,8 +209,11 @@
                     contentType: "application/json",
                     success : function(dataResult) {
                         var dataList = dataResult.data.dataList;
-                        var actStr = "";
+                        var actStr = '';
                         for(var i=0;i<dataList.length;i++){
+                            if(i==0){
+                                actStr+='<ul class="list_a">';
+                            }
                             actStr += '<li>';
                             actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')">';
                             actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'"></div>';
@@ -218,6 +221,9 @@
                             actStr += '<p>'+dataList[i].summary+'...</p>';
                             actStr += '<i>'+dataList[i].createTime+'</i>';
                             actStr += '</div></a></li>';
+                            if(i==dataList.length-1){
+                                actStr+='</ul>';
+                            }
                         }
                         $("#actD2").html(actStr);
                     }

@@ -405,6 +405,18 @@
                     }
                 })
                 
+                // 文件上传过程中创建进度条实时显示。
+                uploader.on( 'uploadProgress', function( file, percentage ) {
+                    var percent = (percentage * 100).toFixed(2);
+                    if(percent!=100){
+                        $(".filePicker .webuploader-pick").html("正在上传，进度"+percent+"%");
+                        $(".filePicker input[name='file']").attr("disabled","disabled");
+                    }else{
+                        $(".filePicker .webuploader-pick").html("上传头像");
+                        $(".filePicker input[name='file']").removeAttr("disabled");
+                    }
+                });
+                
                 // 初始化Web Uploader
                 var uploader1 = WebUploader.create({
                     // 选完文件后，是否自动上传。
@@ -453,6 +465,17 @@
                     $("#wenzhang textarea").change(function(){
                         $(this).css("height", $(this)[0].scrollHeight);
                     })
+                });
+                // 文件上传过程中创建进度条实时显示。
+                uploader.on( 'uploadProgress', function( file, percentage ) {
+                    var percent = (percentage * 100).toFixed(2);
+                    if(percent!=100){
+                        $(".filePicker1 .webuploader-pick").html("正在上传，进度"+percent+"%");
+                        $(".filePicker1 input[name='file']").attr("disabled","disabled");
+                    }else{
+                        $(".filePicker1 .webuploader-pick").html("上传头像");
+                        $(".filePicker1 input[name='file']").removeAttr("disabled");
+                    }
                 });
                 
                 if(!!getVal("actId")){

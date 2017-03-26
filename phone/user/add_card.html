@@ -207,6 +207,17 @@ $(document).ready(function(){
             alert("文件大小不能超过2M");
         }
     })
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var percent = (percentage * 100).toFixed(2);
+        if(percent!=100){
+            $(".webuploader-pick").html("正在上传，进度"+percent+"%");
+            $("#filePicker input[name='file']").attr("disabled","disabled");
+        }else{
+            $(".webuploader-pick").html("上传头像");
+            $("#filePicker input[name='file']").removeAttr("disabled");
+        }
+    });
     
 });
 

@@ -94,8 +94,6 @@ public class LoginController {
 		userService.updateByPrimaryKey(user);
 
 		// 保存登录信息
-		ToolsUtil.setCookie(response, "userId", user.getId());
-		ToolsUtil.setCookie(response, "displayName", user.getDisplayName());
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", user.getId());
 		List<UserCard> list = userCardService.getCardList(user.getId());

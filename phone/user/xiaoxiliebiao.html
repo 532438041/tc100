@@ -23,7 +23,7 @@
         <style>
             
             .xiaoxiliebiao{ font-size: 1em; padding: 0 5%}
-            .xiaoxiliebiao li{ border-bottom: 0.05em solid #aaa; line-height: 1.5em;}
+            .xiaoxiliebiao li{ border-bottom: 0.05em solid #aaa; line-height: 3em;}
         </style>
     </head>
 
@@ -64,7 +64,7 @@
                         var msgStr = '';
                         if(dataResult.data.length>0){
                             for(var i=0;i<dataResult.data.length;i++){
-                                msgStr += '<li><a onclick="openUrl(\'xiaoxixq.html?msgId='+dataResult.data[i].id+'\',\'xiaoxixq\')"><p>'+dataResult.data[i].content+'</li></a></p>';
+                                msgStr += '<li><a onclick="openUrl(\'xiaoxixq.html?msgId='+dataResult.data[i].id+'\',\'xiaoxixq\')"><p>'+(dataResult.data[i].content||'无消息内容')+'</li></a></p>';
                             }
                         }
                         $("#msgList").html(msgStr);
