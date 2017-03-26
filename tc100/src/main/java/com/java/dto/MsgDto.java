@@ -7,6 +7,8 @@ public class MsgDto extends Message {
 	private String picUrl;
 
 	private String cardName;
+	
+	private String timeStr;
 
 	// 同城搜回复个数
 	private String reviewCount;
@@ -34,5 +36,14 @@ public class MsgDto extends Message {
 	public void setReviewCount(String reviewCount) {
 		this.reviewCount = reviewCount;
 	}
+
+	public String getTimeStr() {
+		return timeStr;
+	}
+
+	public void setTimeStr(String timeStr) {
+		this.timeStr = timeStr;
+	}
+	
 
 }
