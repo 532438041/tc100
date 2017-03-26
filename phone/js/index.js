@@ -144,6 +144,7 @@
         dataType:"json",
         contentType: "application/json",
         success : function(dataResult) {
+            console.log(dataResult);
             var dataList = dataResult.data.dataList;
             var magStr = "";
             for(var i=0;i<dataList.length;i++){

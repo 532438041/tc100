@@ -96,6 +96,20 @@
 		</footer>
         <script>
         $(document).ready(function(){
+            appcan.ready(function(){
+                appcan.window.setBounce({
+                    bounceType:0,
+                    startPullCall:function(type){
+                    },
+                    downEndCall:function(type){
+                        window.location.reload();
+                    },
+                    upEndCall:function(type){
+                        appcan.window.resetBounceView(type);
+                    },
+                    color:"#fff"
+                })
+            })
         	$(".quyu h4").click(function(){
                 if($(this).next("ul").css("display") == "block"){
                     $(this).next("ul").hide();

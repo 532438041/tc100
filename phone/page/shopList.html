@@ -94,6 +94,20 @@
         <script>
             
             $(function(){
+                appcan.ready(function(){
+                    appcan.window.setBounce({
+                        bounceType:0,
+                        startPullCall:function(type){
+                        },
+                        downEndCall:function(type){
+                            window.location.reload();
+                        },
+                        upEndCall:function(type){
+                            appcan.window.resetBounceView(type);
+                        },
+                        color:"#fff"
+                    })
+                })
                 //列表
                 shopList("");
                 //查询 分类

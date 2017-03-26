@@ -71,7 +71,7 @@
 						<img class="mui-media-object mui-pull-left" src="../img/xiaoxi1.png">
 						<div class="mui-media-body">
 							活动消息 
-							<p class="mui-ellipsis">无活动消息</p>
+							<p class="mui-ellipsis getMsg1">无活动消息</p>
 						</div>
 					</a>
 				</li>
@@ -80,7 +80,7 @@
 						<img class="mui-media-object mui-pull-left" src="../img/xiaoxi2.png">
 						<div class="mui-media-body">
 							推送消息
-							<p class="mui-ellipsis">无推送消息</p>
+							<p class="mui-ellipsis getMsg2">无推送消息</p>
 						</div>
 					</a>
 				</li>
@@ -89,7 +89,7 @@
 						<img class="mui-media-object mui-pull-left" src="../img/xiaoxi3.png">
 						<div class="mui-media-body">
 							系统消息
-							<p class="mui-ellipsis">无系统消息</p>
+							<p class="mui-ellipsis getMsg0">无系统消息</p>
 						</div>
 					</a>
 				</li>
@@ -117,6 +117,9 @@
                totalCount(0);
                totalCount(1);
                totalCount(2);
+               getMsg(0);
+               getMsg(1);
+               getMsg(2);
             })
             function totalCount(msgType){
                 appcan.ajax({
@@ -128,6 +131,21 @@
                     contentType: "application/json",
                     success : function(dataResult) {
                         $(".msgType"+msgType).append('<span class="tishi_btn">'+dataResult.data+'</span>');
+                    }
+                })
+            }
+            function getMsg(msgType){
+                appcan.ajax({
+                    type:"post",
+                    url:host+"/getUserMsgList.json?userId="+appcan.locStorage.getVal("userId")+"&msgType="+msgType+"&state=1",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult){
+                        console.log(dataResult);
+                        if(dataResult.data.length>0){
+                            console.log(dataResult.data);
+                            $(".getMsg"+msgType).html(dataResult.data[0].content);
+                        }
                     }
                 })
             }
