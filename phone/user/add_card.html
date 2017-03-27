@@ -83,7 +83,7 @@
 				<div class="main">
 					<p><i>名称或店铺名称：</i><input type="text" id="cardName" name="cardName" value="" /></p>
 					<p><i>地址：</i><input type="text" id="address" name="address" value="" /></p>
-					<p><i>电话：</i><input type="text" id="telphone" name="telphone" value="" /></p>
+					<p><i>电话：</i><input type="number" id="telphone" name="telphone" value="" oninput="if(value.length>11)value=value.slice(0,11)"></p>
 					<p><i>路线：</i><input type="text" id="route" name="route" value="" /></p>
 					<p style="border: none;"><i>经营范围：</i><textarea type="text" id="region" name="region" value="" /></textarea></p>
 					<input class="button" type="button" id="addCard" value="完成" />
