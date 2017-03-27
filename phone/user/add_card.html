@@ -62,7 +62,6 @@
                 border: 1px solid #ff3366;
                 line-height: 1em;
             }
-            #filePicker{ border: 1px solid #ff3366; color: #ff3366; padding: 0.1em 1em; width: 5em; text-align: center; border-radius: 0.2em; margin-bottom: 0.5em;}
         </style>
 	</head>
 
@@ -83,7 +82,7 @@
 				<div class="main">
 					<p><i>名称或店铺名称：</i><input type="text" id="cardName" name="cardName" value="" /></p>
 					<p><i>地址：</i><input type="text" id="address" name="address" value="" /></p>
-					<p><i>电话：</i><input type="number" id="telphone" name="telphone" value="" oninput="if(value.length>11)value=value.slice(0,11)"></p>
+					<p><i>电话：</i><input type="text" id="telphone" name="telphone" value="" maxlength="11" oninput="if(!/^\d+$/.test(this.value)) {alert('格式不正确 !'); this.value=this.value.replace(/[^\d]+/g,'');}" ></p>
 					<p><i>路线：</i><input type="text" id="route" name="route" value="" /></p>
 					<p style="border: none;"><i>经营范围：</i><textarea type="text" id="region" name="region" value="" /></textarea></p>
 					<input class="button" type="button" id="addCard" value="完成" />
@@ -214,7 +213,7 @@ $(document).ready(function(){
             $(".webuploader-pick").html("正在上传，进度"+percent+"%");
             $("#filePicker input[name='file']").attr("disabled","disabled");
         }else{
-            $(".webuploader-pick").html("上传头像");
+            $(".webuploader-pick").html("上传");
             $("#filePicker input[name='file']").removeAttr("disabled");
         }
     });

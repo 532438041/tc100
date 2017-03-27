@@ -342,6 +342,9 @@
 		<if test="addName != null and addName != ''">
 			AND act.addName = #{addName}
 		</if>
+		<if test="orderBy != null and orderBy == 'dateTime'">
+			AND NOW() > act.`offlineTime` AND act.`offlineEndTime` > NOW()
+		</if>
 	</select>
 
 	<select id="getMyActList" parameterType="java.util.HashMap" resultMap="BaseResultMap">

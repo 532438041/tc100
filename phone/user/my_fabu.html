@@ -28,7 +28,7 @@
             section h3{ font-size: 1em; font-weight: bold; height: 3em; line-height: 3em; float: left; text-indent: 1em;}
             section p{ float: right; height: 3em; line-height: 3em;}
             section p span{ margin-top: 0.375em; margin-right: 0.3em;}
-            section p a{font-size: 1em; color: #ff3366; border: 1px solid #ff3366; padding: 0 0.6em; border-radius: 0.3125em; margin-right: 1em;}
+            section p a{font-size: 1em; color: #ff3366; border: 1px solid #ff3366; padding: 0 0.6em; border-radius: 0.3125em; margin-right: 0.5em;}
             section i{ font-style: normal; font-weight: normal; font-size: 0.8em; margin-left: 1em; color: #666;}
             section li{  line-height: 3.125em; border-top: 1px solid #ccc; clear: both;}
             section h4{ color: #666; line-height: 3.125em; float: left; margin-left: 1.25em;  margin-left: 4em; font-size: 0.8em;}
@@ -83,7 +83,7 @@
     					<h4>超市<i id="Ccount">正在发布数：0</i></h4>
     					<p>
     					    <a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=C','fabumoshi')">发布</a>
-    						<span class="bottombottom"></span>
+    						<a href="###" class="guanli">管理</a>
     					</p>
 					</div>
                     <div class="Ccount actList" style="display: none;">
@@ -94,10 +94,10 @@
 				</li>
 				<li>
 				    <div class="actType">
-    					<h4>孕婴<i id="Dcount">正在发布数：0</i></h4>
+    					<h4>母婴<i id="Dcount">正在发布数：0</i></h4>
     					<p>
     						<a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=D','fabumoshi')">发布</a>
-                            <span class="bottombottom"></span>
+                            <a href="###" class="guanli">管理</a>
     					</p>
 					</div>
                     <div class="Dcount actList" style="display: none;">
@@ -121,7 +121,7 @@
     					<h4>车辆<i id="Ecount">正在发布数：0</i></h4>
     					<p>
     					    <a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=E','fabumoshi')">发布</a>
-    					    <span class="bottombottom"></span>
+    					    <a href="###" class="guanli">管理</a>
     					</p>
 					</div>
 					<div class="Ecount actList" style="display: none;">
@@ -145,7 +145,7 @@
     					<h4>房车<i id="Fcount">正在发布数：0</i></h4>
     					<p>
     					    <a href="javascript:;" onclick="openUrl('../user/fabumoshi.html?type=F','fabumoshi')">发布</a>
-    					    <span class="bottombottom"></span>
+    					    <a href="###" class="guanli">管理</a>
     					</p>
 					</div>
 					<div class="Fcount actList" style="display: none;">
@@ -217,6 +217,13 @@
                 });
                 
                 $(".sec_3 ul li .actType h4").click(function() {
+                    if($(this).parents("li").find(".actList").css("display") == "none"){
+                        $(this).parents("li").find(".actList").show();
+                    }else{
+                        $(this).parents("li").find(".actList").hide();
+                    }
+                });
+                $(".sec_3 ul li .actType .guanli").click(function() {
                     if($(this).parents("li").find(".actList").css("display") == "none"){
                         $(this).parents("li").find(".actList").show();
                     }else{
@@ -349,7 +356,7 @@
                         }
                     }
                 })
-                //孕婴数量
+                //母婴数量
                 $.ajax({
                     type:"post",
                     async:false,       

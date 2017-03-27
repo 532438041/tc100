@@ -118,7 +118,7 @@
                                 <img style="" src="" data-src=""/>
                             </div>
                         </div>
-                        <textarea placeholder="请输入内容"></textarea>
+                        <textarea placeholder="请输入内容" id="remark"></textarea>
                     </div>
 					<input class="submit" type="button" id="addMsg" value="发布" />
 				</div>
@@ -260,7 +260,7 @@
                         $(".webuploader-pick").html("正在上传，进度"+percent+"%");
                         $("#filePicker input[name='file']").attr("disabled","disabled");
                     }else{
-                        $(".webuploader-pick").html("上传头像");
+                        $(".webuploader-pick").html("上传图片");
                         $("#filePicker input[name='file']").removeAttr("disabled");
                     }
                 });
@@ -347,7 +347,7 @@
                             };
                             var msg = "添加成功！";
                             var baseParam = {'cardId':cardId,"userId":appcan.locStorage.getVal("userId"),
-                            "addName":appcan.locStorage.getVal("ipcity"),"region":$("#region").text(),"msgPic":msgPics}
+                            "addName":appcan.locStorage.getVal("ipcity"),"region":$("#region").text(),"msgPic":msgPics,"remark":$("#remark").val()}
                             var param = $("#upchuan0").serializeJson(baseParam);
                             appcan.ajax({
                                type:"post",
