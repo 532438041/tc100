@@ -351,9 +351,9 @@
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM `tc_active` act
-		WHERE act.`state` != '0' AND act.user_id = #{userId}
+		WHERE act.`state` != '0' AND act.user_id = #{userId} AND state = 2
 		<if test="actType!=null and actType!=''">
-			act.`act_type` = #{actType}
+			AND act.`act_type` = #{actType}
 		</if>
 		ORDER BY act.create_time DESC
 	</select>
@@ -403,6 +403,10 @@
 		<if test="userName!=null and userName!=''">
 			AND us.user_name LIKE "%"#{userName}"%"
 		</if>
+	</select>
+	
+	<select id="checkActName" parameterType="com.java.entity.Active" resultType="com.java.entity.Active">
+		SELECT act.`id` FROM `tc_active` act WHERE act.`user_id` = #{userId} AND act.act_name = #{actName} AND act.state=2
 	</select>
 
 	<update id="upAct" parameterType="com.java.entity.Active">

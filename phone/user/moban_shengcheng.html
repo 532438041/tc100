@@ -520,6 +520,12 @@
                                 $("#wenzhang").html(data.detailContent);
                                 $("#actName").val(data.actName);
                                 num = type.substring(1,type.length);
+                                $("#wenzhang textarea").blur(function(){
+                                    $(this).html($(this).val());
+                                })
+                                $("#wenzhang textarea").change(function(){
+                                    $(this).css("height", $(this)[0].scrollHeight);
+                                })
                                 $(".opa").click(function(){
                                     $(this).parent().remove();
                                 })

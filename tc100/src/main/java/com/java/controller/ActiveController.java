@@ -159,7 +159,10 @@ public class ActiveController {
 			}
 		} else {
 			// 编辑
-			return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()));
+			BaseResult baseResult = new BaseResult();
+			baseResult.setStatus(activeService.updateByPrimaryKeySelective(baseParam.getParam()));
+			baseResult.setData(baseParam.getParam().getId());
+			return baseResult;
 		}
 	}
 
@@ -191,7 +194,7 @@ public class ActiveController {
 			payLogService.insert(payLog);
 		}
 		baseParam.getParam().setUpdateTime(new Date());
-		baseParam.getParam().setState("2"); // 发布
+		baseParam.getParam().setState(baseParam.getParam().getState()); // 发布
 		return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()), "");
 	}
 
