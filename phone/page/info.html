@@ -244,6 +244,7 @@
                         }
                         actStr+=data.detailContent;
                         $("#info").html(actStr);
+                        $(".opa").remove();
                         $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
                         $.each($("#info textarea"), function(){
                             if($(this).text().length==0){

@@ -187,9 +187,22 @@
             #yulan{ height: 4.5em; width: 6em; overflow: hidden; float: left; margin-left: 4%;}
             #yulan img{ height: 100%; width: 100%; object-fit: cover;}
             #wenzhang{ width:92%; margin:1em 4%; height: auto; overflow: hidden; padding: 1em 4%; min-height: 6em; border:1px solid #ccc;}
-            #wenzhang img{ display: block; width: 100%;}
+            #wenzhang .wzimg{ display: block; width: 100%;}
             #wenzhang textarea{ width:100%; min-height: 1.5em; height: 1.5em; margin: 0; padding: 0; border: none; outline: none;}
             #wenzhang_tu .webuploader-pick{ font-size: 0.8em;float: right; margin-right: 4%; color: #fff;width: auto;background: #ff3366;padding: 0 5%;border-radius: 0.2em;}
+            .opa{   
+                    width:18%;
+                    line-height: 2.5em;
+                    position: absolute;
+                    bottom: 0em;
+                    right: 0em;
+                    background: url(../img/opa_f36.png) repeat;
+                    height: 2.5em;
+                    color: #fff;
+                    background-color: #000;
+                    font-size: 0.6em;}
+            .opa .opaimg{ height: 1.875em; width: auto; padding: 0; margin: 0; background: none; position: absolute; left: 0.3125em; top: 0.3125em; }
+            
         </style>
 	</head>
 
@@ -302,6 +315,9 @@
             // C D E F为频道活动 进入发布模式选择页面 然后下一步到模板生成页面 若为C D 则下一步到商品详情 其他的到模板使用页面
             var type = getVal("type") || "0";
             var num = type.substring(1,type.length);
+            function removeStrHtml(){
+                   alert();
+            }
             $(function(){
                 // 判断用户是否可以发布
                 appcan.ajax({
@@ -456,8 +472,8 @@
                 
                 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
                 uploader1.on('uploadSuccess', function(file, dataResult) {
-                    var str = '<img src="'+hostIp+dataResult.data.imgUrl+'"/>';
-                    str += '<textarea placeholder="活动简介内容添加" onpropertychange="this.style.posHeight=this.scrollHeight" onfocus="this.style.posHeight=this.scrollHeight"></textarea>';
+                    var str = '<div class="childStr" style="position: relative;width:100%"><img src="'+hostIp+dataResult.data.imgUrl+'" style="position:relative;"/><div class="opa" style="padding-left: 2.5em;padding-right: 0.3125em;"><img class="opaimg" src="../img/quxiao.png">删除</div></div>';
+                    str += '<div clss="childStr" style="position: relative;padding-top:0.5em;width:100%"><textarea placeholder="活动简介内容添加" onpropertychange="this.style.posHeight=this.scrollHeight" onfocus="this.style.posHeight=this.scrollHeight"></textarea><div class="opa" style="padding-left: 2.5em;padding-right: 0.3125em;"><img class="opaimg" src="../img/quxiao.png">删除</div></div>';
                     $("#wenzhang").append(str);
                     $("#wenzhang textarea").blur(function(){
                         $(this).html($(this).val());
@@ -465,12 +481,16 @@
                     $("#wenzhang textarea").change(function(){
                         $(this).css("height", $(this)[0].scrollHeight);
                     })
+                    //
+                    $(".opa").click(function(){
+                        $(this).parent().remove();
+                    })
                 });
                 // 文件上传过程中创建进度条实时显示。
                 uploader.on( 'uploadProgress', function( file, percentage ) {
                     var percent = (percentage * 100).toFixed(2);
                     if(percent!=100){
-                        $(".filePicker1 .webuploader-pick").html("正在上传，进度"+percent+"%");
+                        $(".filePicker1 .webuploader-pick").html("正在上传，进度"+perccent+"%");
                         $(".filePicker1 input[name='file']").attr("disabled","disabled");
                     }else{
                         $(".filePicker1 .webuploader-pick").html("上传图片");
@@ -500,6 +520,9 @@
                                 $("#wenzhang").html(data.detailContent);
                                 $("#actName").val(data.actName);
                                 num = type.substring(1,type.length);
+                                $(".opa").click(function(){
+                                    $(this).parent().remove();
+                                })
                             }
                         }
                     })
@@ -666,6 +689,7 @@
                                         return false;
                                     }
                                     var detailContent = $("#wenzhang").html();
+                                    console.log(detailContent);
                                     var baseParam = {
                                         userId : appcan.locStorage.getVal("userId"),
                                         actType: type,
@@ -702,7 +726,6 @@
                         })
                    }
                })
-               
             })
         </script>
 	</body>
