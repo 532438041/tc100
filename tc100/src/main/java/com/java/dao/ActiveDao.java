@@ -21,6 +21,8 @@ public interface ActiveDao extends BaseDao<Active>{
 	List<String> getActRegion(String addName, String actType);
 
 	List<Active> getActList(Active reqParam);
+	
+	List<Active> checkActName(Active reqParam);
 
 	int upAct(Active active);
     

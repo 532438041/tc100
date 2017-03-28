@@ -635,22 +635,27 @@
                        dataType:"json",
                        contentType: "application/json",
                        success : function(dataResult) {
-                            result = dataResult;
-                            if(obj == "preview"){
-                               if(result.status > 0){
-                                    openUrl("../page/info.html?actId="+result.data,"actInfo");
-                               }
-                            }else if(obj == "save"){
-                                alert("操作成功");
-                            }else {
-                               if(result.status > 0){
-                                    // 只有超市 婴育
-                                    openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
-                                    //if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
-                                        //openUrl("good_edit.html?type="+type+"&actId="+result.data,"good_edit");
-                                    //}else{
-                                        //openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
-                                    //}
+                           console.log(dataResult);
+                           if(dataResult.status==-1){
+                               alert("模板名称重复，请重新输入！");
+                           }else{
+                                result = dataResult;
+                                if(obj == "preview"){
+                                   if(result.status > 0){
+                                        openUrl("../page/info.html?actId="+result.data,"actInfo");
+                                   }
+                                }else if(obj == "save"){
+                                    alert("操作成功");
+                                }else {
+                                   if(result.status > 0){
+                                        // 只有超市 婴育
+                                        openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
+                                        //if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
+                                            //openUrl("good_edit.html?type="+type+"&actId="+result.data,"good_edit");
+                                        //}else{
+                                            //openUrl("moban_shiyong.html?type="+type+"&actId="+result.data,"moban_shiyong");
+                                        //}
+                                   }
                                }
                            }
                        }
@@ -689,7 +694,6 @@
                                         return false;
                                     }
                                     var detailContent = $("#wenzhang").html();
-                                    console.log(detailContent);
                                     var baseParam = {
                                         userId : appcan.locStorage.getVal("userId"),
                                         actType: type,

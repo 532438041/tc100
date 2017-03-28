@@ -78,4 +78,9 @@ public class ActiveServiceImpl extends BaseServiceImpl<Active> implements Active
 		return activeDao.upAct(active);
 	}
 
+	@Override
+	public List<Active> checkActName(Active reqParam) {
+		return activeDao.checkActName(reqParam);
+	}
+	
 }

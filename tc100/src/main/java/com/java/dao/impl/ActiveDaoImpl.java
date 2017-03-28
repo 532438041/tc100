@@ -67,4 +67,9 @@ public class ActiveDaoImpl extends BaseDaoImpl<Active> implements ActiveDao {
 		return this.getSqlSession().update(getStateMentName("upAct"), active);
 	}
 
+	@Override
+	public List<Active> checkActName(Active reqParam) {
+		return this.getSqlSession().selectList(getStateMentName("checkActName"), reqParam);
+	}
+
 }

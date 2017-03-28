@@ -145,14 +145,18 @@ public class ActiveController {
 	public BaseResult saveActive(@RequestBody BaseParam<Active> baseParam) {
 		baseParam.getParam().setUpdateTime(new Date());
 		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
-			// 添加
-			baseParam.getParam().setId(ToolsUtil.getUUID());
-			baseParam.getParam().setCreateTime(new Date());
-			baseParam.getParam().setState("1"); // 未发布
-			BaseResult baseResult = new BaseResult();
-			baseResult.setStatus(activeService.insertSelective(baseParam.getParam()));
-			baseResult.setData(baseParam.getParam().getId());
-			return baseResult;
+			if(activeService.checkActName(baseParam.getParam()).size()>0){
+				return new BaseResult().failed(-1,"模板名称重复");
+			}else{
+				// 添加
+				baseParam.getParam().setId(ToolsUtil.getUUID());
+				baseParam.getParam().setCreateTime(new Date());
+				baseParam.getParam().setState("1"); // 未发布
+				BaseResult baseResult = new BaseResult();
+				baseResult.setStatus(activeService.insertSelective(baseParam.getParam()));
+				baseResult.setData(baseParam.getParam().getId());
+				return baseResult;
+			}
 		} else {
 			// 编辑
 			return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()));

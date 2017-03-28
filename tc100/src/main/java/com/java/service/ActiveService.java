@@ -28,11 +28,18 @@ public interface ActiveService extends BaseService<Active> {
 	 * @return List<Active>
 	 */
 	List<Active> getMyActList(String userId, String actType);
+	
+	/**
+	 * 验证用户名重复
+	 * @param pageParam
+	 * @return
+	 */
+	List<Active> checkActName(Active reqParam);
 
 	int addViewCount(String actId);
 
 	void operateAct(String actId, BigDecimal bigDecimal);
-
+	
 	List<Active> getActFBList(String userId, String actType, String state);
 
 	List<String> getActRegion(String addName, String actType);
