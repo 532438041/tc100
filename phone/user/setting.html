@@ -46,6 +46,13 @@
                  border: 1px solid #ccc; padding: 0.5em; position: absolute; right: 1em; font-size: 0.8em; color: #878787; border-radius: 0.2em;
                  background: #fff;
             }
+            input[type=text] {
+                font-size: 0.8em;
+                padding: 0.5em;
+                margin: 0;
+                height: 2em;
+                line-height: 2em;width:30%;
+            }
 		</style>
 	</head>
 	<body>
@@ -56,7 +63,7 @@
         
         <section class="info">
             <img id="picUrl" src="../img/touxiang.jpg"/>
-            <p style="margin-top: 1em">昵称：<span id="displayName"></span><a id="change_name">编辑</a></p>
+            <p style="margin-top: 1em">昵称：<span id="displayName"></span><a id="change_name">编辑</a><a id="save_name" style="display:none;">保存</a></p>
             <div id="filePicker">上传头像</div>
         </section>
         
@@ -91,6 +98,7 @@
             $(document).ready(function(){
                 var userId = appcan.locStorage.getVal("userId");
                 var userName = "";
+                var displayName = "";
                 //用户信息
                 appcan.ajax({
                    type:"get",
@@ -98,6 +106,7 @@
                    dataType:"json",
                    contentType: "application/json",
                    success : function(dataResult) {
+                       displayName = dataResult.data.displayName || "";
                        $("#displayName").text(dataResult.data.displayName || "");
                        $("#mobile").text("电话："+(dataResult.data.mobile || ""));
                        userName = dataResult.data.userName;
@@ -179,27 +188,27 @@
                 });
                 
                 $("#change_name").click(function(){
-                    mui.prompt('','请输入昵称','修改昵称',['确认','取消'],
-                        function(e) {
-                            if(e.index == 0){
-                                // 修改昵称
-                                var displayName = $(".mui-popup-input input").val();
-                                if(displayName.length > 0){
-                                    appcan.ajax({
-                                       type:"post",
-                                       url:host+"/changeDisplayName.json?userName="+userName+"&displayName="+displayName,
-                                       dataType:"json",
-                                       contentType: "application/json",
-                                       success : function(dataResult) {
-                                           openUrl('setting.html','setting');
-                                       }
-                                    })
-                                }else{
-                                    alert("请输入昵称")
-                                }
-                            }
-                        }
-                    ,'div');
+                    $("#displayName").html('<input type="text" class="changeName" value="'+displayName+'">');
+                    $("#change_name").hide();
+                    $("#save_name").show();
+                });
+                $("#save_name").click(function(){
+                    displayName = $(".changeName").val();
+                    if(displayName.length > 0){
+                        appcan.ajax({
+                           type:"post",
+                           url:host+"/changeDisplayName.json?userName="+userName+"&displayName="+displayName,
+                           dataType:"json",
+                           contentType: "application/json",
+                           success : function(dataResult) {
+                               $("#displayName").html(displayName);
+                                $("#change_name").show();
+                                $("#save_name").hide();
+                           }
+                        })
+                    }else{
+                        alert("请输入昵称！");
+                    }
                 });
                 $("#change_password").click(function(){
                     mui.prompt('','请输入密码','修改密码',['确认','取消'],
