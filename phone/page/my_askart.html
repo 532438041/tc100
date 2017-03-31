@@ -115,12 +115,14 @@
                                 msgStr +='</div>';
                                 msgStr +='</a>';
                                 msgStr +='</li>';
-                                var msgPics = data.msgPic.split(",");
-                                for (var j=0; j < msgPics.length; j++) {
-                                  if(j==0)msgStr+='<li class="mui-table-view-cell mui-media">';
-                                  msgStr +='<img style="width: 18%;height: 3em;" src="'+hostIp+msgPics[j]+'"/> ';
-                                  if(j==msgPics.length-1)msgStr+='</li>';
-                                };
+                                if(!!data.msgPic){
+                                    var msgPics = data.msgPic.split(",");
+                                    for (var j=0; j < msgPics.length; j++) {
+                                      if(j==0)msgStr+='<li class="mui-table-view-cell mui-media">';
+                                      msgStr +='<img style="width: 18%;height: 3em;" src="'+hostIp+msgPics[j]+'"/> ';
+                                      if(j==msgPics.length-1)msgStr+='</li>';
+                                    };
+                                }
                             }
                             $("#myMsg").html(msgStr);
                             
