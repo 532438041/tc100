@@ -149,7 +149,7 @@
 	</select>
 	
 	<select id="getUserMsgList" parameterType="java.util.HashMap" resultType="com.java.dto.UserMsgDto">
-		SELECT msg.`content` content, msg.`id` id, msg.`create_by` createBy, active.`act_type` actType FROM `tc_user_msg` msg
+		SELECT msg.`content` content, msg.`id` id, msg.`state`,msg.`create_by` createBy, active.`act_type` actType FROM `tc_user_msg` msg
 		LEFT JOIN `tc_active` active ON active.`id` = msg.`create_by`
 		<where>
 			<if test="userId!=null and userId!=''">
