@@ -141,9 +141,7 @@
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult){
-                        console.log(dataResult);
                         if(dataResult.data.length>0){
-                            console.log(dataResult.data);
                             $(".getMsg"+msgType).html(dataResult.data[0].content);
                         }
                     }

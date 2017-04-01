@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.java.base.impl.BaseDaoImpl;
 import com.java.dao.UserMsgDao;
+import com.java.dto.UserMsgDto;
 import com.java.entity.UserMsg;
 
 @Repository
@@ -23,7 +24,7 @@ public class UserMsgDaoImpl extends BaseDaoImpl<UserMsg>implements UserMsgDao {
 	}
 
 	@Override
-	public List<UserMsg> getUserMsgList(String userId, String msgType, String state) {
+	public List<UserMsgDto> getUserMsgList(String userId, String msgType, String state) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", userId);
 		map.put("msgType", msgType);

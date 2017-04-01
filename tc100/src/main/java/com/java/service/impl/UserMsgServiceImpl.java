@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.base.impl.BaseServiceImpl;
 import com.java.dao.UserMsgDao;
+import com.java.dto.UserMsgDto;
 import com.java.entity.UserMsg;
 import com.java.service.UserMsgService;
 
@@ -22,7 +23,7 @@ public class UserMsgServiceImpl extends BaseServiceImpl<UserMsg>implements UserM
 	}
 
 	@Override
-	public List<UserMsg> getUserMsgList(String userId, String msgType, String state) {
+	public List<UserMsgDto> getUserMsgList(String userId, String msgType, String state) {
 		return userMsgDao.getUserMsgList(userId, msgType, state);
 	}
 
