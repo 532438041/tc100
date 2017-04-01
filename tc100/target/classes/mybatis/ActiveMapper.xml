@@ -380,6 +380,7 @@
 		(SELECT (@rowNum1 :=0) ) b  
 		ORDER BY `amount` DESC ) u WHERE u.rowNo= "5") + 1 - tc.amount) AS amount
 		FROM `tc_active` tc WHERE user_id = #{userId} AND FIND_IN_SET(act_type, #{actType})
+		AND NOW() > tc.`start_time` AND tc.`end_time` > NOW()
 		<if test="state!=null and state!=''">
 			AND state = #{state}
 		</if>

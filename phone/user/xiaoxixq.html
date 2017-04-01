@@ -68,16 +68,14 @@
                     success : function(dataResult){
                         if(!!dataResult.data){
                             $("#htmlStr").html(dataResult.data.content);
-                            if(dataResult.data.state==1){
-                                appcan.ajax({
-                                    type:"post",
-                                    url:host+"/changeUserMsgState.json?msgId="+msgId,
-                                    dataType:"json",
-                                    contentType: "application/json",
-                                    success : function(dataResult){
-                                    }
-                                 })
-                            }
+                            appcan.ajax({
+                                type:"post",
+                                url:host+"/changeUserMsgState.json?msgId="+msgId,
+                                dataType:"json",
+                                contentType: "application/json",
+                                success : function(dataResult){
+                                }
+                           })
                         }
                     }
                 })

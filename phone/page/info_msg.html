@@ -88,6 +88,28 @@
                 float: left;
                 margin:0.5em;
             }
+            
+            .same_city_search .mui-table-view-cell{ padding: 0.5em 1em;}
+            .mui-media-body p{ font-size: 0.8em;}
+            .huida i{position: absolute; top: 0.625em; right: 0.625em; font-style: normal; color: #999; border: 1px solid #ccc; padding: 0 0.375em; line-height: 1em; border-radius: 0.3125em;}
+            .huida div>img{ width: 22%; height: 3em;}
+            .huida p{ margin-bottom: 0.3125em;}
+            .mui-table-view .mui-media-body{
+                line-height: 1em;
+            }
+            .mui-table-view .mui-media-object {
+                line-height: 3em;
+                max-width: 3em;
+                width: 3em;
+                height: 3em;
+                border-radius: 0.625em;
+            }
+            .mui-table-view .mui-media-object.mui-pull-left {
+                margin-right: 0.5em;
+            }
+            .same_city_search .mui-table-view .mui-media-object {
+                margin-right: 0.5em;
+            }
         </style>
 	</head>
 
@@ -100,12 +122,18 @@
 			<ul class="list_d" id="msgInfo">
 			</ul>
 		</section>
+		<section class="huida">
+            <div>
+                <ul class="mui-table-view" id="myMsgReviewList">
+                </ul>
+            </div>
+        </section>
 		<footer>
 			<div class="mui-bar mui-bar-tab">
 			    <div id="filePicker"></div>
 			    <input type="text" value="" id="msg"/>
 			    <input type="button" id="addMsg" value="回复"/>
-			    <div class="imghezi">
+			    <div class="imghezi" style="display: none;">
 			        <div id="msg_pic" style="display: flex;">
                         <img style="" src="" data-src=""/>
                         <img style="" src="" data-src=""/>
@@ -119,6 +147,9 @@
         <script>
             var msgId = getVal("msgId");
             $(function(){
+                $("#filePicker").click(function(){
+                    $(".imghezi").show();
+                });
                 // 初始化Web Uploader
                 var uploader = WebUploader.create({
                     // 选完文件后，是否自动上传。
@@ -196,7 +227,7 @@
                         var msgStr = "";
                         if(data!=null){
                             msgStr +='<li>';
-                            msgStr +='<a href="javascript:;" onclick="openUrl(\'../page/my_askart.html?msgId='+data.id+'\',\'my_askart\')">';
+                            msgStr +='<a href="javascript:;">';
                             msgStr +='<div>';
                             msgStr +='<img src="'+hostIp+data.picUrl+'">';
                             msgStr +='</div>';
@@ -207,6 +238,14 @@
                             msgStr +='</a>';
                             msgStr +='<a><i>已有'+data.reviewCount+'个回答</i></a>';
                             msgStr +='</li>';
+                            if(!!data.msgPic){
+                                var msgPics = data.msgPic.split(",");
+                                for (var j=0; j < msgPics.length; j++) {
+                                  if(j==0)msgStr+='<li>';
+                                  msgStr +='<img style="width: 18%;height: 3em;" src="'+hostIp+msgPics[j]+'"/> ';
+                                  if(j==msgPics.length-1)msgStr+='</li>';
+                                };
+                            }
                             msgStr +='<div class="xiangxi">';
                             msgStr +='<p>'+data.remark+'</p>';
                             msgStr +='<p>需求地址：'+data.region+'  '+data.createTime+'</p>';
@@ -214,6 +253,46 @@
                         }
                         $("#msgInfo").html(msgStr);
                     }
+                })
+                
+                //回复列表
+                appcan.ajax({
+                    type:"post",
+                    async:false,       
+                    url:host+"/getMsgReview.json?msgId="+msgId,
+                    data:"",
+                    dataType:"json",
+                    contentType: "application/json",
+                    success : function(dataResult) {
+                        var dataList = dataResult.data;
+                        var msgReviewStr = "";
+                        if(dataList.length>0){
+                            for(var i=0;i<dataList.length;i++){
+                                msgReviewStr +='<li class="mui-table-view-cell mui-media">';
+                                msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
+                                msgReviewStr +='<div class="mui-media-body">';
+                                msgReviewStr +=dataList[i].cardName;
+                                msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
+                                msgReviewStr +='<i class="cardInfo" data-id='+dataList[i].cardId+'>查看名片</i>';
+                                msgReviewStr +='<div>';
+                                if(!!dataList[i].msgPic && dataList[i].msgPic.length > 0){
+                                    var msgPics = dataList[i].msgPic.split(",");
+                                    for (var j=0; j < msgPics.length; j++) {
+                                      msgReviewStr +='<img src="'+hostIp+msgPics[j]+'"/> ';
+                                    };
+                                }
+                                msgReviewStr +='</div>';
+                                msgReviewStr +='</div>';
+                                msgReviewStr +='</li>';
+                            }
+                        }
+                        $("#myMsgReviewList").html(msgReviewStr);
+                    }
+                });
+                
+                $(".cardInfo").click(function(){
+                    var cardId = $(this).attr("data-id");
+                    openUrl('../page/cardxiangqing.html?cardId='+cardId,'cardxiangqing');
                 })
                 
                 //添加信息

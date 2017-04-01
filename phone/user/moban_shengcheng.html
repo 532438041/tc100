@@ -349,7 +349,7 @@
                 // 获取金额
                 appcan.ajax({
                    type:"get",     
-                   url:host+"/getActFeeBy.json?actType=A1",
+                   url:host+"/getActFeeBy.json?actType="+type,
                    dataType:"json",
                    contentType: "application/json",
                    success : function(dataResult) {

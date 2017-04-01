@@ -58,8 +58,8 @@
                 padding: 8px 25px;
                 margin-left: 20px;
                 border: 1px solid #ff3366;
+                line-height: 1em;
             }
-            #filePicker{ border: 1px solid #ff3366; color: #ff3366; padding: 0.1em 1em; width: 5em; text-align: center; border-radius: 0.2em; margin-bottom: 0.5em;}
         </style>
     </head>
 
@@ -85,7 +85,7 @@
                     <p><i>单位：</i><input type="text" value="" id="speUnit" name="speUnit"/></p>
                     <p class="w100"><i>开始时间：</i><input type="date" value="" id="startTime" name="startTime"/></p>
                     <p class="w100"><i>结束时间：</i><input type="date" value="" id="endTime" name="endTime"/></p>
-                    <p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" name="remark"/></textarea></p>
+                    <p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" name="remark" id="remark"/></textarea></p>
                     <input class="submit" type="button" value="完成" onclick="saveItem();"/>
                 </div>
             </form>
@@ -131,7 +131,7 @@ $(document).ready(function(){
                $("input[name='speUnit']").val(data.speUnit);
                $("input[name='startTime']").val(data.startTime);
                $("input[name='endTime']").val(data.endTime);
-               $("input[name='remark']").val(data.remark);
+               $("#remark").val(data.remark);
                $("#itemPic").attr("src", hostIp+data.itemPic);
                $(".itemPic").val(data.itemPic);
            }

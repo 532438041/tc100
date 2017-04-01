@@ -50,6 +50,10 @@
             .same_city_search .mui-table-view .mui-media-object {
                 margin-right: 0.5em;
             }
+            .xiangxi{ padding: 0.8em; }
+            .xiangxi p{ padding-bottom: 1em;}
+            .xiangxi p:first-child{ text-indent: 1.25em; font-size: 0.9em;}
+            .xiangxi p:last-child{ font-size: 0.9em; text-align: right; margin-right: 1.25em; color: #ccc;}
         </style>
 	</head>
 
@@ -110,7 +114,6 @@
                                 msgStr +='<div class="mui-media-body">';
                                 msgStr +=data.cardName;
                                 msgStr +='<p class="mui-ellipsis">'+data.title+'</p>';
-                                msgStr +='<p>'+data.remark+'</p>';
                                 msgStr +='<i>'+data.createTime+'</i>';
                                 msgStr +='</div>';
                                 msgStr +='</a>';
@@ -123,6 +126,10 @@
                                       if(j==msgPics.length-1)msgStr+='</li>';
                                     };
                                 }
+                                msgStr +='<div class="xiangxi">';
+                                msgStr +='<p>'+data.remark+'</p>';
+                                msgStr +='<p>需求地址：'+data.region+'  '+data.createTime+'</p>';
+                                msgStr +='</div>';
                             }
                             $("#myMsg").html(msgStr);
                             
@@ -148,10 +155,12 @@
                                     msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
                                     msgReviewStr +='<i class="cardInfo" data-id='+dataList[i].cardId+'>查看名片</i>';
                                     msgReviewStr +='<div>';
-                                    var msgPics = dataList[i].msgPic.split(",");
-                                    for (var j=0; j < msgPics.length; j++) {
-                                      msgReviewStr +='<img src="'+hostIp+msgPics[j]+'"/> ';
-                                    };
+                                    if(!!dataList[i].msgPic && dataList[i].msgPic.length > 0){
+                                        var msgPics = dataList[i].msgPic.split(",");
+                                        for (var j=0; j < msgPics.length; j++) {
+                                          msgReviewStr +='<img src="'+hostIp+msgPics[j]+'"/> ';
+                                        };
+                                    }
                                     msgReviewStr +='</div>';
                                     msgReviewStr +='</div>';
                                     msgReviewStr +='</li>';
