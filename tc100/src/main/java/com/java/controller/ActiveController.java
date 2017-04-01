@@ -36,6 +36,7 @@ import com.java.service.ItemCateService;
 import com.java.service.OperateFeeService;
 import com.java.service.PayCodeService;
 import com.java.service.PayLogService;
+import com.java.service.SysParamService;
 import com.java.service.UserCardService;
 import com.java.service.UserFavService;
 import com.java.service.UserMsgService;
@@ -77,6 +78,9 @@ public class ActiveController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private SysParamService sysParamService;
 
 	/**
 	 * 根据参数获取已发布的活动列表 如 actType = A1 为首页轮播 pageSize = 5 取五条数据 若userId不为空 则为获取我的推广中已发布的活动列表
@@ -368,18 +372,22 @@ public class ActiveController {
 				userFav.setUserId(userId);
 				userFavService.insert(userFav);
 			} else if (logType.equals("2")) {
+				//分享最大限制
+				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_2").getpValue());
 				// 2分享
 				int isLoged = activeLogService.isLoged(actId, null, "2");
-				if (isLoged >= 10) {
+				if (isLoged >= maxNum) {
 					return new BaseResult().failed(0, "分享金额已封顶");
 				}
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("3")) {
+				//重复最大限制
+				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_3").getpValue());
 				// 3重复
 				int isLoged = activeLogService.isLoged(actId, null, "3");
-				if (isLoged >= 20) {
+				if (isLoged >= maxNum) {
 					return new BaseResult().failed(0, "重复次数已封顶");
-				} else if (isLoged == 19) {
+				} else if (isLoged == maxNum-1) {
 					// 帖子下架
 					Active active = new Active();
 					active.setId(actId);
@@ -390,8 +398,10 @@ public class ActiveController {
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("4")) {
 				// 4水贴
+				//分享最大限制
+				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_4").getpValue());
 				int isLoged = activeLogService.isLoged(actId, null, "4");
-				if (isLoged == 19) {
+				if (isLoged == maxNum-1) {
 					// 水贴20次 三天禁止发布
 					Active active = activeService.selectByPrimaryKey(actId);
 					User user = userService.selectByPrimaryKey(active.getUserId());
