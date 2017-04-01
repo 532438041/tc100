@@ -32,6 +32,18 @@
 			.tishi_btn{ border-radius: 50%; background: #f34628; color: #fff; position: absolute; left: 2.5em; top: 0.3125em; width: 1.1em; height: 1.1em; text-align: center; line-height: 1.1em;}
 			.mui-media-body{line-height: 1.2em;}
 			.mui-table-view .mui-media-object.mui-pull-left{ line-height: inherit; max-width: 2em; height: 2em; width: 2em;}
+			.tishi_btn{ border-radius: 50%;
+                background: #f34628;
+                color: #fff;
+                position: absolute;
+                left: 4.3em;
+                top: 1.9em;
+                width: 0.4em;
+                height: 0.4em;
+                text-align: center;
+                line-height: 1.4em;
+                font-size: 0.7em;
+            }
 		</style>
 	</head>
 
@@ -97,6 +109,9 @@
                                      msgStr += '<a onclick="openUrl(\'../page/info.html?actId='+dataResult.data[i].createBy+'\',\'info\')">预览</a>';
                                  }
                                  msgStr += '<a onclick="openUrl(\'moban_shengcheng.html?actId='+dataResult.data[i].createBy+'\',\'moban_shengcheng\')">使用</a></p>';
+                                 if(dataResult.data[i].state==1){
+                                     msgStr += '<span class="tishi_btn"></span>';
+                                 }
                                  msgStr += '</li>';
                             }
                         }

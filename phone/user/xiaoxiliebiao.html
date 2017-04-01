@@ -24,6 +24,18 @@
             
             .xiaoxiliebiao{ font-size: 1em; padding: 0 5%}
             .xiaoxiliebiao li{ border-bottom: 0.05em solid #aaa; line-height: 3em;}
+            .tishi_btn{ border-radius: 50%;
+                background: #f34628;
+                color: #fff;
+                position: absolute;
+                left: 1.3em;
+                top: 5.8em;
+                width: 0.4em;
+                height: 0.4em;
+                text-align: center;
+                line-height: 1.4em;
+                font-size: 0.7em;
+            }
         </style>
     </head>
 
@@ -64,7 +76,11 @@
                         var msgStr = '';
                         if(dataResult.data.length>0){
                             for(var i=0;i<dataResult.data.length;i++){
-                                msgStr += '<li><a onclick="openUrl(\'xiaoxixq.html?msgId='+dataResult.data[i].id+'\',\'xiaoxixq\')"><p>'+(dataResult.data[i].content||'无消息内容')+'</li></a></p>';
+                                msgStr += '<li><a onclick="openUrl(\'xiaoxixq.html?msgId='+dataResult.data[i].id+'\',\'xiaoxixq\')"><p>'+(dataResult.data[i].content||'无消息内容')+'</a></p>';
+                                if(dataResult.data[i].state==1){
+                                     msgStr += '<span class="tishi_btn"></span>';
+                                 }
+                                msgStr += '</li>';
                             }
                         }
                         $("#msgList").html(msgStr);
