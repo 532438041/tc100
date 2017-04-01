@@ -21,9 +21,9 @@
         <script type="text/javascript" src="../js/common.js" ></script>
         <link rel="stylesheet" href="../js/webuploader/webuploader.css" />
         <script type="text/javascript" src="../js/webuploader/webuploader.js" ></script>
-		<title>添加商品</title>
-		<style>
-	        .quyu{ padding: 0.5em 4%; background: #fff;}
+        <title>添加商品</title>
+        <style>
+            .quyu{ padding: 0.5em 4%; background: #fff;}
             input{ background: none; border: 1px solid;}
             input[type=text]{ border-color: #ccc; font-size: 1em}
             input[type="button"]{ background: none;}
@@ -61,40 +61,40 @@
             }
             #filePicker{ border: 1px solid #ff3366; color: #ff3366; padding: 0.1em 1em; width: 5em; text-align: center; border-radius: 0.2em; margin-bottom: 0.5em;}
         </style>
-	</head>
+    </head>
 
-	<body>
-		<header>
-			<a><span class="leftleft"></span></a>
-			<h1>添加商品</h1>
-		</header>
-		<section class="quyu">
-			<form id="goodForm">
-			    <input type="hidden" name="itemPic" class="itemPic" value="" />
-				<div class="top">
-					<span>商品图片</span>
-					<div id="filePicker">上传</div>
-					<p>上传图片大小请在1M以下</p>
-					<div id="yulan"><img id="itemPic" src="../img/img_4.png" /></div>
-				</div>
-				<div class="main">
-					<p class="w100"><i>名称：</i><input type="text" value="" id="itemName" name="itemName"/></p>
-					<p><i>原价：</i><input type="text" value="" id="listPrice" name="listPrice"/>斤</p>
-					<p style="display: none"><i>V：</i><input type="text" value="" id="listUnit" name="listUnit"/></p>
-					<p><i>特价：</i><input type="text" value="" id="spePrice" name="spePrice"/>斤</p>
-					<p style="display: none"><i>V：</i><input type="text" value="" id="speUnit" name="speUnit"/></p>
-					<p class="w100"><i>开始时间：</i><input type="date" value="" id="startTime" name="startTime"/></p>
-					<p class="w100"><i>结束时间：</i><input type="date" value="" id="endTime" name="endTime"/></p>
-					<p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" name="remark"/></textarea></p>
-					<input class="submit" type="button" value="完成" onclick="saveItem();"/>
-				</div>
-			</form>
-		</section>
-		
+    <body>
+        <header>
+            <a><span class="leftleft"></span></a>
+            <h1>添加商品</h1>
+        </header>
+        <section class="quyu">
+            <form id="goodForm">
+                <input type="hidden" name="itemPic" class="itemPic" value="" />
+                <div class="top">
+                    <span>商品图片</span>
+                    <div id="filePicker">上传</div>
+                    <p>上传图片大小请在1M以下</p>
+                    <div id="yulan"><img id="itemPic" src="../img/img_4.png" /></div>
+                </div>
+                <div class="main">
+                    <p class="w100"><i>名称：</i><input type="text" value="" id="itemName" name="itemName"/></p>
+                    <p><i>原价：</i><input type="text" value="" id="listPrice" name="listPrice"/></p>
+                    <p><i>单位：</i><input type="text" value="" id="listUnit" name="listUnit"/></p>
+                    <p><i>特价：</i><input type="text" value="" id="spePrice" name="spePrice"/></p>
+                    <p><i>单位：</i><input type="text" value="" id="speUnit" name="speUnit"/></p>
+                    <p class="w100"><i>开始时间：</i><input type="date" value="" id="startTime" name="startTime"/></p>
+                    <p class="w100"><i>结束时间：</i><input type="date" value="" id="endTime" name="endTime"/></p>
+                    <p class="w100" style="border: none; clear: both;"><i>说明：</i><textarea type="text" value="" name="remark"/></textarea></p>
+                    <input class="submit" type="button" value="完成" onclick="saveItem();"/>
+                </div>
+            </form>
+        </section>
+        
 
-		<footer>
-			<nav class="mui-bar mui-bar-tab">
-				<a href="javascript:;" id="tcIndex">
+        <footer>
+            <nav class="mui-bar mui-bar-tab">
+                <a href="javascript:;" id="tcIndex">
                     <img src="../img/shouye2.png" />
                     <span class="mui-tab-label">首页</span>
                 </a>
@@ -106,8 +106,8 @@
                     <img src="../img/mine.png" />
                     <span class="mui-tab-label">我的</span>
                 </a>
-			</nav>
-		</footer>
+            </nav>
+        </footer>
 <script>
 
 var itemId = getVal("itemId");
@@ -138,7 +138,7 @@ $(document).ready(function(){
        });
     }
     
-	// 初始化Web Uploader
+    // 初始化Web Uploader
     var uploader = WebUploader.create({
         // 选完文件后，是否自动上传。
         auto: true,
@@ -223,15 +223,15 @@ function saveItem(){
         });
         return false;
     }
-    /*
+   
     if($.trim($("#listUnit").val()).length == 0){
             appcan.window.alert({
-                title:'鎻愮ず',
-                content:'鍟嗗搧鍘熶环鍗曚綅涓嶈兘涓虹┖',
-                buttons:'纭畾'
+                title:'提示',
+                content:'原价商品单位不能为空',
+                buttons:'确定'
             });
             return false;
-        }*/
+        }
     
     if($.trim($("#spePrice").val()).length == 0){
         appcan.window.alert({
@@ -241,15 +241,15 @@ function saveItem(){
         });
         return false;
     }
-    /*
+    
     if($.trim($("#speUnit").val()).length == 0){
             appcan.window.alert({
-                title:'鎻愮ず',
-                content:'鍟嗗搧鐗逛环鍗曚綅涓嶈兘涓虹┖',
-                buttons:'纭畾'
+                title:'提示',
+                content:'特价商品单位不能为空',
+                buttons:'确定'
             });
             return false;
-        }*/
+        }
     
     if($.trim($("#startTime").val()).length == 0){
         appcan.window.alert({
@@ -273,6 +273,7 @@ function saveItem(){
         actId:actId
     };
     var param = $("#goodForm").serializeJson(baseParam);
+    console.log(param);
     appcan.ajax({
        type:"post",
        url:host+"/saveItem.json",
@@ -285,6 +286,6 @@ function saveItem(){
    })
 }
 </script>
-	</body>
+    </body>
 
 </html>
