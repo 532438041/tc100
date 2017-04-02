@@ -116,6 +116,14 @@ var cateId = getVal("cateId");
 var type = getVal("type");
 
 $(document).ready(function(){  
+    
+    $("#listUnit").blur(function(){
+        $("#speUnit").val($(this).val());
+    });
+    
+    $("#speUnit").blur(function(){
+        $("#listUnit").val($(this).val());
+    });
     if(!!itemId){
         // 绑定数据
         appcan.ajax({

@@ -329,7 +329,7 @@
 		<include refid="Base_Column_List" />
 		FROM `tc_active` act
 		WHERE act.`act_type` = #{actType}
-		AND act.`state` = #{state} AND NOW() > act.`start_time` AND act.`end_time` > NOW()
+		AND act.`state` = #{state} AND NOW() >= act.`start_time` AND act.`end_time` >= NOW()
 		<if test="userId != null and userId != '' ">
 			AND act.user_id = #{userId}
 		</if>
@@ -343,7 +343,7 @@
 			AND act.addName = #{addName}
 		</if>
 		<if test="orderBy != null and orderBy == 'dateTime'">
-			AND NOW() > act.`offlineTime` AND act.`offlineEndTime` > NOW()
+			AND NOW() >= act.`offlineTime` AND act.`offlineEndTime` >= NOW()
 		</if>
 	</select>
 
@@ -368,19 +368,10 @@
 
 	<select id="getActFBList" parameterType="java.util.HashMap" resultType="com.java.entity.Active">
 		SELECT
-		id, cate_id cateId, act_type actType, main_pic mainPic, is_init isInit, state, `act_name` actName, summary,
-		(SELECT u.rowNo FROM ( 
-		SELECT id,(@rowNum:=@rowNum+1) rowNo  
-		FROM `tc_active`,  
-		(SELECT (@rowNum :=0) ) b  
-		ORDER BY `amount` DESC ) u WHERE u.id=tc.`id`) AS rowNo,
-		((SELECT u.amount FROM (  
-		SELECT id,(@rowNum1:=@rowNum1+1) rowNo, amount  
-		FROM `tc_active`,  
-		(SELECT (@rowNum1 :=0) ) b  
-		ORDER BY `amount` DESC ) u WHERE u.rowNo= "5") + 1 - tc.amount) AS amount
+		id, cate_id cateId, act_type actType, main_pic mainPic, is_init isInit, state, `act_name` actName, summary,end_time endTime,
+		GET_ACT_ROWNO(tc.id, #{actType}) AS rowNo, GET_ACT_ADDAMOUNT(tc.id, #{actType}) As amount
 		FROM `tc_active` tc WHERE user_id = #{userId} AND FIND_IN_SET(act_type, #{actType})
-		AND NOW() > tc.`start_time` AND tc.`end_time` > NOW()
+		AND NOW() >= tc.`start_time` AND tc.`end_time` >= NOW()
 		<if test="state!=null and state!=''">
 			AND state = #{state}
 		</if>
@@ -392,7 +383,7 @@
 	<select id="getActRegion" parameterType="java.util.HashMap" resultType="java.lang.String">
 		SELECT act.region FROM `tc_active` act
 		WHERE act.`act_type` LIKE "%"#{actType}"%"
-		AND act.`state` = '2' AND NOW() > act.`start_time` AND act.`end_time` > NOW()
+		AND act.`state` = '2' AND NOW() >= act.`start_time` AND act.`end_time` >= NOW()
 		AND act.addName = #{addName} GROUP BY act.region
 	</select>
 

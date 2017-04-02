@@ -102,17 +102,7 @@
 					</div>
                     <div class="Dcount actList" style="display: none;">
                         <div class="tu_tu shouqi">
-                            <img src="../img/img_8.png" />
-                            <p><span>编辑</span></p>
-                        </div>
-                        <div class="shouqi mui-table-view-cell mui-media">
-                            <a href="javascript:;">
-                                <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-                                <div class="mui-media-body">
-                                    <p class="mui-ellipsis"></p>
-                                    <i>编辑</i>
-                                </div>
-                            </a>
+                                                                            没有促销发布，请首先发布促销
                         </div>
                     </div>
 				</li>
@@ -126,17 +116,7 @@
 					</div>
 					<div class="Ecount actList" style="display: none;">
                         <div class="tu_tu shouqi">
-                            <img src="../img/img_8.png" />
-                            <p><span>编辑</span></p>
-                        </div>
-                        <div class="shouqi mui-table-view-cell mui-media">
-                            <a href="javascript:;">
-                                <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-                                <div class="mui-media-body">
-                                    <p class="mui-ellipsis"></p>
-                                    <i>编辑</i>
-                                </div>
-                            </a>
+                                                                            没有促销发布，请首先发布促销
                         </div>
                     </div>
 				</li>
@@ -150,17 +130,7 @@
 					</div>
 					<div class="Fcount actList" style="display: none;">
 					    <div class="tu_tu shouqi">
-                            <img src="../img/img_8.png" />
-                            <p><span>编辑</span></p>
-                        </div>
-                        <div class="shouqi mui-table-view-cell mui-media">
-                            <a href="javascript:;">
-                                <img class="mui-media-object mui-pull-left" src="../img/img_2.png">
-                                <div class="mui-media-body">
-                                    <p class="mui-ellipsis"></p>
-                                    <i>编辑</i>
-                                </div>
-                            </a>
+                                                                            没有促销发布，请首先发布促销
                         </div>
 					</div>
 				</li>
@@ -248,7 +218,7 @@
                                 strHtml+='<li><div class="tu_tu shouqi">';
                                 strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                 strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                strHtml+='</div></li>';
+                                strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ +'天</p></li>';
                             }
                             $(".Acount").html(strHtml);
                             $(".editInfo").click(function(){
@@ -283,7 +253,7 @@
                                     strHtml+='<li><div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                     strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                    strHtml+='</div></li>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ +'天</p></li>';
                                 }
                                 if(dataResult.data[i].actType=='B2'){
                                     strHtml+='<li><div class="shouqi mui-media">';
@@ -292,7 +262,7 @@
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
                                     strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                     strHtml+='</div></li>';
                                 }
                             }
@@ -329,7 +299,7 @@
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                     strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods">编辑商品</span>&nbsp;<span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p></li>';
                                 }
                                 if(dataResult.data[i].actType=='C2'){
                                     strHtml+='<div class="shouqi mui-media">';
@@ -338,7 +308,7 @@
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
                                     strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods" style="margin-right: 3.5em;">编辑商品</i>&nbsp;<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                             }
                             $(".Ccount").html(strHtml);
@@ -374,7 +344,7 @@
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                     strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods">编辑商品</span>&nbsp;<span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                                 if(dataResult.data[i].actType=='D2'){
                                     strHtml+='<div class="shouqi mui-media">';
@@ -383,7 +353,7 @@
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
                                     strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editGoods" style="margin-right: 3.5em;">编辑商品</i>&nbsp;<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                             }
                             $(".Dcount").html(strHtml);
@@ -419,7 +389,7 @@
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                     strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                                 if(dataResult.data[i].actType=='E2'){
                                     strHtml+='<div class="shouqi mui-media">';
@@ -428,7 +398,7 @@
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
                                     strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                             }
                             $(".Ecount").html(strHtml);
@@ -464,7 +434,7 @@
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                     strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                                 if(dataResult.data[i].actType=='F2'){
                                     strHtml+='<div class="shouqi mui-media">';
@@ -473,7 +443,7 @@
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
                                     strHtml+='<i data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</i>';
                                     strHtml+='</div>';
-                                    strHtml+='</div>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p>';
                                 }
                             }
                             $(".Fcount").html(strHtml);
@@ -506,6 +476,18 @@
                         }
                     }
                 })
+                // 剩余天数
+                function getLastTime(endTime){
+                    if(!!endTime){
+                        var now = new Date();
+                        var bngDate = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+                        var endDate = new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
+                        var days = (endDate.getTime()-bngDate.getTime())/24/60/60/1000 + 1;
+                        return days;
+                    }else{
+                        return "0";
+                    }
+                }
 			});
 		</script>
 	</body>

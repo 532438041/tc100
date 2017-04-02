@@ -219,6 +219,7 @@
         var unit = "";
         var price = 0;
         var totalPrice = 0;//推广总共花费
+        var endTime = "";
         
         // 获取金额
         appcan.ajax({
@@ -282,11 +283,13 @@
                             var data = dataResult.data;
                             $("#startTime").val(data.startTime);
                             $("#endTime").val(data.endTime);
+                            endTime = data.endTime;
                             $("#offlineTime").val(data.offlineTime);
                             $("#offlineEndTime").val(data.offlineEndTime);
                             $("#offlinePlace").val(data.offlinePlace);
                             $("#actregion").text(data.region || '')
                             $("#cateId").val(data.cateId);
+                            $("#endTime").blur();
                         }
                     }
                 })
@@ -415,7 +418,17 @@
                     var end = $("#endTime").val();
                     var bngDate = new Date(bng.substr(0,4),bng.substr(5,2)-1,bng.substr(8,2));
                     var endDate = new Date(end.substr(0,4),end.substr(5,2)-1,end.substr(8,2));
-                    var days = (endDate.getTime()-bngDate.getTime())/24/60/60/1000;
+                    var days = (endDate.getTime()-bngDate.getTime())/24/60/60/1000 + 1;
+                    // 若endTime不为空 则为续期
+                    var oldEndDate = "";
+                    var oldDays = 0;
+                    if(!!endTime){
+                        var oldEndDate = new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
+                        var oldDays = (oldEndDate.getTime()-bngDate.getTime())/24/60/60/1000 + 1;
+                        if(days<oldDays){
+                            oldDays = 0;
+                        }
+                    }
                     if(days < 0){
                         alert("截至时间必须大于开始时间！");
                         $("#endTime").val("");
@@ -427,14 +440,14 @@
                             $("#endTime").val("");
                             return false;
                         }
-                        $("#amount").text(price*days);
+                        $("#amount").text(price*(days-oldDays));
                     }else if(unit == "月"){
                         if(days > 180){
                             alert("最长发布不得超过6个月！");
                             $("#endTime").val("");
                             return false;
                         }
-                        $("#amount").text((price/30)*days);
+                        $("#amount").text((price/30)*(days-oldDays));
                     }
                 }
             });

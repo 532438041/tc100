@@ -120,6 +120,25 @@
             .mui-table-view-cell>a:not(.mui-btn){
                 padding: 0;
             }
+            .shuoming {
+                background: #fff;
+            }
+            .shuoming h2 {
+                color: #666;
+                padding: 0.5em;
+                font-size: 0.9em;
+                line-height: 1.5em;
+                position: relative;
+            }
+            .shuoming div {
+                border: 1px solid #666;
+                color: #666;
+                padding: 0.3em 0.8em;
+                margin: 0.3em;
+                font-size: 1em;
+                line-height: 1.5em;
+                position: relative;
+            }
         </style>
 	</head>
 
@@ -129,10 +148,31 @@
 			<h1 id="typeName">活动详情</h1>
 			<a class="xiaoxi2" cardId=''>名片</a>
 		</header>
-		<div id="infoGoods"></div>
+		<div id="infoGoods">
+		    <section class="shuoming">
+                <h2>位置：<span id="weizhi"></span></h2>
+                <div id="neirong"></div>
+            </section>
+		</div>
 		<script>
             var actId = getVal("actId");
             $(function(){
+                    //获取数据
+                    appcan.ajax({
+                        type:"post",
+                        url:host+"/getActive.json?actId="+actId,
+                        dataType:"json",
+                        async:false,    
+                        contentType: "application/json",
+                        success : function(dataResult) {
+                            if(!!dataResult.data){
+                                var data = dataResult.data;
+                                $("#weizhi").text(data.region);
+                                $("#neirong").text(data.detailSummary);
+                            }
+                        }
+                    })
+                    
                 appcan.ajax({
                     type:"post",
                     url:host+"/getActItem.json?actId="+actId+"&limit=5",
@@ -190,7 +230,7 @@
                                 itemStr +='</section>';
                             }
                         }
-                        $("#infoGoods").html(itemStr);
+                        $("#infoGoods").append(itemStr);
                     }
                 })
             });

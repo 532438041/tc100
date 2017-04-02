@@ -232,8 +232,8 @@
                             msgStr +='<img src="'+hostIp+data.picUrl+'">';
                             msgStr +='</div>';
                             msgStr +='<div>';
-                            msgStr +='<h3>'+data.cardName+'</h3>';
-                            msgStr +='<p>'+data.title+'</p>';
+                            msgStr +='<p>'+data.cardName+'</p>';
+                            msgStr +='<h3>'+data.title+'</h3>';
                             msgStr +='</div>';
                             msgStr +='</a>';
                             msgStr +='<a><i>已有'+data.reviewCount+'个回答</i></a>';
@@ -247,7 +247,7 @@
                                 };
                             }
                             msgStr +='<div class="xiangxi">';
-                            msgStr +='<p>'+data.remark+'</p>';
+                            msgStr +='<p style="color: #232323;font-size: 1em;">'+data.remark+'</p>';
                             msgStr +='<p>需求地址：'+data.region+'  '+data.createTime+'</p>';
                             msgStr +='</div>';
                         }
@@ -271,8 +271,8 @@
                                 msgReviewStr +='<li class="mui-table-view-cell mui-media">';
                                 msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
                                 msgReviewStr +='<div class="mui-media-body">';
-                                msgReviewStr +=dataList[i].cardName;
-                                msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].remark+'</p>';
+                                msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].cardName+'</p>';
+                                msgReviewStr +='<p style="color: #232323;font-size: 1em;" class="mui-ellipsis">'+dataList[i].remark+'</p>';
                                 msgReviewStr +='<i class="cardInfo" data-id='+dataList[i].cardId+'>查看名片</i>';
                                 msgReviewStr +='<div>';
                                 if(!!dataList[i].msgPic && dataList[i].msgPic.length > 0){

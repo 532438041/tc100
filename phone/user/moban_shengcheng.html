@@ -253,7 +253,12 @@
     					<textarea placeholder="活动简介内容输入" name="summary" id="summary"></textarea>
     				</div>
     			</div>
-    			
+    			<div class="pore shouye shop" style="display: none;">
+                    <h3>详情页设置</h3>
+                    <div>
+                        <textarea placeholder="活动简介内容输入" name="detailSummary" id="detailSummary"></textarea>
+                    </div>
+                </div>
     			<div class="xiangqing">
     				<h3>详情页设置</h3>
     				<div>
@@ -524,6 +529,7 @@
                                     $(this).html($(this).val());
                                 })
                                 $("#wenzhang textarea").change(function(){
+                                    $(this).html($(this).val());
                                     $(this).css("height", $(this)[0].scrollHeight);
                                 })
                                 $(".opa").click(function(){
@@ -549,10 +555,12 @@
                         break;
                     case "C1":
                         $(".xiangqing").hide();
+                        $(".shop").show();
                         $("#typeName").text("超市模块");
                         break;
                     case "D1":
                         $(".xiangqing").hide();
+                        $(".shop").show();
                         $("#typeName").text("母婴模块");
                         break;
                     case "E1":
@@ -563,10 +571,12 @@
                         break;
                     case "C2":
                         $(".xiangqing").hide();
+                        $(".shop").show();
                         $("#typeName").text("超市模块");
                         break;
                     case "D2":
                         $(".xiangqing").hide();
+                        $(".shop").show();
                         $("#typeName").text("母婴模块");
                         break;
                     case "E2":
@@ -641,7 +651,6 @@
                        dataType:"json",
                        contentType: "application/json",
                        success : function(dataResult) {
-                           console.log(dataResult);
                            if(dataResult.status==-1){
                                alert("模板名称重复，请重新输入！");
                            }else{

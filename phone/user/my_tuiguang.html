@@ -57,6 +57,9 @@
             section p.mui-ellipsis{ float: none;}
             .mui-media-body,section p.mui-ellipsis{ text-indent: 1em;}
             .mui-media-body i{ position: absolute; top: 0; right: 0; line-height:1.5em; border: 1px solid #ff3366; color: #ff3366; border-radius: 0.3em; text-indent: 0; padding: 0 0.5em;}
+            section .actList p{margin-left: 3em;font-size: 0.8em; float: left; height: auto; overflow: hidden;}
+            section .actList span{ font-size: 0.8em; border: 1px solid #ff3366; color: #ff3366; margin-right: 0; margin-left: 0.3125em; padding: 0.3em 1em; border-radius: 0.3125em;}
+            section .actList i{ font-size:1em; border: 1px solid #ccc; padding: 0.6em; color: #ccc;  margin-left: 0; border-radius: 0.3125em;}           
         </style>
 	</head>
 
@@ -202,14 +205,22 @@
                             for(var i=0;i<count;i++){
                                 strHtml+='<li><div class="tu_tu shouqi">';
                                 strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                if(dataResult.data[i].rowNo>5){
-                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第5位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                strHtml+='</div>';
+                                if(dataResult.data[i].rowNo>1){
+                                   strHtml+='<div class="actList"><p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第'+getRowNo(dataResult.data[i].rowNo)+'位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p></div>';
                                 }else{
-                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                   strHtml+='<div class="actList"><p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p></div>';
                                 }
-                                strHtml+='</div></li>';
+                                strHtml+='</li>';
                             }
                             $(".Acount").html(strHtml);
+                            $(".tgFun").click(function(){
+                                var p = {};
+                                p.id = $(this).attr("data-id");
+                                p.amount = $(this).attr("data-amount");
+                                appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                                openUrl("../user/zhifu.html","zhifu");
+                            });
                         }
                     }
                 })
@@ -227,28 +238,30 @@
                             $("#Bcount").html('正在发布数：'+count);
                             var strHtml = "";
                             for(var i=0;i<count;i++){
-                                if(dataResult.data[i].actType=='B1'){
-                                    strHtml+='<li><div class="tu_tu shouqi">';
-                                    strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    if(dataResult.data[i].rowNo>5){
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第5位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
-                                    }else{
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
-                                    }
-                                    strHtml+='</div></li>';
-                                }
                                 if(dataResult.data[i].actType=='B2'){
                                     strHtml+='<li><div class="shouqi mui-table-view-cell mui-media">';
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">推广</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
-                                    strHtml+='</div></li>';
+                                    strHtml+='</div>';
                                 }
+                                if(dataResult.data[i].rowNo>1){
+                                   strHtml+='<div class="actList"><p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第'+getRowNo(dataResult.data[i].rowNo)+'位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p></div>';
+                                }else{
+                                   strHtml+='<div class="actList"><p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p></div>';
+                                }
+                                strHtml+='</li>';
                             }
                             $(".Bcount").html(strHtml);
+                            $(".tgFun").click(function(){
+                                var p = {};
+                                p.id = $(this).attr("data-id");
+                                p.amount = $(this).attr("data-amount");
+                                appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                                openUrl("../user/zhifu.html","zhifu");
+                            });
                         }
                     }
                 })
@@ -269,11 +282,6 @@
                                 if(dataResult.data[i].actType=='C1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    if(dataResult.data[i].rowNo>5){
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第5位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
-                                    }else{
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
-                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='C2'){
@@ -281,12 +289,23 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">推广</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
+                                if(dataResult.data[i].rowNo>1){
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第'+getRowNo(dataResult.data[i].rowNo)+'位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                }else{
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                }
                             }
                             $(".Ccount").html(strHtml);
+                            $(".tgFun").click(function(){
+                                var p = {};
+                                p.id = $(this).attr("data-id");
+                                p.amount = $(this).attr("data-amount");
+                                appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                                openUrl("../user/zhifu.html","zhifu");
+                            });
                         }
                     }
                 })
@@ -307,11 +326,6 @@
                                 if(dataResult.data[i].actType=='D1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    if(dataResult.data[i].rowNo>5){
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第5位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
-                                    }else{
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
-                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='D2'){
@@ -319,13 +333,23 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">推广</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
+                                if(dataResult.data[i].rowNo>1){
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第'+getRowNo(dataResult.data[i].rowNo)+'位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                }else{
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                }
                             }
-                            console.log(strHtml);
                             $(".Dcount").html(strHtml);
+                            $(".tgFun").click(function(){
+                                var p = {};
+                                p.id = $(this).attr("data-id");
+                                p.amount = $(this).attr("data-amount");
+                                appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                                openUrl("../user/zhifu.html","zhifu");
+                            });
                         }
                     }
                 })
@@ -346,11 +370,6 @@
                                 if(dataResult.data[i].actType=='E1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    if(dataResult.data[i].rowNo>5){
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第5位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
-                                    }else{
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
-                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='E2'){
@@ -358,12 +377,23 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">推广</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
+                                if(dataResult.data[i].rowNo>1){
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第'+getRowNo(dataResult.data[i].rowNo)+'位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                }else{
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                }
                             }
                             $(".Ecount").html(strHtml);
+                            $(".tgFun").click(function(){
+                                var p = {};
+                                p.id = $(this).attr("data-id");
+                                p.amount = $(this).attr("data-amount");
+                                appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                                openUrl("../user/zhifu.html","zhifu");
+                            });
                         }
                     }
                 })
@@ -384,11 +414,6 @@
                                 if(dataResult.data[i].actType=='F1'){
                                     strHtml+='<div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
-                                    if(dataResult.data[i].rowNo>5){
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第5位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
-                                    }else{
-                                       strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
-                                    }
                                     strHtml+='</div>';
                                 }
                                 if(dataResult.data[i].actType=='F2'){
@@ -396,12 +421,23 @@
                                     strHtml+='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataResult.data[i].mainPic+'">';
                                     strHtml+='<div class="mui-media-body">'+dataResult.data[i].actName;
                                     strHtml+='<p class="mui-ellipsis">'+dataResult.data[i].summary+'</p>';
-                                    strHtml+='<i data-id="'+dataResult.data[i].id+'">推广</i>';
                                     strHtml+='</div>';
                                     strHtml+='</div>';
                                 }
+                                if(dataResult.data[i].rowNo>1){
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位，仅需'+(dataResult.data[i].amount||'0')+'元即可排名第'+getRowNo(dataResult.data[i].rowNo)+'位</i><span class="tgFun" data-amount="'+(dataResult.data[i].amount||'0')+'" data-id="'+dataResult.data[i].id+'">推广</span></p>';
+                                }else{
+                                   strHtml+='<p><i>当前排列第'+dataResult.data[i].rowNo+'位</i></p>';
+                                }
                             }
                             $(".Fcount").html(strHtml);
+                            $(".tgFun").click(function(){
+                                var p = {};
+                                p.id = $(this).attr("data-id");
+                                p.amount = $(this).attr("data-amount");
+                                appcan.locStorage.setVal("param",JSON.stringify({param:p}));
+                                openUrl("../user/zhifu.html","zhifu");
+                            });
                         }
                     }
                 }) 
@@ -428,6 +464,16 @@
                     appcan.locStorage.setVal("param",JSON.stringify({param:p}));
                     openUrl("../user/zhifu.html","zhifu");
                 });
+                
+                function getRowNo(nowRow){
+                    if(Number(nowRow)<10){
+                        return "1";
+                    }else if(Number(nowRow)<20){
+                        return "10";
+                    }else{
+                        return "20";
+                    }
+                }
 			});
 		</script>
 	</body>

@@ -149,7 +149,7 @@ public class ActiveController {
 	public BaseResult saveActive(@RequestBody BaseParam<Active> baseParam) {
 		baseParam.getParam().setUpdateTime(new Date());
 		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
-			if(activeService.checkActName(baseParam.getParam()).size()>0){
+			if(ToolsUtil.isNotNull(baseParam.getParam().getActName()) && activeService.checkActName(baseParam.getParam()).size()>0){
 				return new BaseResult().failed(-1,"模板名称重复");
 			}else{
 				// 添加
