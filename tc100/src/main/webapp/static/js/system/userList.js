@@ -38,10 +38,10 @@ angular.module("indexApp").controller("userListController", function($scope, $ht
 		$scope.userName = "";
 	};
 	
-	$scope.changeUesrState = function(id) {
+	$scope.changeUesrState = function(id,state) {
 		$http({
 			method : "post",
-			url : "/tc100/changeUesrState.json?userId=" + id+"&state=1"
+			url : "/tc100/changeUesrState.json?userId=" + id+"&state="+state
 		}).success(function(dataResult) {
 			alert("解除禁止成功，该用户可正常发布");
 			$scope.showList();

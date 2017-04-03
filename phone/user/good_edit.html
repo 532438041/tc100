@@ -195,10 +195,11 @@
 		</header>
 		<section class="buff">
 			<a class="active">正在发布</a>
+			<a class="xiajia">已下架</a>
 		</section>
 		
 		<section class="shucailei" id="addView">
-			<h2><input type="text" value="" id="cateName" placeholder="分类名称" /><a href="javascript:;" onclick="addGood();">添加商品</a></h2>
+			<h2><input type="text" value="" class="cateName" placeholder="分类名称" /><a href="javascript:;" onclick="addGood('',this);">添加商品</a></h2>
 			<div>
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell mui-media">
@@ -240,22 +241,31 @@
                    var data = dataResult.data;
                    var str = '';
                    for (var i=0; i < data.length; i++) {
-                     str+='<section class="shucailei"><h2><span class="kaihe mui-icon mui-icon-arrowdown"></span>'
-                     +data[i].cateName+'<a href="javascript:;" onclick="addGood(\''
-                     +data[i].cateId+'\');">添加商品</a></h2>'
+                     str+='<section class="shucailei"><h2><span class="kaihe mui-icon mui-icon-arrowdown"></span><input type="text" value="'
+                     +data[i].cateName+'" class="cateName" />'
+                     +'<a href="javascript:;" style="right: 6.5em;" onclick="delCate(\''
+                     +data[i].cateId+'\',this);">删除</a><a href="javascript:;" onclick="addGood(\''
+                     +data[i].cateId+'\',this);">添加商品</a></h2>'
                      +'<div><ul class="mui-table-view">';
                      var itemList = data[i].itemList;
                      for (var j=0; j < itemList.length; j++) {
-                       str+='<li class="mui-table-view-cell mui-media"><div><img class="mui-media-object mui-pull-left" src="'
-                       + hostIp+itemList[j].itemPic +'"><div class="mui-media-body">品名：'
-                       +itemList[j].itemName +'<p><i>特价：'
-                       +itemList[j].spePrice +'元/'
-                       +itemList[j].speUnit+'</i>原价：<s>'
-                       +itemList[j].listPrice+'元/'
-                       +itemList[j].listUnit+'</s></p><p>时间：'
-                       +itemList[j].startTime+' 至 '
-                       +itemList[j].endTime+'</p><p class="mui-ellipsis">说明：'
-                       +itemList[j].remark+'</p></div><p class="del_bianji"><a onclick="delGood(\''+itemList[j].id+'\');">删除</a><a onclick="getGood(\''+itemList[j].id+'\',\''+data[i].cateId+'\');">编辑</a></p></div></li>';
+                        var yourtime=itemList[j].endTime;
+                        yourtime = yourtime.replace("-","/");//替换字符，变成标准格式
+                        var d2=new Date();//取今天的日期
+                        var d1 = new Date(Date.parse(yourtime));
+                        // 未结束 未下架的
+                       if(d1>=d2 && (itemList[j].updateBy.length == 0 || itemList[j].updateBy == "0")){
+                           str+='<li class="mui-table-view-cell mui-media"><div><img class="mui-media-object mui-pull-left" src="'
+                           + hostIp+itemList[j].itemPic +'"><div class="mui-media-body">品名：'
+                           +itemList[j].itemName +'<p><i>特价：'
+                           +itemList[j].spePrice +'元/'
+                           +itemList[j].speUnit+'</i>原价：<s>'
+                           +itemList[j].listPrice+'元/'
+                           +itemList[j].listUnit+'</s></p><p>时间：'
+                           +itemList[j].startTime+' 至 '
+                           +itemList[j].endTime+'</p><p class="mui-ellipsis">说明：'
+                           +itemList[j].remark+'</p></div><p class="del_bianji"><a onclick="delGood(\''+itemList[j].id+'\');">下架</a><a onclick="getGood(\''+itemList[j].id+'\',\''+data[i].cateId+'\');">编辑</a></p></div></li>';
+                       }
                      };
                      str+='</ul></div></section>';
                    };
@@ -285,26 +295,38 @@
                 openUrl("../index.html","index");
             })
             
+            $(".xiajia").click(function(){
+                openUrl("good_xiajia.html?actId="+actId,"good_xiajia");
+            });
+            
         });
         
-        function addGood(cateId){
-            if(!!!cateId){
-                if($("#cateName").val().length == 0){
-                    alert("请先填写分类名称");
-                    return false;
-                }
-                // 保存分类
+        function addGood(cateId, obj){
+            if($(obj).parent().find(".cateName").val() == 0){
+                alert("请先填写分类名称");
+                return false;
+            }
+            // 保存分类
+            appcan.ajax({
+               type:"post",
+               url:host+"/saveItemCate.json?id="+(cateId||"")+"&cateName="+$(obj).parent().find(".cateName").val()+"&actId="+actId,
+               dataType:"json",
+               success : function(dataResult) {
+                   openUrl("add_good.html?itemId=&type="+type+"&actId="+actId+"&cateId="+dataResult.data,"add_good");
+               }
+           });
+        }
+        function delCate(cateId, obj){
+            if(confirm("确认删除？")){
                 appcan.ajax({
                    type:"post",
-                   url:host+"/saveItemCate.json?id="+(cateId||"")+"&cateName="+$("#cateName").val()+"&actId="+actId,
+                   url:host+"/delItemCate.json?id="+cateId,
                    dataType:"json",
                    success : function(dataResult) {
-                       openUrl("add_good.html?itemId=&type="+type+"&actId="+actId+"&cateId="+dataResult.data,"add_good");
+                       $(obj).parents(".shucailei").remove();
                    }
                });
-            }else{
-               openUrl("add_good.html?itemId=&type="+type+"&actId="+actId+"&cateId="+cateId,"add_good");
-            }
+            };
         }
         function getGood(actItemId,cateId){
             // 获取商品信息
@@ -312,7 +334,7 @@
         }
         function delGood(actItemId){
             // 删除商品
-            if(confirm('你确定要删除?')){
+            if(confirm('你确定要下架?')){
                 appcan.ajax({
                    type:"post",
                    url:host+"/delItem.json?itemId="+actItemId,

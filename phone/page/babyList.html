@@ -70,12 +70,9 @@
                 </div>
             </div>
 		</section>
-		<section class="tu_2" id="actD1"></section>
-		<section class="same_city_search">
-			<div id="actD2">
-				
-			</div>
-		</section>
+		<div id="list">
+		    
+		</div>
 
 		<footer>
 			<nav class="mui-bar mui-bar-tab">
@@ -181,8 +178,8 @@
                 })
             })
             function babyList(param){
-                var baseParam1 = {'actType':'D1','addName':appcan.locStorage.getVal("ipcity"),'region':param}
-                var param1 = serializePageJson(1,20,baseParam1);
+                var baseParam1 = {'actType':'D1,D2','addName':appcan.locStorage.getVal("ipcity"),'region':param,'orderBy':'amount'}
+                var param1 = serializePageJson(1,100,baseParam1);
                 appcan.ajax({
                     type:"post",
                     url:host+"/getActiveList.json",
@@ -193,39 +190,21 @@
                         var dataList = dataResult.data.dataList;
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
-                            actStr += '<div class=\"bigtu\"><a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div>';
-                        }
-                        $("#actD1").html(actStr);
-                    }
-                })
-                
-                var baseParam2 = {'actType':'D2','addName':appcan.locStorage.getVal("ipcity"),'region':param}
-                var param2 = serializePageJson(1,20,baseParam2);
-                appcan.ajax({
-                    type:"post",
-                    url:host+"/getActiveList.json",
-                    data:param2,
-                    dataType:"json",
-                    contentType: "application/json",
-                    success : function(dataResult) {
-                        var dataList = dataResult.data.dataList;
-                        var actStr = '';
-                        for(var i=0;i<dataList.length;i++){
-                            if(i==0){
-                                actStr+='<ul class="list_a">';
-                            }
-                            actStr += '<li>';
-                            actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')">';
-                            actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'"></div>';
-                            actStr += '<div>'+dataList[i].actName;
-                            actStr += '<p>'+dataList[i].summary+'...</p>';
-                            actStr += '<i>'+dataList[i].createTime+'</i>';
-                            actStr += '</div></a></li>';
-                            if(i==dataList.length-1){
-                                actStr+='</ul>';
+                            if(dataList[i].actType == 'D1'){
+                                actStr += '<section class="tu_2"><div class=\"bigtu\"><a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div></section>';
+                            }else{
+                                actStr+='<section class="same_city_search"><div><ul class="list_a">';
+                                actStr += '<li>';
+                                actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')">';
+                                actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'"></div>';
+                                actStr += '<div>'+dataList[i].shopName;
+                                actStr += '<p>'+dataList[i].summary+'</p>';
+                                actStr += '<i>'+dataList[i].createTime+'</i>';
+                                actStr += '</div></a></li>';
+                                actStr+='</ul></div></section>';
                             }
                         }
-                        $("#actD2").html(actStr);
+                        $("#list").html(actStr);
                     }
                 })
             }

@@ -168,7 +168,11 @@
                             if(!!dataResult.data){
                                 var data = dataResult.data;
                                 $("#weizhi").text(data.region);
-                                $("#neirong").text(data.detailSummary);
+                                if(!!data.detailSummary && data.detailSummary.length >0){
+                                    $("#neirong").text(data.detailSummary);
+                                }else{
+                                    $("#neirong").remove();
+                                }
                             }
                         }
                     })
@@ -212,19 +216,26 @@
                                 itemStr +='<h2>'+dataList[i].cateName+'<a href="javascript:;" onclick="openUrl(\'goodsList.html?actId='+actId+'&cateId='+dataList[i].cateId+'\',\'goodsList\')">更多</a></h2>';
                                 itemStr +='<div><ul class="list_c">'
                                 for(var j=0;j<itemList.length;j++){
-                                    itemStr +='<li>';
-                                    itemStr +='<a href="javascript:;">';
-                                    itemStr +='<div>';
-                                    itemStr +='<img src="'+hostIp+itemList[j].itemPic+'">';
-                                    itemStr +='</div>';
-                                    itemStr +='<div>';
-                                    itemStr +='品名：'+itemList[j].itemName;
-                                    itemStr +='<p><i>特价：'+itemList[j].spePrice+'元/'+itemList[j].speUnit+'g</i>原价：<s>'+itemList[j].listPrice+'元/'+itemList[j].listUnit+'g</s></p>';
-                                    itemStr +='<p>时间：'+itemList[j].startTime+' 至 '+itemList[j].endTime+'</p>';
-                                    itemStr +='<p>说明：'+itemList[j].remark+'</p>';
-                                    itemStr +='</div>';
-                                    itemStr +='</a>';
-                                    itemStr +='</li>';
+                                    var yourtime=itemList[j].endTime;
+                                    yourtime = yourtime.replace("-","/");//替换字符，变成标准格式
+                                    var d2=new Date();//取今天的日期
+                                    var d1 = new Date(Date.parse(yourtime));
+                                    // 未结束 未下架的
+                                   if(d1>=d2 && (itemList[j].updateBy.length == 0 || itemList[j].updateBy == "0")){
+                                        itemStr +='<li>';
+                                        itemStr +='<a href="javascript:;">';
+                                        itemStr +='<div>';
+                                        itemStr +='<img src="'+hostIp+itemList[j].itemPic+'">';
+                                        itemStr +='</div>';
+                                        itemStr +='<div>';
+                                        itemStr +='品名：'+itemList[j].itemName;
+                                        itemStr +='<p><i>特价：'+itemList[j].spePrice+'元/'+itemList[j].speUnit+'g</i>原价：<s>'+itemList[j].listPrice+'元/'+itemList[j].listUnit+'g</s></p>';
+                                        itemStr +='<p>时间：'+itemList[j].startTime+' 至 '+itemList[j].endTime+'</p>';
+                                        itemStr +='<p>说明：'+itemList[j].remark+'</p>';
+                                        itemStr +='</div>';
+                                        itemStr +='</a>';
+                                        itemStr +='</li>';
+                                   }
                                 }
                                 itemStr +='</ul></div>';
                                 itemStr +='</section>';

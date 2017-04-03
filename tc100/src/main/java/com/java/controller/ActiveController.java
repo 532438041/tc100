@@ -78,7 +78,7 @@ public class ActiveController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private SysParamService sysParamService;
 
@@ -149,9 +149,9 @@ public class ActiveController {
 	public BaseResult saveActive(@RequestBody BaseParam<Active> baseParam) {
 		baseParam.getParam().setUpdateTime(new Date());
 		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
-			if(ToolsUtil.isNotNull(baseParam.getParam().getActName()) && activeService.checkActName(baseParam.getParam()).size()>0){
-				return new BaseResult().failed(-1,"模板名称重复");
-			}else{
+			if (ToolsUtil.isNotNull(baseParam.getParam().getActName()) && activeService.checkActName(baseParam.getParam()).size() > 0) {
+				return new BaseResult().failed(-1, "模板名称重复");
+			} else {
 				// 添加
 				baseParam.getParam().setId(ToolsUtil.getUUID());
 				baseParam.getParam().setCreateTime(new Date());
@@ -196,6 +196,12 @@ public class ActiveController {
 			payLog.setRemark("发布缴费");
 			payLog.setUserId(baseParam.getParam().getUserId());
 			payLogService.insert(payLog);
+
+			// 支付合进去
+			Active active = activeService.selectByPrimaryKey(baseParam.getParam().getId());
+			if (ToolsUtil.isNotNull(active.getAmount())) {
+				baseParam.getParam().setAmount(active.getAmount().add(baseParam.getParam().getAmount()));
+			}
 		}
 		baseParam.getParam().setUpdateTime(new Date());
 		baseParam.getParam().setState(baseParam.getParam().getState()); // 发布
@@ -223,6 +229,11 @@ public class ActiveController {
 		return new BaseResult().success(itemCate.getId());
 	}
 
+	@RequestMapping(value = "/delItemCate")
+	public BaseResult delItemCate(String id) {
+		return new BaseResult().success(itemCateService.deleteByPrimaryKey(id));
+	}
+
 	/**
 	 * 保存活动商品
 	 * 
@@ -237,6 +248,7 @@ public class ActiveController {
 		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
 			baseParam.getParam().setId(ToolsUtil.getUUID());
 			baseParam.getParam().setCreateTime(new Date());
+			baseParam.getParam().setUpdateBy("0");
 			return new BaseResult().success(activeItemService.insert(baseParam.getParam()));
 		} else {
 			return new BaseResult().success(activeItemService.updateByPrimaryKeySelective(baseParam.getParam()));
@@ -260,7 +272,24 @@ public class ActiveController {
 
 	@RequestMapping(value = "/delItem")
 	public BaseResult delItem(String itemId) {
-		return new BaseResult().success(activeItemService.deleteByPrimaryKey(itemId));
+		ActiveItem item = activeItemService.selectByPrimaryKey(itemId);
+		item.setUpdateBy("1");
+		return new BaseResult().success(activeItemService.updateByPrimaryKey(item));
+	}
+
+	@RequestMapping(value = "/upItem")
+	public BaseResult upItem(String itemId) {
+		ActiveItem item = activeItemService.selectByPrimaryKey(itemId);
+		if (item.getEndTime().before(new Date())) {
+			Date date = new Date();// 取时间
+			Calendar calendar = new GregorianCalendar();
+			calendar.setTime(date);
+			calendar.add(calendar.DATE, 1);// 把日期往后增加一天.整数往后推,负数往前移动
+			date = calendar.getTime(); // 这个时间就是日期往后推一天的结果
+			item.setEndTime(date);
+		}
+		item.setUpdateBy("0");
+		return new BaseResult().success(activeItemService.updateByPrimaryKey(item));
 	}
 
 	/**
@@ -372,7 +401,7 @@ public class ActiveController {
 				userFav.setUserId(userId);
 				userFavService.insert(userFav);
 			} else if (logType.equals("2")) {
-				//分享最大限制
+				// 分享最大限制
 				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_2").getpValue());
 				// 2分享
 				int isLoged = activeLogService.isLoged(actId, null, "2");
@@ -381,13 +410,13 @@ public class ActiveController {
 				}
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("3")) {
-				//重复最大限制
+				// 重复最大限制
 				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_3").getpValue());
 				// 3重复
 				int isLoged = activeLogService.isLoged(actId, null, "3");
 				if (isLoged >= maxNum) {
 					return new BaseResult().failed(0, "重复次数已封顶");
-				} else if (isLoged == maxNum-1) {
+				} else if (isLoged == maxNum - 1) {
 					// 帖子下架
 					Active active = new Active();
 					active.setId(actId);
@@ -398,10 +427,10 @@ public class ActiveController {
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("4")) {
 				// 4水贴
-				//分享最大限制
+				// 分享最大限制
 				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_4").getpValue());
 				int isLoged = activeLogService.isLoged(actId, null, "4");
-				if (isLoged == maxNum-1) {
+				if (isLoged == maxNum - 1) {
 					// 水贴20次 三天禁止发布
 					Active active = activeService.selectByPrimaryKey(actId);
 					User user = userService.selectByPrimaryKey(active.getUserId());

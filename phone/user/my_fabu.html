@@ -218,7 +218,7 @@
                                 strHtml+='<li><div class="tu_tu shouqi">';
                                 strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                 strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ +'天</p></li>';
+                                strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p></li>';
                             }
                             $(".Acount").html(strHtml);
                             $(".editInfo").click(function(){
@@ -253,7 +253,7 @@
                                     strHtml+='<li><div class="tu_tu shouqi">';
                                     strHtml+='<img src="'+hostIp+dataResult.data[i].mainPic+'" />';
                                     strHtml+='<p><span data-type="'+dataResult.data[i].actType+'" data-id="'+dataResult.data[i].id+'" class="editInfo">编辑</span></p>';
-                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ +'天</p></li>';
+                                    strHtml+='</div><p style="float: left;margin-left: 3em;height: 1.5em;line-height: 1.5em;">剩余时间'+ getLastTime(dataResult.data[i].endTime)+'天</p></li>';
                                 }
                                 if(dataResult.data[i].actType=='B2'){
                                     strHtml+='<li><div class="shouqi mui-media">';
