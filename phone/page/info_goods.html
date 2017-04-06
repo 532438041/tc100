@@ -150,7 +150,7 @@
 		</header>
 		<div id="infoGoods">
 		    <section class="shuoming">
-                <h2>位置：<span id="weizhi"></span></h2>
+                <!-- <h2>位置：<span id="weizhi"></span></h2> -->
                 <div id="neirong"></div>
             </section>
 		</div>
@@ -167,7 +167,7 @@
                         success : function(dataResult) {
                             if(!!dataResult.data){
                                 var data = dataResult.data;
-                                $("#weizhi").text(data.region);
+                                //$("#weizhi").text(data.region);
                                 if(!!data.detailSummary && data.detailSummary.length >0){
                                     $("#neirong").text(data.detailSummary);
                                 }else{
