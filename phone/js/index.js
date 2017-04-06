@@ -112,8 +112,8 @@
             for(var i=0;i<dataList.length;i++){
                 actStr += '<li><a href="javascript:;" onclick="openUrl(\'page/info.html?actId='+dataList[i].id+'\',\'actinfo\');">';
                 actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'img/lizi1.png\'"></div>';
-                actStr += '<div><h3>'+(dataList[i].shopName||'&nbsp;')+'</h3>';
-                actStr += '<p>'+dataList[i].summary+'</p>';
+                actStr += '<div><p>'+(dataList[i].shopName||'&nbsp;')+'</p>';
+                actStr += '<h3>'+dataList[i].summary+'</h3>';
                 actStr += '<i>'+dataList[i].createTime+'</i>';
                 actStr += '</div></a></li>';
             }
@@ -150,8 +150,8 @@
             for(var i=0;i<dataList.length;i++){
                 magStr+='<li><a href="javascript:;" onclick="openUrl(\'page/info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
                 magStr+='<div><img src="'+hostIp+dataList[i].picUrl+'" onerror="javascript:src=\'img/lizi1.png\'"></div>';
-                magStr+='<div><h3>'+dataList[i].cardName+'</h3>';
-                magStr+='<p>'+dataList[i].title+'</p>';
+                magStr+='<div><p>'+dataList[i].cardName+'</p>';
+                magStr+='<h3>'+dataList[i].title+'</h3>';
                 if(dataList[i].timeStr>0 && dataList[i].timeStr<24*60){
                     if(dataList[i].timeStr<60){
                         magStr+='<i>'+dataList[i].timeStr+'分钟前发布</i>';
