@@ -4,7 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.java.entity.Person">
 		<id column="id" property="id" jdbcType="CHAR" />
 		<result column="user_id" property="userId" jdbcType="CHAR" />
-		<result column="addName" property="addname" jdbcType="VARCHAR" />
+		<result column="addName" property="addName" jdbcType="VARCHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="line_type" property="lineType" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
 		title, remark, line_type,
 		create_by, create_time, update_by,
 		update_time)
-		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{addname,jdbcType=VARCHAR},
+		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{addName,jdbcType=VARCHAR},
 		#{title,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{lineType,jdbcType=VARCHAR},
 		#{createBy,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR},
 		#{updateTime,jdbcType=TIMESTAMP})
@@ -151,10 +151,17 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 
-	<select id="getMsgList" parameterType="com.java.entity.Person" resultMap="BaseResultMap">
+	<select id="getPersonList" parameterType="com.java.entity.Person" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from tc_person
-		where addName = #{addName} and line_type = #{lineType}
+		<where>
+			<if test="addName!=null and addName!=''">
+				add_name = #{addName}
+			</if>
+			<if test="lineType!=null and lineType!=''">
+				and line_type = #{lineType}
+			</if>
+		</where>
 	</select>
 </mapper>

@@ -14,6 +14,10 @@ indexApp.controller("personListController", function($scope, $http) {
 	$scope.pageNum = 1;
 	$scope.pageSize = 10;
 	$scope.total = 0;
+	
+	$scope.isShow_0 = 0;
+	$scope.isShow_1 = 0;
+	$scope.vLineType = 0;
 
 	$scope.showList = function(isCallback) {
 		var param = $(".search-from").serializePageJson($scope.pageNum, $scope.pageSize);
@@ -63,6 +67,7 @@ indexApp.controller("personListController", function($scope, $http) {
 					}
 				}
 				var param = $("#personForm").serializeJson(baseParam);
+				console.log(param);
 				$http({
 					method : "post",
 					data : param,
@@ -110,7 +115,16 @@ indexApp.controller("personListController", function($scope, $http) {
 		$scope.getPersonById(id);
 		modal.open();
 	};
-
+	
+	$scope.selectType = function(){
+		if($scope.vLineType == 0){
+			$scope.isShow_0 = 1;
+			$scope.isShow_1 = 0;
+		}else{
+			$scope.isShow_0 = 0;
+			$scope.isShow_1 = 1;
+		}
+	}
 	$scope.getPersonById = function(id) {
 		$http({
 			method : "get",
