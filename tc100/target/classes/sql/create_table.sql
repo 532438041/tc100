@@ -34,3 +34,18 @@ CREATE TABLE `tc_sys_param` (
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='系统参数';
 
+
+CREATE TABLE `tc_person` (
+  `id` CHAR(32) NOT NULL COMMENT '找人代做',
+  `user_id` CHAR(32) DEFAULT NULL COMMENT '用户id',
+  `addName` VARCHAR(1000) DEFAULT NULL COMMENT '线下用户的定位',
+  `title` VARCHAR(100) DEFAULT NULL COMMENT '名称',
+  `remark` VARCHAR(2000) DEFAULT NULL COMMENT '链接',
+  `line_type` VARCHAR(1) DEFAULT NULL COMMENT '0线下 1线上',
+  `create_by` CHAR(32) DEFAULT NULL COMMENT '创建人',
+  `create_time` DATETIME DEFAULT NULL COMMENT '创建时间',
+  `update_by` CHAR(32) DEFAULT NULL COMMENT '更新人',
+  `update_time` DATETIME DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='找人代做'
+
