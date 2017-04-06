@@ -323,6 +323,9 @@
                            var cardId = "";
                             if(data.length > 0){
                                 cardId = data[0].id;
+                            }else{
+                                alert("请先添加名片");
+                                return false;
                             }
                             var baseParam = {'msgId':msgId,"userId":appcan.locStorage.getVal("userId"),"cardId":cardId, "remark":$("#msg").val(),"msgPic":msgPics};
                             var param = {param:baseParam};

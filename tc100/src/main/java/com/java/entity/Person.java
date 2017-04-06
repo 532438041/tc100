@@ -9,8 +9,6 @@ import com.java.servlet.JsonDateSerializer;
 public class Person {
 	private String id;
 
-	private String userId;
-
 	private String addName;
 
 	private String title;
@@ -26,6 +24,38 @@ public class Person {
 	private String updateBy;
 
 	private Date updateTime;
+	
+	private String userName;
+	
+	private String cardId;
+	
+	private String picUrl;
+	
+	private String cardName;
+
+	public String getCardId() {
+		return cardId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+
+	public String getCardName() {
+		return cardName;
+	}
+
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
+	}
 
 	public String getId() {
 		return id == null ? "" : id;
@@ -33,14 +63,6 @@ public class Person {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getUserId() {
-		return userId == null ? "" : userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getTitle() {
@@ -107,5 +129,13 @@ public class Person {
 
 	public void setLineType(String lineType) {
 		this.lineType = lineType;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

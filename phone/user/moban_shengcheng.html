@@ -227,7 +227,7 @@
     				<p class="bitian"><span>必填</span></p>
     			</div>
     			<ul class="lei_1">
-    				<li>当前发布位置为<span id="typeName"></span>，资费为<span id="sysParam"></span></li>
+    				<li>当前发布位置为<span id="typeName"></span>，资费为<span id="sysParam"></span>。</li>
     			</ul>
     			<div class="pore shouye222" id="type1">
                     <h3><img src="../img/star.png" />首页显示</h3>
@@ -556,11 +556,13 @@
                     case "C1":
                         $(".xiangqing").hide();
                         $(".shop").show();
+                        $(".lei_1 li").css("height","3.875em").append("请在发布成功后通过 我的>我的发布中添加商品。");
                         $("#typeName").text("超市模块");
                         break;
                     case "D1":
                         $(".xiangqing").hide();
                         $(".shop").show();
+                        $(".lei_1 li").css("height","3.875em").append("请在发布成功后通过 我的>我的发布中添加商品。");
                         $("#typeName").text("母婴模块");
                         break;
                     case "E1":
@@ -572,11 +574,13 @@
                     case "C2":
                         $(".xiangqing").hide();
                         $(".shop").show();
+                        $(".lei_1 li").css("height","3.875em").append("请在发布成功后通过 我的>我的发布中添加商品。");
                         $("#typeName").text("超市模块");
                         break;
                     case "D2":
                         $(".xiangqing").hide();
                         $(".shop").show();
+                        $(".lei_1 li").css("height","3.875em").append("请在发布成功后通过 我的>我的发布中添加商品。");
                         $("#typeName").text("母婴模块");
                         break;
                     case "E2":
@@ -632,6 +636,9 @@
                         alert("活动简介不能为空");
                         return false;
                     }
+                    $("#wenzhang textarea").each(function(){
+                        $(this).html($(this).val());
+                    })
                     
                     var detailContent = $("#wenzhang").html();
                     var baseParam = {

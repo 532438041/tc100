@@ -41,5 +41,10 @@ public class PersonController {
 			return new BaseResult().success(personService.updateByPrimaryKeySelective(baseParam.getParam()), "操作成功！");
 		}
 	}
+	
+	@RequestMapping(value = "/delPerson")
+	public BaseResult delPerson(String personId) {
+		return new BaseResult().success(personService.deleteByPrimaryKey(personId));
+	}
 
 }

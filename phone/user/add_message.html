@@ -346,6 +346,10 @@
                                 }
                             };
                             var msg = "添加成功！";
+                            if(!!cardId){
+                                alert("请先添加名片");
+                                return false;
+                            }
                             var baseParam = {'cardId':cardId,"userId":appcan.locStorage.getVal("userId"),
                             "addName":appcan.locStorage.getVal("ipcity"),"region":$("#region").text(),"msgPic":msgPics,"remark":$("#remark").val()}
                             var param = $("#upchuan0").serializeJson(baseParam);

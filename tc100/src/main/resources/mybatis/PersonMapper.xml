@@ -3,7 +3,7 @@
 <mapper namespace="com.java.dao.impl.PersonDaoImpl">
 	<resultMap id="BaseResultMap" type="com.java.entity.Person">
 		<id column="id" property="id" jdbcType="CHAR" />
-		<result column="user_id" property="userId" jdbcType="CHAR" />
+		<result column="user_name" property="userName" jdbcType="CHAR" />
 		<result column="addName" property="addName" jdbcType="VARCHAR" />
 		<result column="title" property="title" jdbcType="VARCHAR" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
 		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, user_id, addName, title, remark, line_type, create_by, create_time, update_by,
+		id, user_name, addName, title, remark, line_type, create_by, create_time, update_by,
 		update_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -28,11 +28,11 @@
 		where id = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.java.entity.Person">
-		insert into tc_person (id, user_id, addName,
+		insert into tc_person (id, user_name, addName,
 		title, remark, line_type,
 		create_by, create_time, update_by,
 		update_time)
-		values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{addName,jdbcType=VARCHAR},
+		values (#{id,jdbcType=CHAR}, #{userName,jdbcType=CHAR}, #{addName,jdbcType=VARCHAR},
 		#{title,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{lineType,jdbcType=VARCHAR},
 		#{createBy,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=CHAR},
 		#{updateTime,jdbcType=TIMESTAMP})
@@ -43,10 +43,10 @@
 			<if test="id != null">
 				id,
 			</if>
-			<if test="userId != null">
-				user_id,
+			<if test="userName != null">
+				user_name,
 			</if>
-			<if test="addname != null">
+			<if test="addName != null">
 				addName,
 			</if>
 			<if test="title != null">
@@ -75,11 +75,11 @@
 			<if test="id != null">
 				#{id,jdbcType=CHAR},
 			</if>
-			<if test="userId != null">
-				#{userId,jdbcType=CHAR},
+			<if test="userName != null">
+				#{userName,jdbcType=CHAR},
 			</if>
-			<if test="addname != null">
-				#{addname,jdbcType=VARCHAR},
+			<if test="addName != null">
+				#{addName,jdbcType=VARCHAR},
 			</if>
 			<if test="title != null">
 				#{title,jdbcType=VARCHAR},
@@ -107,11 +107,11 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.java.entity.Person">
 		update tc_person
 		<set>
-			<if test="userId != null">
-				user_id = #{userId,jdbcType=CHAR},
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=CHAR},
 			</if>
-			<if test="addname != null">
-				addName = #{addname,jdbcType=VARCHAR},
+			<if test="addName != null">
+				addName = #{addName,jdbcType=VARCHAR},
 			</if>
 			<if test="title != null">
 				title = #{title,jdbcType=VARCHAR},
@@ -139,8 +139,8 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.java.entity.Person">
 		update tc_person
-		set user_id = #{userId,jdbcType=CHAR},
-		addName = #{addname,jdbcType=VARCHAR},
+		set user_name = #{userName,jdbcType=CHAR},
+		addName = #{addName,jdbcType=VARCHAR},
 		title = #{title,jdbcType=VARCHAR},
 		remark = #{remark,jdbcType=VARCHAR},
 		line_type = #{lineType,jdbcType=VARCHAR},
@@ -151,17 +151,18 @@
 		where id = #{id,jdbcType=CHAR}
 	</update>
 
-	<select id="getPersonList" parameterType="com.java.entity.Person" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from tc_person
+	<select id="getPersonList" parameterType="com.java.entity.Person" resultType="com.java.entity.Person">
+		select tc.id, tc.user_name userName, tc.addName, tc.title, tc.remark, tc.line_type lineType,c.`id` cardId,c.`pic_url` picUrl ,c.`card_name`cardName
+		FROM tc_person tc LEFT JOIN `tc_user` u ON tc.`user_name` = u.`user_name` OR tc.`user_name` = u.`mobile`
+		LEFT JOIN `tc_user_card` c ON u.`id` = c.`user_id` AND c.`state` = 2 
 		<where>
 			<if test="addName!=null and addName!=''">
-				add_name = #{addName}
+				tc.addName = #{addName}
 			</if>
 			<if test="lineType!=null and lineType!=''">
-				and line_type = #{lineType}
+				and tc.line_type = #{lineType}
 			</if>
 		</where>
+		GROUP BY tc.`id`
 	</select>
 </mapper>

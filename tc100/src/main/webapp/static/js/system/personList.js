@@ -15,13 +15,12 @@ indexApp.controller("personListController", function($scope, $http) {
 	$scope.pageSize = 10;
 	$scope.total = 0;
 	
-	$scope.isShow_0 = 0;
+	$scope.isShow_0 = 1;
 	$scope.isShow_1 = 0;
-	$scope.vLineType = 0;
+	$scope.vLineType = "0";
 
 	$scope.showList = function(isCallback) {
 		var param = $(".search-from").serializePageJson($scope.pageNum, $scope.pageSize);
-		alert();
 		$http({
 			method : "post",
 			data : param,
@@ -44,30 +43,13 @@ indexApp.controller("personListController", function($scope, $http) {
 	$scope.showList();
 	
 	var modal = new Modal({
-		title : "发布代做信息",
+		title : "代做信息",
 		content : $('#personForm'),
 		onOk : function() {
 			// 表单校验
 			$('#personForm').bootstrapValidator('validate');
 			if ($('#personForm').data('bootstrapValidator').isValid()) {
-				var baseParam = {
-					id : $scope.personId
-				}
-				if($scope.lineType==0){
-					baseParam = {
-						id : $scope.personId,
-						userId : $scope.userId,
-						addName : $scope.addName
-					}
-				}else{
-					baseParam = {
-						id : $scope.personId,
-						title : $scope.title,
-						remark : $scope.remark
-					}
-				}
-				var param = $("#personForm").serializeJson(baseParam);
-				console.log(param);
+				var param = $("#personForm").serializeJson();
 				$http({
 					method : "post",
 					data : param,
@@ -89,9 +71,11 @@ indexApp.controller("personListController", function($scope, $http) {
 			$('#personForm').bootstrapValidator('validate');
 			$('#personForm').data('bootstrapValidator').resetForm(true);
 			modal.showButton(".btn-ok");
-			$scope.vLineType = 0;
+			$scope.vLineType = "0";
+			$scope.isShow_0 = 1;
+			$scope.isShow_1 = 0;
+			$scope.personId = "";
 			$scope.vUserName = "";
-			$scope.vUserId = "";
 			$scope.vAddName = "";
 			$scope.vTitle = "";
 			$scope.vRemark = "";
@@ -117,7 +101,7 @@ indexApp.controller("personListController", function($scope, $http) {
 	};
 	
 	$scope.selectType = function(){
-		if($scope.vLineType == 0){
+		if($scope.vLineType == "0"){
 			$scope.isShow_0 = 1;
 			$scope.isShow_1 = 0;
 		}else{
@@ -126,20 +110,23 @@ indexApp.controller("personListController", function($scope, $http) {
 		}
 	}
 	$scope.getPersonById = function(id) {
+		$scope.personId = id;
 		$http({
 			method : "get",
-			url : "/tc100/getPerson.json?id=" + id
+			url : "/tc100/getPerson.json?personId=" + id
 		}).success(function(dataResult) {
 			var data = dataResult.data;
-			if(data.lineType==0){
-				$scope.personId = data.id;
-				$scope.userId = data.userId;
-				$scope.userName = data.userName;
-				$scope.addName = data.addName;
+			$scope.vLineType = data.lineType;
+			if(data.lineType=="0"){
+				$scope.isShow_0 = 1;
+				$scope.isShow_1 = 0;
+				$scope.vUserName = data.userName;
+				$scope.vAddName = data.addName;
 			}else{
-				$scope.personId = data.id;
-				$scope.title = data.title;
-				$scope.remark = data.remark;
+				$scope.isShow_0 = 0;
+				$scope.isShow_1 = 1;
+				$scope.vTitle = data.title;
+				$scope.vRemark = data.remark;
 			}
 		});
 	};
@@ -150,7 +137,7 @@ indexApp.controller("personListController", function($scope, $http) {
 			onOk : function() {
 				$http({
 					method : "post",
-					url : "/tc100/delPerson.json?id=" + id
+					url : "/tc100/delPerson.json?personId=" + id
 				}).success(function(dataResult) {
 					$scope.showList();
 				});
@@ -159,6 +146,6 @@ indexApp.controller("personListController", function($scope, $http) {
 	};
 	
 	$scope.resetSearch = function() {
-		$scope.actType = "";
+		$scope.addName = "";
 	};
 });
