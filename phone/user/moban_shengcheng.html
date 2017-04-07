@@ -202,7 +202,15 @@
                     background-color: #000;
                     font-size: 0.6em;}
             .opa .opaimg{ height: 1.875em; width: auto; padding: 0; margin: 0; background: none; position: absolute; left: 0.3125em; top: 0.3125em; }
-            
+            .bottombottom22{
+                height: 0.5em;
+                background: url(../img/bottombottom2.png) no-repeat;
+                background-size: auto 100%;
+                width: 1em;
+                float: right;
+                font-size: 1em;
+                margin-top: 1.25em;
+            }
         </style>
 	</head>
 
@@ -215,7 +223,7 @@
 		<section class="shuoming">
 			<div class="border_b">
 				<h3>说明</h3>
-				<p><span class="bottombottom"></span></p>
+				<p><span class="bottombottom22"></span></p>
 			</div>
 			<ul id="htmlStr"></ul>
 		</section>
@@ -300,11 +308,11 @@
 		           if($("#htmlStr").css("display") == "none"){
 		               $("#htmlStr").show();
 		               $(this).find("span").removeClass("rightright");
-		               $(this).find("span").addClass("bottombottom");
+		               $(this).find("span").addClass("bottombottom22");
 		           }else{
 		               $("#htmlStr").hide();
-		               $(this).find("span").removeClass("toptop");
-                       $(this).find("span").addClass("bottombottom");
+		               $(this).find("span").removeClass("bottombottom22");
+                       $(this).find("span").addClass("rightright");
 		           }
 		       });
 		       $("#wenzhang textarea").on("keyup keydown", function(){
