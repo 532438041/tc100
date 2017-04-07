@@ -153,7 +153,8 @@
 
 	<select id="getPersonList" parameterType="com.java.entity.Person" resultType="com.java.entity.Person">
 		select tc.id, tc.user_name userName, tc.addName, tc.title, tc.remark, tc.line_type lineType,c.`id` cardId,c.`pic_url` picUrl ,c.`card_name`cardName
-		FROM tc_person tc LEFT JOIN `tc_user` u ON tc.`user_name` = u.`user_name` OR tc.`user_name` = u.`mobile`
+		FROM tc_person tc 
+		LEFT JOIN `tc_user` u ON tc.`user_name` = u.`user_name` OR tc.`user_name` = u.`mobile`
 		LEFT JOIN `tc_user_card` c ON u.`id` = c.`user_id` AND c.`state` = 2 
 		<where>
 			<if test="addName!=null and addName!=''">

@@ -38,6 +38,13 @@ public class PersonController {
 			baseParam.getParam().setCreateTime(new Date());
 			return new BaseResult().success(personService.insert(baseParam.getParam()), "操作成功！");
 		} else {
+			if(("1").equals(baseParam.getParam().getLineType())){
+				baseParam.getParam().setAddName("");
+				baseParam.getParam().setUserName("");
+			}else{
+				baseParam.getParam().setRemark("");
+				baseParam.getParam().setTitle("");
+			}
 			return new BaseResult().success(personService.updateByPrimaryKeySelective(baseParam.getParam()), "操作成功！");
 		}
 	}

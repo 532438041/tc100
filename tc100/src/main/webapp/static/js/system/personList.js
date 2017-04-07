@@ -17,6 +17,7 @@ indexApp.controller("personListController", function($scope, $http) {
 	
 	$scope.isShow_0 = 1;
 	$scope.isShow_1 = 0;
+	$scope.isDisabled = 0;
 	$scope.vLineType = "0";
 
 	$scope.showList = function(isCallback) {
@@ -50,6 +51,7 @@ indexApp.controller("personListController", function($scope, $http) {
 			$('#personForm').bootstrapValidator('validate');
 			if ($('#personForm').data('bootstrapValidator').isValid()) {
 				var param = $("#personForm").serializeJson();
+				console.log(param);
 				$http({
 					method : "post",
 					data : param,
@@ -71,7 +73,8 @@ indexApp.controller("personListController", function($scope, $http) {
 			$('#personForm').bootstrapValidator('validate');
 			$('#personForm').data('bootstrapValidator').resetForm(true);
 			modal.showButton(".btn-ok");
-			$scope.vLineType = "0";
+			$scope.id = "";
+			$scope.isDisabled = 0;
 			$scope.isShow_0 = 1;
 			$scope.isShow_1 = 0;
 			$scope.personId = "";
@@ -83,6 +86,7 @@ indexApp.controller("personListController", function($scope, $http) {
 	});
 
 	$scope.addPersonView = function() {
+		$scope.vLineType = "0";
 		modal.setTitle("添加代做信息");
 		modal.open();
 	};
@@ -94,10 +98,11 @@ indexApp.controller("personListController", function($scope, $http) {
 	};
 
 	$scope.seePersonView = function(id) {
-		modal.hideButton(".btn-ok");
+		$scope.isDisabled = 1;
 		modal.setTitle("查看代做信息");
 		$scope.getPersonById(id);
 		modal.open();
+		modal.hideButton(".btn-ok");
 	};
 	
 	$scope.selectType = function(){
@@ -116,15 +121,18 @@ indexApp.controller("personListController", function($scope, $http) {
 			url : "/tc100/getPerson.json?personId=" + id
 		}).success(function(dataResult) {
 			var data = dataResult.data;
-			$scope.vLineType = data.lineType;
 			if(data.lineType=="0"){
 				$scope.isShow_0 = 1;
 				$scope.isShow_1 = 0;
+				$scope.id = data.id;
+				$scope.vLineType = data.lineType;
 				$scope.vUserName = data.userName;
 				$scope.vAddName = data.addName;
 			}else{
 				$scope.isShow_0 = 0;
 				$scope.isShow_1 = 1;
+				$scope.id = data.id;
+				$scope.vLineType = data.lineType;
 				$scope.vTitle = data.title;
 				$scope.vRemark = data.remark;
 			}

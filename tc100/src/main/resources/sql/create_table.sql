@@ -37,7 +37,7 @@ CREATE TABLE `tc_sys_param` (
 
 CREATE TABLE `tc_person` (
   `id` CHAR(32) NOT NULL COMMENT '找人代做',
-  `user_id` CHAR(32) DEFAULT NULL COMMENT '用户id',
+  `user_name` VARCHAR(200) DEFAULT NULL COMMENT '用户名称',
   `addName` VARCHAR(1000) DEFAULT NULL COMMENT '线下用户的定位',
   `title` VARCHAR(100) DEFAULT NULL COMMENT '名称',
   `remark` VARCHAR(2000) DEFAULT NULL COMMENT '链接',
