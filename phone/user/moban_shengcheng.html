@@ -215,7 +215,7 @@
 		<section class="shuoming">
 			<div class="border_b">
 				<h3>说明</h3>
-				<p><span class="rightright"></span></p>
+				<p><span class="bottombottom"></span></p>
 			</div>
 			<ul id="htmlStr"></ul>
 		</section>
@@ -299,12 +299,12 @@
 		           
 		           if($("#htmlStr").css("display") == "none"){
 		               $("#htmlStr").show();
-		               $(this).find("span").romoveClass("rightright");
-		               $(this).find("span").addClass("toptop");
+		               $(this).find("span").removeClass("rightright");
+		               $(this).find("span").addClass("bottombottom");
 		           }else{
 		               $("#htmlStr").hide();
-		               $(this).find("span").romoveClass("toptop");
-                       $(this).find("span").addClass("rightright");
+		               $(this).find("span").removeClass("toptop");
+                       $(this).find("span").addClass("bottombottom");
 		           }
 		       });
 		       $("#wenzhang textarea").on("keyup keydown", function(){

@@ -59,7 +59,7 @@
                 height: 2.5em;
                 margin-bottom: 0;
                 font-size: 1em;
-                width: 60%;
+                width: 40%;
             }
             
             .shucailei>p {
@@ -199,7 +199,7 @@
 		</section>
 		
 		<section class="shucailei" id="addView">
-			<h2><input type="text" value="" class="cateName" placeholder="分类名称" /><a href="javascript:;" onclick="addGood('',this);">添加商品</a></h2>
+			<h2><input style="margin-left: 1.2em;" type="text" value="" class="cateName" placeholder="分类名称" /><a href="javascript:;" onclick="addGood('',this);">添加商品</a></h2>
 			<div>
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell mui-media">
@@ -241,9 +241,9 @@
                    var data = dataResult.data;
                    var str = '';
                    for (var i=0; i < data.length; i++) {
-                     str+='<section class="shucailei"><h2><span class="kaihe mui-icon mui-icon-arrowdown"></span><input type="text" value="'
+                     str+='<section class="shucailei"><h2><span style="margin-top: 0.6em;margin-right: 0.2em;" class="kaihe mui-icon mui-icon-arrowdown"></span><input type="text" value="'
                      +data[i].cateName+'" class="cateName" />'
-                     +'<a href="javascript:;" style="right: 6.5em;" onclick="delCate(\''
+                     +'<a href="javascript:;" style="right: 6.8em;" onclick="delCate(\''
                      +data[i].cateId+'\',this);">删除</a><a href="javascript:;" onclick="addGood(\''
                      +data[i].cateId+'\',this);">添加商品</a></h2>'
                      +'<div><ul class="mui-table-view">';
@@ -315,7 +315,8 @@
             appcan.ajax({
                type:"post",
                url:host+"/saveItemCate.json",
-               data:JSON.stringify(param),
+               data:JSON.stringify({param:param}),
+               contentType: "application/json",
                dataType:"json",
                success : function(dataResult) {
                    openUrl("add_good.html?itemId=&type="+type+"&actId="+actId+"&cateId="+dataResult.data,"add_good");

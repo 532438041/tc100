@@ -219,10 +219,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/changeDisplayName")
-	public BaseResult changeDisplayName(String userName, String displayName) {
-		User user = userService.checkLogin(userName);
-		if (ToolsUtil.isNotNull(user)) {
-			return new BaseResult().success(userService.changeDisplayName(userName, displayName));
+	public BaseResult changeDisplayName(@RequestBody BaseParam<User> user) {
+		User users = userService.checkLogin(user.getParam().getUserName());
+		if (ToolsUtil.isNotNull(users)) {
+			return new BaseResult().success(userService.changeDisplayName(user.getParam().getUserName(), user.getParam().getDisplayName()));
 		} else {
 			return new BaseResult().failed();
 		}

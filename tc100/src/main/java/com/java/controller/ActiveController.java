@@ -217,16 +217,16 @@ public class ActiveController {
 	 * @return BaseResult
 	 */
 	@RequestMapping(value = "/saveItemCate")
-	public BaseResult saveItemCate(ItemCate itemCate) {
-		itemCate.setUpdateTime(new Date());
-		if (ToolsUtil.isNull(itemCate.getId())) {
-			itemCate.setId(ToolsUtil.getUUID());
-			itemCate.setCreateTime(new Date());
-			itemCateService.insert(itemCate);
+	public BaseResult saveItemCate(@RequestBody BaseParam<ItemCate> itemCate) {
+		itemCate.getParam().setUpdateTime(new Date());
+		if (ToolsUtil.isNull(itemCate.getParam().getId())) {
+			itemCate.getParam().setId(ToolsUtil.getUUID());
+			itemCate.getParam().setCreateTime(new Date());
+			itemCateService.insert(itemCate.getParam());
 		} else {
-			itemCateService.updateByPrimaryKeySelective(itemCate);
+			itemCateService.updateByPrimaryKeySelective(itemCate.getParam());
 		}
-		return new BaseResult().success(itemCate.getId());
+		return new BaseResult().success(itemCate.getParam().getId());
 	}
 
 	@RequestMapping(value = "/delItemCate")

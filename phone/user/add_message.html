@@ -95,7 +95,7 @@
 		<section class="quyu">
 			<form action="" method="post" id="upchuan0">
 				<div class="top">
-					<h3>说明<span class="rightright"></span></h3>
+					<h3>说明<span class="bottombottom"></span></h3>
 					<p id="htmlStr"></p>
 				</div>
 				<div class="main">
@@ -148,11 +148,11 @@
                 $(".top").click(function(){
                    if($("#htmlStr").css("display") == "none"){
                        $("#htmlStr").show();
-                       $(this).find("span").romoveClass("rightright");
-                       $(this).find("span").addClass("toptop");
+                       $(this).find("span").removeClass("rightright");
+                       $(this).find("span").addClass("bottombottom");
                    }else{
                        $("#htmlStr").hide();
-                       $(this).find("span").romoveClass("toptop");
+                       $(this).find("span").removeClass("bottombottom");
                        $(this).find("span").addClass("rightright");
                    }
                });

@@ -209,7 +209,7 @@
                            url:host+"/changeDisplayName.json",
                            dataType:"json",
                            contentType: "application/json",
-						   data:JSON.stringify(param),
+						   data:JSON.stringify({param:param}),
                            success : function(dataResult) {
                                $("#displayName").html(displayName);
                                 $("#change_name").show();
