@@ -346,7 +346,7 @@
                                 }
                             };
                             var msg = "添加成功！";
-                            if(!!cardId){
+                            if(cardId.length == 0){
                                 alert("请先添加名片");
                                 return false;
                             }
