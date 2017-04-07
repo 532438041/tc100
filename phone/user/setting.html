@@ -199,12 +199,17 @@
                 });
                 $("#save_name").click(function(){
                     displayName = $(".changeName").val();
+					var param = {
+                        userName:userName,
+                        displayName:displayName
+                    };
                     if(displayName.length > 0){
                         appcan.ajax({
                            type:"post",
-                           url:host+"/changeDisplayName.json?userName="+userName+"&displayName="+displayName,
+                           url:host+"/changeDisplayName.json",
                            dataType:"json",
                            contentType: "application/json",
+						   data:JSON.stringify(param),
                            success : function(dataResult) {
                                $("#displayName").html(displayName);
                                 $("#change_name").show();
