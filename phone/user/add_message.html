@@ -356,8 +356,10 @@
                             };
                             var msg = "添加成功！";
                             if(cardId.length == 0){
-                                alert("请先添加名片");
-                                return false;
+                                if(confirm("请先添加名片")){
+                                    openUrl("../user/my_card.html","my_card");
+                                }
+                                 return false;
                             }
                             var baseParam = {'cardId':cardId,"userId":appcan.locStorage.getVal("userId"),
                             "addName":appcan.locStorage.getVal("ipcity"),"region":$("#region").text(),"msgPic":msgPics,"remark":$("#remark").val()}

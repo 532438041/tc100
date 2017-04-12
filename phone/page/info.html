@@ -127,143 +127,143 @@
 		       var actId = getVal("actId");
 		       if(actId!=""){
 		          //关注
-                $("#guanzhu").click(function(){
-                    if(!!!appcan.locStorage.getVal("userId")){
-                        alert("请登录");
-                        return false;
-                    }
-                    appcan.ajax({
+                    $("#guanzhu").click(function(){
+                        if(!!!appcan.locStorage.getVal("userId")){
+                            alert("请登录");
+                            return false;
+                        }
+                        appcan.ajax({
+                            type:"post",
+                            url:host+"/operateAct.json?actId="+actId+"&logType=1&userId="+appcan.locStorage.getVal("userId"),
+                            dataType:"json",
+                            contentType: "application/json",
+                            success : function(dataResult) {
+                                if(dataResult.status == 0){
+                                    alert(dataResult.msg);
+                                }else{
+                                    alert("操作成功！");
+                                }
+                            }
+                        })
+                    })
+                    //分享
+                    $("#fenxiang").click(function(){
+                        if(!!!appcan.locStorage.getVal("userId")){
+                            alert("请登录");
+                            return false;
+                        }
+                        appcan.ajax({
+                            type:"post",
+                            url:host+"/operateAct.json?actId="+actId+"&logType=2&userId="+appcan.locStorage.getVal("userId"),
+                            dataType:"json",
+                            contentType: "application/json",
+                            success : function(dataResult) {
+                                if(dataResult.status == 0){
+                                    alert(dataResult.msg);
+                                }else{
+                                    alert("操作成功！");
+                                }
+                            }
+                        })
+                    })
+                    //重复
+                    $("#chongfu").click(function(){
+                        if(!!!appcan.locStorage.getVal("userId")){
+                            alert("请登录");
+                            return false;
+                        }
+                        appcan.ajax({
+                            type:"post",
+                            url:host+"/operateAct.json?actId="+actId+"&logType=3&userId="+appcan.locStorage.getVal("userId"),
+                            dataType:"json",
+                            contentType: "application/json",
+                            success : function(dataResult) {
+                                if(dataResult.status == 0){
+                                    alert(dataResult.msg);
+                                }else{
+                                    alert("操作成功！");
+                                }
+                            }
+                        })
+                    })
+                    //水贴
+                    $("#shuitie").click(function(){
+                        if(!!!appcan.locStorage.getVal("userId")){
+                            alert("请登录");
+                            return false;
+                        }
+                        appcan.ajax({
+                            type:"post",
+                            url:host+"/operateAct.json?actId="+actId+"&logType=4&userId="+appcan.locStorage.getVal("userId"),
+                            dataType:"json",
+                            contentType: "application/json",
+                            success : function(dataResult) {
+                                if(dataResult.status == 0){
+                                    alert(dataResult.msg);
+                                }else{
+                                    alert("操作成功！");
+                                }
+                            }
+                        })
+                    })
+                    //活动详情
+    		          appcan.ajax({
                         type:"post",
-                        url:host+"/operateAct.json?actId="+actId+"&logType=1&userId="+appcan.locStorage.getVal("userId"),
+                        url:host+"/getActive.json?actId="+actId,
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            if(dataResult.status == 0){
-                                alert(dataResult.msg);
-                            }else{
-                                alert("操作成功！");
+                            var data = dataResult.data;
+                            $(".xiaoxi2").attr("cardId", data.cardId);
+                            var actStr = "";
+                            var actType = data.actType.substring(0,1);
+                            switch(actType){
+                                case "A":
+                                    $("#typeName").text("名优详情");
+                                    break;
+                                case "B":
+                                    $("#chongfu").show();
+                                    $("#chongfu").parent("ul").attr("style", "top: -9em;");
+                                    $("#typeName").text("同城购详情");
+                                    break;
+                                case "C":
+                                    $("#typeName").text("超市详情");
+                                    break;
+                                case "D":
+                                    $("#typeName").text("母婴详情");
+                                    break;
+                                case "E":
+                                    $("#typeName").text("车辆详情");
+                                    break;
+                                case "F":
+                                    $("#typeName").text("房产详情");
+                                    break;
                             }
+                            if(data.isInit == "1"){
+                                actStr+='<img src="'+hostIp+data.mainPic+'" />';
+                            }
+                            actStr+=data.detailContent;
+                            $("#info").html(actStr);
+                            $(".opa").remove();
+                            $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
+                            $.each($("#info textarea"), function(){
+                                if($(this).text().length==0){
+                                    $(this).remove();
+                                }
+                            });
                         }
                     })
-                })
-                //分享
-                $("#fenxiang").click(function(){
-                    if(!!!appcan.locStorage.getVal("userId")){
-                        alert("请登录");
-                        return false;
-                    }
+                    //浏览记录
                     appcan.ajax({
                         type:"post",
-                        url:host+"/operateAct.json?actId="+actId+"&logType=2&userId="+appcan.locStorage.getVal("userId"),
+                        url:host+"/addViewCount.json?actId="+actId+"&userId="+appcan.locStorage.getVal("userId"),
                         dataType:"json",
                         contentType: "application/json",
                         success : function(dataResult) {
-                            if(dataResult.status == 0){
-                                alert(dataResult.msg);
-                            }else{
-                                alert("操作成功！");
-                            }
                         }
                     })
-                })
-                //重复
-                $("#chongfu").click(function(){
-                    if(!!!appcan.locStorage.getVal("userId")){
-                        alert("请登录");
-                        return false;
-                    }
-                    appcan.ajax({
-                        type:"post",
-                        url:host+"/operateAct.json?actId="+actId+"&logType=3&userId="+appcan.locStorage.getVal("userId"),
-                        dataType:"json",
-                        contentType: "application/json",
-                        success : function(dataResult) {
-                            if(dataResult.status == 0){
-                                alert(dataResult.msg);
-                            }else{
-                                alert("操作成功！");
-                            }
-                        }
-                    })
-                })
-                //水贴
-                $("#shuitie").click(function(){
-                    if(!!!appcan.locStorage.getVal("userId")){
-                        alert("请登录");
-                        return false;
-                    }
-                    appcan.ajax({
-                        type:"post",
-                        url:host+"/operateAct.json?actId="+actId+"&logType=4&userId="+appcan.locStorage.getVal("userId"),
-                        dataType:"json",
-                        contentType: "application/json",
-                        success : function(dataResult) {
-                            if(dataResult.status == 0){
-                                alert(dataResult.msg);
-                            }else{
-                                alert("操作成功！");
-                            }
-                        }
-                    })
-                })
-                //活动详情
-		       appcan.ajax({
-                    type:"post",
-                    url:host+"/getActive.json?actId="+actId,
-                    dataType:"json",
-                    contentType: "application/json",
-                    success : function(dataResult) {
-                        var data = dataResult.data;
-                        $(".xiaoxi2").attr("cardId", data.cardId);
-                        var actStr = "";
-                        var actType = data.actType.substring(0,1);
-                        switch(actType){
-                            case "A":
-                                $("#typeName").text("名优详情");
-                                break;
-                            case "B":
-                                $("#chongfu").show();
-                                $("#chongfu").parent("ul").attr("style", "top: -9em;");
-                                $("#typeName").text("同城购详情");
-                                break;
-                            case "C":
-                                $("#typeName").text("超市详情");
-                                break;
-                            case "D":
-                                $("#typeName").text("母婴详情");
-                                break;
-                            case "E":
-                                $("#typeName").text("车辆详情");
-                                break;
-                            case "F":
-                                $("#typeName").text("房产详情");
-                                break;
-                        }
-                        if(data.isInit == "1"){
-                            actStr+='<img src="'+hostIp+data.mainPic+'" />';
-                        }
-                        actStr+=data.detailContent;
-                        $("#info").html(actStr);
-                        $(".opa").remove();
-                        $("#viewCount").html(data.viewCount!=null? data.viewCount : 0);
-                        $.each($("#info textarea"), function(){
-                            if($(this).text().length==0){
-                                $(this).remove();
-                            }
-                        });
-                    }
-                })
-                //浏览记录
-                appcan.ajax({
-                    type:"post",
-                    url:host+"/addViewCount.json?actId="+actId+"&userId="+appcan.locStorage.getVal("userId"),
-                    dataType:"json",
-                    contentType: "application/json",
-                    success : function(dataResult) {
-                    }
-                })
-		       }
-			});
+    		       }
+			 });
 		</script>
 	</body>
 </html>

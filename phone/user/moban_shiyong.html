@@ -220,6 +220,7 @@
         var price = 0;
         var totalPrice = 0;//推广总共花费
         var endTime = "";
+        var state = "1";
         
         // 获取金额
         appcan.ajax({
@@ -281,9 +282,13 @@
                     success : function(dataResult) {
                         if(!!dataResult.data){
                             var data = dataResult.data;
+                            state = data.state;
                             $("#startTime").val(data.startTime);
                             $("#endTime").val(data.endTime);
                             endTime = data.endTime;
+                            if(!!data.startTime && !!data.endTime){
+                                $("#amount").text(0);
+                            }
                             $("#offlineTime").val(data.offlineTime);
                             $("#offlineEndTime").val(data.offlineEndTime);
                             $("#offlinePlace").val(data.offlinePlace);
@@ -425,7 +430,7 @@
                     if(!!endTime){
                         var oldEndDate = new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
                         var oldDays = (oldEndDate.getTime()-bngDate.getTime())/24/60/60/1000 + 1;
-                        if(days<oldDays){
+                        if(state != "2" || days<oldDays){
                             oldDays = 0;
                         }
                     }
@@ -489,9 +494,9 @@
                 }
                 
                 // 活动状态
-                var state = 2;
+                var state = "2";
                 if(obj == "preview"){
-                    state = 1;
+                    state = "1";
                 }
                 var baseParam = {
                     userId : appcan.locStorage.getVal("userId"),
@@ -501,10 +506,11 @@
                     payCodeId : payCodeId,
                     state : state
                 };
-                var param = $("#fabuForm").serializeJson(baseParam);
+                
                 var result = null;
                 // 有推荐码 或者价格是0 直接发布
-                if(!!payCodeId || $("#amount").text() == "0"){
+                if(obj == "preview" || !!payCodeId || $("#amount").text() == "0"){
+                    var param = $("#fabuForm").serializeJson(baseParam);
                     appcan.ajax({
                        type:"post",
                        async:false,       
@@ -514,13 +520,17 @@
                        contentType: "application/json",
                        success : function(dataResult) {
                             result = dataResult;
-                            alert("操作成功");
                             if(obj == "preview"){
                                if(result.status > 0){
-                                    openUrl("../page/info.html?actId="+actId,"page_info");
+                                   if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
+                                       openUrl("../page/info_goods.html?actId="+actId,"info_goods");
+                                   }else{
+                                       openUrl("../page/info.html?actId="+actId,"actInfo");
+                                   }
                                }
                             }else{
                                if(result.status > 0){
+                                   alert("操作成功");
                                     appcan.locStorage.remove("actId");
                                     openUrl("../index.html","index");
                                }
@@ -528,6 +538,8 @@
                        }
                    })
                 }else{
+                    baseParam.payCodeId = "";
+                    var param = $("#fabuForm").serializeJson(baseParam);
                     appcan.locStorage.setVal("param",param);
                     openUrl("../user/zhifu.html","zhifu");
                 }

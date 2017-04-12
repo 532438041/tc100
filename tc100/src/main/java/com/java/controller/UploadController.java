@@ -22,5 +22,11 @@ public class UploadController {
 		Map<String, Object> map = uploadService.uploadImg(files, userId);
 		return new BaseResult().success(map);
 	}
+	
+	@RequestMapping(value = "/file/uploadFile")
+	public BaseResult uploadFile(@RequestParam("file") MultipartFile[] files) {
+		Map<String, Object> map = uploadService.uploadFile(files);
+		return new BaseResult().success(map);
+	}
 
 }

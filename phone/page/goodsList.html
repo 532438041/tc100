@@ -54,11 +54,10 @@
 				color: #ff5256;
 			}
 			
-			.shucailei i {
+			.shucailei .i {
 				font-style: normal;
 				color: #ff3366;
 				margin-right: 0.625em;
-				display: block;
 			}
 			
 			
@@ -108,7 +107,7 @@
                                 itemStr +='<h2>'+dataList[i].cateName+'</h2>';
                                 itemStr +='<div><ul class="list_c">'
                                 for(var j=0;j<itemList.length;j++){
-                                    var yourtime=itemList[j].endTime;
+                                    var yourtime=itemList[j].endTime+" 23:59:59";
                                     yourtime = yourtime.replace("-","/");//替换字符，变成标准格式
                                     var d2=new Date();//取今天的日期
                                     var d1 = new Date(Date.parse(yourtime));
@@ -121,7 +120,7 @@
                                         itemStr +='</div>';
                                         itemStr +='<div>';
                                         itemStr +='<h3>品名：'+itemList[j].itemName+'</h3>';
-                                        itemStr +='<p><i>特价：'+itemList[j].spePrice+'元/'+itemList[j].speUnit+'g</i>原价：<s>'+itemList[j].listPrice+'元/'+itemList[j].listUnit+'g</s></p>';
+                                        itemStr +='<p><span class="i">特价：'+itemList[j].spePrice+'元/'+itemList[j].speUnit+'</span>原价：<s>'+itemList[j].listPrice+'元/'+itemList[j].listUnit+'</s></p>';
                                         itemStr +='<p>时间：'+itemList[j].startTime+' 至 '+itemList[j].endTime+'</p>';
                                         itemStr +='<p>说明：'+itemList[j].remark+'</p>';
                                         itemStr +='</div>';

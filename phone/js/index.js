@@ -1,4 +1,4 @@
-(function($) {
+$(function(){
     //用户id
     var userId = appcan.locStorage.getVal("userId");
     var userCardId = appcan.locStorage.getVal("userCardId");
@@ -7,15 +7,24 @@
     //地位地址存到缓存 若缓存数据为空 则现取 否则取缓存数据
     var ipcity = appcan.locStorage.getVal("ipcity");
     if(!!ipcity){
-        setTimeout(function(){
-             $("#ipcity").html(ipcity);
-        }, 1000);
+        $("#ipcity").html(ipcity);
     }else{
         $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
             $("#ipcity").html(remote_ip_info.city);
             appcan.locStorage.setVal("ipcity", remote_ip_info.city);
         });
     }
+    
+    setTimeout(function(){
+        if(!!$("#ipcity").html() && $("#ipcity").html().length > 0){
+            // 地址获取正常
+            
+        }else{
+            // 地址获取不正常 重新定位
+            alert("地址获取失败，请手动选择");
+            window.location.href = "page/ditu.html";
+        }
+    }, 3000);
     
     //消息个数
     if(userId !=null && userId !=""){
@@ -166,4 +175,23 @@
             $("#messageList").html(magStr);
         }
     })
-})($);
+    
+    //首页十秒后 检测更新
+    setTimeout(function(){
+        appcan.ajax({
+            type:"get",
+            url:host+"/getSysPByKey.json?pKey=version",
+            dataType:"json",
+            success : function(dataResult) {
+                var data = dataResult.data;
+                if(!!data && !!data.pName){
+                    // 有更新版本
+                    if(version != data.pName){
+                        $('.cd-popup').addClass('is-visible');
+                        $('.cd-update').data("val", hostIp+"/tcimg"+data.pValue);
+                    }
+                }
+            }
+        })
+    }, 10000);
+});

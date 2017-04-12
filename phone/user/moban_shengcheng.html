@@ -186,7 +186,7 @@
             #htmlStr{ display:none; padding: 1em; width: 100%; font-size: 0.8em; height: auto; overflow: hidden}
             #yulan{ height: 4.5em; width: 6em; overflow: hidden; float: left; margin-left: 4%;}
             #yulan img{ height: 100%; width: 100%; object-fit: cover;}
-            #wenzhang{ width:92%; margin:1em 4%; height: auto; overflow: hidden; padding: 1em 4%; min-height: 6em; border:1px solid #ccc;}
+            #wenzhang{ width:92%; margin:1em 4%; height: 15em; overflow: auto; padding: 1em 4%; min-height: 6em; border:1px solid #ccc;}
             #wenzhang .wzimg{ display: block; width: 100%;}
             #wenzhang textarea{ width:100%; min-height: 1.5em; height: 1.5em; margin: 0; padding: 0; border: none; outline: none;}
             #wenzhang_tu .webuploader-pick{ font-size: 0.8em;float: right; margin-right: 4%; color: #fff;width: auto;background: #ff3366;padding: 0 5%;border-radius: 0.2em;}
@@ -223,7 +223,7 @@
 		<section class="shuoming">
 			<div class="border_b">
 				<h3>说明</h3>
-				<p><span class="bottombottom22"></span></p>
+				<p><span class="rightright"></span></p>
 			</div>
 			<ul id="htmlStr"></ul>
 		</section>
@@ -245,7 +245,7 @@
                             <img style="width:100%;" id="mainPic1" src="../img/lizi2.png" />
                         </div>
                         <div class="thi">
-                            <div class="filePicker">上传(建议尺寸：750*300)</div>
+                            <div class="filePicker">上传(建议尺寸：320*160)</div>
                         </div>
                     </div>
                 </div>
@@ -255,7 +255,7 @@
     				<div>
     					<div id="yulan"><img id="mainPic2" src="../img/lizi1.png" /></div>
     					<div class="sec">
-    						<div class="filePicker">上传(建议尺寸：300*210)</div>
+    						<div class="filePicker">上传(建议尺寸：60*30)</div>
     						<input type="text" value="" placeholder="请输入店铺名称" name="shopName" id="shopName"/>
     					</div>
     					<textarea placeholder="活动简介内容输入" name="summary" id="summary"></textarea>
@@ -339,9 +339,9 @@
                     dataType:"json",
                     contentType: "application/json",
                     success : function(dataResult) {
-                        if(dataResult.status == 0){
+                        if(type == "B2" && dataResult.status == 0){
                             alert("该用户禁止发布，请联系管理员");
-                            openUrl("../index.html","index");
+                            window.location.href="../index.html";
                         }
                     }
                 })
@@ -441,7 +441,11 @@
                         $(".filePicker .webuploader-pick").html("正在上传，进度"+percent+"%");
                         $(".filePicker input[name='file']").attr("disabled","disabled");
                     }else{
-                        $(".filePicker .webuploader-pick").html("上传(建议尺寸：300*210)");
+                        if(num == 1){
+                            $(".filePicker .webuploader-pick").html("上传(建议尺寸：320*160)");
+                        }else{
+                            $(".filePicker .webuploader-pick").html("上传(建议尺寸：60*30)");
+                        }
                         $(".filePicker input[name='file']").removeAttr("disabled");
                     }
                 });
@@ -485,9 +489,9 @@
                 
                 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
                 uploader1.on('uploadSuccess', function(file, dataResult) {
-                    var str = '<div class="childStr" style="position: relative;width:100%"><img src="'+hostIp+dataResult.data.imgUrl+'" style="position:relative;"/><div class="opa" style="padding-left: 2.5em;padding-right: 0.3125em;"><img class="opaimg" src="../img/quxiao.png">删除</div></div>';
+                    var str = $("#wenzhang").html() + '<div class="childStr" style="position: relative;width:100%"><img src="'+hostIp+dataResult.data.imgUrl+'" style="position:relative;"/><div class="opa" style="padding-left: 2.5em;padding-right: 0.3125em;"><img class="opaimg" src="../img/quxiao.png">删除</div></div>';
                     str += '<div clss="childStr" style="position: relative;padding-top:0.5em;width:100%"><textarea placeholder="活动简介内容添加" onpropertychange="this.style.posHeight=this.scrollHeight" onfocus="this.style.posHeight=this.scrollHeight"></textarea><div class="opa" style="padding-left: 2.5em;padding-right: 0.3125em;"><img class="opaimg" src="../img/quxiao.png">删除</div></div>';
-                    $("#wenzhang").append(str);
+                    $("#wenzhang").html(str);
                     $("#wenzhang textarea").blur(function(){
                         $(this).html($(this).val());
                     })
@@ -672,7 +676,11 @@
                                 result = dataResult;
                                 if(obj == "preview"){
                                    if(result.status > 0){
-                                        openUrl("../page/info.html?actId="+result.data,"actInfo");
+                                       if(type=="C1" || type=="C2" || type=="D1" || type=="D2"){
+                                           openUrl("../page/info_goods.html?actId="+result.data,"info_goods");
+                                       }else{
+                                           openUrl("../page/info.html?actId="+result.data,"actInfo");
+                                       }
                                    }
                                 }else if(obj == "save"){
                                     alert("操作成功");
@@ -697,6 +705,9 @@
                    if($("#duifang").val().length == 0){
                        alert("输入接收对方账户名");
                    }else{
+                       $("#wenzhang textarea").each(function(){
+                            $(this).html($(this).val());
+                        })
                        appcan.ajax({
                             type:"post",
                             url:host+"/checkUser.json?userName="+$("#duifang").val(),

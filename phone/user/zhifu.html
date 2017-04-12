@@ -80,6 +80,7 @@
                 var param = appcan.locStorage.getVal("param");
                 var p = $.parseJSON(param);  
                 var actId = p.param.id;
+                var num = actId + new Date().getTime(); //测试需修改单号,避免已经支付的问题
                 var amount = p.param.amount;
                 $("#amount").html(amount);
                 $(".querenzhifu").click(function(){
@@ -93,7 +94,6 @@
                     var subject = "同城100发布费用";
                     var body = "同城100发布费用";
                     var fee = amount;
-                    var num = actId; //测试需修改单号,避免已经支付的问题
                     uexAliPay.pay(num, subject, body, fee, function(error,data){
                         if(!error){
                             appcan.ajax({

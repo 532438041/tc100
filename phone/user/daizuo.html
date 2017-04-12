@@ -159,11 +159,13 @@
                             var data = dataResult.data.dataList;
                             var str = '';
                             for (var i = 0; i < data.length; i++) {
-                                str+='<li class="mui-table-view-cell mui-media"><a class="mpian" cardId="'
-                                +data[i].cardId+'"> <img class="mui-media-object mui-pull-left" src="'
-                                +(hostIp+data[i].picUrl)+'"><div class="mui-media-body">'
-                                +data[i].cardName+'</div> </a><a class="mpian" cardId="'
-                                +data[i].cardId+'"><p>查看名片</p><span class="rightright3"></span></a></li>';
+                                if(!!data[i].cardId){
+                                    str+='<li class="mui-table-view-cell mui-media"><a class="mpian" cardId="'
+                                    +data[i].cardId+'"> <img class="mui-media-object mui-pull-left" src="'
+                                    +(hostIp+data[i].picUrl)+'"><div class="mui-media-body">'
+                                    +data[i].cardName+'</div> </a><a class="mpian" cardId="'
+                                    +data[i].cardId+'"><p>查看名片</p><span class="rightright3"></span></a></li>';
+                                }
                             };
                             $(".mui-table-view").append(str);
                             // 点名片 跳转到对应发布者名片详情页面

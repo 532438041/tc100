@@ -148,6 +148,9 @@ public class ActiveController {
 	@RequestMapping(value = "/saveAct")
 	public BaseResult saveActive(@RequestBody BaseParam<Active> baseParam) {
 		baseParam.getParam().setUpdateTime(new Date());
+		if(ToolsUtil.isNull(baseParam.getParam().getAmount())){
+			baseParam.getParam().setAmount(BigDecimal.ZERO);
+		}
 		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
 			if (ToolsUtil.isNotNull(baseParam.getParam().getActName()) && activeService.checkActName(baseParam.getParam()).size() > 0) {
 				return new BaseResult().failed(-1, "模板名称重复");
@@ -180,11 +183,29 @@ public class ActiveController {
 	 */
 	@RequestMapping(value = "/publicAct")
 	public BaseResult publicAct(@RequestBody BaseParam<Active> baseParam) {
+		baseParam.getParam().setState(baseParam.getParam().getState()); // 发布
+		if (ToolsUtil.isNotNull(baseParam.getParam().getStartTime())) {
+			baseParam.getParam().getStartTime().setHours(0);
+		}
+		if (ToolsUtil.isNotNull(baseParam.getParam().getEndTime())) {
+			baseParam.getParam().getEndTime().setHours(23);
+			baseParam.getParam().getEndTime().setMinutes(59);
+		}
+		if(ToolsUtil.isNull(baseParam.getParam().getAmount())){
+			baseParam.getParam().setAmount(BigDecimal.ZERO);
+		}
+		if (ToolsUtil.isNotNull(baseParam.getParam().getOfflineTime())) {
+			baseParam.getParam().getOfflineTime().setHours(0);
+		}
+		if (ToolsUtil.isNotNull(baseParam.getParam().getOfflineEndTime())) {
+			baseParam.getParam().getOfflineEndTime().setHours(23);
+			baseParam.getParam().getOfflineEndTime().setMinutes(59);
+		}
 		if (ToolsUtil.isNotNull(baseParam.getParam().getPayCodeId())) {
 			PayCode payCode = new PayCode();
 			payCode.setId(baseParam.getParam().getPayCodeId());
 			payCode.setActId(baseParam.getParam().getId());
-			payCode.setState(baseParam.getParam().getState());
+			payCode.setState("2");
 			payCodeService.updateByPrimaryKeySelective(payCode);
 		} else if (!baseParam.getParam().getAmount().equals(BigDecimal.ZERO)) {
 			// 保存支付记录
@@ -202,9 +223,9 @@ public class ActiveController {
 			if (ToolsUtil.isNotNull(active.getAmount())) {
 				baseParam.getParam().setAmount(active.getAmount().add(baseParam.getParam().getAmount()));
 			}
+			baseParam.getParam().setState("2"); // 付款肯定发布
 		}
 		baseParam.getParam().setUpdateTime(new Date());
-		baseParam.getParam().setState(baseParam.getParam().getState()); // 发布
 		return new BaseResult().success(activeService.updateByPrimaryKeySelective(baseParam.getParam()), "");
 	}
 
@@ -245,6 +266,9 @@ public class ActiveController {
 	@RequestMapping(value = "/saveItem")
 	public BaseResult saveItem(@RequestBody BaseParam<ActiveItem> baseParam) {
 		baseParam.getParam().setUpdateTime(new Date());
+		baseParam.getParam().getStartTime().setHours(0);
+		baseParam.getParam().getEndTime().setHours(23);
+		baseParam.getParam().getEndTime().setMinutes(59);
 		if (ToolsUtil.isNull(baseParam.getParam().getId())) {
 			baseParam.getParam().setId(ToolsUtil.getUUID());
 			baseParam.getParam().setCreateTime(new Date());
@@ -418,11 +442,23 @@ public class ActiveController {
 					return new BaseResult().failed(0, "重复次数已封顶");
 				} else if (isLoged == maxNum - 1) {
 					// 帖子下架
-					Active active = new Active();
-					active.setId(actId);
+					Active active = activeService.selectByPrimaryKey(actId);
 					active.setUpdateTime(new Date());
 					active.setState("1");
 					activeService.updateByPrimaryKeySelective(active);
+					
+					// 三天禁止发布
+					User user = userService.selectByPrimaryKey(active.getUserId());
+					user.setId(active.getUserId());
+					user.setState("3");
+					Date date = new Date();// 取时间
+					Calendar calendar = new GregorianCalendar();
+					calendar.setTime(date);
+					calendar.add(Calendar.DATE, 2);// 把日期往后增加三天天.整数往后推,负数往前移动
+					date = calendar.getTime(); // 这个时间就是日期往后推一天的结果
+					user.setUpdateTime(date);
+					userService.updateByPrimaryKeySelective(user);
+					
 				}
 				activeService.operateAct(actId, operateFee.getAmount());
 			} else if (logType.equals("4")) {
@@ -431,15 +467,19 @@ public class ActiveController {
 				int maxNum = Integer.parseInt(sysParamService.getSysPByPKey("tc_operate_fee_4").getpValue());
 				int isLoged = activeLogService.isLoged(actId, null, "4");
 				if (isLoged == maxNum - 1) {
-					// 水贴20次 三天禁止发布
+					// 水贴20次 下架 三天禁止发布
 					Active active = activeService.selectByPrimaryKey(actId);
+					active.setUpdateTime(new Date());
+					active.setState("1");
+					activeService.updateByPrimaryKeySelective(active);
+					
 					User user = userService.selectByPrimaryKey(active.getUserId());
 					user.setId(active.getUserId());
 					user.setState("3");
 					Date date = new Date();// 取时间
 					Calendar calendar = new GregorianCalendar();
 					calendar.setTime(date);
-					calendar.add(Calendar.DATE, 3);// 把日期往后增加三天天.整数往后推,负数往前移动
+					calendar.add(Calendar.DATE, 5);// 把日期往后增加三天天.整数往后推,负数往前移动
 					date = calendar.getTime(); // 这个时间就是日期往后推一天的结果
 					user.setUpdateTime(date);
 					userService.updateByPrimaryKeySelective(user);

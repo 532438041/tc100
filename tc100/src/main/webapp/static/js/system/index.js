@@ -152,6 +152,14 @@ indexApp.config(function($stateProvider, $urlRouterProvider) {
 				return $ocLazyLoad.load([ "/tc100/static/js/system/personList.js" ]);
 			}
 		}
+	}).state("version", {
+		url : "/version",
+		templateUrl : "version.html",
+		resolve : {
+			load : function($ocLazyLoad) {
+				return $ocLazyLoad.load([ "/tc100/static/webuploader/webuploader.js", "/tc100/static/js/system/version.js" ]);
+			}
+		}
 	}).state("payLogList", {
 		url : "/payLogList",
 		templateUrl : "payLogList.html",

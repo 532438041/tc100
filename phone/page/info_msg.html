@@ -110,6 +110,13 @@
             .same_city_search .mui-table-view .mui-media-object {
                 margin-right: 0.5em;
             }
+            .list_d{
+                border-bottom: 1px solid #333;
+                background-color: #fff;
+            }
+            .list_d li {
+                border-bottom: 1px solid #ddd;
+            }
         </style>
 	</head>
 
@@ -247,7 +254,7 @@
                                 };
                             }
                             msgStr +='<div class="xiangxi">';
-                            msgStr +='<p style="color: #232323;font-size: 1em;">'+data.remark+'</p>';
+                            msgStr +='<p style="color: #232323;font-size: 0.95em;">'+data.remark+'</p>';
                             msgStr +='<p>需求地址：'+data.region+'  '+data.createTime+'</p>';
                             msgStr +='</div>';
                         }
@@ -272,7 +279,7 @@
                                 msgReviewStr +='<img class="mui-media-object mui-pull-left" src="'+hostIp+dataList[i].picUrl+'">';
                                 msgReviewStr +='<div class="mui-media-body">';
                                 msgReviewStr +='<p class="mui-ellipsis">'+dataList[i].cardName+'</p>';
-                                msgReviewStr +='<p style="color: #232323;font-size: 1em;" class="mui-ellipsis">'+dataList[i].remark+'</p>';
+                                msgReviewStr +='<p style="color: #232323;font-size: 0.95em;" class="mui-ellipsis">'+dataList[i].remark+'</p>';
                                 msgReviewStr +='<i class="cardInfo" data-id='+dataList[i].cardId+'>查看名片</i>';
                                 msgReviewStr +='<div>';
                                 if(!!dataList[i].msgPic && dataList[i].msgPic.length > 0){
@@ -298,7 +305,9 @@
                 //添加信息
                 $("#addMsg").click(function(){
                     if(!!!appcan.locStorage.getVal("userId")){
-                        alert("请登录");
+                        if(confirm("请登录")){
+                            openUrl('../login/login2.html','login2')
+                        }
                         return false;
                     }
                     if(!!!$("#msg").val()){
@@ -324,7 +333,9 @@
                             if(data.length > 0){
                                 cardId = data[0].id;
                             }else{
-                                alert("请先添加名片");
+                                if(confirm("请先添加名片")){
+                                    openUrl("../user/my_card.html","my_card");
+                                }
                                 return false;
                             }
                             var baseParam = {'msgId':msgId,"userId":appcan.locStorage.getVal("userId"),"cardId":cardId, "remark":$("#msg").val(),"msgPic":msgPics};

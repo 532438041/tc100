@@ -82,15 +82,13 @@
 	<select id="getSysPList" parameterType="com.java.entity.SysParam" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from tc_sys_param
-		<where>
-			<if test="pName != null and pName != ''">
-				p_name LIKE "%"#{pName}"%"
-			</if>
-			<if test="pKey !=null and pKey !=''">
-				AND p_key LIKE "%"#{pKey}"%"
-			</if>
-		</where>
+		from tc_sys_param where p_key != "version"
+		<if test="pName != null and pName != ''">
+			AND p_name LIKE "%"#{pName}"%"
+		</if>
+		<if test="pKey !=null and pKey !=''">
+			AND p_key LIKE "%"#{pKey}"%"
+		</if>
 	</select>
 
 	<select id="getSysPByPKey" parameterType="java.lang.String" resultMap="BaseResultMap">

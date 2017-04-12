@@ -244,7 +244,7 @@
                      var itemList = data[i].itemList;
                      var itemStr = '';
                      for (var j=0; j < itemList.length; j++) {
-                        var yourtime=itemList[j].endTime;
+                        var yourtime=itemList[j].endTime+" 23:59:59";
                         yourtime = yourtime.replace("-","/");//替换字符，变成标准格式
                         var d2=new Date();//取今天的日期
                         var d1 = new Date(Date.parse(yourtime));

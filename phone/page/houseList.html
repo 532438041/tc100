@@ -183,14 +183,14 @@
                         var actStr = "";
                         for(var i=0;i<dataList.length;i++){
                             if(dataList[i].actType == 'F1'){
-                                actStr += '<section class="tu_2"><div class=\"bigtu\"><a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div></section>';
+                                actStr += '<section class="tu_2"><div class=\"bigtu\"><a href="javascript:;" onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'info\')"><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi2.png\'"/></a></div></section>';
                             }else{
                                 actStr+='<section class="same_city_search"><div><ul class="list_a">';
                                 actStr += '<li>';
-                                actStr += '<a href="javascript:;" onclick="openUrl(\'info_goods.html?actId='+dataList[i].id+'\',\'info_goods\')">';
+                                actStr += '<a href="javascript:;" onclick="openUrl(\'info.html?actId='+dataList[i].id+'\',\'info\')">';
                                 actStr += '<div><img src="'+hostIp+dataList[i].mainPic+'" onerror="javascript:src=\'../img/lizi1.png\'"></div>';
-                                actStr += '<div>'+dataList[i].shopName;
-                                actStr += '<p>'+dataList[i].summary+'</p>';
+                                actStr += '<div><p>'+dataList[i].shopName;
+                                actStr += '</p>'+dataList[i].summary+'';
                                 actStr += '<i>'+dataList[i].createTime+'</i>';
                                 actStr += '</div></a></li>';
                                 actStr+='</ul></div></section>';

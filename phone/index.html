@@ -20,6 +20,88 @@
         <script type="text/javascript" src="js/appcan.control.js"></script>
         <script type="text/javascript" src="js/common.js" ></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <style>
+            .checkbox{width:100%;height:40px; margin:0px auto; text-align:center}
+            .checkbox a{ display:inline-block;width:100px; height:40px; border:solid 1px #f00; color:#f00; text-align:center; line-height:40px; text-decoration:none}
+            .cd-popup {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+                -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+                transition: opacity 0.3s 0s, visibility 0s 0.3s;
+                z-index:9999;
+            }
+            .cd-popup.is-visible {
+                opacity: 1;
+                visibility: visible;
+                -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+                -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+                transition: opacity 0.3s 0s, visibility 0s 0s;
+            }
+            .cd-popup-container {
+                position: relative;
+                width:80%;
+                margin:6em auto;
+                height:70%;
+                background:url(img/up_bg.png) no-repeat center;
+                background-size:100% 100%;
+                border-radius: .4rem .4rem .4rem .4rem;
+                text-align: center;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                -webkit-transform:scale(1.2);
+                -moz-transform:scale(1.2);
+                -ms-transform:scale(1.2);
+                -o-transform:scale(1.2);
+                transform:scale(1.2);
+                -webkit-backface-visibility: hidden;
+                -webkit-transition-property: -webkit-transform;
+                -moz-transition-property: -moz-transform;
+                transition-property: transform;
+                -webkit-transition-duration: 0.3s;
+                -moz-transition-duration: 0.3s;
+                -ms-transition-duration: 0.3s;
+                -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+            }
+            .cd-popup-close{ 
+                    position: absolute;
+                    right: 0.7em;
+                    top: 0.5em;
+                    z-index: 10;
+                    width: auto;
+                    height: 1em;
+                    display: block;
+                    font-size: 1em;
+                    color: #fff;
+            }
+            .is-visible .cd-popup-container {-webkit-transform:scale(1); -moz-transform:scale(1); -ms-transform:scale(1); -o-transform:scale(1); transform:scale(1);}
+            
+            .cd-butt{
+                    width: 100%;
+                    position: absolute;
+                    bottom: 2em;
+                    text-align: center;
+            }
+            .cd-butt a{
+                    display: inline-block;
+                    width: 39%;
+                    height: 2em;
+                    line-height: 2em;
+                    text-align: center;
+                    border-radius: .4rem .4rem .4rem .4rem;
+                    margin: 0 5%;
+                    font-size: 1em;
+                    color: #fff;
+            }
+            .cd-butt a.cd-cancel{background:#d9d9d9;}
+            .cd-butt a.cd-update{background:#fe4170;}
+        </style>
         <title>首页</title>
         <style>
             .rightright{
@@ -47,6 +129,47 @@
             <h1>首页</h1>
             <a class="xiaoxi" href="javascript:;" onclick="openUrl('user/my_message.html','my_message');"><span id="xiaoxishu" style="display: none;">0</span></a>
         </header>
+        <section>
+            <script type="text/javascript">
+                 /*弹框JS内容*/
+                jQuery(document).ready(function($){
+                    //打开窗口
+                    $('.cd-popup-trigger0').on('click', function(event){
+                        event.preventDefault();
+                        $('.cd-popup').addClass('is-visible');
+                        //$(".dialog-addquxiao").hide()
+                    });
+                    //关闭窗口
+                    $('.cd-popup').on('click', function(event){
+                        if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') || $(event.target).is('.cd-cancel')) {
+                            event.preventDefault();
+                            $(this).removeClass('is-visible');
+                        }
+                    });
+                    //ESC关闭
+                    $(document).keyup(function(event){
+                        if(event.which=='27'){
+                            $('.cd-popup').removeClass('is-visible');
+                        }
+                    });
+                    $('.cd-update').on('click', function(event){
+                        uexClipboard.copy($(this).data("val"));
+                        alert("复制地址成功，请打开浏览器进行下载");
+                        event.preventDefault();
+                        $('.cd-popup').removeClass('is-visible');
+                    });
+                });
+            </script>
+            <div class="cd-popup">
+                <div class="cd-popup-container">
+                    <a href="javascript:;" class="cd-popup-close">X</a>
+                    <div class="cd-butt">
+                        <a href="javascript:;" class="cd-cancel">下次再说</a>
+                        <a href="javascript:;" data-val="" class="cd-update">立即更新</a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="lunbo">
             <div class="mui-slider">
                 <div class="mui-slider-group mui-slider-loop" id="slideBoxIndex">

@@ -97,10 +97,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/delCard")
 	public BaseResult delCard(String cardId) {
-		UserCard userCard = new UserCard();
-		userCard.setId(cardId);
-		userCard.setState("0");
-		return new BaseResult().success(userCardService.updateByPrimaryKeySelective(userCard));
+		return new BaseResult().success(userCardService.deleteByPrimaryKey(cardId));
 	}
 
 	/**
@@ -254,14 +251,14 @@ public class UserController {
 	@RequestMapping(value = "/canPublic")
 	public BaseResult canPublic(String userId) throws Exception {
 		User user = userService.selectByPrimaryKey(userId);
-		if (user.getState().equals("3") && new Date().compareTo(user.getUpdateTime()) < 0) {
+		if (user.getState().equals("3") && (ToolsUtil.isNull(user.getUpdateTime()) || new Date().compareTo(user.getUpdateTime()) < 0)) {
 			// 禁止发布
 			return new BaseResult().success(0, "禁止发布");
 		} else {
 			// 自动解除禁止
 			user.setId(userId);
 			user.setState("1");
-			user.setUpdateTime(new Date());
+			user.setUpdateTime(null);
 			userService.updateByPrimaryKeySelective(user);
 			return new BaseResult().success(1, "正常发布");
 		}

@@ -86,6 +86,37 @@ public class UploadServiceImpl implements UploadService {
 		}
 		return map;
 	}
+	
+	public Map<String, Object> uploadFile(MultipartFile[] files) {
+		String path = ImageFileConfig.uploadFilePath;
+		String url = "";
+
+		Map<String, Object> map = new HashMap<>();
+
+		// 获取文件上传的真实路径
+		try {
+			// 上传文件过程
+			for (MultipartFile file : files) {
+				// 判断目录是否存在
+				File destFile = new File(path);
+				if (!destFile.exists()) {
+					destFile.mkdirs();
+				}
+				url += "/" + file.getOriginalFilename();
+				String filePath = destFile.getAbsoluteFile() + File.separator + file.getOriginalFilename();
+				
+				File f = new File(filePath);
+				file.transferTo(f);
+				f.createNewFile();
+				
+				map.put("fileUrl", url);
+
+			}
+		} catch (Exception ex) {
+
+		}
+		return map;
+	}
 
 	/**
 	 * 根据设置的宽高等比例压缩图片文件<br>

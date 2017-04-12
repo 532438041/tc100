@@ -193,10 +193,10 @@
                         magStr+='<li>';
                         magStr+='<a href="javascript:;" onclick="openUrl(\'info_msg.html?msgId='+dataList[i].id+'\',\'actinfomsg\');">';
                         magStr+='<div>';
-                        magStr+='<img  src="'+hostIp+dataList[i].picUrl+'" onerror="javascript:src=\'../img/lizi1.png\'">';
+                        magStr+='<img src="'+hostIp+dataList[i].picUrl+'" onerror="javascript:src=\'../img/lizi1.png\'">';
                         magStr+='</div>';
-                        magStr+='<div>'+dataList[i].title;
-                        magStr+='<p>'+dataList[i].remark+'......</p>';
+                        magStr+='<div><p>'+dataList[i].cardName;
+                        magStr+='</p>'+dataList[i].title+'';
                         magStr+='<i>'+dataList[i].createTime+'</i>';
                         magStr+='</div></a></li>';
                     }
